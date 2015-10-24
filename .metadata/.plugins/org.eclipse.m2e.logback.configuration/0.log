@@ -91,3 +91,45 @@
 2015-10-24 13:40:00,062 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
 2015-10-24 13:40:00,063 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2015-10-24 13:40:00,063 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:45:44,010 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:45:44,019 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:45:44,023 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:45:44,024 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:45:49,129 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: GGS.DDU:EMLS:0.0.1-SNAPSHOT @ E:\LAVA\G.S_Teamwork\EMLS\pom.xml.
+2015-10-24 13:45:50,041 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:45:50,042 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:45:50,046 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:45:50,046 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:45:52,359 [Worker-0] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: GGS.DDU:EMLS:0.0.1-SNAPSHOT @ E:\LAVA\G.S_Teamwork\EMLS\pom.xml.
+2015-10-24 13:45:52,858 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:45:52,858 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:45:52,863 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:45:52,863 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:46:12,594 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:46:12,595 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:46:12,597 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:46:12,598 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:46:24,871 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:46:24,871 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:46:24,873 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:46:24,874 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:46:45,084 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:46:45,084 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:46:45,086 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:46:45,087 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:47:04,446 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:04,447 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:47:04,449 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:04,449 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:47:15,200 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:15,200 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:47:15,202 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:15,202 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:47:25,800 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:25,801 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:47:25,802 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:25,802 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
+2015-10-24 13:47:33,483 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:33,483 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\main\resources
+2015-10-24 13:47:33,486 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-10-24 13:47:33,487 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\LAVA\G.S_Teamwork\EMLS\src\test\resources
