@@ -8,6 +8,8 @@ import ELMS.businesslogic.FinanceBL.Bank_Driver;
 import ELMS.businesslogic.FinanceBL.Bank_Stub;
 import ELMS.businesslogic.FinanceBL.Form_Driver;
 import ELMS.businesslogic.FinanceBL.Form_Stub;
+import ELMS.businesslogic.InvoiceBL.InvoiceBL_Driver;
+import ELMS.businesslogic.InvoiceBL.InvoiceBL_stub;
 import ELMS.businesslogic.LogBL.LogBl_driver;
 import ELMS.businesslogic.LogBL.LogBl_stub;
 import ELMS.businesslogic.MemberBL.MemberBl_driver;
@@ -19,14 +21,18 @@ import ELMS.businesslogic.UserBL.UserBL_stub;
 import ELMS.businesslogicService.DealBlService;
 import ELMS.businesslogicService.FinanceBlBankService;
 import ELMS.businesslogicService.FinanceBlFormService;
+import ELMS.businesslogicService.InvoiceBLService;
 import ELMS.businesslogicService.LogBlService;
 import ELMS.businesslogicService.UserBlService;
 import ELMS.dataservice.DealDataService;
 import ELMS.dataservice.FinanceBankDataService;
+import ELMS.dataservice.InvoiceDataService;
 import ELMS.dataservice.UserDataService;
 import ELMS.data.Dealdata.*;
 import ELMS.data.FinanceData.BankData_Driver;
 import ELMS.data.FinanceData.BankData_Stub;
+import ELMS.data.Invoicedata.InvoiceData_Driver;
+import ELMS.data.Invoicedata.InvoiceData_stub;
 import ELMS.data.Logdata.LogData_driver;
 import ELMS.data.Logdata.LogData_stub;
 import ELMS.data.MemberData.MemberData_driver;
@@ -65,6 +71,19 @@ public class Client {
 		try {
 			DealData_driver.drive(DealData_stub);
 		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		//Invoice
+		InvoiceBLService InvoiceBL_stub=new InvoiceBL_stub();
+		InvoiceBL_Driver InvoiceBL_driver=new InvoiceBL_Driver();
+		InvoiceBL_driver.drive(InvoiceBL_stub);
+				
+	    InvoiceDataService InvoiceData_stub=new InvoiceData_stub();
+		InvoiceData_Driver InvoiceData_driver=new InvoiceData_Driver();
+		try{
+			InvoiceData_driver.drive(InvoiceData_stub);
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}
 		
