@@ -1,0 +1,90 @@
+package main;
+
+import java.rmi.RemoteException;
+
+import ELMS.businesslogic.DealBL.DealBL_Driver;
+import ELMS.businesslogic.DealBL.DealBL_stub;
+import ELMS.businesslogic.LogBL.LogBl_driver;
+import ELMS.businesslogic.LogBL.LogBl_stub;
+import ELMS.businesslogic.MemberBL.MemberBl_driver;
+import ELMS.businesslogic.MemberBL.MemberBl_stub;
+import ELMS.businesslogic.StorageBL.StorageBl_driver;
+import ELMS.businesslogic.StorageBL.StorageBl_stub;
+import ELMS.businesslogic.UserBL.UserBL_driver;
+import ELMS.businesslogic.UserBL.UserBL_stub;
+import ELMS.businesslogicService.DealBlService;
+import ELMS.businesslogicService.LogBlService;
+import ELMS.businesslogicService.UserBlService;
+import ELMS.dataservice.DealDataService;
+import ELMS.dataservice.UserDataService;
+import ELMS.data.Dealdata.*;
+import ELMS.data.Logdata.LogData_driver;
+import ELMS.data.Logdata.LogData_stub;
+import ELMS.data.MemberData.MemberData_driver;
+import ELMS.data.MemberData.MemberData_stub;
+import ELMS.data.Storagedata.StorageData_driver;
+import ELMS.data.Storagedata.StorageData_stub;
+import ELMS.data.Userdata.Userdata_driver;
+import ELMS.data.Userdata.Userdata_stub;
+
+public class Client {
+
+	public static void main(String[] args) throws RemoteException {
+		//user
+		UserBlService UserBL_stub=new UserBL_stub();
+		UserBL_driver UserBL_driver=new UserBL_driver();
+		UserBL_driver.driver(UserBL_stub);
+		
+		
+		
+		UserDataService Userdata_stub=new Userdata_stub();
+		Userdata_driver Userdata_driver=new Userdata_driver();
+		try {
+			Userdata_driver.drive(Userdata_stub);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		//deal
+		DealBlService DealBL_stub=new DealBL_stub();
+		DealBL_Driver DealBL_driver=new DealBL_Driver();
+		DealBL_driver.drive(DealBL_stub);
+		
+		DealDataService DealData_stub=new DealDate_stub();
+		DealData_driver DealData_driver=new DealData_driver();
+		try {
+			DealData_driver.drive(DealData_stub);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		//Log
+		LogBl_stub ls=new LogBl_stub();
+		new LogBl_driver(ls);
+		
+		LogData_stub lds=new LogData_stub();
+		new LogData_driver(lds);
+
+		
+		//Storage
+		StorageBl_stub ss=new StorageBl_stub();
+		new StorageBl_driver(ss);
+		
+		StorageData_stub sds=new StorageData_stub();
+		new StorageData_driver(sds);
+
+		
+		//member	
+		MemberBl_stub ms=new MemberBl_stub();
+		new MemberBl_driver(ms);
+		
+		MemberData_stub mds=new MemberData_stub();
+		new MemberData_driver(mds);
+		
+		
+	}
+	
+	
+
+}

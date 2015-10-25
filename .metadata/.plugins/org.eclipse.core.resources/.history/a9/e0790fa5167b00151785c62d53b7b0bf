@@ -1,0 +1,37 @@
+package po;
+
+//如何根据银行名称返回该银行在该公司名下的所有账户？
+
+public class BankAccountPO {
+	String account;
+	double amount;
+	String bankName;
+	public BankAccountPO(String account, double amount, String bankName) {
+		this.account = account;
+		this.amount = amount;
+		this.bankName = bankName;
+	}
+	public String getAccount() {
+		return account;
+	}
+	
+	public void setAccount(String name){
+		this.account = name;
+	}
+	
+	public double getAmount() {
+		return amount;
+	}
+	
+	public void setAmount(double amount){
+		this.amount = amount;
+	}
+	
+	public String getBankName() {
+		return bankName;
+	}
+	
+	public void setBankName(String bankName){
+		this.bankName = bankName;
+	}
+}

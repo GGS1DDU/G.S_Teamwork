@@ -4,6 +4,10 @@ import java.rmi.RemoteException;
 
 import ELMS.businesslogic.DealBL.DealBL_Driver;
 import ELMS.businesslogic.DealBL.DealBL_stub;
+import ELMS.businesslogic.FinanceBL.Bank_Driver;
+import ELMS.businesslogic.FinanceBL.Bank_Stub;
+import ELMS.businesslogic.FinanceBL.Form_Driver;
+import ELMS.businesslogic.FinanceBL.Form_Stub;
 import ELMS.businesslogic.LogBL.LogBl_driver;
 import ELMS.businesslogic.LogBL.LogBl_stub;
 import ELMS.businesslogic.MemberBL.MemberBl_driver;
@@ -13,11 +17,16 @@ import ELMS.businesslogic.StorageBL.StorageBl_stub;
 import ELMS.businesslogic.UserBL.UserBL_driver;
 import ELMS.businesslogic.UserBL.UserBL_stub;
 import ELMS.businesslogicService.DealBlService;
+import ELMS.businesslogicService.FinanceBlBankService;
+import ELMS.businesslogicService.FinanceBlFormService;
 import ELMS.businesslogicService.LogBlService;
 import ELMS.businesslogicService.UserBlService;
 import ELMS.dataservice.DealDataService;
+import ELMS.dataservice.FinanceBankDataService;
 import ELMS.dataservice.UserDataService;
 import ELMS.data.Dealdata.*;
+import ELMS.data.FinanceData.BankData_Driver;
+import ELMS.data.FinanceData.BankData_Stub;
 import ELMS.data.Logdata.LogData_driver;
 import ELMS.data.Logdata.LogData_stub;
 import ELMS.data.MemberData.MemberData_driver;
@@ -83,6 +92,17 @@ public class Client {
 		new MemberData_driver(mds);
 		
 		
+		//BankAccount
+		FinanceBlBankService bbs = new Bank_Stub();
+		new Bank_Driver(bbs);
+		
+		//BankData
+		FinanceBankDataService bds = new BankData_Stub();
+		new BankData_Driver(bds);
+		
+		//FormAccount
+		FinanceBlFormService bfs = new Form_Stub();
+		new Form_Driver(bfs);
 	}
 	
 	

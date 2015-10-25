@@ -1,0 +1,60 @@
+package financeData;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import po.BankAccountPO;
+import financeDataService.FinanceBankDataService;
+
+public class BankData_Stub implements FinanceBankDataService{
+
+	@Override
+	public BankAccountPO find(String id) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return new BankAccountPO("po00001",100,"中国工商银行");
+	}
+
+	@Override
+	public ArrayList<BankAccountPO> findByBank(String bankName)
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		ArrayList<BankAccountPO> bap = new ArrayList<BankAccountPO>();
+		bap.add(new BankAccountPO("po00001",100,"中国工商银行"));
+		bap.add(new BankAccountPO("po00002",100,"中国工商银行"));
+		bap.add(new BankAccountPO("po00003",100,"中国工商银行"));
+		return bap;
+	}
+
+	@Override
+	public void insert(BankAccountPO po) throws RemoteException {
+		// TODO 自动生成的方法存根
+		System.out.println("insert successfully!");
+		
+	}
+
+	@Override
+	public void delete(BankAccountPO po) throws RemoteException {
+		// TODO 自动生成的方法存根
+		System.out.println("Delete successfully!");
+		
+	}
+
+	@Override
+	public void update(BankAccountPO po) throws RemoteException {
+		// TODO 自动生成的方法存根
+		System.out.println("update successfully!");
+	}
+
+	@Override
+	public void init() throws RemoteException {
+		// TODO 自动生成的方法存根
+		System.out.println("init successfully!");
+	}
+
+	@Override
+	public void finish() throws RemoteException {
+		// TODO 自动生成的方法存根
+		
+	}
+
+}

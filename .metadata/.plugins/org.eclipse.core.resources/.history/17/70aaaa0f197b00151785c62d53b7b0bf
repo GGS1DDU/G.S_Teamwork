@@ -1,0 +1,54 @@
+package financelogic;
+
+import java.util.ArrayList;
+
+import po.BankAccountPO;
+import vo.BankAccountVO;
+import financeLogicService.FinanceBlBankService;
+
+public class Bank_Stub implements FinanceBlBankService{
+
+	@Override
+	public boolean addAccount(BankAccountVO vo) {
+		// TODO 自动生成的方法存根
+		return true;
+	}
+
+	@Override
+	public boolean deleteAccount(String bankAccout) {
+		// TODO 自动生成的方法存根
+		return true;
+	}
+
+	@Override
+	public BankAccountVO changeAccount(String accountName) {
+		// TODO 自动生成的方法存根
+		return new BankAccountVO(accountName,0,"中国工商银行");
+	}
+
+	@Override
+	public BankAccountVO inquiryAccount(String accountName) {
+		// TODO 自动生成的方法存根
+		return new BankAccountVO(accountName,100,"中国银行");
+	}
+
+	@Override
+	public ArrayList<BankAccountVO> inquiryAccountByBank(String BankName) {
+		// TODO 自动生成的方法存根
+		ArrayList<BankAccountVO> bankAccount = new ArrayList<BankAccountVO>();
+		
+		bankAccount.add(new BankAccountVO("00000001",0,BankName));
+		bankAccount.add(new BankAccountVO("00000002",100,BankName));
+		bankAccount.add(new BankAccountVO("00000003",10000,BankName));
+		bankAccount.add(new BankAccountVO("00000004",1000,BankName));
+		
+		return bankAccount;
+	}
+
+	@Override
+	public void endBankOpt() {
+		// TODO 自动生成的方法存根
+		
+	}
+
+}

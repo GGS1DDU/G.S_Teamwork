@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="ELMS.businesslogicService.FinanceBlBankService"/>
+<fullyQualifiedTypeName name="ELMS.businesslogic.FinanceBL.Bank_Driver"/>
+<fullyQualifiedTypeName name="ELMS.dataservice.FinanceBankDataService"/>
+<fullyQualifiedTypeName name="ELMS.data.FinanceData.BankData_Driver"/>
+<fullyQualifiedTypeName name="ELMS.businesslogic.FinanceBL.Bank_Stub"/>
+<fullyQualifiedTypeName name="ELMS.data.FinanceData.BankData_Stub"/>
+<fullyQualifiedTypeName name="ELMS.businesslogicService.FinanceBlFormService"/>
+<fullyQualifiedTypeName name="ELMS.businesslogic.FinanceBL.Form_Driver"/>
+<fullyQualifiedTypeName name="ELMS.businesslogic.FinanceBL.Form_Stub"/>
+</qualifiedTypeNameHistroy>
