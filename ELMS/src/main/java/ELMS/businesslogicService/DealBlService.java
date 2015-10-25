@@ -22,6 +22,8 @@ public interface DealBlService {
 	public ArrayList<RecordVO> Record(String time1, String time2,String courier_name);
 	
 	
-	public void endDealOpt();
+	public  void endDealOpt() ;
+		
+
 	
 }

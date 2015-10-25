@@ -9,10 +9,10 @@ import java.io.Serializable;
 public class UserPO implements Serializable {
 
 
-	String id;
-	String name;
-	String password;
-	String job;
+	String id=" ";
+	String name=" ";
+	String password=" ";
+	String job=" ";
 	
 	public UserPO(String id,String n,String p,String job){
 		this.id=id;
@@ -21,6 +21,10 @@ public class UserPO implements Serializable {
 		this.job=job;
 	}	
 	
+	public UserPO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getId() {
 		return id;
 	}

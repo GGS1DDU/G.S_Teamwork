@@ -8,7 +8,7 @@ import ELMS.po.UserPO;
 
 public interface UserDataService {
 	
-	public UserPO find(Long id) throws RemoteException;
+	public UserPO find(String id) throws RemoteException;
 	
 	
 	public ArrayList<UserPO> findall() throws RemoteException;

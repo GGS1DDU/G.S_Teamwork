@@ -9,10 +9,10 @@ package ELMS.vo;
 public class UserVO  {
 
 
-	String id;
-	String name;
-	String password;
-	String job;
+	String id=" ";
+	String name=" ";
+	String password=" ";
+	String job=" ";
 	
 	public UserVO(String id,String n,String p,String job){
 		this.id=id;
@@ -21,6 +21,10 @@ public class UserVO  {
 		this.job=job;
 	}	
 	
+	public UserVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getId() {
 		return id;
 	}

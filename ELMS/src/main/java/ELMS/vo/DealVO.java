@@ -26,9 +26,9 @@ public class DealVO {
 	 String receiver_phonenumber;
 	 
 	 String goods_name;
-	 String goods_amount;
-	 String good_weight;
-	 String good_volume;
+	 int goods_amount;
+	 double goods_weight;
+	 double goods_volume;
 	 
 	 String type; //应该用枚举
 	 String pack; //应该用枚举
@@ -50,8 +50,8 @@ public class DealVO {
 				String sender_company, String sender_phonenumber,
 				String receiver_name, String receiver_city,
 				String receiver_company, String receiver_phonenumber,
-				String goods_name, String goods_amount, String good_weight,
-				String good_volume, String type, String pack, double fee,
+				String goods_name, int goods_amount, double goods_weight,
+				double goods_volume, String type, String pack, double fee,
 				int delaydays, String actualreceiver_name, String receivaltime,
 				String track, String state) {
 			super();
@@ -68,9 +68,9 @@ public class DealVO {
 			this.receiver_company = receiver_company;
 			this.receiver_phonenumber = receiver_phonenumber;
 			this.goods_name = goods_name;
-			this.goods_amount = goods_amount;
-			this.good_weight = good_weight;
-			this.good_volume = good_volume;
+			this.goods_amount =goods_amount;
+			this.goods_weight = goods_weight;
+			this.goods_volume = goods_volume;
 			this.type = type;
 			this.pack = pack;
 			this.fee = fee;
@@ -80,6 +80,7 @@ public class DealVO {
 			this.track = track;
 			this.state = state;
 		}
+	 public DealVO(){};
 
 
 
@@ -161,20 +162,20 @@ public class DealVO {
 
 
 
-	public String getGoods_amount() {
+	public int getGoods_amount() {
 		return goods_amount;
 	}
 
 
 
-	public String getGood_weight() {
-		return good_weight;
+	public double getGood_weight() {
+		return goods_weight;
 	}
 
 
 
-	public String getGood_volume() {
-		return good_volume;
+	public double getGood_volume() {
+		return goods_volume;
 	}
 
 
