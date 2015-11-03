@@ -2,14 +2,14 @@ package ELMS.businesslogic.FinanceBL;
 
 import java.util.ArrayList;
 
-import ELMS.businesslogicService.FinanceBlService.FinanceBlFormService;
+import ELMS.businesslogicService.FinanceBlService.FinanceBlInitAllService;
 import ELMS.vo.FExpenseVO;
 import ELMS.vo.FIncomeVO;
 
 
 public class Form_Driver {
 
-	public Form_Driver(FinanceBlFormService formService){
+	public Form_Driver(FinanceBlInitAllService formService){
 		//新建账户
 				String str = "zwq";
 				if(formService.init("zwq"))

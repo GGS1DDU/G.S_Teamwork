@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 
 
-import ELMS.businesslogicService.FinanceBlService.FinanceBlFormService;
+import ELMS.businesslogicService.FinanceBlService.FinanceBlInitAllService;
 import ELMS.vo.FExpenseVO;
 import ELMS.vo.FIncomeVO;
 
 
-public class Form_Stub implements FinanceBlFormService{
+public class Form_Stub implements FinanceBlInitAllService{
 
 	
 

@@ -23,7 +23,7 @@ import ELMS.businesslogicService.InvoiceBLService;
 import ELMS.businesslogicService.LogBlService;
 import ELMS.businesslogicService.UserBlService;
 import ELMS.businesslogicService.FinanceBlService.FinanceBlBankService;
-import ELMS.businesslogicService.FinanceBlService.FinanceBlFormService;
+import ELMS.businesslogicService.FinanceBlService.FinanceBlInitAllService;
 import ELMS.dataservice.DealDataService;
 import ELMS.dataservice.FinanceBankDataService;
 import ELMS.dataservice.InvoiceDataService;
@@ -120,7 +120,7 @@ public class Client {
 		new BankData_Driver(bds);
 		
 		//FormAccount
-		FinanceBlFormService bfs = new Form_Stub();
+		FinanceBlInitAllService bfs = new Form_Stub();
 		new Form_Driver(bfs);
 	}
 	
