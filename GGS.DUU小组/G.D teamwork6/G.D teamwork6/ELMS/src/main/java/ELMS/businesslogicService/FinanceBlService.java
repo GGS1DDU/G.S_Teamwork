@@ -36,6 +36,7 @@ public interface FinanceBlService {
 //	public double getTotalExpense(ArrayList<FExpenseVO> ex);
 //	
 //	public double getBalance(double totalIncome, double totalExpense);
+	public boolean createForm(String time1,String time2);
 	
 	public boolean deriveForm(String operator);
 	
@@ -47,7 +48,7 @@ public interface FinanceBlService {
 	
 	public boolean initFreight();
 	
-	public FreightStrategyVO update(FreightStrategyVO vo);
+	public FreightStrategyVO setFreight(FreightStrategyVO vo);
 	
 	
 	
