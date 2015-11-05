@@ -1,6 +1,7 @@
 package ELMS.businesslogic.FinanceBL;
 
 
+import ELMS.po.FreightStrategyPO;
 import ELMS.vo.FreightStrategyVO;
 
 public class FinanceFreight {
@@ -15,6 +16,11 @@ public class FinanceFreight {
 		return null;
 	}
 
+	public FreightStrategyPO getFreightStrategy(){
+		
+		return null;
+	}
+	
 	public void endFinanceOpt() {
 		// TODO 自动生成的方法存�?
 		

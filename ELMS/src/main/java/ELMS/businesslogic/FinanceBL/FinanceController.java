@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import ELMS.businesslogicService.FinanceBlService;
 import ELMS.po.FExpensePO;
+import ELMS.po.FreightStrategyPO;
 import ELMS.vo.BankAccountVO;
 import ELMS.vo.FExpenseVO;
 import ELMS.vo.FIncomeVO;
@@ -83,11 +84,15 @@ public class FinanceController implements FinanceBlService{
 		return false;
 	}
 
-	public FreightStrategyVO initFreight() {
+	public boolean initFreight() {
 		// TODO 自动生成的方法存�?
-		return null;
+		return false;
 	}
 
+	public FreightStrategyPO getFreightStrategy(){
+		return null;
+	}
+	
 	public FreightStrategyVO setFreight(FreightStrategyVO vo) {
 		// TODO 自动生成的方法存�?
 		return null;

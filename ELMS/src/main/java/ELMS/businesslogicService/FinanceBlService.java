@@ -48,7 +48,9 @@ public interface FinanceBlService {
 	
 	
 	
-	public FreightStrategyVO initFreight();
+	public boolean initFreight();
+	
+	public FreightStrategyPO getFreightStrategy();
 	
 	public FreightStrategyVO setFreight(FreightStrategyVO vo);
 	
