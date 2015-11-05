@@ -3,6 +3,7 @@ package ELMS.businesslogicService;
 import java.util.ArrayList;
 
 import ELMS.po.FExpensePO;
+import ELMS.po.FreightStrategyPO;
 import ELMS.vo.BankAccountVO;
 import ELMS.vo.FExpenseVO;
 import ELMS.vo.FIncomeVO;
@@ -27,7 +28,7 @@ public interface FinanceBlService {
 	
 	public boolean deleteExpense(FExpensePO po);
 	
-	public FExpenseVO changeExpense(String expenseID);
+	public FExpenseVO changeExpense(FExpenseVO vo);
 	
 	
 	
@@ -46,7 +47,7 @@ public interface FinanceBlService {
 	
 	
 	
-	public boolean initFreight();
+	public FreightStrategyVO initFreight();
 	
 	public FreightStrategyVO setFreight(FreightStrategyVO vo);
 	

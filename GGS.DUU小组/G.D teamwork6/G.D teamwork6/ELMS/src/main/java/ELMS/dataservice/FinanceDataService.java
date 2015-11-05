@@ -14,10 +14,10 @@ import ELMS.po.FreightStrategyPO;
 import ELMS.vo.FreightStrategyVO;
 
 
-public interface FinanceInAndExDataService {
-	public FIncomePO findIncome(Long id) throws RemoteException;
+public interface FinanceDataService {
+	public FIncomePO findIncome(String id) throws RemoteException;
 	
-	public FExpensePO findExpense(Long id) throws RemoteException;
+	public FExpensePO findExpense(String id) throws RemoteException;
 	
 	public ArrayList<FIncomePO> findbyHall(String hall) throws RemoteException;
 	
