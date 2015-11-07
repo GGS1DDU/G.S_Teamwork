@@ -10,6 +10,11 @@ public class FinanceInitAll {
 	public void save(String operator){
 		
 	}
+	
+	public boolean deleteAll(){
+		
+		return false;
+	}
 
 	public void endFinanceOpt() {
 		// TODO 自动生成的方法存�?
