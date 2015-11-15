@@ -1,0 +1,10 @@
+package ELMS.businesslogic.UserBL;
+
+public class Login {
+	
+	public int login (String id,String password){
+		
+		return 0;
+	}
+
+}

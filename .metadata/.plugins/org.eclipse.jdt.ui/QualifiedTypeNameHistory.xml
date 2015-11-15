@@ -19,4 +19,5 @@
 <fullyQualifiedTypeName name="ELMS.vo.DealVO"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.UserBL.MockUserVO"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.DealBL.MockDealVO"/>
+<fullyQualifiedTypeName name="ELMS.businesslogic.UserBL.Login"/>
 </qualifiedTypeNameHistroy>

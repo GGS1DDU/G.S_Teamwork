@@ -1,13 +1,13 @@
 package ELMS.businesslogic.UserBL;
 
 
-public class MockUserBL {
+public class MockUserBL extends UserBL {
 	
-	MockUserVO user;
-	public MockUserBL (MockUserVO user){
+	MockUser user;
+	public MockUserBL (MockUser user){
 		this.user=user;
 	}
-	public MockUserVO findUser(){
+	public MockUser findUser(){
 		return user;
 	}
 

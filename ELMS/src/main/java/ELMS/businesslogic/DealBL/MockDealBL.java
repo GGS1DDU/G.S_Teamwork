@@ -1,11 +1,11 @@
 package ELMS.businesslogic.DealBL;
 
 public class MockDealBL {
-	MockDealVO order;
-	public MockDealBL(MockDealVO order){
+	MockDeal order;
+	public MockDealBL(MockDeal order){
 		this.order=order;
 	}
-	public MockDealVO CourierInquiry(){
+	public MockDeal CourierInquiry(){
 		return order;
 		
 	}
