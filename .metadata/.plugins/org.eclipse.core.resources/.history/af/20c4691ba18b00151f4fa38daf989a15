@@ -1,9 +1,6 @@
 package ELMS.businesslogic.DealBL;
 
-import ELMS.vo.DealVO;
-
-public class MockDeal extends DealVO {
-	
+public class MockDeal {
 	
 	 String OrderID;
 	 String courier_name; 
@@ -220,8 +217,5 @@ public class MockDeal extends DealVO {
 	public String getState() {
 		return state;
 	}
-	 
-	 
-	
-	
+
 }

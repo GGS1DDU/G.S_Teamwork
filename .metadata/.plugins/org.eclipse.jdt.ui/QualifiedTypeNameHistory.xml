@@ -12,12 +12,12 @@
 <fullyQualifiedTypeName name="ELMS.businesslogicService.DealBlService"/>
 <fullyQualifiedTypeName name="ELMS.businesslogicService.UserBlService"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.UserBL.MockUserBL"/>
-<fullyQualifiedTypeName name="ELMS.vo.UserVO"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.DealBL.MockDealBL"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.DealBL.MockFinanceStr"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.DealBL.CalculateFee"/>
-<fullyQualifiedTypeName name="ELMS.vo.DealVO"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.UserBL.MockUserVO"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.DealBL.MockDealVO"/>
 <fullyQualifiedTypeName name="ELMS.businesslogic.UserBL.Login"/>
+<fullyQualifiedTypeName name="ELMS.vo.DealVO"/>
+<fullyQualifiedTypeName name="ELMS.vo.UserVO"/>
 </qualifiedTypeNameHistroy>

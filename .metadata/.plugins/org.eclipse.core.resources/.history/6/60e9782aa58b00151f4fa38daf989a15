@@ -1,0 +1,11 @@
+package ELMS.businesslogic.UserBL;
+
+import ELMS.vo.UserVO;
+
+public class MockUser extends UserVO {
+	
+	
+
+
+
+}
