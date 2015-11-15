@@ -77,9 +77,6 @@ public class UserBL implements UserBlService ,DataFactory {
 		
 	
 	}
-	
-
-
 
 	public boolean updateJob(String id, String password, String name,String job) throws RemoteException {
 		UserBL ub=new UserBL();
@@ -119,6 +116,7 @@ public class UserBL implements UserBlService ,DataFactory {
 		UserBL ub=new UserBL();
 		UserDataService userdata=ub.getUserData();
 		UserPO po=userdata.find(id);
+
 		
 		if(po==null){
 			return null;
@@ -129,6 +127,8 @@ public class UserBL implements UserBlService ,DataFactory {
 		}
 	}
 
+	
+	
 	public void endAccountOpt() {
 		// TODO Auto-generated method stub
 		

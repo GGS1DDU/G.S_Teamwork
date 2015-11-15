@@ -4,7 +4,7 @@ public class DealVO {
 	
 	
 
-	 long OrderID;
+	 String OrderID;
 	 String courier_name; 
 	 String hall;  //应该用枚举
 	 String dealTime; //生成该订单的日期 
@@ -39,7 +39,7 @@ public class DealVO {
 	 
 	 
 	 
-	 public DealVO(long orderID, String courier_name, String hall,
+	 public DealVO(String orderID, String courier_name, String hall,
 				String dealTime, String sender_name, String sender_city,
 				String sender_company, String sender_phonenumber,
 				String receiver_name, String receiver_city,
@@ -78,7 +78,7 @@ public class DealVO {
 
 
 
-	public long getOrderID() {
+	public String getOrderID() {
 		return OrderID;
 	}
 

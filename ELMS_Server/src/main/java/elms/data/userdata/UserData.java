@@ -25,7 +25,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		UserData ud=new UserData();
 		ud.init();		
 		
-	}*/
+	}*/     //软件打包前。
 	
 	
 	
@@ -60,6 +60,8 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 
 		return null;
 	}
+	
+	
 
 	public void insert(UserPO po) throws IOException  {
 		ObjectOutputStream oos=null;
