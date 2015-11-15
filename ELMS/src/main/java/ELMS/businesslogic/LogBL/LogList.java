@@ -1,5 +1,11 @@
 package ELMS.businesslogic.LogBL;
 
-public class LogList {
+import java.util.ArrayList;
 
+import ELMS.vo.LogVO;
+
+public class LogList extends ArrayList<LogVO> {
+public LogList(){
+	super();
+}
 }

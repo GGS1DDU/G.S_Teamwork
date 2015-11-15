@@ -20,10 +20,6 @@ public class UserVO  {
 		this.password=p;
 		this.job=job;
 	}	
-	
-	public UserVO() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getId() {
 		return id;

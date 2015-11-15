@@ -80,10 +80,12 @@ public class DealVO {
 			this.track = track;
 			this.state = state;
 		}
-	 public DealVO(){};
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
 	public String getOrderID() {
 		return OrderID;
 	}

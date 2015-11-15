@@ -2,13 +2,15 @@ package ELMS.po;
 
 import java.io.Serializable;
 
+import ELMS.businesslogic.LogBL.Operation;
+
 public class LogPO implements Serializable{
 String id;
-String category;
+Enum<Operation> category;
 String time;
 String name;
 
-public LogPO(String id, String category, String time, String name) {
+public LogPO(String id, Enum<Operation> category, String time, String name) {
 	this.id = id;
 	this.category = category;
 	this.time = time;
@@ -17,7 +19,7 @@ public LogPO(String id, String category, String time, String name) {
 public String getId() {
 	return id;
 }
-public String getCategory() {
+public Enum<Operation> getCategory() {
 	return category;
 }
 public String getTime() {

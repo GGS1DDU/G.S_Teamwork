@@ -1,11 +1,13 @@
 package ELMS.vo;
 
+import ELMS.businesslogic.LogBL.Operation;
+
 public class LogVO {
 	String id;
 	String time;
-	String category;
+	Enum<Operation> category;
 	String name;
-	public LogVO(String id, String time, String category, String name) {
+	public LogVO(String id, String time, Enum<Operation> category, String name) {
 		this.id = id;
 		this.time = time;
 		this.category = category;
@@ -17,7 +19,7 @@ public class LogVO {
 	public String getTime() {
 		return time;
 	}
-	public String getCategory() {
+	public Enum<Operation> getCategory() {
 		return category;
 	}
 	public String getName() {

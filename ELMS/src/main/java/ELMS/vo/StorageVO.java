@@ -1,5 +1,7 @@
 package ELMS.vo;
 
+import ELMS.businesslogic.StorageBL.State;
+
 public class StorageVO {
 	String id;
 	String area;
@@ -7,10 +9,10 @@ public class StorageVO {
 	String order;
 	String timeIn;
 	String timeOut;
-	String state;
+	Enum<State> state;
 	String name;
 	public StorageVO(String id, String area, String seat, String order,
-			String timeIn, String timeOut, String state, String name) {
+			String timeIn, String timeOut, Enum<State> state, String name) {
 		this.id = id;
 		this.area = area;
 		this.seat = seat;
@@ -38,7 +40,7 @@ public class StorageVO {
 	public String getTimeOut() {
 		return timeOut;
 	}
-	public String getState() {
+	public Enum<State> getState() {
 		return state;
 	}
 	public String getName() {

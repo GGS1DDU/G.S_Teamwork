@@ -1,5 +1,11 @@
 package ELMS.businesslogic.StorageBL;
 
-public class StorageList {
+import java.util.ArrayList;
 
+import ELMS.vo.StorageVO;
+
+public class StorageList extends ArrayList<StorageVO>{
+public StorageList(){
+	super();
+}
 }

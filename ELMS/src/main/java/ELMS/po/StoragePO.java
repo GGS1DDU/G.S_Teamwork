@@ -2,6 +2,8 @@ package ELMS.po;
 
 import java.io.Serializable;
 
+import ELMS.businesslogic.StorageBL.State;
+
 public class StoragePO implements Serializable {
 	String id;
 	String area;
@@ -9,10 +11,10 @@ public class StoragePO implements Serializable {
 	String order;
 	String timeIn;
 	String timeOut;
-	String state;
+	Enum<State> state;
 	String name;
 	public StoragePO(String id, String area, String seat, String order,
-			String timeIn, String timeOut, String state, String name) {
+			String timeIn, String timeOut, Enum<State> state, String name) {
 		this.id = id;
 		this.area = area;
 		this.seat = seat;
@@ -40,7 +42,7 @@ public class StoragePO implements Serializable {
 	public String getTimeOut() {
 		return timeOut;
 	}
-	public String getState() {
+	public Enum<State> getState() {
 		return state;
 	}
 	public String getName() {
