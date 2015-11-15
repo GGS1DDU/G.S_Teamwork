@@ -1,0 +1,15 @@
+package ELMS.businesslogic.DealBL;
+
+public class CalculateFee {
+	
+	public double calculatefee(String type,String pack,double weight,double volume){
+		int fee=0;
+		
+		
+		
+		
+		return fee;
+	}
+	
+
+}

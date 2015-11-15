@@ -1,0 +1,5 @@
+package ELMS.businesslogic.DealBL;
+
+public class CalculateFee {
+
+}

@@ -13,7 +13,7 @@ public LogData_driver(LogDataService lds) throws RemoteException{
 	System.out.println(po.getId()+" "+po.getTime()+" "+po.getCategory()+" "+po.getName());
 	
 	System.out.println("系统日志显示： ");
-	 ArrayList<LogPO> as=lds.findall();
+	 ArrayList<LogPO> as=lds.findAll();
 	    for(int i=0;i<as.size();i++)
 	    	 System.out.println(((LogPO) as.get(i)).getId()+" "+((LogPO) as.get(i)).getTime()+" "+((LogPO) as.get(i)).getCategory()+" "+((LogPO) as.get(i)).getName());
 	

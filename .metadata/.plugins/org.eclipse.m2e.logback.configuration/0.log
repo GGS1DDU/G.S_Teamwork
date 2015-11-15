@@ -207,3 +207,157 @@
 2015-11-15 14:38:05,987 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
 2015-11-15 14:38:05,987 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2015-11-15 14:38:05,987 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:03:24,814 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:24,817 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:03:24,819 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:24,819 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:03:26,700 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: ELMS:ELMS:0.0.1-SNAPSHOT @ C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\pom.xml.
+2015-11-15 17:03:26,890 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:26,890 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:03:26,891 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:26,892 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:03:28,296 [Worker-0] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: ELMS:ELMS:0.0.1-SNAPSHOT @ C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\pom.xml.
+2015-11-15 17:03:28,524 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:28,525 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:03:28,526 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:28,526 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:03:46,089 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:46,089 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:03:46,090 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:03:46,090 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:04:20,510 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:04:20,510 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:04:20,511 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:04:20,511 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:04:55,225 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:04:55,225 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:04:55,227 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:04:55,227 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:05:26,181 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:05:26,181 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:05:26,183 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:05:26,184 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:05:37,618 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:05:37,618 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:05:37,621 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:05:37,622 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:07:19,485 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:07:19,485 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:07:19,486 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:07:19,486 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:09:29,035 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:09:29,035 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:09:29,036 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:09:29,037 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:14:41,121 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:14:41,121 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:14:41,122 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:14:41,122 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:15:52,567 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:15:52,568 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:15:52,569 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:15:52,570 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:24:32,096 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:24:32,096 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:24:32,097 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:24:32,097 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:24:46,208 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:24:46,209 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:24:46,209 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:24:46,209 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:24:57,475 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:24:57,476 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:24:57,476 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:24:57,477 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:25:46,338 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:25:46,339 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:25:46,339 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:25:46,339 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:25:56,822 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:25:56,822 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:25:56,823 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:25:56,823 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:26:40,376 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:26:40,377 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:26:40,378 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:26:40,378 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:28:00,381 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:00,382 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:28:00,382 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:00,382 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:28:13,175 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:13,175 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:28:13,179 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:13,179 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:28:22,160 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:22,160 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:28:22,161 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:22,161 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:28:28,723 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:28,724 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:28:28,726 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:28,726 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:28:53,817 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:53,818 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:28:53,819 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:28:53,819 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:29:26,280 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:29:26,281 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:29:26,282 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:29:26,282 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:30:14,472 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:30:14,472 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:30:14,472 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:30:14,473 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:30:27,176 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:30:27,176 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:30:27,177 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:30:27,177 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:31:22,652 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:31:22,652 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:31:22,653 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:31:22,653 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:31:30,106 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:31:30,107 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:31:30,111 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:31:30,112 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:32:09,873 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:32:09,873 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:32:09,874 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:32:09,874 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:32:48,270 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:32:48,270 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:32:48,271 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:32:48,271 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 17:33:54,846 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:33:54,846 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 17:33:54,846 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 17:33:54,846 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 18:01:06,122 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:01:06,122 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 18:01:06,124 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:01:06,126 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 18:08:06,388 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:08:06,388 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 18:08:06,389 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:08:06,389 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 18:11:15,431 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:11:15,431 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 18:11:15,432 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:11:15,432 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 18:11:25,626 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:11:25,627 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 18:11:25,628 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:11:25,628 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 18:21:07,062 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:21:07,063 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 18:21:07,065 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:21:07,065 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 18:23:07,385 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:23:07,386 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 18:23:07,387 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:23:07,387 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
+2015-11-15 18:24:35,769 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:24:35,769 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\main\resources
+2015-11-15 18:24:35,770 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-11-15 18:24:35,770 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS\src\test\resources
