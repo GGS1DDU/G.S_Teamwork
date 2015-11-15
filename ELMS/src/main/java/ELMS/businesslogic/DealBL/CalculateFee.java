@@ -1,10 +1,9 @@
 package ELMS.businesslogic.DealBL;
 
-import ELMS.vo.DealVO;
 
 public class CalculateFee {
 	
-	public double calculatefee(MockFinanceStr mfs,DealVO order){
+	public double calculatefee(MockFinanceStr mfs,MockDealVO order){
 		double fee=mfs.getP()*order.getGood_weight();
 		if(order.getType().equals("经济快递")){
 			fee=fee*18/23;

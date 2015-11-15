@@ -1,13 +1,11 @@
 package ELMS.businesslogic.DealBL;
 
-import ELMS.vo.DealVO;
-
 public class MockDealBL {
-	DealVO order;
-	public MockDealBL(DealVO order){
+	MockDealVO order;
+	public MockDealBL(MockDealVO order){
 		this.order=order;
 	}
-	public DealVO CourierInquiry(){
+	public MockDealVO CourierInquiry(){
 		return order;
 		
 	}

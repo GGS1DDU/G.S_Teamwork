@@ -1,0 +1,15 @@
+package ELMS.businesslogic.UserBL;
+
+import ELMS.vo.UserVO;
+
+public class MockUserBL {
+	
+	MockUserVO user;
+	public MockUserBL (MockUserVO user){
+		this.user=user;
+	}
+	public MockUserVO findUser(){
+		return user;
+	}
+
+}
