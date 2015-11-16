@@ -1,5 +1,13 @@
 package ELMS.businesslogic.MemberBL;
 
-public class MemberList {
+import java.util.ArrayList;
+
+import ELMS.vo.DriverVO;
+import ELMS.vo.MemberVO;
+
+public class MemberList extends ArrayList<DriverVO>{
+	public MemberList(){
+		super();
+	}
 
 }

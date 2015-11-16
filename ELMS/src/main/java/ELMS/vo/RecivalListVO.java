@@ -2,6 +2,7 @@ package ELMS.vo;
 
 import java.io.Serializable;
 
+import ELMS.businesslogic.InvoiceBL.State;
 import ELMS.vo.InvoiceVO;
 
 public class RecivalListVO extends InvoiceVO implements Serializable {
@@ -9,13 +10,15 @@ public class RecivalListVO extends InvoiceVO implements Serializable {
 	String time;
 	String id;
 	String from;
-	String state;
-	public RecivalListVO(String id,String ci,String t,String i,String f,String s){
-		centerID=ci;
-		time=t;
-		id=i;
-		from=f;
-		state=s;
+	Enum<State> state;
+	//xiugai state ,yuanlaishi String now ENUM
+	//don,t know why zht write "String id" before "String ci"
+	public RecivalListVO(String ci,String t,String i,String f,Enum<State> state){
+		this.centerID=ci;
+		this.time=t;
+		this.id=i;
+		this.from=f;
+		this.state=state;
 	}
 	public String getCenterID(){
 		return centerID;
@@ -29,7 +32,7 @@ public class RecivalListVO extends InvoiceVO implements Serializable {
 	public String getFrom(){
 		return from;
 	}
-	public String getState(){
+	public Enum<State> getState(){
 		return state;
 	}
 }
