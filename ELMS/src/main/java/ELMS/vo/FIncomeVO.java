@@ -3,11 +3,18 @@ package ELMS.vo;
 
 
 public class FIncomeVO{
+	String bankAccountName;
 	String id;
 	String time;
 	double income;
 	String hall;//Ӫҵ����Ϣ��
 	String clerk;
+	
+	public FIncomeVO(String bankAccountName,String i,String t,double ic,String h,String c){
+		this(i,t,ic,h,c);
+		this.bankAccountName = bankAccountName;
+	}
+	
 	public FIncomeVO(String i,String t,double ic,String h,String c){
 		id=i;
 		time=t;
@@ -15,6 +22,15 @@ public class FIncomeVO{
 		hall=h;
 		clerk=c;	
 	}
+	
+	public String getBankAccountName(){
+		return bankAccountName;
+	}
+	
+	public void setBankAccountName(String accountName){
+		this.bankAccountName = accountName;
+	}
+	
 	public String getID(){
 		return id;
 	}

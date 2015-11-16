@@ -3,14 +3,24 @@ package ELMS.vo;
 
 
 public class BankAccountVO {
+	String accountID;
 	String account;
 	double amount;
 	String bankName;
-	public BankAccountVO(String accountID, double amount, String bankName) {
-		this.account = accountID;
+	public BankAccountVO(String accountID,String accountName, double amount, String bankName) {
+		this.accountID = accountID;
+		this.account = accountName;
 		this.amount = amount;
 		this.bankName = bankName;
 	}
+	public String getAccountID() {
+		return accountID;
+	}
+	
+	public void setAccountID(String id){
+		this.accountID = id;
+	}
+	
 	public String getAccount() {
 		return account;
 	}
@@ -18,6 +28,7 @@ public class BankAccountVO {
 	public void setAccount(String name){
 		this.account = name;
 	}
+	
 	
 	public double getAmount() {
 		return amount;

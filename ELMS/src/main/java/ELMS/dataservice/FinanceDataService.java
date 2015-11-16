@@ -8,14 +8,18 @@ import java.util.ArrayList;
 
 
 
+
 import ELMS.po.BankAccountPO;
 import ELMS.po.FIncomePO;
 import ELMS.po.FExpensePO;
 import ELMS.po.FreightStrategyPO;
+import ELMS.vo.FIncomeVO;
 import ELMS.vo.FreightStrategyVO;
 
 
 public interface FinanceDataService {
+	public void insertIncome(FIncomePO po) throws RemoteException;
+	
 	public FIncomePO findIncome(String id) throws RemoteException;
 	
 	public FExpensePO findExpense(String id) throws RemoteException;
@@ -66,7 +70,7 @@ public interface FinanceDataService {
 	
 	public void insertAccount(BankAccountPO po) throws RemoteException;
 	
-	public void deleteAccount(BankAccountPO po) throws RemoteException;
+	public void deleteAccount(String accountID) throws RemoteException;
 	
 	public void updateAccount(BankAccountPO po) throws RemoteException;
 	

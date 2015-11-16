@@ -3,20 +3,34 @@ package ELMS.po;
 //
 
 public class BankAccountPO {
+	String accountID;
 	String account;
 	double amount;
 	String bankName;
-	public BankAccountPO(String account, double amount, String bankName) {
-		this.account = account;
+	
+	
+	
+	public BankAccountPO(String accountID,String accountName, double amount, String bankName) {
+		this.accountID = accountID;
+		this.account = accountName;
 		this.amount = amount;
 		this.bankName = bankName;
 	}
-	public String getAccount() {
+	
+	public String getAccountID(){
+		return accountID;
+	}
+	
+	public void setAccountID(String accountID){
+		this.accountID = accountID;
+	}
+	
+	public String getAccountName(){
 		return account;
 	}
 	
-	public void setAccount(String name){
-		this.account = name;
+	public void setAccountName(String accountName){
+		this.account = accountName;
 	}
 	
 	public double getAmount() {

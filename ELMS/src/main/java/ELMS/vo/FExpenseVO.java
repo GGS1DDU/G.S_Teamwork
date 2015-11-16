@@ -3,12 +3,19 @@ package ELMS.vo;
 
 
 public class FExpenseVO {
+	String bankAccountName;
 	String id;
 	String category;
 	String time;
 	double expense;
 	String assistantID;
 	String clerkID;
+	
+	public FExpenseVO(String bankAccountName,String i,String ct,String t,double e,String a,String c){
+		this(i,ct,t,e,a,c);
+		this.bankAccountName = bankAccountName;
+	}
+	
 	public FExpenseVO(String i,String ct,String t,double e,String a,String c){
 		id=i;
 		category=ct;
@@ -29,8 +36,8 @@ public class FExpenseVO {
 		return category;
 	}
 
-	public void setCategory(String categoty){
-		this.category = category;
+	public void setCategory(String type){
+		this.category = type;
 	}
 
 	public String getTime(){
@@ -58,5 +65,13 @@ public class FExpenseVO {
 
 	public void setClerk(String clerkID){
 		this.clerkID = clerkID;
+	}
+	public String getBankAccountName() {
+		// TODO 自动生成的方法存根
+		return bankAccountName;
+	}
+	
+	public void setBankAccountName(String name){
+		this.bankAccountName = name;
 	}
 }

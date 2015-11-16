@@ -5,11 +5,18 @@ import java.io.Serializable;
 
 
 public class FIncomePO implements Serializable{
+	String bankAccountName;
 String id;
 String time;
 double income;
 String shop;//Ӫҵ����Ϣ��
 String clerk;
+
+public FIncomePO(String bankAccountName,String i,String t,double ic,String h,String c){
+	this(i,t,ic,h,c);
+	this.bankAccountName = bankAccountName;
+}
+
 public FIncomePO(String i,String t,double ic,String s,String c){
 	id=i;
 	time=t;
@@ -17,6 +24,15 @@ public FIncomePO(String i,String t,double ic,String s,String c){
 	shop=s;
 	clerk=c;	
 }
+
+public String getBankAccountName(){
+	return bankAccountName;
+}
+
+public void setBankAccount(String name){
+	this.bankAccountName =  name;
+}
+
 public String getID(){
 	return id;
 }

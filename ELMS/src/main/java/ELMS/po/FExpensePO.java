@@ -5,12 +5,19 @@ import java.io.Serializable;
 //import UserPO.UserPO;
 
 public class FExpensePO implements Serializable{
+	String bankAccountName;
 String id;
 String category;
 String time;
 double expense;
 String assistantID;
 String clerkID;
+
+public FExpensePO(String bankAccountName,String i,String ct,String t,double e,String a,String c){
+	this(i,ct,t,e,a,c);
+	this.bankAccountName = bankAccountName;
+}
+
 public FExpensePO(String i,String ct,String t,double e,String a,String c){
 	id=i;
 	category=ct;
@@ -19,6 +26,16 @@ public FExpensePO(String i,String ct,String t,double e,String a,String c){
 	assistantID=a;
 	clerkID=c;
 }
+
+public String getBankAccountName() {
+	// TODO 自动生成的方法存根
+	return bankAccountName;
+}
+
+public void setBankAccountName(String name){
+	this.bankAccountName = name;
+}
+
 public String getID(){
 	return id;
 }
