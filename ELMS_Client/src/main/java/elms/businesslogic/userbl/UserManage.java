@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import elms.businesslogic_service.userblservice.UserBlService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
+import elms.dataservice.logdataservice.LogDataService;
+import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.UserPO;
 import elms.vo.UserVO;
@@ -23,7 +25,7 @@ public class UserManage implements UserBlService ,DataFactory {
 	public UserManage(){
 		userdata=getUserData();				
 	}
-	
+
 	
 	public int login(String id, String password) throws RemoteException {   
 		UserPO po = null;
@@ -165,7 +167,7 @@ public class UserManage implements UserBlService ,DataFactory {
 	public UserDataService getUserData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
 			return df.getUserData();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -174,14 +176,22 @@ public class UserManage implements UserBlService ,DataFactory {
 	}
 
 
-	
-	public DealDataService getDealData() {                
+	public DealDataService getDealData() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
+	public LogDataService getLogData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
+	public StorageDataService getStorageData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 

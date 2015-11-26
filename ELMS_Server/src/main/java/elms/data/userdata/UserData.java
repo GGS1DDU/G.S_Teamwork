@@ -16,7 +16,7 @@ import elms.po.UserPO;
 
 public class UserData extends UnicastRemoteObject implements UserDataService{
 	
-	File file=new File("C://学习//大二上//软件工程与计算2//快递物流管理系统//My code//ELMS_Server//User.ser");
+	File file=new File("User.ser");
 
 
 	public UserData() throws RemoteException {
@@ -35,7 +35,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		UserData ud=new UserData();
 		ArrayList<UserPO> arr=ud.findall();
 		for(int i=0;i<arr.size();i++){
-			System.out.println(arr.get(i).getId());
+			System.out.println(arr.get(i).getJob());
 		}
 	}
 	

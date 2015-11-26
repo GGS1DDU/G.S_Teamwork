@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import elms.businesslogic_service.dealblservice.DealBlService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
+import elms.dataservice.logdataservice.LogDataService;
+import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.DealPO;
 import elms.vo.DealVO;
@@ -19,7 +21,11 @@ public class DealBL implements DealBlService ,DataFactory{
 	public DealBL(){
 		dealdata=getDealData();
 	}
-
+   public static void main(String args[]) throws IOException{
+	   DealBL deal=new DealBL();
+	  DealVO vp=new DealVO("00000000059","234", null, null, null, null, null, null, null, null, null, null, null, 1, 1,1, null, null, 1, 1, null, null, null, null);
+      deal.BuildOrder(vp);
+   }
 	public boolean BuildOrder(DealVO vo) throws IOException {		
 		if(FindOrder(vo.getOrderID())==null){
 			try{
@@ -110,16 +116,28 @@ public class DealBL implements DealBlService ,DataFactory{
 	public DealDataService getDealData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
 			return df.getDealData();
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	public UserDataService getUserData() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public LogDataService getLogData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public StorageDataService getStorageData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

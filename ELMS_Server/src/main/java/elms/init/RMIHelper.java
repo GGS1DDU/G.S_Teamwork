@@ -21,9 +21,11 @@ public class RMIHelper {
         }
         try{
         	
+        	System.setProperty("java.rmi.server.hostname", "192.168.191.1");
     		LocateRegistry.createRegistry(1099);		
 			DataFactory df=new DataFactoryImpl();
-			java.rmi.Naming.rebind("rmi://localhost:1099/df",df);
+			
+			java.rmi.Naming.rebind("rmi://192.168.191.1:1099/df",df);
 			System.out.println("Server Ready!");
 						
 					
