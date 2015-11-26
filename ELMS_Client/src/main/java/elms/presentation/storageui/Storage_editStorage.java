@@ -62,9 +62,8 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	else t2=3;
 	
 	if(voall.getState().equals("IN"))t3=0;
-	else if(voall.getState().equals("OUT"))t3=1;
-	else if(voall.getState().equals("BROKEN"))t3=2;
-	else t3=3;
+	else if(voall.getState().equals("BROKEN"))t3=1;
+	else t3=2;
 	
 	
 	
@@ -106,7 +105,7 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	JLabel intime=new JLabel("入库时间");
 	newin.add(intime);intime.setBounds(15,100,60,20);
 	final JTextField itf=new JTextField(vo.getTimeIn());itf.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
-	newin.add(itf);itf.setBounds(80,100,120,24);itf.setEditable(Edit);itf.setHorizontalAlignment(SwingConstants.CENTER);
+	newin.add(itf);itf.setBounds(80,100,130,24);itf.setEditable(Edit);itf.setHorizontalAlignment(SwingConstants.CENTER);
 	if(Edit){itf.addMouseListener(new MouseAdapter(){
 
 		public void mouseClicked(MouseEvent e) {
@@ -120,8 +119,8 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	
 	JLabel outtime=new JLabel("出库时间");
 	newin.add(outtime);outtime.setBounds(this.getWidth()/2-10, 100, 60, 20);
-	final JTextField otf=new JTextField(vo.getTimeOut());otf.setFont(new Font("Monospaced",Font.CENTER_BASELINE,12));
-	newin.add(otf);otf.setBounds(this.getWidth()/2+70,100,120,24);
+	final JTextField otf=new JTextField(vo.getTimeOut());otf.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
+	newin.add(otf);otf.setBounds(this.getWidth()/2+70,100,130,24);
 	otf.setEditable(Edit);otf.setHorizontalAlignment(SwingConstants.CENTER);
 	if(Edit){
 	otf.addMouseListener(new MouseAdapter(){
@@ -139,7 +138,7 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	newin.add(state);state.setBounds(15, 140, 60, 20);final JComboBox<String> jcs=new JComboBox<String>();
 	if(Edit){
 		
-		jcs.addItem("IN");jcs.addItem("OUT");jcs.addItem("BROKEN");jcs.addItem("DISAPPEAR");
+		jcs.addItem("IN");jcs.addItem("BROKEN");jcs.addItem("DISAPPEAR");
 		jcs.setBackground(Color.white);jcs.setFont(new Font("楷体",Font.BOLD,12));
 		newin.add(jcs);jcs.setBounds(90,140,100,24);
 		jcs.setSelectedIndex(t3);
@@ -164,8 +163,8 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	}
 	
 	JPanel buttonpanel=new JPanel();buttonpanel.setLayout(null);
-	JButton save=new JButton("保存(S)");JButton cancel=new JButton("编辑(E)");
-	buttonpanel.add(save);buttonpanel.add(cancel);save.setBounds(this.getWidth()/3-120, 25, 100, 30);cancel.setBounds(this.getWidth()/2+90, 25, 100, 30);
+JButton cancel=new JButton("编辑(E)");
+	buttonpanel.add(cancel);cancel.setBounds(this.getWidth()/2+90, 25, 100, 30);
 	add(buttonpanel);buttonpanel.setBounds(0,3*this.getHeight()/5,this.getWidth(),70);
 	
 	cancel.addActionListener(new ActionListener(){
@@ -175,6 +174,12 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 			
 		}}
 	);
+	
+	if(Edit){
+	 JButton save=new JButton("保存(S)");
+	buttonpanel.add(save);save.setBounds(this.getWidth()/3-120, 25, 100, 30);
+	
+	
 	save.addActionListener(new ActionListener(){
 		Storage storage=new Storage();
 		public void actionPerformed(ActionEvent e) {
@@ -189,15 +194,17 @@ public Storage_editStorage(StorageVO vo,boolean edit){
         	   else if(jcs.getSelectedItem().toString().equals("OUT")&&!otf.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}\\s\\d{2}:\\d{2}:\\d{2}"))  JOptionPane.showMessageDialog(null,"出库时间格式错误");
 
 else{   
+	if(!otf.getText().equals("null")){
 	SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
 	Date date1 =formatter.parse(itf.getText());
 	Date date2 =formatter.parse(otf.getText());
 	
-	if(date1.after(date2))  JOptionPane.showMessageDialog(null,"时间顺序错误");
-	else{	 Storage_editStorage.this.dispose();
+	if(date1.after(date2))  JOptionPane.showMessageDialog(null,"时间顺序错误");}
+		 Storage_editStorage.this.dispose();
         	   storage.delete(getVO());
 			storage.storage_inRecord(newvo);
-			new Storage_editStorage(newvo,false);}}
+			new Storage_editStorage(newvo,false);
+	}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -208,12 +215,42 @@ else{
             
             
             }
-           else{
-        	   JOptionPane.showMessageDialog(null, "       未发生改变",null,1);
-           }
 		}
 		
 	});
+	
+	}else{
+		 JButton outs=new JButton("出库(O)");
+			buttonpanel.add(outs);outs.setBounds(this.getWidth()/3-120, 25, 100, 30);
+		outs.addActionListener(new ActionListener(){
+						Storage storage=new Storage();
+						SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+
+			public void actionPerformed(ActionEvent arg0) {
+				if(getVO().getState().equals("IN")){
+				StorageVO vo=new StorageVO(getVO().getId(),getVO().getArea(),getVO().getSeat(),getVO().getOrder(),getVO().getTimeIn(),sdf.format(new Date()),"OUT",getVO().getName());				
+				try {
+					storage.delete(getVO());
+					storage.storage_inRecord(vo);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Storage_editStorage.this.dispose();
+				new Storage_editStorage(vo,false);
+			}else
+				JOptionPane.showMessageDialog(null, "该对象 不允许出库/已经出库");
+				
+			
+			}
+			
+		});
+	}
+	
+	
+	
+	
+	
 	
 	if(Edit){
 	JButton back=new JButton("取消(C)");buttonpanel.add(back);back.setBounds(this.getWidth()/2-50, 25, 100, 30);
@@ -221,6 +258,7 @@ else{
 
 		public void actionPerformed(ActionEvent e) {
 			Storage_editStorage.this.dispose();
+			new Storage_editStorage(getVO(),false);
 		}
 		
 	});}

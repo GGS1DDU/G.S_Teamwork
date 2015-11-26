@@ -9,9 +9,9 @@ import elms.vo.StorageVO;
 
 
 public interface StorageBlService {
-	public boolean hasIN(String s) throws IOException;
+	public boolean orderhasIN(String s) throws IOException;
 	public void delete(StorageVO vo) throws IOException;
-	public ArrayList<StorageVO> init(ArrayList<StorageVO> arr) throws  IOException;
+	public void init() throws  IOException;
 	public int storage_inChoose(String area,StorageCapacity center) throws IOException;
 	public StorageVO storage_inRecord(StorageVO vo) throws IOException;
 	public boolean storage_out(String orderID,String center) throws IOException;

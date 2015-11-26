@@ -13,9 +13,7 @@ public class Storage_find extends JFrame {
 	Dimension screenSize=kit.getScreenSize();
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int)screenSize.getHeight();
-public static void main(String args[]){
-new Storage_find();	
-}
+
 
 public Storage_find(){
 	setLayout(null);
@@ -34,11 +32,27 @@ public Storage_find(){
     j1.addActionListener(new ActionListener(){
 
 		public void actionPerformed(ActionEvent arg0) {
-			new Storage_findsingle();
+			Storage_find.this.dispose();new Storage_findsingle();
+			
 		}
     	
     });
-    
+    j2.addActionListener(new ActionListener(){
+
+  		public void actionPerformed(ActionEvent e) {
+  				Storage_find.this.dispose();new Storage_findtime();
+  		
+  		}
+      	
+      });
+    j3.addActionListener(new ActionListener(){
+
+  		public void actionPerformed(ActionEvent e) {
+  			Storage_find.this.dispose();	new Storage_findcenter();
+  		
+  		}
+      	
+      });
 }
 
 }

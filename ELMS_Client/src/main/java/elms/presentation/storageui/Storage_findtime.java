@@ -80,7 +80,7 @@ public Storage_findtime(){
 					Storage_main.arr=storage.inquiryByTime(js.getText(), je.getText(),jcb.getSelectedItem().toString() );
 					  			
 					Storage_findtime.this.dispose();
-					
+					JOptionPane.showMessageDialog(null, "  查询完毕!\n  请刷新库存");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

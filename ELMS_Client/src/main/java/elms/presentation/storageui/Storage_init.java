@@ -39,7 +39,7 @@ public Storage_init(final UserVO vo){
 	setLayout(null);
 	setTitle("库存初始化");
 	setResizable(false);
-	setSize(screenWidth/2,screenHeight/2-40);
+	setSize(screenWidth/2,screenHeight/2-60);
 	setLocation(screenWidth/4, screenHeight/8);
 	setVisible(true);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,9 +118,9 @@ public Storage_init(final UserVO vo){
 					}
 			}	
 			});
-	JButton add=new JButton("添加库存项");JButton save=new JButton("保存");JButton back=new JButton("取消");
+	JButton add=new JButton("添加库存项");JButton delete=new JButton("修改库存项");JButton back=new JButton("返回");
 	add(add);add.setBounds(screenWidth/12, screenHeight/4+20, 100, 28);
-	add(save);save.setBounds(screenWidth/5, screenHeight/4+20, 100, 28);
+	add(delete);delete.setBounds(screenWidth/5, screenHeight/4+20, 100, 28);
 	add(back);back.setBounds(screenWidth/3, screenHeight/4+20, 100, 28);
 	
 	add.addActionListener(new ActionListener(){
@@ -130,10 +130,10 @@ public Storage_init(final UserVO vo){
 		}
     	
     });
-	save.addActionListener(new ActionListener(){
+	delete.addActionListener(new ActionListener(){
 
 		public void actionPerformed(ActionEvent arg0) {
-		
+		new Storage_findsingle();
 			
 		}
 		

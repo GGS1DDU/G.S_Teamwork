@@ -4,31 +4,25 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
@@ -47,7 +41,39 @@ JTextArea text;
 final JComboBox<String> jcb;
 
 String center=null;
+
 public static ArrayList<StorageVO>  arr=new ArrayList<StorageVO>();
+
+/* 
+ * 表示待处理入库出库订单  其中String是入库出库商品的订单号
+ * 中转中心业务员在本地设置自己的两个Array  并为其设置get方法
+* 	两个ArrayList表示需要被中转中心库存管理员操作的项目
+ * = 由中转中心库存管理员get数据  进行入库出库操作  并清空ins  outs  
+ * 采用time间隔询问是否有新的入库出库请求 
+ */
+public static ArrayList<String>  ins=new ArrayList<String>();
+public static ArrayList<String>  outs=new ArrayList<String>();//
+/*
+ * 本地在在入库出库后 在这里添加库存项    并为为中转中心业务员设置了get方法
+ * 中转中心业务员在get了ino outo后  根据其中内容生成相应的入库单出库单
+ * 并将ino  outo清空  等待中转中心库存管理员更新ino  outo后  再读取新的ino  outo
+ */
+public static ArrayList<StorageVO>  ino=new ArrayList<StorageVO>();//
+public static ArrayList<StorageVO>  outo=new ArrayList<StorageVO>();
+
+public static ArrayList<StorageVO>  getStorageInList(){
+	return ino;
+}
+public static void  clearStorageInList(){
+	ino.clear();
+}
+public static ArrayList<StorageVO>  getStorageOutList(){
+	return outo;
+}
+public static void  clearStorageOutList(){
+	outo.clear();
+}
+
 
 public static void main(String args[]){
 	EventQueue.invokeLater(new Runnable(){
@@ -71,7 +97,7 @@ public Storage_main(final UserVO vo){
 	JMenuBar bar=new JMenuBar();
 	JMenu j=new JMenu("库存管理");
 	j.setSelected(true);j.setEnabled(false);
-	JMenu m=new JMenu("库存初始化");
+	final JMenu m=new JMenu("库存初始化");
 	bar.add(j);
 	bar.add(m);
 	setJMenuBar(bar);
@@ -86,13 +112,25 @@ public Storage_main(final UserVO vo){
 		
 	}
 
-	public void menuSelected(MenuEvent e) {
-		//Storage_main.this.dispose();
-		setVisible(false);
+	public void menuSelected(MenuEvent e){
+    	int a=(int)(Math.random()*1000);
+    	String s=a+"";
+    	
+    	String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化库存");
+		if(obj.equals(s)){
+		Storage_main.this.dispose();
 		new Storage_init(vo);
-		
-		
-	}
+		Storage storage=new Storage();
+		try {
+			storage.init();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		}
+		else  JOptionPane.showMessageDialog(null, "验证码错误！",null,0);
+			}
+	
 
   
   });
@@ -169,14 +207,13 @@ public Storage_main(final UserVO vo){
 
  
     JButton xzrk=new JButton("新增入库(A)");
-    JButton dxcx=new JButton("单项查询(Q)");
-    JButton fscx=new JButton("分时查询(T)");
+    JButton find=new JButton("库存查询(S)");
     JButton zbdy=new JButton("制表打印(P)");
     JButton refresh=new JButton("刷新(R)");refresh.setForeground(Color.GREEN);
     JButton back=new JButton("返回(B)");back.setForeground(Color.red);
     JPanel buttonPal=new JPanel();buttonPal.setLayout(null);
-    buttonPal.add(xzrk); buttonPal.add(dxcx); buttonPal.add(fscx); buttonPal.add(zbdy); buttonPal.add(refresh); buttonPal.add(back);
-    xzrk.setBounds(10, 30, 102, 30);dxcx.setBounds(130, 30, 104, 30); fscx.setBounds(250, 30, 102, 30); zbdy.setBounds(370, 30, 102, 30);
+    buttonPal.add(xzrk); buttonPal.add(find); buttonPal.add(zbdy); buttonPal.add(refresh); buttonPal.add(back);
+    xzrk.setBounds(30, 30, 102, 30);find.setBounds(190, 30, 104, 30);  zbdy.setBounds(350, 30, 102, 30);
     refresh.setBounds(560,15,80,30);  back.setBounds(560,55,80,30);
     add(buttonPal);
     buttonPal.setBounds(0,this.getHeight()/2+100,this.getWidth()-30,90);
@@ -189,17 +226,10 @@ public Storage_main(final UserVO vo){
 		}
     	
     });
-    dxcx.addActionListener(new ActionListener(){
+   find.addActionListener(new ActionListener(){
 
 		public void actionPerformed(ActionEvent e) {
-			new Storage_findsingle();
-		}
-    	
-    });
-    fscx.addActionListener(new ActionListener(){
-
-		public void actionPerformed(ActionEvent e) {
-			new Storage_findtime();
+			new Storage_find();
 		}
     	
     });
@@ -226,16 +256,23 @@ public Storage_main(final UserVO vo){
     });
     JPanel tp=new JPanel();
     final JLabel time=new JLabel();
+    final JLabel in=new JLabel();
+    final JLabel out=new JLabel();
     time.setFont(new Font("Serif",Font.BOLD,15));
+    tp.add(in);
     tp.add(time);
+    tp.add(out);
     add(tp);
     tp.setBounds(0,this.getHeight()-80,this.getWidth(),40);
     
     Timer timer = new Timer(100,new ActionListener(){
 
 		public void actionPerformed(ActionEvent arg0) {
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   	
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+			in.setText("入库待处理项： "+ins.size()+"                 ");
 			time.setText(sdf.format(new Date()));
+			out.setText("            出库待处理项： "+outs.size());
+
 		}
     	
     });
