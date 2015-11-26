@@ -20,4 +20,5 @@
 <fullyQualifiedTypeName name="ELMS.businesslogic.UserBL.Login"/>
 <fullyQualifiedTypeName name="ELMS.vo.DealVO"/>
 <fullyQualifiedTypeName name="ELMS.vo.UserVO"/>
+<fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
 </qualifiedTypeNameHistroy>

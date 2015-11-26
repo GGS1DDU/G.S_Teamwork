@@ -26,11 +26,13 @@ import javax.swing.JTextField;
 
 
 
+
 import elms.businesslogic.dealbl.DealBL;
 import elms.businesslogic.userbl.UserManage;
 import elms.presentation.dealui.DealUI_main;
 import elms.presentation.dealui.DealUI_Search;
 import elms.presentation.dealui.DealUI_trackMessage;
+import elms.presentation.storageui.Storage_main;
 import elms.presentation.userui.UserUI_main;
 import elms.vo.DealVO;
 import elms.vo.UserVO;
@@ -117,6 +119,14 @@ public class LoginUI extends JFrame {
 					//快递员，进入DealUI_main界面
 				}
 				if(n==3){
+					
+				}
+				
+				if(n==5){
+					JFrame st=new Storage_main(vo);
+					st.setVisible(true);
+					LoginUI.this.dispose();
+					
 					
 				}
 				

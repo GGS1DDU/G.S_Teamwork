@@ -62,7 +62,7 @@ public class UserManage implements UserBlService ,DataFactory {
 			
 			}
 			
-			else if(po.getJob().equals("中转中心仓库管理员")){
+			else if(po.getJob().equals("中转中心仓库管理人员")){
 				return 5;
 			
 			}
