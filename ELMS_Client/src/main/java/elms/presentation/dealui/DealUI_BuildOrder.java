@@ -59,7 +59,7 @@ public class DealUI_BuildOrder extends JFrame {
 
 	public DealUI_BuildOrder(UserVO vo) {
 		this.vo=vo;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		setBounds(100, 100, 1103, 1106);
 		Jp = new JPanel();
 		Jp.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -547,7 +547,7 @@ public class DealUI_BuildOrder extends JFrame {
 				
 				
 				CalAndEst cae=new CalAndEst();
-				double Fee=cae.calculatefee(type, pack, weight, volume);
+				double Fee=cae.calculatefee(name1,name2,type, pack, weight, volume);
 				int Days=cae.estDays(name1, name2);
 				
 				

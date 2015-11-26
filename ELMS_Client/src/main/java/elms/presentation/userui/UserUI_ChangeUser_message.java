@@ -36,7 +36,7 @@ public class UserUI_ChangeUser_message extends JFrame {
 	public UserUI_ChangeUser_message(UserVO VO){
 		this.vo=VO;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		setBounds(100, 100, 427, 443);
 		JPanel UserMessage = new JPanel();
 		UserMessage.setBorder(new EmptyBorder(5, 5, 5, 5));

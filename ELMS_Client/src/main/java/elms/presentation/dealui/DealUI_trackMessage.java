@@ -22,7 +22,7 @@ public class DealUI_trackMessage extends JFrame {
 		wlxx=dealvo.getTrack();
 		
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		setBounds(100, 100, 830, 577);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

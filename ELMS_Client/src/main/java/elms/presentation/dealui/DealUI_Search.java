@@ -29,7 +29,7 @@ public class DealUI_Search extends JFrame {
 
 	public DealUI_Search(final UserVO uservo) {
 		this.uservo=uservo;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		setBounds(100, 100, 747, 374);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -51,7 +51,7 @@ public class DealUI_CheckOrder extends JFrame {
 		this.dealvo=dealvo;
 		this.uservo=uservo;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		setBounds(100, 100, 1103, 1106);
 		Jp = new JPanel();
 		Jp.setBorder(new EmptyBorder(5, 5, 5, 5));
