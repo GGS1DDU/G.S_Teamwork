@@ -3,6 +3,7 @@ package elms.businesslogic.dealbl;
 
 import java.io.IOException;
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import elms.businesslogic_service.dealblservice.DealBlService;
@@ -21,11 +22,7 @@ public class DealBL implements DealBlService ,DataFactory{
 	public DealBL(){
 		dealdata=getDealData();
 	}
-   public static void main(String args[]) throws IOException{
-	   DealBL deal=new DealBL();
-	  DealVO vp=new DealVO("00000000059","234", null, null, null, null, null, null, null, null, null, null, null, 1, 1,1, null, null, 1, 1, null, null, null, null);
-      deal.BuildOrder(vp);
-   }
+
 	public boolean BuildOrder(DealVO vo) throws IOException {		
 		if(FindOrder(vo.getOrderID())==null){
 			try{
@@ -123,21 +120,19 @@ public class DealBL implements DealBlService ,DataFactory{
 			return null;
 		}
 	}
-
+	
 	public UserDataService getUserData() {
+		return null;
+	}
+
+	public LogDataService getLogData() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public LogDataService getLogData() {
+	public StorageDataService getStorageData() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public StorageDataService getStorageData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 
 }

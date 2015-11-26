@@ -1,5 +1,0 @@
-package ELMS.businesslogic.UserBL;
-
-public class MockUserVO {
-
-}

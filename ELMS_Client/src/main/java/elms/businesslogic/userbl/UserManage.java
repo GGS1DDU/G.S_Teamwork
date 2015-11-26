@@ -25,7 +25,7 @@ public class UserManage implements UserBlService ,DataFactory {
 	public UserManage(){
 		userdata=getUserData();				
 	}
-
+	
 	
 	public int login(String id, String password) throws RemoteException {   
 		UserPO po = null;
@@ -176,22 +176,26 @@ public class UserManage implements UserBlService ,DataFactory {
 	}
 
 
-	public DealDataService getDealData() {
+	
+	public DealDataService getDealData() {                
+		return null;
+	}
+
+
+	public LogDataService getLogData() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	public LogDataService getLogData() {
+	public StorageDataService getStorageData() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	public StorageDataService getStorageData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 
 
 

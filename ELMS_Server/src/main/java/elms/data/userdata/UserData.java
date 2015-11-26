@@ -35,7 +35,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		UserData ud=new UserData();
 		ArrayList<UserPO> arr=ud.findall();
 		for(int i=0;i<arr.size();i++){
-			System.out.println(arr.get(i).getJob());
+			System.out.println(arr.get(i).getId());
 		}
 	}
 	
@@ -179,12 +179,9 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-		
-	
-		
+		}		
 	}
+	
 
 	public void finish() throws RemoteException {
 		

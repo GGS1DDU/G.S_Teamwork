@@ -1,7 +1,0 @@
-package businesslogic.DealBL;
-
-import junit.framework.TestCase;
-
-public class CourierInquiry_tester extends TestCase {
-
-}

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import elms.dataservice.dealdataservice.DealDataService;
 import elms.po.DealPO;
 public class DealData extends UnicastRemoteObject implements DealDataService {
-	private static final int port = 0;
 	File file=new File("Deal.ser");
 	FileInputStream fis;
 	ObjectInputStream ois;
@@ -32,20 +31,17 @@ public class DealData extends UnicastRemoteObject implements DealDataService {
 			dd.init();
 	
 }   */
-//	public static void main(String [] args) throws Exception{
-//		DealData dd=new DealData();
-//		dd.insert(new DealPO("0000000005","234", null, null, null, null, null, null, null, null, null, null, null, port, port, port, null, null, port, port, null, null, null, null));
-//		DealPO de=dd.find("0000000005");
-//		System.out.println(de.getCourier_name());
-////		ArrayList<DealPO> arr=dd.findall();
-////		for(int i=0;i<arr.size();i++){
-////			System.out.println(arr.get(i).getOrderID());
-////		}
-//		
-//		
-//	}
+/*	public static void main(String [] args) throws Exception{
+		DealData dd=new DealData();
+		ArrayList<DealPO> arr=dd.findall();
+		for(int i=0;i<arr.size();i++){
+			System.out.println(arr.get(i).getOrderID());
+		}
+		
+		
+	}*/
 
-
+	
 
 	public DealPO find(String id) throws RemoteException,IOException {
 		fis=new FileInputStream(file);
