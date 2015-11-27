@@ -112,18 +112,19 @@ public Storage_newStorage(){
 		Storage storage=new Storage();
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				if(idf.getText().length()!=6||jc.getSelectedItem()==null||orf.getText().length()!=10||!itf.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}\\s\\d{2}:\\d{2}:\\d{2}")||jcb.getSelectedItem()==null)
+				if(idf.getText().length()!=6||jc.getSelectedItem()==null||orf.getText().length()!=10||!sef.getText().matches("[A-Z]{1}\\d{1}[A-Z]{1}\\d{1}[A-Z]{1}\\d{1}")||!itf.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}")||jcb.getSelectedItem()==null)
 					JOptionPane.showMessageDialog(null,"入库单格式错误");
 				else if(storage.orderhasIN(orf.getText()))  JOptionPane.showMessageDialog(null, "该订单已存在");
-				else {if(storage.storage_inChoose(jc.getSelectedItem().toString(), new StorageCapacity(jcb.getSelectedItem().toString()))==1){
+				else {
+					if(storage.storage_inChoose(jc.getSelectedItem().toString(), new StorageCapacity(jcb.getSelectedItem().toString()))==1){
 			StorageVO vo=new StorageVO(idf.getText(),jc.getSelectedItem().toString(),sef.getText(),orf.getText(),itf.getText(),"null","IN",jcb.getSelectedItem().toString());
-			JOptionPane.showMessageDialog(newin,"保存至"+jc.getSelectedItem().toString());
+			JOptionPane.showMessageDialog(newin,"保存至"+jcb.getSelectedItem().toString()+"   "+jc.getSelectedItem().toString());
 			storage.storage_inRecord(vo);
 			Storage_newStorage.this.dispose();
 				}
 				else{
 					StorageVO vo=new StorageVO(idf.getText(),"机动区",sef.getText(),orf.getText(),itf.getText(),"null","IN",jcb.getSelectedItem().toString());
-					JOptionPane.showMessageDialog(newin,"保存至机动区");
+					JOptionPane.showMessageDialog(newin,"   当前选择库存已达预警!  \n保存至"+jcb.getSelectedItem().toString()+"   机动区");
 					storage.storage_inRecord(vo);
 					
 					Storage_newStorage.this.dispose();	

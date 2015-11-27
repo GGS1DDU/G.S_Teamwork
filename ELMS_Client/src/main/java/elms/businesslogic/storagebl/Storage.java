@@ -1,10 +1,18 @@
 package elms.businesslogic.storagebl;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import elms.businesslogic_service.storageblservice.StorageBlService;
 import elms.dataservice.DataFactory;
@@ -24,30 +32,32 @@ public class Storage implements StorageBlService,DataFactory {
     	storage=getStorageData();
     	
     }
-   public static void main(String args[]) throws IOException{
-  	Storage s=new Storage();
-    	ArrayList<StorageVO> arr=new ArrayList<StorageVO>();
-    	StorageVO vo=new StorageVO("000125",  "航运区","R2D3L5", "0000000001", "2015-02-14 14:32:10", null,"IN", "南京");
-    	StorageVO vo1=new StorageVO("000126","航运区",  "R2D3L4", "0000000002", "2015-02-12 14:32:10", "2015-02-16 14:32:10","OUT", "南京");
-    	StorageVO vo2=new StorageVO("000127", "航运区","R2D3L7",  "0000000003", "2015-02-15 14:32:10", "2015-02-16 14:32:10","OUT", "北京");
-    	StorageVO vo3=new StorageVO("000128", "航运区","R2D3L1",  "0000000004", "2015-02-16 14:32:10", null,"IN", "南京");
-    	StorageVO vo4=new StorageVO("000129", "航运区","R2D3L2",  "0000000005", "2015-02-16 14:32:10", null,"BROKEN", "南京");
-     	arr.add(vo);
-    	arr.add(vo1);
-    	arr.add(vo2);
-    	arr.add(vo3);
-    	arr.add(vo4);
-
-
-   // 	s.init();
-////    	s.inquiryByTime("2015-02-15 1:00:02", "2015-02-17 17:02:02", "南京");
-////    	s.inquiryAll("南京");
-////    	System.out.println();
-   //	StorageCapacity c=new StorageCapacity("广州");
-   //	System.out.println(s.storage_inChoose("汽运区", c));
-////    	s.storage_out("000125", "南京");
-////    	s.inquiry("000125");
-  }
+//   public static void main(String args[]) throws IOException{
+//  	Storage s=new Storage();
+//    	ArrayList<StorageVO> arr=new ArrayList<StorageVO>();
+//    	StorageVO vo=new StorageVO("000125",  "航运区","R2D3L5", "0000000001", "2015-02-14 14:32:10", "null","IN", "南京");
+//    	StorageVO vo1=new StorageVO("000126","航运区",  "R2D3L4", "0000000002", "2015-02-12 14:32:10", "2015-02-16 14:32:10","OUT", "南京");
+//    	StorageVO vo2=new StorageVO("000127", "航运区","R2D3L7",  "0000000003", "2015-02-15 14:32:10", "2015-02-16 14:32:10","OUT", "北京");
+//    	StorageVO vo3=new StorageVO("000128", "航运区","R2D3L1",  "0000000004", "2015-02-16 14:32:10","null","IN", "南京");
+//    	StorageVO vo4=new StorageVO("000129", "航运区","R2D3L2",  "0000000005", "2015-02-16 14:32:10", "null","BROKEN", "南京");
+//     	arr.add(vo);
+//    	arr.add(vo1);
+//    	arr.add(vo2);
+//    	arr.add(vo3);
+//    	arr.add(vo4);
+//    	s.paint(arr, "zht");
+//       String a="asc22aaaa";
+//       if(a.matches("[a-z]{3}\\d{2}[a-z]")) System.out.println(233);
+//
+//    	s.init();([a-zA-Z]{3}|[
+//    	s.inquiryByTime("2015-02-15 1:00:02", "2015-02-17 17:02:02", "南京");
+//    	s.inquiryAll("南京");
+//    	System.out.println();
+//   	StorageCapacity c=new StorageCapacity("广州");
+//   	System.out.println(s.storage_inChoose("汽运区", c));
+//    	s.storage_out("000125", "南京");
+//    	s.inquiry("000125");
+//  }
     public boolean orderhasIN(String s) throws IOException{
     	StoragePO po=storage.find(s);
     	if(po!=null) return true;
@@ -58,6 +68,7 @@ public class Storage implements StorageBlService,DataFactory {
     	storage.init();
     
 	}
+
 	public ArrayList<StorageVO> inquiryByTime(String time1, String time2,
 			String center) throws IOException {
 		ArrayList<StorageVO> voarr=new ArrayList<StorageVO>();
@@ -135,6 +146,42 @@ public void delete(StorageVO vo) throws IOException {
 		storage.delete(po);
 		
 	}
+
+public void paint(List<StorageVO> temp,String s) throws IOException {
+	HSSFWorkbook   wb=new HSSFWorkbook();
+	HSSFSheet st = wb.createSheet("库存管理");
+	ArrayList<String> Items=new ArrayList<String>();
+	Items.add("ID");Items.add("Area");Items.add("Seat");Items.add("OrderID");Items.add("Timein");Items.add("Timeout");Items.add("State");Items.add("Centername");
+	for(int j=0;j<=temp.size();j++){
+		HSSFRow Itemsrow = st.createRow(j);
+	if(j==0) 
+	for(int i=0;i<Items.size();i++){
+		HSSFCell cell = Itemsrow.createCell(i);
+		cell.setCellValue(Items.get(i));
+	}
+	else {
+		StorageVO vo=temp.get(j-1);
+		ArrayList<String> value=new ArrayList<String>();
+        value.add(vo.getId());value.add(vo.getArea());value.add(vo.getSeat());value.add(vo.getOrder());value.add(vo.getTimeIn());value.add(vo.getTimeOut());value.add(vo.getState());value.add(vo.getName());
+
+		for(int i=0;i<8;i++){
+			HSSFCell cell = Itemsrow.createCell(i);
+			cell.setCellValue(value.get(i));
+			}
+	}
+
+	}
+try {
+	
+		FileOutputStream writeFile = new FileOutputStream("D:/Storage  "+s+".xlsx");
+		wb.write(writeFile);
+		writeFile.close();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
+}
+
 	public void endStoreOpt() {
 		// TODO Auto-generated method stub
 		
@@ -165,6 +212,7 @@ public void delete(StorageVO vo) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	
 	
 

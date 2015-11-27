@@ -24,9 +24,7 @@ public class Storage_findcenter extends JFrame {
 	Dimension screenSize=kit.getScreenSize();
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int)screenSize.getHeight();
-	public static void main(String args[]){
-	new Storage_findcenter();
-}
+
 	public Storage_findcenter(){
 		setLayout(null);
 		setTitle("当前查询");
@@ -48,10 +46,11 @@ public class Storage_findcenter extends JFrame {
 				String center=jcb.getSelectedItem().toString();
 				ArrayList<StorageVO> voarr=new ArrayList<StorageVO>();
 				ArrayList<StorageVO> voarr2=new ArrayList<StorageVO>();
+				voarr2.add(new StorageVO("在库查询","","","","","","",""));
 				try {
 					voarr=storage.inquiryAll(center);
 					for(StorageVO vo:voarr)  if(!vo.getState().equals("OUT"))  voarr2.add(vo);
-					if(voarr2.size()==0)
+					if(voarr2.size()<=1)
 				   JOptionPane.showMessageDialog(null, center+" 没有库存!");
 					else{
 						   JOptionPane.showMessageDialog(null, "查询完毕！\n 请刷新库存界面");

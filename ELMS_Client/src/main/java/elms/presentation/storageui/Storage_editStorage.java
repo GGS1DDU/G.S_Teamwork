@@ -3,6 +3,7 @@ package elms.presentation.storageui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import elms.businesslogic.storagebl.Storage;
+import elms.businesslogic.storagebl.StorageCapacity;
 import elms.vo.StorageVO;
 
 public class Storage_editStorage extends JFrame {
@@ -62,8 +64,10 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	else t2=3;
 	
 	if(voall.getState().equals("IN"))t3=0;
-	else if(voall.getState().equals("BROKEN"))t3=1;
-	else t3=2;
+	else if(voall.getState().equals("OUT"))t3=1;
+	else if(voall.getState().equals("BROKEN"))t3=2;
+	else t3=3;
+	if(t3==1)  Edit=false; 
 	
 	
 	
@@ -137,15 +141,15 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	JLabel state=new JLabel("状态");
 	newin.add(state);state.setBounds(15, 140, 60, 20);final JComboBox<String> jcs=new JComboBox<String>();
 	if(Edit){
-		
 		jcs.addItem("IN");jcs.addItem("BROKEN");jcs.addItem("DISAPPEAR");
 		jcs.setBackground(Color.white);jcs.setFont(new Font("楷体",Font.BOLD,12));
 		newin.add(jcs);jcs.setBounds(90,140,100,24);
-		jcs.setSelectedIndex(t3);
+		jcs.setSelectedIndex(t3);		
 	}
 	else{
 	JLabel sf=new JLabel(vo.getState());sf.setFont(new Font("楷体",Font.BOLD,12));sf.setOpaque(false);
-	newin.add(sf);sf.setBounds(90,140,100,24);sf.setHorizontalAlignment(SwingConstants.CENTER);sf.setEnabled(false);}
+	newin.add(sf);sf.setBounds(90,140,100,24);sf.setHorizontalAlignment(SwingConstants.CENTER);sf.setEnabled(false);
+	}
 	
 	JLabel name=new JLabel("中转中心");
 	newin.add(name);name.setBounds(this.getWidth()/2-10,140,60,20);final JComboBox<String> jcb=new JComboBox<String>();
@@ -182,25 +186,47 @@ JButton cancel=new JButton("编辑(E)");
 	
 	save.addActionListener(new ActionListener(){
 		Storage storage=new Storage();
+		 StorageVO newvo;
+		 
+		 
 		public void actionPerformed(ActionEvent e) {
 			
-           if(Edit){ StorageVO newvo=new StorageVO(idf.getText(),jc.getSelectedItem().toString(),sef.getText(),orf.getText(),itf.getText(),otf.getText(),jcs.getSelectedItem().toString(),jcb.getSelectedItem().toString());
-           
+	if(idf.getText().equals(voall.getId())&&jc.getSelectedItem().toString().equals(voall.getArea())&&sef.getText().equals(voall.getSeat())
+			&&itf.getText().equals(voall.getTimeIn())&&otf.getText().equals(voall.getTimeOut())&&jcs.getSelectedItem().toString().equals(voall.getState())&&jcb.getSelectedItem().toString().equals(voall.getName())){
+			JOptionPane.showMessageDialog(newin, "未发生改变");
+			Storage_editStorage.this.dispose();
+			new Storage_editStorage(voall,false);
+	}
+	else{
+			try {
+				if(storage.storage_inChoose(jc.getSelectedItem().toString(), new StorageCapacity(jcb.getSelectedItem().toString()))==1)
+				newvo=new StorageVO(idf.getText(),jc.getSelectedItem().toString(),sef.getText(),orf.getText(),itf.getText(),otf.getText(),jcs.getSelectedItem().toString(),jcb.getSelectedItem().toString());
+				else {
+				JOptionPane.showMessageDialog(newin,"   当前选择库存已达预警!  \n自动选择"+jcb.getSelectedItem().toString()+"   机动区");
+				newvo=new StorageVO(idf.getText(),"机动区",sef.getText(),orf.getText(),itf.getText(),otf.getText(),jcs.getSelectedItem().toString(),jcb.getSelectedItem().toString());
+				}
+			} catch (HeadlessException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
            
            try {
-        	   if(idf.getText().length()!=6||orf.getText().length()!=10||!itf.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}\\s\\d{2}:\\d{2}:\\d{2}")||jcb.getSelectedItem()==null)
-					JOptionPane.showMessageDialog(null,"修改信息格式错误");
+        	   if(idf.getText().length()!=6||orf.getText().length()!=10||!sef.getText().matches("[A-Z]{1}\\d{1}[A-Z]{1}\\d{1}[A-Z]{1}\\d{1}")||!itf.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}")||jcb.getSelectedItem()==null)
+					JOptionPane.showMessageDialog(newin,"修改信息格式错误");
         	   else if(!otf.getText().equals("null")&&!jcs.getSelectedItem().toString().equals("OUT")) 	JOptionPane.showMessageDialog(null,"库存状态矛盾");
-        	   else if(jcs.getSelectedItem().toString().equals("OUT")&&!otf.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}\\s\\d{2}:\\d{2}:\\d{2}"))  JOptionPane.showMessageDialog(null,"出库时间格式错误");
+        	   else if(jcs.getSelectedItem().toString().equals("OUT")&&!otf.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}"))  JOptionPane.showMessageDialog(null,"出库时间格式错误");
 
-else{   
-	if(!otf.getText().equals("null")){
-	SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
-	Date date1 =formatter.parse(itf.getText());
-	Date date2 =formatter.parse(otf.getText());
+        	   else{   
+        		   if(!otf.getText().equals("null")){
+        			   SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+        			   Date date1 =formatter.parse(itf.getText());
+        			   Date date2 =formatter.parse(otf.getText());
 	
-	if(date1.after(date2))  JOptionPane.showMessageDialog(null,"时间顺序错误");}
-		 Storage_editStorage.this.dispose();
+        			   if(date1.after(date2))  JOptionPane.showMessageDialog(newin,"时间顺序错误");}
+        		   Storage_editStorage.this.dispose();
         	   storage.delete(getVO());
 			storage.storage_inRecord(newvo);
 			new Storage_editStorage(newvo,false);
@@ -213,13 +239,13 @@ else{
 			e1.printStackTrace();
 		}	
             
-            
+		}       
             }
-		}
 		
 	});
 	
-	}else{
+	}
+	else{
 		 JButton outs=new JButton("出库(O)");
 			buttonpanel.add(outs);outs.setBounds(this.getWidth()/3-120, 25, 100, 30);
 		outs.addActionListener(new ActionListener(){
@@ -239,7 +265,7 @@ else{
 				Storage_editStorage.this.dispose();
 				new Storage_editStorage(vo,false);
 			}else
-				JOptionPane.showMessageDialog(null, "该对象 不允许出库/已经出库");
+				JOptionPane.showMessageDialog(newin, "该对象 不允许出库/已经出库");
 				
 			
 			}

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -234,9 +235,36 @@ public Storage_main(final UserVO vo){
     	
     });
     
+   zbdy.addActionListener(new ActionListener(){
+  Storage storage=new Storage();
+  String k; 
+  List<StorageVO>  temp=new ArrayList<StorageVO>();
+	public void actionPerformed(ActionEvent arg0) {
+		if(arr.size()==0)  JOptionPane.showMessageDialog(null, "没有制表打印内容！","错误",0);
+		else {
+		if(arr.get(0).getId().equals("在库查询")) {temp=arr.subList(1,arr.size()-1); k="在库查询";}
+		else if(arr.get(0).getId().equals("---------------这段时间内入库的-----------------")){temp=arr.subList(1,arr.size()-1); k="分时查询";}
+		else{ k="历史库存";temp=arr;}
+		
+		try {
+			storage.paint(temp, k);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}
+	}
+	   
+   });
+   
+   
     refresh.addActionListener(new ActionListener(){
 
 		public void actionPerformed(ActionEvent e) {
+			ArrayList<StorageVO>  temp=new ArrayList<StorageVO>();
+			temp=arr;
+		if(arr.size()!=0)
+		jcb.setSelectedItem(arr.get(0).getName());
+	    	arr=temp;
 			text.setText("");
 			for(StorageVO svo:arr)
 			if(svo.getState().equals("OUT"))
