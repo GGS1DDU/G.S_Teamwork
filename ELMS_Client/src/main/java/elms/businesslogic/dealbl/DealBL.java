@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import elms.businesslogic_service.dealblservice.DealBlService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
+import elms.dataservice.financedataservice.BankAccountDataService;
+import elms.dataservice.financedataservice.ExpenseDataService;
+import elms.dataservice.financedataservice.FreightStrategyDataService;
+import elms.dataservice.financedataservice.IncomeDataService;
+import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.logdataservice.LogDataService;
 import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
@@ -132,6 +137,32 @@ public class DealBL implements DealBlService ,DataFactory{
 
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public IncomeDataService getIncomeData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public ExpenseDataService getExpenseData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public BankAccountDataService getBankAccountData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public FreightStrategyDataService getFreightStrategyData()
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	public InitAllDataService getInitData() throws RemoteException {
+		// TODO 自动生成的方法存根
 		return null;
 	}
 

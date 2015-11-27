@@ -21,4 +21,14 @@
 <fullyQualifiedTypeName name="ELMS.vo.DealVO"/>
 <fullyQualifiedTypeName name="ELMS.vo.UserVO"/>
 <fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
+<fullyQualifiedTypeName name="elms.dataservice.financedataservice.IncomeDataService"/>
+<fullyQualifiedTypeName name="elms.dataservice.financedataservice.ExpenseDataService"/>
+<fullyQualifiedTypeName name="elms.data.financedata.IncomeData"/>
+<fullyQualifiedTypeName name="elms.data.financedata.ExpenseData"/>
+<fullyQualifiedTypeName name="elms.dataservice.financedataservice.BankAccountDataService"/>
+<fullyQualifiedTypeName name="elms.data.financedata.BankAccountData"/>
+<fullyQualifiedTypeName name="elms.dataservice.financedataservice.FreightStrategyDataService"/>
+<fullyQualifiedTypeName name="elms.data.financedata.FreightStrategyData"/>
+<fullyQualifiedTypeName name="elms.dataservice.financedataservice.InitAllDataService"/>
+<fullyQualifiedTypeName name="elms.data.financedata.InitAllData"/>
 </qualifiedTypeNameHistroy>
