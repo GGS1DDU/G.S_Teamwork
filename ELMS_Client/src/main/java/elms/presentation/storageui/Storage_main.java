@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,9 +29,7 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-import elms.businesslogic.financebl.InitAll;
 import elms.businesslogic.storagebl.Storage;
-import elms.presentation.financeui.Init.Init;
 import elms.vo.StorageVO;
 import elms.vo.UserVO;
 
@@ -43,8 +40,9 @@ int screenWidth=(int) screenSize.getWidth();
 int screenHeight=(int)screenSize.getHeight();
 JTextArea text;
 final JComboBox<String> jcb;
-static boolean init;
+
 String center=null;
+
 public static ArrayList<StorageVO>  arr=new ArrayList<StorageVO>();
 
 /* 
@@ -79,8 +77,13 @@ public static void  clearStorageOutList(){
 
 
 public static void main(String args[]){
-	UserVO vo=new UserVO();
-	JFrame storage=new Storage_main(vo);
+	EventQueue.invokeLater(new Runnable(){
+		public void run(){
+				UserVO vo=new UserVO();
+				JFrame storage=new Storage_main(vo);
+
+		}
+	});
 
 }
 public Storage_main(final UserVO vo){
@@ -244,7 +247,8 @@ public Storage_main(final UserVO vo){
 		else{ k="历史库存";temp=arr;}
 		
 		try {
-			storage.paint(temp, k);
+			storage.paint(temp, center+k);
+			JOptionPane.showMessageDialog(null, "已生成库存报表");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -291,22 +295,13 @@ public Storage_main(final UserVO vo){
     tp.setBounds(0,this.getHeight()-80,this.getWidth(),40);
     
     Timer timer = new Timer(100,new ActionListener(){
-     InitAll initall=new InitAll();
+
 		public void actionPerformed(ActionEvent arg0) {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 			in.setText("入库待处理项： "+ins.size()+"                 ");
-			try {
-				if(!initall.getInitState(3))
-				time.setText(sdf.format(new Date()));
-				else{		
-				time.setText("要求初始化库存！");time.setBackground(Color.red);
-				}
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			time.setText(sdf.format(new Date()));
 			out.setText("            出库待处理项： "+outs.size());
-			
+
 		}
     	
     });

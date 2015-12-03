@@ -1,6 +1,6 @@
 package elms.data.storagedata;
 
-import java.io.File;
+import java.io.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import elms.dataservice.storagedataservice.StorageDataService;
 import elms.po.StoragePO;
 
 public class StorageData extends UnicastRemoteObject implements StorageDataService{
-	File file=new File("Storage.ser");
+	static File file=new File("Storage.ser");
 	FileInputStream fis;
 	ObjectInputStream ois;
 	ObjectOutputStream oos;
@@ -27,17 +27,20 @@ public class StorageData extends UnicastRemoteObject implements StorageDataServi
 		// TODO Auto-generated constructor stub
 	}
 //	public static void main(String args[]) throws IOException, ClassNotFoundException, ParseException{
-//		StorageData data=new StorageData();ArrayList<StoragePO> aer=new ArrayList<StoragePO>();
-//		data.init();
-//		data.insert(new StoragePO("0000000001", "R2D3L5", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
-//		data.insert(new StoragePO("0000000002", "R2D3L4", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "南京"));
-//		data.insert(new StoragePO("0000000003", "R2D3L7", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "北京"));
-//		data.insert(new StoragePO("0000000004", "R2D3L1", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
-//		data.insert(new StoragePO("0000000005", "R2D3L2", "航运区", "000125", "2015-02-14 14:32:10", null,"BROKEN", "南京"));
+////		File f=new File("Version-2015");
+////		f.mkdirs();
+////	 file=new File("Storage.ser");
+//	StorageData data=new StorageData();ArrayList<StoragePO> aer=new ArrayList<StoragePO>();
+////		data.init();
+////		data.insert(new StoragePO("0000000001", "R2D3L5", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
+////		data.insert(new StoragePO("0000000002", "R2D3L4", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "南京"));
+////		data.insert(new StoragePO("0000000003", "R2D3L7", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "北京"));
+////		data.insert(new StoragePO("0000000004", "R2D3L1", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
+////		data.insert(new StoragePO("0000000005", "R2D3L2", "航运区", "000125", "2015-02-14 14:32:10", null,"BROKEN", "南京"));
 //		aer=data.findbytime("2015-01-01 11:10:02", "2015-01-01 11:10:02", "南京");
-//       for(int i=0;i<aer.size();i++) System.out.println(aer.get(i).getId());
+//		for(int i=0;i<aer.size();i++) System.out.println(aer.get(i).getId());
 //	}
-//	  
+	  
 	public StoragePO find(String id) throws IOException,RemoteException {
 		fis=new FileInputStream(file);
 		ois=new ObjectInputStream(fis);

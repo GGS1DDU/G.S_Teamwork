@@ -57,10 +57,11 @@ public class Init extends JFrame{
 					String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化库存");
 					if(obj.equals(s)){
 						try {
-							String time=""+new Date().toLocaleString();time=time.substring(0,4);
+							String time=""+new Date().toLocaleString();time=time.substring(0,4);time="Version-"+time;
 							initall.init(time);
-							AccountVO vo1=new AccountVO("Version-"+time,vo.getName(),new Date().toLocaleString());
+							AccountVO vo1=new AccountVO(time,vo.getName(),new Date().toLocaleString());
 							initall.addAccount(vo1);
+
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -94,7 +95,9 @@ JOptionPane.showMessageDialog(null, "验证码错误！",null,0);
            InitAll  initall=new InitAll();
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					initall.copy();
+					String time=""+new Date().toLocaleString();time=time.substring(0,4);time="Version-"+time;
+					initall.copy(time);
+					
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -110,6 +113,7 @@ JOptionPane.showMessageDialog(null, "验证码错误！",null,0);
 				}
 			// 在数据层设置重置完成参数  当各部分都重置完成   copy才能生效   即保存当前的新的库存信息作为备份
 			//保存现有的"xxx.ser" to "copy_xxx.ser"
+				JOptionPane.showMessageDialog(null, "数据已备份",null,2);
 			}
 			
 		});
@@ -132,7 +136,8 @@ JOptionPane.showMessageDialog(null, "验证码错误！",null,0);
 			InitAll  initall=new InitAll();
 			public void actionPerformed(ActionEvent e) {
 				try {
-					initall.recovery();
+					String time=""+new Date().toLocaleString();time=time.substring(0,4);time="Version-"+time;
+					initall.recovery(time);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -142,7 +147,7 @@ JOptionPane.showMessageDialog(null, "验证码错误！",null,0);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				}	JOptionPane.showMessageDialog(null, "数据已恢复",null,2);
 			}
 			
 		});

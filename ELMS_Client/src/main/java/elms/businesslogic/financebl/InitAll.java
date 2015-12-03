@@ -36,12 +36,12 @@ public InitAll(){
 		initall.initAll(s);
 	}
 
-	public void copy() throws RemoteException, FileNotFoundException, ClassNotFoundException, IOException {
-		initall.copy();
+	public void copy(String s) throws RemoteException, FileNotFoundException, ClassNotFoundException, IOException {
+		initall.copy(s);
 	}
 
-	public void recovery() throws FileNotFoundException, ClassNotFoundException, IOException{
-	    initall.recovery();
+	public void recovery(String s) throws FileNotFoundException, ClassNotFoundException, IOException{
+	    initall.recovery(s);
 		
 	}
 
@@ -135,6 +135,17 @@ public InitAll(){
 			return null;
 		}
 	}
+	public void copy() throws RemoteException, FileNotFoundException,
+			ClassNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void recovery() throws RemoteException, FileNotFoundException,
+			ClassNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 }

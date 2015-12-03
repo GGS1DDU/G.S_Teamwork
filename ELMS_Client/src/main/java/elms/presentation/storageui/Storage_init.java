@@ -66,7 +66,7 @@ public Storage_init(final UserVO vo){
 		public void menuSelected(MenuEvent e) {
 			Storage_init.this.dispose();
 			new Storage_main(vo);
-			Storage_main.setInit(false);
+
 		}
 		
 	});

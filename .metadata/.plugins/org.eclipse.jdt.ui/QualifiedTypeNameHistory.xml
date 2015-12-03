@@ -45,4 +45,8 @@
 <fullyQualifiedTypeName name="elms.vo.UserVO"/>
 <fullyQualifiedTypeName name="elms.vo.AccountVO"/>
 <fullyQualifiedTypeName name="elms.businesslogic.financebl.InitAll"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="java.nio.file.Path"/>
+<fullyQualifiedTypeName name="java.nio.file.Paths"/>
+<fullyQualifiedTypeName name="java.nio.file.StandardCopyOption"/>
 </qualifiedTypeNameHistroy>
