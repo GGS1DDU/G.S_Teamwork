@@ -1,0 +1,86 @@
+package elms.data.financedata;
+
+import java.io.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.Date;
+
+import elms.dataservice.financedataservice.InitAllDataService;
+import elms.po.StoragePO;
+
+public class InitAllData extends UnicastRemoteObject implements InitAllDataService{
+    boolean initMember,initStorage,initAccount,initCar;
+	public InitAllData() throws RemoteException {
+		super();
+		// TODO 自动生成的构造函数存根
+	}
+   public static void main(String args[]) throws RemoteException{
+	   InitAllData i=new InitAllData();
+	   try {
+		i.initAll("233");
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+   }
+	
+	public void  initAll(String operator) throws RemoteException,IOException, ClassNotFoundException {
+		String s=""+new Date().toLocaleString();s=s.substring(0,4);
+		File file=new File("Storage.ser");
+		File cfile=new File(s+" Storage.ser");
+		FileInputStream fis=new FileInputStream(file);FileOutputStream  fos=new FileOutputStream(cfile,true);
+		ObjectInputStream ois=new ObjectInputStream(fis);ObjectOutputStream oos=new ObjectOutputStream(fos);
+		StoragePO storagepo=null;
+	
+			storagepo=(StoragePO)ois.readObject();
+			oos.writeObject(storagepo);	
+			while(fis.available()>0){
+					byte[] buf=new byte[4];
+					fis.read(buf);
+					storagepo=(StoragePO)ois.readObject();
+					oos.writeObject(storagepo);				
+					}		
+		    ois.close();
+		    oos.close();	    
+		    setInitState();
+		   //  这里是读数据  拷贝  然后告诉各个分部门的数据需要被新建了
+	}
+	
+	public void delete(String name) throws RemoteException{
+       
+	}
+
+
+	public void recovery(String operator) throws RemoteException, FileNotFoundException {
+		File file=new File("Storage.ser");
+		String s=""+new Date().toLocaleString();s=s.substring(0,4);
+		File cfile=new File(s+" Storage.ser");
+		FileInputStream fis=new FileInputStream(file);FileOutputStream  fos=new FileOutputStream(cfile,true);
+		ObjectInputStream ois=new ObjectInputStream(fis);ObjectOutputStream oos=new ObjectOutputStream(fos);
+		
+		
+	}
+
+
+	public boolean getInitState(int a) throws RemoteException {
+		switch(a){
+		case 1: return initMember;
+		case 2: return initCar;
+		case 3: return initStorage;
+		case 4: return initAccount;
+		default : return false;
+		}
+	}
+
+
+	public void setInitState() throws RemoteException {
+		initCar=true;
+		initMember=true;
+		initStorage=true;
+		initAccount=true;	
+	}
+	
+}

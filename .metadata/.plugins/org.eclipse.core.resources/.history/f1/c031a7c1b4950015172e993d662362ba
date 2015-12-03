@@ -1,0 +1,75 @@
+package elms.presentation.financeui.Init;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import elms.presentation.storageui.Storage_main;
+
+public class Init extends JFrame{
+	Toolkit kit=Toolkit.getDefaultToolkit();
+	Dimension screenSize=kit.getScreenSize();
+	int screenWidth=(int) screenSize.getWidth();
+	int screenHeight=(int)screenSize.getHeight();
+	public static void main(String[] args) {
+	new Init();
+	}
+	public Init(){
+		setLayout(null);
+		setTitle("账目初始化");
+		setResizable(false);
+		setBounds(screenWidth/4,screenHeight/4, screenWidth/3, 3*screenHeight/8);
+		setVisible(true);
+		
+		
+		JButton  init=new JButton("初始化库存");
+		JButton  copy=new JButton("备份库存  ");
+		JButton  surf=new JButton("历史查看  ");
+		JButton  recovery=new JButton("恢复数据");
+		add(init);add(copy);add(surf);add(recovery);
+		init.setBounds(this.getWidth()/3,this.getHeight()/6,100,30);
+		copy.setBounds(this.getWidth()/3,this.getHeight()/3+20,100,30);
+		surf.setBounds(this.getWidth()/3,2*this.getHeight()/3,100,30);
+		System.out.println(this.getHeight());
+		init.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				int a=(int)(Math.random()*1000);
+		    	String s=a+"";    	
+		    	String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化库存");
+				if(obj.equals(s)){
+				//  保存所有"xxx.ser" 到"operator+ new date().getyear().ser"
+				//  save operator+new date().getyear().ser to ArraylList<String> beta
+				//  在data层设置参数  然后在需要新建的类别去读取这个参数  提醒新建
+				//  告知管理员  重新建立用户信息
+				// 告知中转中心仓库管理员  新建库存信息
+				//  告知经理 新建member信息
+		}	
+				}
+			});
+		
+		copy.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+			// 在数据层设置重置完成参数  当各部分都重置完成   copy才能生效   即保存当前的新的库存信息作为备份
+			//保存现有的"xxx.ser" to "copy_xxx.ser"
+			}
+			
+		});
+		surf.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				//  create a new JFrame to display beta
+				
+			}
+			
+		});
+	}
+}
+
+

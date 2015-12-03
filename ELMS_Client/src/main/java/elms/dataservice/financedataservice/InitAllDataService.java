@@ -1,14 +1,22 @@
 package elms.dataservice.financedataservice;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import elms.po.AccountPO;
 
 public interface InitAllDataService extends Remote{
-	
-	public boolean initAll(String operator) throws RemoteException;//�ڳ����˽������˻�
-	
-	public void delete() throws RemoteException;
+
+	public void  initAll(String operator) throws RemoteException, IOException, ClassNotFoundException;
 		
-	public boolean save(String operator) throws RemoteException;//�ڳ����˱���
-		
+	public void recovery() throws RemoteException, FileNotFoundException, IOException, ClassNotFoundException;
+	  
+	public void  copy() throws RemoteException, FileNotFoundException, IOException, ClassNotFoundException;
+	public boolean getInitState(int a) throws RemoteException;
+	public  void  addAccount(AccountPO po) throws IOException;
+	public ArrayList<AccountPO> getAccount() throws ClassNotFoundException, IOException;
+	public void setInitState() throws RemoteException;
 }

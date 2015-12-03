@@ -1,0 +1,15 @@
+package elms.businesslogic_service.financeblservice;
+
+import java.util.ArrayList;
+
+import elms.vo.AccountVO;
+
+public interface InitAllBlService {
+public void init(String s);
+public void copy();
+public void recovery();
+public boolean getInitState(int a);
+public void setInitState();
+public  void  addAccount(AccountVO vo);
+public ArrayList<AccountVO> getAccount();
+}

@@ -1,0 +1,19 @@
+package elms.dataservice.financedataservice;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface InitAllDataService extends Remote{
+
+	public void  initAll(String operator) throws RemoteException;
+	
+	public void delete() throws RemoteException;
+		
+	public boolean save(String operator) throws RemoteException;
+	
+	public void copy(String operator) throws RemoteException;
+	  
+	public boolean getInitState(int a) throws RemoteException;
+	
+	public void setInitState() throws RemoteException;
+}

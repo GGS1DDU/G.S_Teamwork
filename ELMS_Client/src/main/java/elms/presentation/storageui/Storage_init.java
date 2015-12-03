@@ -36,6 +36,7 @@ public class Storage_init extends JFrame{
 	String center=null;
 	static ArrayList<StorageVO>  arr=new ArrayList<StorageVO>();
 public Storage_init(final UserVO vo){
+	
 	setLayout(null);
 	setTitle("库存初始化");
 	setResizable(false);
@@ -65,6 +66,7 @@ public Storage_init(final UserVO vo){
 		public void menuSelected(MenuEvent e) {
 			Storage_init.this.dispose();
 			new Storage_main(vo);
+			Storage_main.setInit(false);
 		}
 		
 	});

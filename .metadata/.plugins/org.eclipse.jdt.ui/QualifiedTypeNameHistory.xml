@@ -20,7 +20,6 @@
 <fullyQualifiedTypeName name="ELMS.businesslogic.UserBL.Login"/>
 <fullyQualifiedTypeName name="ELMS.vo.DealVO"/>
 <fullyQualifiedTypeName name="ELMS.vo.UserVO"/>
-<fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
 <fullyQualifiedTypeName name="elms.dataservice.financedataservice.IncomeDataService"/>
 <fullyQualifiedTypeName name="elms.dataservice.financedataservice.ExpenseDataService"/>
 <fullyQualifiedTypeName name="elms.data.financedata.IncomeData"/>
@@ -31,4 +30,19 @@
 <fullyQualifiedTypeName name="elms.data.financedata.FreightStrategyData"/>
 <fullyQualifiedTypeName name="elms.dataservice.financedataservice.InitAllDataService"/>
 <fullyQualifiedTypeName name="elms.data.financedata.InitAllData"/>
+<fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
+<fullyQualifiedTypeName name="elms.presentation.financeui.Init.Init"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JMenu"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="elms.dataservice.DataFactory"/>
+<fullyQualifiedTypeName name="elms.businesslogic_service.financeblservice.InitAllBlService"/>
+<fullyQualifiedTypeName name="elms.po.AccountPO"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="elms.vo.UserVO"/>
+<fullyQualifiedTypeName name="elms.vo.AccountVO"/>
+<fullyQualifiedTypeName name="elms.businesslogic.financebl.InitAll"/>
 </qualifiedTypeNameHistroy>

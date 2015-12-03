@@ -51,6 +51,7 @@ public class BankAccountPO implements Serializable{
 	public void setAmount(double amount){
 		this.amount = amount;
 	}
+	           
 	
 	public String getBank() {
 		return bankName;
