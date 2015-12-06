@@ -17,10 +17,10 @@ import elms.po.StoragePO;
 public class InitAllData extends UnicastRemoteObject implements InitAllDataService{
    
     
-     boolean initMember;
-		boolean initStorage;
-		boolean initAccount;
-		boolean initCar;
+   static  boolean initMember;
+   static	boolean initStorage;
+   static	boolean initAccount;
+   static	boolean initCar;
     public InitAllData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
@@ -76,13 +76,25 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		}//  按照不同界面上返回的数值类型  来确定需要的值   然后确定是否进行初始化
 	}
 
-   
+  /*
+   *     File file=new File("buff.data");
+    try {
+         file.delete();
+		FileOutputStream fos=new FileOutputStream(file,true);
+		
+	
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} 
+   */
 	public void setInitState() throws RemoteException {
 		initCar=true;
 		initMember=true;
 		initStorage=true;
 		initAccount=true;	
 	}
+	
 	
 	public  void  addAccount(AccountPO po) throws IOException{
 		File file=new File("Account.ser");

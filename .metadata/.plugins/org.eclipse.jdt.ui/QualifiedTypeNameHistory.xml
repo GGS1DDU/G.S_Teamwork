@@ -30,7 +30,6 @@
 <fullyQualifiedTypeName name="elms.data.financedata.FreightStrategyData"/>
 <fullyQualifiedTypeName name="elms.dataservice.financedataservice.InitAllDataService"/>
 <fullyQualifiedTypeName name="elms.data.financedata.InitAllData"/>
-<fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
 <fullyQualifiedTypeName name="elms.presentation.financeui.Init.Init"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
@@ -44,9 +43,10 @@
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="elms.vo.UserVO"/>
 <fullyQualifiedTypeName name="elms.vo.AccountVO"/>
-<fullyQualifiedTypeName name="elms.businesslogic.financebl.InitAll"/>
 <fullyQualifiedTypeName name="java.nio.file.Files"/>
 <fullyQualifiedTypeName name="java.nio.file.Path"/>
 <fullyQualifiedTypeName name="java.nio.file.Paths"/>
 <fullyQualifiedTypeName name="java.nio.file.StandardCopyOption"/>
+<fullyQualifiedTypeName name="elms.businesslogic.financebl.InitAll"/>
+<fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
 </qualifiedTypeNameHistroy>

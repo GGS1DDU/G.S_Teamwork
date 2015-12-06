@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +30,7 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.financebl.InitAll;
 import elms.businesslogic.storagebl.Storage;
 import elms.vo.StorageVO;
 import elms.vo.UserVO;
@@ -295,11 +297,20 @@ public Storage_main(final UserVO vo){
     tp.setBounds(0,this.getHeight()-80,this.getWidth(),40);
     
     Timer timer = new Timer(100,new ActionListener(){
-
+       InitAll i=new InitAll();
 		public void actionPerformed(ActionEvent arg0) {
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			in.setText("入库待处理项： "+ins.size()+"                 ");
-			time.setText(sdf.format(new Date()));
+			try {
+				if(i.getInitState(3))
+				time.setText("需要初始化！");
+				else
+				time.setText(sdf.format(new Date()));	
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			out.setText("            出库待处理项： "+outs.size());
 
 		}
