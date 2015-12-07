@@ -23,6 +23,10 @@ public class FIncomeVO{
 		clerk=c;	
 	}
 	
+	public FIncomeVO() {
+		// TODO 自动生成的构造函数存根
+	}
+
 	public String getBankAccountName(){
 		return bankAccountName;
 	}

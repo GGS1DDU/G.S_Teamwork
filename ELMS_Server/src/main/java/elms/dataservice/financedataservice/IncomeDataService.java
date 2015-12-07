@@ -23,6 +23,8 @@ public interface IncomeDataService extends Remote{
 	
 	public ArrayList<FIncomePO> findHallTime(String time1,String time2,String hall) throws RemoteException, IOException;
 	
+	public ArrayList<FIncomePO> findAll() throws RemoteException;
+	
 	public void init() throws RemoteException;
 	
 	public boolean isEmpty() throws RemoteException;

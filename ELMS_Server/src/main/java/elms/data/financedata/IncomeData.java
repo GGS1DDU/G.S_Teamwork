@@ -2,7 +2,10 @@ package elms.data.financedata;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.io.*;
 
 import elms.dataservice.financedataservice.IncomeDataService;
@@ -15,13 +18,14 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 	
 	public IncomeData() throws RemoteException {
 		super();
+		isEmpty();
 		// TODO 自动生成的构造函数存根
 	}
 	
-//	public static void main(String [] args) throws Exception{
-//		IncomeData income = new IncomeData();
-//		FIncomePO po1 = new FIncomePO("zhang141250192","in00000001","2015-01-01",200.0,
-//				"南京市鼓楼营业厅","张文玘");
+	public static void main(String [] args) throws Exception{
+		IncomeData income = new IncomeData();
+		FIncomePO po1 = new FIncomePO("zhang141250192","in00000002","2015-01-01",200.0,
+				"南京市鼓楼营业厅","张文玘");
 //		FIncomePO po2 = new FIncomePO("中国银行","in00000002","2015-02-01",200.0,
 //				"南京市仙林营业厅","周颖婷");
 //		FIncomePO po3 = new FIncomePO("中国银行","in00000003","2015-01-01",200.0,
@@ -35,6 +39,7 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 //		income.delete(po1);
 //		income.update(po4);
 //		FIncomePO po = income.find("in00000002");
+//		System.out.println(po.getBankAccountName());
 //		ArrayList<FIncomePO> incomeList = income.findbyHall("南京市仙林营业厅");
 //		for(int i = 0; i < incomeList.size(); i++){
 //			System.out.println(incomeList.get(i).getID());
@@ -43,14 +48,14 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 //		for(int i = 0; i < incomeList.size(); i++){
 //			System.out.println(incomeList.get(i).getTime());
 //		}
-//		ArrayList<FIncomePO> incomeList = income.findHallTime("2015-01-01","2015-01-31",
-//				"南京市仙林营业厅");
-//		for(int i = 0; i < incomeList.size(); i++){
-//			System.out.println(incomeList.get(i).getID());
-//		}
+		ArrayList<FIncomePO> incomeList = income.findHallTime("2015-12-04 12:12:12","2015-12-04 12:19:12",
+				"南京市鼓楼营业厅");
+		for(int i = 0; i < incomeList.size(); i++){
+			System.out.println(incomeList.get(i).getID());
+		}
 //		System.out.println(po.getClerk());
-//		fdc.deleteIncome(po1);
-//	}
+		income.delete(po1);
+	}
 	
 	public  void insert(FIncomePO po) throws RemoteException, IOException  {
 		ObjectOutputStream oos=null;
@@ -59,7 +64,7 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 			oos=new ObjectOutputStream(fs);
 			oos.writeObject(po);
 			oos.close();
-			System.out.println("insert successfully!!");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -75,8 +80,8 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 		try{
 			FileInputStream fs =new FileInputStream(file);
 			ois=new ObjectInputStream(fs);
-			PO=(FIncomePO)ois.readObject();			System.out.println(PO.getID());
-			arr.add(PO);
+			PO=(FIncomePO)ois.readObject();			
+			
 			while(true){
 				byte[] buf=new byte[4];
 				fs.read(buf);
@@ -85,7 +90,7 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 				arr.add(PO);
 			}		
 		}catch(Exception e){
-			System.out.println("Income扫描完毕");
+			
 		}
 		finally{
 			try {
@@ -130,18 +135,14 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 			FileInputStream fs = new FileInputStream(file);
 			os = new ObjectInputStream(fs);
 			po = (FIncomePO)os.readObject();
-			if(po.getID().equals(id)){
-				os.close();
-				System.out.println("find successfully!");
-				return po;
-			}else{
+			
+			
 				do{
 					byte[] buf = new byte[4];
 					fs.read(buf);
 					po = (FIncomePO) os.readObject();
 				}while(!(po.getID().equals(id)));
-			}
-			System.out.println("find successfully!");
+			
 			return po;
 		}catch(Exception e){
 			return null;
@@ -161,8 +162,7 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 			os = new ObjectInputStream(fs);
 			FIncomePO po = (FIncomePO)os.readObject();
 			
-			if(po.getShop().equals(hall))
-				income.add(po);
+			
 			
 			while(fs.available()>0){
 				byte[] buf = new byte[4];
@@ -188,40 +188,30 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 			throws RemoteException, IOException {
 		ArrayList<FIncomePO> income = new ArrayList<FIncomePO>();
 		ObjectInputStream os = null;
-		String btime = time1.substring(0, 4)+time1.substring(5, 7)+time1.substring(8, 10);
-		String etime = time2.substring(0, 4)+time2.substring(5, 7)+time2.substring(8, 10);
-		
-		int begintime = Integer.parseInt(btime);
-		int endtime = Integer.parseInt(etime);
-	
+
+		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
 		try{
+			Date date1 = formatter.parse(time1);
+			Date date2 =formatter.parse(time2);
+			
 			FileInputStream fs = new FileInputStream(file);
 			os = new ObjectInputStream(fs);
 			FIncomePO po = (FIncomePO)os.readObject();
-		
-			String t = po.getTime();
-			String currentTime = t.substring(0, 4)+t.substring(5, 7)+t.substring(8, 10);
-			int time = Integer.parseInt(currentTime);
-		
-			if(time>=begintime&&time<endtime){
-				income.add(po);
-		
-			}
+			
 			
 			while(fs.available()>0){
 				byte[] buf = new byte[4];
 				fs.read(buf);
 				FIncomePO incomepo = (FIncomePO) os.readObject();
 				
-				t = incomepo.getTime();
-				currentTime = t.substring(0, 4)+t.substring(5, 7)+t.substring(8, 10);
-				time = Integer.parseInt(currentTime);
-	
-				if(time>=begintime&&time<endtime){
+				if(formatter.parse(incomepo.getTime()).after(date1)&&formatter.parse(incomepo.getTime()).before(date2)){ 
+					
 					income.add(incomepo);
 				}
+				
+
 			}
-			
+		
 			return income;
 		}catch(Exception e){
 			return null;
@@ -236,6 +226,10 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 		ArrayList<FIncomePO> timeList = this.findByTime(time1,time2);
 		ArrayList<FIncomePO> result = new ArrayList<FIncomePO>();
 		
+		if(timeList.isEmpty()){
+			return null;
+		}
+		
 		for(int i = 0; i < timeList.size(); i++){
 			FIncomePO po = timeList.get(i);
 			if(po.getShop().equals(hall))
@@ -245,9 +239,49 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 		return result;
 	}
 	
+	public ArrayList<FIncomePO> findAll() throws RemoteException{
+		
+		ArrayList<FIncomePO> incomeList = new ArrayList<FIncomePO>();
+		
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		try{
+			fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
+			
+			FIncomePO in = (FIncomePO) ois.readObject();
+			
+			while(fis.available()>0){
+				byte[] buf = new byte[4];
+				fis.read(buf);
+				FIncomePO incomepo = (FIncomePO) ois.readObject();
+				incomeList.add(incomepo);
+			}
+				
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				ois.close();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		return incomeList;
+	}
+	
 	public void init() throws RemoteException{
 		file.delete();
-		file = new File("Income.ser");
+//		file = new File("Income.ser");
+		FIncomePO po = new FIncomePO();
+		try {
+			insert(po);
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 	}
 
 	public boolean isEmpty() throws RemoteException {
@@ -255,6 +289,8 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 		try{
 			fis = new FileInputStream(file);
 			if(fis.available()<=0){
+				FIncomePO po = new FIncomePO();
+				insert(po);
 				return true;
 			}
 		}catch(Exception e){

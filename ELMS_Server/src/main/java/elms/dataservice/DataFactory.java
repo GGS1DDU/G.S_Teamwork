@@ -6,10 +6,11 @@ import java.rmi.RemoteException;
 import elms.dataservice.dealdataservice.DealDataService;
 import elms.dataservice.financedataservice.BankAccountDataService;
 import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.FreightStrategyDataService;
 import elms.dataservice.financedataservice.IncomeDataService;
 import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.logdataservice.LogDataService;
+import elms.dataservice.managerdataservice.FreightStrategyDataService;
+import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 
@@ -24,5 +25,7 @@ public interface DataFactory  extends Remote{
 	public BankAccountDataService getBankAccountData() throws RemoteException;
 	public FreightStrategyDataService getFreightStrategyData() throws RemoteException;
 	public InitAllDataService getInitData() throws RemoteException;
+	
+	public StaffDataService getStaffData() throws RemoteException;
 
 }

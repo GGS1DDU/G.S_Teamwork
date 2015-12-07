@@ -32,6 +32,10 @@ public FExpensePO(String i,String ct,String t,double e,String a,String c){
 	clerkID=c;
 }
 
+public FExpensePO() {
+	// TODO 自动生成的构造函数存根
+}
+
 public String getBankAccountName() {
 	// TODO 自动生成的方法存根
 	return bankAccountName;

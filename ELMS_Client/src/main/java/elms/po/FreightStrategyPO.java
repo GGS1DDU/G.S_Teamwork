@@ -3,7 +3,9 @@ package elms.po;
 import java.io.Serializable;
 
 
-
+/*
+ * id:1 南京  2 上海    3 广州    4 北京
+*/
 public class FreightStrategyPO implements Serializable{
 	/**
 	 * 
@@ -13,21 +15,14 @@ public class FreightStrategyPO implements Serializable{
 	 * 
 	 */
 	
-	/**
-	 * 
-	 */
-	
 	String city1;
 	String city2;
 	String id;
 	double distance;
-	String expressCategory;
-	double standardPriceEachKM;
-	double economyPriceEachKM;
-	double fastPriceEachKM;
+	int standardPriceEachKM;
+
 	int coefficient;
-	public FreightStrategyPO(String id,String city1,String city2,double distance, double standardPrice,double economyPrice, 
-			double fastPrice, int coefficient) {
+	public FreightStrategyPO(String id,String city1,String city2,double distance, int standardPrice, int coefficient) {
 		
 		this.city1 = city1;
 		this.city2 = city2;
@@ -37,8 +32,7 @@ public class FreightStrategyPO implements Serializable{
 		this.distance = distance;
 		
 		this.standardPriceEachKM = standardPrice;
-		this.economyPriceEachKM = economyPrice;
-		this.fastPriceEachKM = fastPrice;
+	
 		this.coefficient=coefficient;
 	}
 	
@@ -75,36 +69,14 @@ public class FreightStrategyPO implements Serializable{
 	}
 	
 	
-	public void setExpressCategory(String category){
-		this.expressCategory = category;
-	}
 	
-	public String getExpressCategory() {
-		return expressCategory;
-	}
 	
-	public void setStandardPrice(double price){
+	public void setStandardPrice(int price){
 		this.standardPriceEachKM = price;
 	}
 	
-	public double getStandardPrice() {
+	public int getStandardPrice() {
 		return standardPriceEachKM;
-	}
-	
-	public void setEconomyPrice(double price){
-		this.economyPriceEachKM = price;
-	}
-	
-	public double getEconomyPrice(){
-		return economyPriceEachKM;
-	}
-	
-	public void setFastPrice(double price){
-		this.fastPriceEachKM = price;
-	}
-	
-	public double getFastPrice(){
-		return fastPriceEachKM;
 	}
 	
 	public void setCoefficient(int coefficient){

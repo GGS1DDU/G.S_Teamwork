@@ -9,10 +9,11 @@ import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
 import elms.dataservice.financedataservice.BankAccountDataService;
 import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.FreightStrategyDataService;
 import elms.dataservice.financedataservice.IncomeDataService;
 import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.logdataservice.LogDataService;
+import elms.dataservice.managerdataservice.FreightStrategyDataService;
+import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.vo.LogVO;
@@ -68,13 +69,20 @@ public class Log implements LogBlService,DataFactory {
 		return null;
 	}
 
+
+
+	public InitAllDataService getInitData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	public InitAllDataService getInitData() throws RemoteException {
+	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}

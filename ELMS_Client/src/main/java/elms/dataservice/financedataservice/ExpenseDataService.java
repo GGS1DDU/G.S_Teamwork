@@ -13,6 +13,8 @@ public interface ExpenseDataService extends Remote{
 	
 	public ArrayList<FExpensePO> findByTime(String time1,String time2) throws RemoteException, IOException;
 		
+	public ArrayList<FExpensePO> findAll() throws RemoteException;
+	
 	public void insert(FExpensePO po) throws RemoteException, IOException;
 	
 	public void delete(FExpensePO po) throws RemoteException;

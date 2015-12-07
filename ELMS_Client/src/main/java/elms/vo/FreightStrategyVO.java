@@ -1,25 +1,22 @@
 package elms.vo;
 
-public class FreightStrategyVO {
+public class FreightStrategyVO extends FinanceVO{
 	String city1;
 	String city2;
 	String id;
 	double distance;
 	String expressCategory;
-	double standardPriceEachKM;
-	double economyPriceEachKM;
-	double fastPriceEachKM;
+	int standardPriceEachKM;
+
 	int coefficient;
-	public FreightStrategyVO(String id, String city1, String city2, double distance, double standardPrice,double economyPrice, 
-			double fastPrice, int coefficient) {
+	public FreightStrategyVO(String id, String city1, String city2, double distance, int standardPrice,int coefficient) {
 		this.id = id;
 		this.city1 = city1;
 		this.city2 = city2;
 		this.distance = distance;
 		
 		this.standardPriceEachKM = standardPrice;
-		this.economyPriceEachKM = economyPrice;
-		this.fastPriceEachKM = fastPrice;
+		
 		this.coefficient=coefficient;
 	}
 	
@@ -64,28 +61,12 @@ public class FreightStrategyVO {
 		return expressCategory;
 	}
 	
-	public void setStandardPrice(double price){
+	public void setStandardPrice(int price){
 		this.standardPriceEachKM = price;
 	}
 	
-	public double getStandardPrice() {
+	public int getStandardPrice() {
 		return standardPriceEachKM;
-	}
-	
-	public void setEconomyPrice(double price){
-		this.economyPriceEachKM = price;
-	}
-	
-	public double getEconomyPrice(){
-		return economyPriceEachKM;
-	}
-	
-	public void setFastPrice(double price){
-		this.fastPriceEachKM = price;
-	}
-	
-	public double getFastPrice(){
-		return fastPriceEachKM;
 	}
 	
 	public void setCoefficient(int coefficient){

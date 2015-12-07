@@ -24,6 +24,10 @@ public class FExpenseVO {
 		assistantID=a;
 		clerkID=c;
 	}
+	public FExpenseVO() {
+		// TODO 自动生成的构造函数存根
+	}
+
 	public String getID(){
 		return id;
 	}

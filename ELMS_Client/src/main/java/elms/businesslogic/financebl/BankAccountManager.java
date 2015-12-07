@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import elms.businesslogic.ResultMessage;
 import elms.businesslogic_service.financeblservice.BankAccountBlService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
@@ -12,8 +13,9 @@ import elms.dataservice.financedataservice.BankAccountDataService;
 import elms.dataservice.financedataservice.ExpenseDataService;
 import elms.dataservice.financedataservice.IncomeDataService;
 import elms.dataservice.financedataservice.InitAllDataService;
-import elms.dataservice.financedataservice.FreightStrategyDataService;
 import elms.dataservice.logdataservice.LogDataService;
+import elms.dataservice.managerdataservice.FreightStrategyDataService;
+import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.BankAccountPO;
@@ -26,25 +28,24 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 	
 	public static void main(String args[]) throws IOException{
 		BankAccountManager bm = new BankAccountManager();
-//		BankAccountVO vo1 = new BankAccountVO("ba00000001","zwq141250194", 0.0, "中国人民银行");
-//		boolean addSuccess = bm.addAccount(vo1);
-//		System.out.println(addSuccess);
-//		boolean changeSuccess = bm.changeBalance("ba00000003", "income", 200.0);
-//		System.out.println(changeSuccess);
+		BankAccountVO vo1 = new BankAccountVO("ba00000001","zwq141250194", 0.0, "中国人民银行");
+//		System.out.println(bm.addAccount(vo1));
+//		System.out.println(bm.changeBalance("ba00000002", "income",500.0));
+
 //		BankAccountVO find = bm.inquiryAccount("ba00000003");
-//		System.out.println(find.getAmount());
+
+//		System.out.println(find.getName());
 //		BankAccountVO vo2 = new BankAccountVO("ba00000002","张文玘", 0.0, "中国银行");
-//		if(bm.addAccount(vo1))
+
 //			bm.changeBalance( vo1.getAccountID(), "income", 200.0);
-//		bm.changeBalance("ba00000001", "expense", 100.0);
-//		bm.addAccount(vo2);
-//		bm.show();
+//		System.out.println(bm.changeBalance("ba00000003", "expense", 100.0));
+//		System.out.println(bm.transferAccount("阿斯顿", "阿斯蒂芬", 200.0));
 //		bm.deleteAccount("ba00000001");
-		ArrayList<BankAccountVO> arr = bm.inquiryAccountByBank("中国人民银行");
-		for(int i = 0; i < arr.size();i ++){
-			System.out.println("account id:"+arr.get(i).getID()+" account name:"+arr.get(i).getName()+
-					" account balance:"+arr.get(i).getAmount()+" bank name:"+arr.get(i).getBank());
-		}
+//		ArrayList<BankAccountVO> arr = bm.inquiryAccountByBank("中国人民银行");
+//		for(int i = 0; i < arr.size();i ++){
+//			System.out.println("account id:"+arr.get(i).getID()+" account name:"+arr.get(i).getName()+
+//					" account balance:"+arr.get(i).getAmount()+" bank name:"+arr.get(i).getBank());
+//		}
 //		
 		
 	}
@@ -54,19 +55,38 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 
 	}
 	
-	
+	//转账，将账户1中amount数目的金额转至账户2中
+	public ResultMessage transferAccount(String name1,String name2, double amount) throws IOException{
+		
+		BankAccountVO out = inquiryName(name1);
+		if(out==null)
+			return ResultMessage.findIDFailed;
+		BankAccountVO in = inquiryName(name2);
+		if(in==null)
+			return ResultMessage.findIDFailed;
+		
+		System.out.println(out.getID());
+		ResultMessage rm = changeBalance(out.getID(),"expense",amount);
+//		System.out.println(rm);
+		if(rm==ResultMessage.lessThanMin)
+			return ResultMessage.lessThanMin;  //提示用户转出账户余额不足
+		changeBalance(in.getID(),"income",amount);
+		
+		return ResultMessage.Success;
+		
+	}
 	
 
 
-	public boolean addAccount(BankAccountVO vo){
+	public ResultMessage addAccount(BankAccountVO vo){
 		BankAccountPO accountpo = new BankAccountPO(vo.getID(),vo.getName(),vo.getAmount(),
 				vo.getBank());
 		try {
 			if(bankdata.isEmpty()){
 				bankdata.insert(accountpo);
-				return true;
+				return ResultMessage.Success;
 			}else if(!noSuchName(vo.getName())){
-				return false;
+				return ResultMessage.findIDFailed; //已存在对应账户名，要求用户重新输入
 			}
 			do{
 				String id = vo.getID();
@@ -83,51 +103,87 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 			System.out.println(vo.getID());
 			accountpo.setID(vo.getID());
 			bankdata.insert(accountpo);
-			return true;
+			return ResultMessage.Success;
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			return false;
+			return ResultMessage.Failed;
 		}
 		
 	}
+	
 
-	public boolean deleteAccount(String accountID) {
+
+	public ResultMessage deleteAccount(String accountID) throws RemoteException, IOException {
+		if(bankdata.isEmpty())
+			return ResultMessage.lessThanMin;  //bankaccount列表为空，不可删除
 		try {
+			BankAccountVO vo = inquiryAccount(accountID);
+			if(vo.getAmount()>0)
+				return ResultMessage.changeFailed;//该银行账户余额不为0，在界面中显示一个警告信息
 			if(bankdata.delete(accountID))
-				return true;
-			return false;
+				return ResultMessage.Success;
+			return ResultMessage.findIDFailed;//找不到对应账号     
 		} catch (RemoteException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			return false;
+			return ResultMessage.Failed;
 		}
 		
 		
 	}
+	
+	public ResultMessage init() throws RemoteException, IOException{
+		ArrayList<BankAccountPO> bankaccount = bankdata.findAll();
+//		BankAccountVO vo = new BankAccountVO("ba00000001","初始",0.0,"中国人民银行");
+		if(bankaccount==null){
+			return ResultMessage.Success;
+		}
+		
+		for(int i = 0; i < bankaccount.size(); i++){
+			BankAccountPO po = bankaccount.get(i);
+			
+			if(po.getAmount()>0)
+				return ResultMessage.changeFailed;           //初始化删除原银行账户时该账户余额不为0，警告
+		}
+		 
+		
+		return ResultMessage.Success;
+	}
+	
+	public ResultMessage initIgnoreAmount(){
+		try {
+			bankdata.init();
+			return ResultMessage.Success;
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return ResultMessage.Failed;
+		}
+	}
 
-	public boolean changeAccount(String accountID, String accountName) throws IOException {
+	public ResultMessage changeAccount(String accountID, String accountName) throws IOException {
 		BankAccountPO po = bankdata.find(accountID);
 		if(po==null)
-			return false;
+			return ResultMessage.findIDFailed;
 		po.setName(accountName);
 		try{
 		if(bankdata.update(po))
-			return true;
-		return false;
+			return ResultMessage.Success;
+		return ResultMessage.Failed;
 		}catch(Exception e){
-			return false;
+			return ResultMessage.Failed;
 		}
 	}
 	
 	
-	public boolean changeBalance(String accountID,String type, double amount){
+	public ResultMessage changeBalance(String accountName,String type, double amount){
 		try {
-			BankAccountPO account = bankdata.find(accountID);
+			BankAccountVO account = inquiryName(accountName);
 			
 			if(account==null){
-				System.out.println("can't find account with ID "+accountID);
-				return false;
+				System.out.println("can't find account with Name "+accountName);
+				return ResultMessage.findIDFailed;
 			}
 			double balance = account.getAmount();
 			System.out.println("before "+type+",balance:"+balance);
@@ -135,18 +191,21 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 				balance = balance+amount;
 			}else{
 				balance = balance - amount;
+				if(balance<0)
+					return ResultMessage.lessThanMin;
 			}
 			
 			account.setAmount(balance);
-			bankdata.update(account);
+			BankAccountPO po = new BankAccountPO(account.getID(),account.getName(),account.getAmount(),account.getBank());
+			bankdata.update(po);
 			System.out.println("after "+type+",balance:"+account.getAmount());
 			
-			return true;
+			return ResultMessage.Success;
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 
 			e.printStackTrace();
-			return false;
+			return ResultMessage.Failed;
 		}
 		
 		
@@ -224,9 +283,37 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 		return result;
 	}
 
-	public ArrayList<BankAccountPO> getAllAccount() {
+	public String[] getNameList(){
+		ArrayList<BankAccountVO> accountList = new ArrayList<BankAccountVO>();
+		try {
+			accountList = getAllAccount();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		String[] nameList = new String[accountList.size()];
+		for(int i = 0; i < accountList.size(); i++){
+			nameList[i] = accountList.get(i).getName();
+		}
+		return nameList;
+	}
+	public ArrayList<BankAccountVO> getAllAccount() throws RemoteException, IOException {
 		// TODO 自动生成的方法存根
-		return null;
+		ArrayList<BankAccountPO> poList;
+		
+			poList = bankdata.findAll();
+		
+		ArrayList<BankAccountVO> voList = new ArrayList<BankAccountVO>();
+		for(int i = 0; i < poList.size(); i++){
+			BankAccountPO po = poList.get(i);
+			BankAccountVO vo = new BankAccountVO(po.getID(),po.getName(),po.getAmount(),po.getBank());
+			voList.add(vo);
+		}
+		return voList;
 	}
 	
 	
@@ -286,6 +373,25 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	public StaffDataService getStaffData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	
+
+
+
+//	public LogDataService getLogData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
+//
+//	public StorageDataService getStorageData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 
 

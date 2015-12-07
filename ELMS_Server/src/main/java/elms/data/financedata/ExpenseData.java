@@ -8,12 +8,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
 
 
 
+
+
+import java.util.Date;
 
 import elms.dataservice.financedataservice.ExpenseDataService;
 import elms.po.FExpensePO;
@@ -23,6 +27,7 @@ public class ExpenseData extends UnicastRemoteObject implements ExpenseDataServi
 
 	public ExpenseData() throws RemoteException {
 		super();
+		isEmpty();
 		// TODO 自动生成的构造函数存根
 	}
 
@@ -35,17 +40,13 @@ public class ExpenseData extends UnicastRemoteObject implements ExpenseDataServi
 			FileInputStream fs = new FileInputStream(file);
 			os = new ObjectInputStream(fs);
 			po = (FExpensePO)os.readObject();
-			if(po.getID().equals(id)){
-				os.close();
-				System.out.println("find successfully!");
-				return po;
-			}else{
+			
 				do{
 					byte[] buf = new byte[4];
 					fs.read(buf);
 					po = (FExpensePO) os.readObject();
 				}while(!(po.getID().equals(id)));
-			}
+			
 			System.out.println("find successfully!");
 			return po;
 		}catch(Exception e){
@@ -60,36 +61,24 @@ public class ExpenseData extends UnicastRemoteObject implements ExpenseDataServi
 			throws RemoteException, IOException {
 		ArrayList<FExpensePO> expense = new ArrayList<FExpensePO>();
 		ObjectInputStream os = null;
-		String btime = time1.substring(0, 4)+time1.substring(5, 7)+time1.substring(8, 10);
-		String etime = time2.substring(0, 4)+time2.substring(5, 7)+time2.substring(8, 10);
 		
-		int begintime = Integer.parseInt(btime);
-		int endtime = Integer.parseInt(etime);
-	
+		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+		
 		try{
 			FileInputStream fs = new FileInputStream(file);
 			os = new ObjectInputStream(fs);
 			FExpensePO po = (FExpensePO)os.readObject();
 		
-			String t = po.getTime();
-			String currentTime = t.substring(0, 4)+t.substring(5, 7)+t.substring(8, 10);
-			int time = Integer.parseInt(currentTime);
-		
-			if(time>=begintime&&time<endtime){
-				expense.add(po);
-		
-			}
+			Date date1 = formatter.parse(time1);
+			Date date2 =formatter.parse(time2);
 			
 			while(fs.available()>0){
 				byte[] buf = new byte[4];
 				fs.read(buf);
 				FExpensePO expensepo = (FExpensePO) os.readObject();
 				
-				t = expensepo.getTime();
-				currentTime = t.substring(0, 4)+t.substring(5, 7)+t.substring(8, 10);
-				time = Integer.parseInt(currentTime);
-	
-				if(time>=begintime&&time<endtime){
+				if(formatter.parse(expensepo.getTime()).after(date1)&&formatter.parse(expensepo.getTime()).before(date2)){ 
+					
 					expense.add(expensepo);
 				}
 			}
@@ -103,6 +92,35 @@ public class ExpenseData extends UnicastRemoteObject implements ExpenseDataServi
 		}
 	}
 
+	public ArrayList<FExpensePO> findAll() throws RemoteException{
+		ArrayList<FExpensePO> expense = new ArrayList<FExpensePO>();
+		ObjectInputStream os = null;
+		try{
+			FileInputStream fs = new FileInputStream(file);
+			os = new ObjectInputStream(fs);
+			FExpensePO po = (FExpensePO)os.readObject();
+			
+			while(fs.available()>0){
+				byte[] buf = new byte[4];
+				fs.read(buf);
+				FExpensePO expensepo = (FExpensePO) os.readObject();
+				expense.add(expensepo);
+			}
+			
+			return expense;
+		}catch(Exception e){
+			return null;
+		}
+		finally{
+			try {
+				os.close();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void insert(FExpensePO po) throws RemoteException, IOException {
 		ObjectOutputStream oos=null;
 		try {
@@ -127,8 +145,8 @@ public class ExpenseData extends UnicastRemoteObject implements ExpenseDataServi
 		try{
 			FileInputStream fs =new FileInputStream(file);
 			ois=new ObjectInputStream(fs);
-			PO=(FExpensePO)ois.readObject();			System.out.println(PO.getID());
-			arr.add(PO);
+			PO=(FExpensePO)ois.readObject();			
+			
 			while(true){
 				byte[] buf=new byte[4];
 				fs.read(buf);
@@ -177,10 +195,44 @@ public class ExpenseData extends UnicastRemoteObject implements ExpenseDataServi
 		}
 	}
 
-	private void init() {
+	public void init() {
 		file.delete();
-		file = new File("E://GGS.DDU文档//11.19（2）//ELMS_Server//Expense.ser");
+		FExpensePO po = new FExpensePO();
+		try {
+			insert(po);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		
+	}
+	
+	public boolean isEmpty(){
+		FileInputStream fis = null;
+		
+		try{
+			fis = new FileInputStream(file);
+			if(fis.available()<=0){
+				FExpensePO po = new FExpensePO();
+				insert(po);
+				return true;
+				
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				fis.close();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 	
 }

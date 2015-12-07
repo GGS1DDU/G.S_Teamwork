@@ -13,6 +13,9 @@ public class BankAccountVO {
 		this.amount = amount;
 		this.bankName = bankName;
 	}
+	public BankAccountVO() {
+		// TODO 自动生成的构造函数存根
+	}
 	public String getID() {
 		return accountID;
 	}

@@ -1,4 +1,4 @@
-package elms.dataservice.financedataservice;
+package elms.dataservice.managerdataservice;
 
 import java.io.IOException;
 import java.rmi.Remote;
@@ -17,4 +17,6 @@ public interface FreightStrategyDataService extends Remote{
 	public void delete(FreightStrategyPO po) throws RemoteException;
 	
 	public void update(FreightStrategyPO po) throws RemoteException;
+	
+	public boolean isEmpty() throws IOException;
 }

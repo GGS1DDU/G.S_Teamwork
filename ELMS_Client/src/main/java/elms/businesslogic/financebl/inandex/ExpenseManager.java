@@ -1,19 +1,22 @@
-package elms.businesslogic.financebl;
+package elms.businesslogic.financebl.inandex;
 
 import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import elms.businesslogic.ResultMessage;
+import elms.businesslogic.financebl.BankAccountManager;
 import elms.businesslogic_service.financeblservice.ExpenseBlService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
 import elms.dataservice.financedataservice.BankAccountDataService;
 import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.FreightStrategyDataService;
 import elms.dataservice.financedataservice.IncomeDataService;
 import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.logdataservice.LogDataService;
+import elms.dataservice.managerdataservice.FreightStrategyDataService;
+import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.FExpensePO;
@@ -33,15 +36,20 @@ public class ExpenseManager implements ExpenseBlService,DataFactory{
 	
 	public static void main(String args[]) throws RemoteException{
 		ExpenseManager em = new ExpenseManager();
-		FExpenseVO vo = new FExpenseVO("ba00000003","ex00000003","人员工资","2015-11-27",200.0,
+		FExpenseVO vo = new FExpenseVO("ba00000003","ex00000002","人员工资","2015-11-27",100.0,
 				"记录人","支出人");
-		boolean addSuccess = em.addExpense(vo);
+//		System.out.println(em.addExpense(vo));
 //		boolean success = em.deleteExpense(vo);
-//		System.out.println(success);
+		System.out.println(em.changeExpense(vo));
 	}
 	
-	public ExpenseManager() throws RemoteException{
-		expensedata = getExpenseData();
+	public ExpenseManager(){
+		try {
+			expensedata = getExpenseData();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 	}
 	
 	private FExpenseVO POtoVO(FExpensePO po){
@@ -72,10 +80,32 @@ public class ExpenseManager implements ExpenseBlService,DataFactory{
 		
 	}
 	
+	public ArrayList<FExpenseVO> inquiryAll(){
+		try {
+			ArrayList<FExpensePO> arr = expensedata.findAll();
+			ArrayList<FExpenseVO> result = new ArrayList<FExpenseVO>();
+			for(int i = 0; i < arr.size(); i++){
+				FExpensePO po = arr.get(i);
+				FExpenseVO vo = POtoVO(po);
+				result.add(vo);
+			}
+			return result;
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+	
 	public ArrayList<FExpenseVO> inquiryByTime(String time1,String time2){
 		try {
 			ArrayList<FExpensePO> arr = expensedata.findByTime(time1, time2);
 			ArrayList<FExpenseVO> result = new ArrayList<FExpenseVO>();
+			if(arr==null){
+				return null;
+			}
 			for(int i = 0; i < arr.size(); i++){
 				FExpensePO po = arr.get(i);
 				FExpenseVO vo = POtoVO(po);
@@ -91,57 +121,108 @@ public class ExpenseManager implements ExpenseBlService,DataFactory{
 		
 	}
 
-	public boolean addExpense(FExpenseVO vo) {
+	public ResultMessage addExpense(FExpenseVO vo) {
 		// TODO 自动生成的方法存根
 		
 		if(inquiryExpense(vo.getID())!=null){
-			return false;
+			return ResultMessage.findIDFailed;     //要求用户重新输入id
 		}
 		
 		FExpensePO po = VOtoPO(vo);
 		try {
-			expensedata.insert(po);
+			
 			bankAccount = new BankAccountManager();
-			boolean changeSuccess = bankAccount.changeBalance(vo.getBankAccountName(), "expense", vo.getExpense());
-			if(!changeSuccess)
-				return false;
-			return true;
+			ResultMessage rm = bankAccount.changeBalance(vo.getBankAccountName(), "expense", vo.getExpense());
+			if(rm==ResultMessage.findIDFailed)
+				return ResultMessage.changeFailed;  //在这里的changeFailed代表的是找不到对应银行账户
+			else if(rm==ResultMessage.lessThanMin)
+				return ResultMessage.lessThanMin; //银行账户余额不足以支出
+			else if(rm==ResultMessage.Failed)
+				return ResultMessage.Failed; // io/remote错误
+			
+			expensedata.insert(po);
+			return ResultMessage.Success;
+			
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			return false;
+			return ResultMessage.Failed;
 		} 
 		
 	}
 
-	public boolean deleteExpense(FExpenseVO vo) {
+	public ResultMessage deleteExpense(FExpenseVO vo) {
 		// TODO 自动生成的方法存根
 		FExpensePO po = VOtoPO(vo);
 		try {
+			
+			FExpenseVO original = inquiryExpense(vo.getID());
+			if(original==null)
+				return ResultMessage.findIDFailed;
+			
+			bankAccount = new BankAccountManager();
+			ResultMessage rm = bankAccount.changeBalance(vo.getBankAccountName(), "income", vo.getExpense());
+				
+			if(rm==ResultMessage.findIDFailed)
+				return ResultMessage.changeFailed; //代表找不到对应的银行账户
+			else if(rm==ResultMessage.Failed)
+				return ResultMessage.Failed;        //Remote/IO错误
+			
 			expensedata.delete(po);
-			return true;
+			return ResultMessage.Success;
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
-			return false;
+			return ResultMessage.Failed;
 		}
 		
 	}
 
-	public FExpenseVO changeExpense(FExpenseVO vo) {
+	public ResultMessage changeExpense(FExpenseVO vo) {
 		// TODO 自动生成的方法存根
 		
 		FExpensePO po = VOtoPO(vo);
 		
 		try {
+			FExpenseVO original = inquiryExpense(vo.getID());
+			if(original==null)
+				return ResultMessage.findIDFailed;
+			
+			bankAccount = new BankAccountManager();
+			ResultMessage rm = bankAccount.changeBalance(vo.getBankAccountName(), "income", original.getExpense());
+			if(rm==ResultMessage.findIDFailed)
+				return ResultMessage.changeFailed;  //找不到对应的银行账户，要求用户重新输入银行账户
+			else if(rm==ResultMessage.Failed)
+				return ResultMessage.Failed;
+			
+			rm = bankAccount.changeBalance(vo.getBankAccountName(),"expense",vo.getExpense());
+			if(rm==ResultMessage.lessThanMin)
+				return ResultMessage.lessThanMin;   //更改后的支出额太多，该银行账户余额不够
+			else if(rm==ResultMessage.Failed)
+				return ResultMessage.Failed;
+			//不存在找不到对应账户的错误，因为如果找不到的话在前面就直接返回changefailed信息了
+			
+			
 			expensedata.update(po);
-			return vo;
+			return ResultMessage.Success;
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 			return null;
 		}
 		
+	}
+	
+	public double getTotalEx(String time1,String time2){
+		ArrayList<FExpenseVO> expense = new ArrayList<FExpenseVO>();
+		double totalEx = 0.0;
+		expense = inquiryByTime(time1,time2);
+		
+		for(int i = 0; i < expense.size(); i++){
+			FExpenseVO vo = expense.get(i);
+			totalEx += vo.getExpense();
+		}
+		return totalEx;
 	}
 
 	
@@ -190,6 +271,8 @@ public class ExpenseManager implements ExpenseBlService,DataFactory{
 		return null;
 	}
 
+
+
 	public LogDataService getLogData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
@@ -199,6 +282,12 @@ public class ExpenseManager implements ExpenseBlService,DataFactory{
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	public StaffDataService getStaffData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 
 
 	

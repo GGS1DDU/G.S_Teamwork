@@ -1,78 +1,77 @@
 package elms.presentation.financeui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
+import javax.swing.*;
+import javax.swing.border.Border;
 
+import elms.presentation.uihelper.UserInfo;
+import elms.vo.UserVO;
 
-
-import elms.presentation.financeui.bankaccount.BankAccount_main;
-import elms.presentation.financeui.income.Income_main;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
+/*
+ * 主界面，负责对不同操作模块的选择
+ */
 public class FinanceUI_main extends JFrame {
 
-	private JPanel contentPane;
+	Toolkit kit = Toolkit.getDefaultToolkit();
+	Dimension screenSize = kit.getScreenSize();
+	int screenWidth = (int) screenSize.getWidth();
+	int screenHeight = (int) screenSize.getHeight();
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FinanceUI_main frame = new FinanceUI_main();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		UserVO vo = new UserVO();
+		JFrame fm = new FinanceUI_main(vo);
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public FinanceUI_main() {
+	public FinanceUI_main(UserVO vo) {
+		setLayout(null);
+		setTitle("财务人员");
+		setResizable(false);
+		setSize(screenWidth / 2, 1 * screenHeight / 2);
+		setLocation(screenWidth / 4, screenHeight / 8);
+
+		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 375);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JButton btnNewButton = new JButton("收入管理");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame income = new Income_main();
-				income.setVisible(true);
-			}
-		});
-		btnNewButton.setBounds(154, 31, 93, 23);
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("成本管理");
-		btnNewButton_1.setBounds(154, 80, 93, 23);
-		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("银行账户管理");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JFrame bankAccount = new BankAccount_main();
-				bankAccount.setVisible(true);
-			}
-		});
-		btnNewButton_2.setBounds(142, 132, 118, 23);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("期初建账");
-		btnNewButton_3.setBounds(154, 187, 93, 23);
-		contentPane.add(btnNewButton_3);
+
+		JPanel user = new UserInfo(vo);
+
+		user.setBounds(0, 0, this.getWidth(), 25);
+
+		Border li = BorderFactory.createEtchedBorder();
+		Border t = BorderFactory.createTitledBorder(li);
+		// Border l2=BorderFactory.createLoweredBevelBorder();
+		user.setBorder(t);
+		add(user);
+
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(null);
+		buttonPanel.setBounds(0, 25, this.getWidth(), this.getHeight() - 25);
+
+		int bpwid = buttonPanel.getWidth();
+		int bphet = buttonPanel.getHeight();
+
+		JButton inAndEx_b = new JButton("收支管理");
+		inAndEx_b.setBounds(bpwid / 5, bphet / 6, bpwid / 5, bphet / 6);
+		inAndEx_b.setBackground(Color.WHITE);
+
+		JButton bank_b = new JButton("银行账户管理");
+		bank_b.setBounds(3 * bpwid / 5, bphet / 6, bpwid / 5, bphet / 6);
+		bank_b.setBackground(Color.WHITE);
+
+		JButton init_b = new JButton("期初建账");
+		init_b.setBounds(bpwid / 5, bphet / 2, bpwid / 5, bphet / 6);
+		init_b.setBackground(Color.WHITE);
+
+		JButton log_b = new JButton("查看系统日志");
+		log_b.setBounds(3 * bpwid / 5, bphet / 2, bpwid / 5, bphet / 6);
+		log_b.setBackground(Color.WHITE);
+
+		buttonPanel.add(inAndEx_b);
+		buttonPanel.add(bank_b);
+		buttonPanel.add(init_b);
+		buttonPanel.add(log_b);
+		add(buttonPanel);
 	}
 }

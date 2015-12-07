@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import elms.businesslogic.ResultMessage;
 import elms.businesslogic.financebl.BankAccountManager;
-import elms.presentation.financeui.income.Income_add;
+
+
 import elms.vo.BankAccountVO;
 
 import java.awt.event.ActionListener;
@@ -80,14 +82,17 @@ public class BankAccount_add extends JFrame {
 				BankAccountVO vo = new BankAccountVO("ba00000001",accountName.getText(),0.0,bankName.getSelectedItem().toString());
 				boolean addSuccess = false;
 			
-					addSuccess = accountManage.addAccount(vo);
+					ResultMessage rm = accountManage.addAccount(vo);
 			
 				
-				if(addSuccess){
+				if(rm==ResultMessage.Success){
 					BankAccount_add.this.dispose();
 					JOptionPane.showMessageDialog(null, "该账户已成功新建!", "成功!", JOptionPane.INFORMATION_MESSAGE);
-				}else{
+					
+				}else if(rm==ResultMessage.findIDFailed){
 					JOptionPane.showMessageDialog(null, "该账户名已存在，请重新输入！", "失败!", JOptionPane.ERROR_MESSAGE); 
+				}else{
+					JOptionPane.showMessageDialog(null, "该账户名已存在，请重新输入！", "失败!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

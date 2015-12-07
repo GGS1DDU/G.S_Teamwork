@@ -30,6 +30,10 @@ public FIncomePO(String i,String t,double ic,String s,String c){
 	clerk=c;	
 }
 
+public FIncomePO() {
+	// TODO 自动生成的构造函数存根
+}
+
 public String getBankAccountName(){
 	return bankAccountName;
 }
