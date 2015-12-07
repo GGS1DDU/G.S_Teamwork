@@ -10,9 +10,6 @@ import elms.vo.DealVO;
 public class Courier {
 	ArrayList<DealVO> arr=new ArrayList<DealVO>();
 	
-	/**
-	 * 获得对应姓名的快递员当月快递件数的方法
-	 */
 	public int getNumberOfOrderThisMonth(String name) throws IOException{
 		int number=0;
 		DealBL db=new DealBL();
