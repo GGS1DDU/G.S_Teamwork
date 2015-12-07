@@ -16,6 +16,7 @@ import java.awt.SystemColor;
 
 import javax.swing.JButton;
 
+import elms.businesslogic.dealbl.CheckOrder;
 import elms.businesslogic.dealbl.DealBL;
 import elms.vo.DealVO;
 import elms.vo.UserVO;
@@ -98,19 +99,18 @@ public class DealUI_receive extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String ID=orderID.getText();
-				String [] id=ID.split("");
-				if(id.length!=10){
+				CheckOrder co=new CheckOrder();
+				if(co.IsTenNumbers(ID)==2){
 					JOptionPane.showMessageDialog(null, "请输入10位数字的订单号！","失败!", JOptionPane.ERROR_MESSAGE);
 					return ;
 				}
 				else{
-					for(int i=0;i<10;i++){
-						if(  (!id[i].equals("0"))&&(!id[i].equals("1"))&&(!id[i].equals("2"))&&(!id[i].equals("3"))&&(!id[i].equals("4"))&&(!id[i].equals("5"))&&(!id[i].equals("6"))&&(!id[i].equals("7"))&&(!id[i].equals("8"))&&(!id[i].equals("9"))   ){
+						if( co.IsTenNumbers(ID)==1){
 							JOptionPane.showMessageDialog(null, "请确保输入的10位订单号是纯数字！","失败!", JOptionPane.ERROR_MESSAGE);
 							return;
 						}
 					}
-				}
+				
 		
 				
 				if(acturalReceiver.getText().equals("")){

@@ -15,15 +15,17 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextField;
 
 public class DealUI_trackMessage extends JFrame {
 	String wlxx="";
+	private JTextField ID;
 	public DealUI_trackMessage(DealVO dealvo){
 		wlxx=dealvo.getTrack();
 		
 		
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 830, 577);
+		setBounds(100, 100, 849, 594);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -33,7 +35,7 @@ public class DealUI_trackMessage extends JFrame {
 		text.setFont(new Font("宋体", Font.BOLD, 23));
 		text.setLineWrap(true);
 		text.setText(wlxx);
-		text.setBounds(115, 111, 528, 237);
+		text.setBounds(141, 166, 528, 237);
 		contentPane.add(text);
 		
 		JLabel label = new JLabel("您的订单物流信息如下");
@@ -48,8 +50,18 @@ public class DealUI_trackMessage extends JFrame {
 				DealUI_trackMessage.this.dispose();
 			}
 		});
-		button.setBounds(316, 428, 123, 29);
+		button.setBounds(336, 462, 123, 29);
 		contentPane.add(button);
+		
+		JLabel label_1 = new JLabel("订单号");
+		label_1.setBounds(105, 117, 81, 21);
+		contentPane.add(label_1);
+		
+		ID = new JTextField(dealvo.getOrderID());
+		ID.setEditable(false);
+		ID.setBounds(264, 114, 227, 27);
+		contentPane.add(ID);
+		ID.setColumns(10);
 		
 	}
 	}

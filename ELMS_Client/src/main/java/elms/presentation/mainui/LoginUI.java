@@ -123,6 +123,7 @@ public class LoginUI extends JFrame {
 				}
 				if(n==5){
 					JFrame Storage_main=new Storage_main(vo);
+					Storage_main.setVisible(true);
 					LoginUI.this.dispose();
 				}
 				

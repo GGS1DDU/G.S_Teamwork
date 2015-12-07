@@ -31,7 +31,7 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		
 	}*/     //软件打包前。
 	
-	public static void main(String [] args) throws Exception{ 
+	public static void main(String [] args) throws Exception{
 		UserData ud=new UserData();
 		ArrayList<UserPO> arr=ud.findall();
 		for(int i=0;i<arr.size();i++){

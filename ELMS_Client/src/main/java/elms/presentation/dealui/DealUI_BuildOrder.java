@@ -38,7 +38,7 @@ public class DealUI_BuildOrder extends JFrame {
 	private JTextField orderID;
 	private JTextField couriername;
 	UserVO vo;
-	private JTextField dealtime;
+	private JTextField dealtime; 
 	private JTextField sendername;
 	private JTextField senderphone;
 	private JTextField sendercompany;
@@ -375,17 +375,15 @@ public class DealUI_BuildOrder extends JFrame {
 				String pack="";
 				
 				String ID=orderID.getText();
-				String [] id=ID.split("");
-				if(id.length!=10){
+				CheckOrder co=new CheckOrder();
+				if(co.IsTenNumbers(ID)==2){
 					JOptionPane.showMessageDialog(null, "请输入10位数字的订单号！","失败!", JOptionPane.ERROR_MESSAGE);
 					return ;
 				}
 				else{
-					for(int i=0;i<10;i++){
-						if(  (!id[i].equals("0"))&&(!id[i].equals("1"))&&(!id[i].equals("2"))&&(!id[i].equals("3"))&&(!id[i].equals("4"))&&(!id[i].equals("5"))&&(!id[i].equals("6"))&&(!id[i].equals("7"))&&(!id[i].equals("8"))&&(!id[i].equals("9"))   ){
+						if( co.IsTenNumbers(ID)==1  ){
 							JOptionPane.showMessageDialog(null, "请确保输入的10位订单号是纯数字！","失败!", JOptionPane.ERROR_MESSAGE);
-							return;
-						}
+							return;						
 					}
 				}
 				
@@ -546,9 +544,10 @@ public class DealUI_BuildOrder extends JFrame {
 				volume=Double.parseDouble(goodsV.getText());
 				
 				
-				CalAndEst cae=new CalAndEst();
+				CalFee cae=new CalFee();
 				double Fee=cae.calculatefee(name1,name2,type, pack, weight, volume);
-				int Days=cae.estDays(name1, name2);
+				EstDay ed=new EstDay();
+				int Days=ed.Estimate(name1, name2);
 				
 				
 				fee.setText(Double.toString(Fee));

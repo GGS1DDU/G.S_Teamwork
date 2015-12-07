@@ -200,32 +200,32 @@ public class UserManage implements UserBlService ,DataFactory {
 
 
 	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -74,7 +74,7 @@ public class DealBL implements DealBlService ,DataFactory{
 		
 		System.out.println("系统内部所有订单的部分信息如下：");
 		for(int i=0;i<arr0.size();i++){			
-			System.out.println("订单号："+arr0.get(i).getOrderID()+" 寄件人:"+arr0.get(i).getSender_name()+" 收件人:"+arr0.get(i).getReceiver_name()+" 实际收件人:"+arr0.get(i).getActualreceiver_name());
+			System.out.println("订单号："+arr0.get(i).getOrderID()+" 寄件人:"+arr0.get(i).getSender_name()+"寄件时间:"+arr0.get(i).getDealTime()+"收件人:"+arr0.get(i).getReceiver_name()+" 实际收件人:"+arr0.get(i).getActualreceiver_name()+"收件时间："+arr0.get(i).getReceivaltime());
 		}
 		return arr0;
 		
@@ -141,28 +141,28 @@ public class DealBL implements DealBlService ,DataFactory{
 	}
 
 	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
