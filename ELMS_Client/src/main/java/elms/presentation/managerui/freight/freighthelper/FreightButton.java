@@ -20,7 +20,6 @@ public class FreightButton extends ButtonPanel {
 	public void addListener() {
 		add.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame add_f = new FreightUI_add();
@@ -31,7 +30,7 @@ public class FreightButton extends ButtonPanel {
 
 		delete.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 
@@ -41,7 +40,7 @@ public class FreightButton extends ButtonPanel {
 
 		find.addActionListener(new ActionListener() {
 
-			@Override
+		
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 
@@ -51,7 +50,7 @@ public class FreightButton extends ButtonPanel {
 
 		refresh.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 
@@ -61,7 +60,7 @@ public class FreightButton extends ButtonPanel {
 
 		back.addActionListener(new ActionListener() {
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 

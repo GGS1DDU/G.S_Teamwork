@@ -86,19 +86,16 @@ public class InAndEx_main extends JFrame{
 		
 		income_m.addMenuListener(new MenuListener(){
 
-			@Override
 			public void menuCanceled(MenuEvent arg0) {
 				// TODO 自动生成的方法存根
 				
 			}
 
-			@Override
 			public void menuDeselected(MenuEvent arg0) {
 				// TODO 自动生成的方法存根
 				
 			}
 
-			@Override
 			public void menuSelected(MenuEvent arg0) {
 				// TODO 自动生成的方法存根
 				income_m.setSelected(true);
@@ -117,7 +114,6 @@ public class InAndEx_main extends JFrame{
 		
 		expense_m.addMenuListener(new MenuListener(){
 
-			@Override
 			public void menuCanceled(MenuEvent arg0) {
 				// TODO 自动生成的方法存根
 				
