@@ -27,7 +27,7 @@ public class UserUI_main extends JFrame {
 		setRootPaneCheckingEnabled(false);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 707, 457);
+		setBounds(100, 100, 807, 557);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,7 +45,7 @@ public class UserUI_main extends JFrame {
 		});
 		adduser.setBackground(Color.WHITE);
 		adduser.setActionCommand("addUser");
-		adduser.setBounds(236, 44, 222, 58);
+		adduser.setBounds(276, 44, 222, 58);
 		contentPane.add(adduser);
 		
 		JButton exitUserUI = new JButton("退出系统");
@@ -73,10 +73,24 @@ public class UserUI_main extends JFrame {
 			}
 		});
 		changeUser.setBackground(Color.WHITE);
-		changeUser.setBounds(236, 159, 222, 58);
+		changeUser.setBounds(276, 166, 222, 58);
 		contentPane.add(changeUser);
-		exitUserUI.setBounds(236, 271, 222, 58);
+		exitUserUI.setBounds(276, 383, 222, 58);
 		contentPane.add(exitUserUI);
+		
+		JButton ALLUSER = new JButton("查看所有账户");
+		ALLUSER.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JFrame UserUI_AllUser =new UserUI_AllUser();
+			}
+		});
+		ALLUSER.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		ALLUSER.setBounds(276, 284, 222, 58);
+		contentPane.add(ALLUSER);
 	}
 }
 

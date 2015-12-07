@@ -10,14 +10,6 @@ import java.util.ArrayList;
 import elms.businesslogic_service.userblservice.UserBlService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
-import elms.dataservice.financedataservice.BankAccountDataService;
-import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.IncomeDataService;
-import elms.dataservice.financedataservice.InitAllDataService;
-import elms.dataservice.logdataservice.LogDataService;
-import elms.dataservice.managerdataservice.FreightStrategyDataService;
-import elms.dataservice.managerdataservice.StaffDataService;
-import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.UserPO;
 import elms.vo.UserVO;
@@ -162,6 +154,26 @@ public class UserManage implements UserBlService ,DataFactory {
 			return vo;
 		}
 	}
+	
+	//返回所有用户的方法。
+	public ArrayList<UserVO> findall(){
+		ArrayList<UserVO> arr=new ArrayList<UserVO>();
+		ArrayList<UserPO> arr2=new ArrayList<UserPO>();
+		try {
+			arr2=userdata.findall();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		for(int i=0;i<arr2.size();i++){
+			UserVO vo=new UserVO(arr2.get(i).getId(),arr2.get(i).getPassword(),arr2.get(i).getName(),arr2.get(i).getJob());
+			arr.add(vo);
+		}
+		
+		return arr;
+		
+		
+	}
 
 	
 	
@@ -173,7 +185,7 @@ public class UserManage implements UserBlService ,DataFactory {
 	public UserDataService getUserData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
 			return df.getUserData();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -184,55 +196,6 @@ public class UserManage implements UserBlService ,DataFactory {
 
 	
 	public DealDataService getDealData() {                
-		return null;
-	}
-
-
-	public LogDataService getLogData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public StorageDataService getStorageData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public FreightStrategyDataService getFreightStrategyData()
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public InitAllDataService getInitData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public StaffDataService getStaffData() throws RemoteException {
-		// TODO 自动生成的方法存根
 		return null;
 	}
 
