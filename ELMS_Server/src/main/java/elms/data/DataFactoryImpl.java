@@ -8,9 +8,18 @@ import elms.data.financedata.BankAccountData;
 import elms.data.financedata.ExpenseData;
 import elms.data.financedata.IncomeData;
 import elms.data.financedata.InitAllData;
+import elms.data.invoicedata.ArrivalListData;
+import elms.data.invoicedata.IncomeListData;
+import elms.data.invoicedata.LoadingListData;
+import elms.data.invoicedata.LoadingListZZData;
+import elms.data.invoicedata.RecivalListData;
+import elms.data.invoicedata.SendingListData;
+import elms.data.invoicedata.TransferListData;
 import elms.data.logdata.LogData;
 import elms.data.managerdata.FreightStrategyData;
 import elms.data.managerdata.StaffData;
+import elms.data.memberdata.CarData;
+import elms.data.memberdata.DriverData;
 import elms.data.storagedata.StorageData;
 import elms.data.userdata.UserData;
 import elms.dataservice.DataFactory;
@@ -19,9 +28,18 @@ import elms.dataservice.financedataservice.BankAccountDataService;
 import elms.dataservice.financedataservice.ExpenseDataService;
 import elms.dataservice.financedataservice.IncomeDataService;
 import elms.dataservice.financedataservice.InitAllDataService;
+import elms.dataservice.invoicedataservice.ArrivalListDataService;
+import elms.dataservice.invoicedataservice.IncomeListDataService;
+import elms.dataservice.invoicedataservice.LoadingListDataService;
+import elms.dataservice.invoicedataservice.LoadingListZZDataService;
+import elms.dataservice.invoicedataservice.RecivalListDataService;
+import elms.dataservice.invoicedataservice.SendingListDataService;
+import elms.dataservice.invoicedataservice.TransferListDataService;
 import elms.dataservice.logdataservice.LogDataService;
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
+import elms.dataservice.memberdataservice.CarDataService;
+import elms.dataservice.memberdataservice.DriverDataService;
 import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 
@@ -142,6 +160,96 @@ public class DataFactoryImpl extends UnicastRemoteObject implements DataFactory 
 		} 
 		return staffdata;
 		
+	}
+	
+	public ArrivalListDataService getArrivalListData() throws RemoteException {
+		ArrivalListDataService arrivallistdata=null;
+		try{
+			arrivallistdata=new ArrivalListData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return arrivallistdata;
+	}
+	
+	public SendingListDataService getSendingListData() throws RemoteException{
+		SendingListDataService sendinglistdata=null;
+		try{
+			sendinglistdata=new SendingListData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return sendinglistdata;
+	}
+
+	public IncomeListDataService getIncomeListData() throws RemoteException {
+		IncomeListDataService incomelistdata=null;
+		try{
+			incomelistdata=new IncomeListData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return incomelistdata;
+	}
+
+	public RecivalListDataService getRecivalListData() throws RemoteException {
+		RecivalListDataService recivallistdata=null;
+		try{
+			recivallistdata=new RecivalListData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return recivallistdata;
+	}
+
+	public LoadingListDataService getLoadingListData() throws RemoteException {
+		LoadingListDataService loadinglistdata=null;
+		try{
+			loadinglistdata=new LoadingListData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return loadinglistdata;
+	}
+
+	public TransferListDataService getTransferListData() throws RemoteException {
+		TransferListDataService transferlistdata=null;
+		try{
+			transferlistdata=new TransferListData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return transferlistdata;
+	}
+
+	public LoadingListZZDataService getLoadingListZZData() throws RemoteException {
+		LoadingListZZDataService loadinglistzzdata=null;
+		try{
+			loadinglistzzdata=new LoadingListZZData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return loadinglistzzdata;
+	}
+
+	public DriverDataService getDriverData() throws RemoteException {
+		DriverDataService driverdata=null;
+		try{
+			driverdata=new DriverData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return driverdata;
+	}
+
+	public CarDataService getCarData() throws RemoteException {
+		CarDataService cardata=null;
+		try{
+			cardata=new CarData();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return cardata;
 	}
 	
 
