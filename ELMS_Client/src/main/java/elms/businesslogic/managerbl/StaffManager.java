@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 
 
-
 import elms.businesslogic.ResultMessage;
 import elms.businesslogic_service.managerblservice.StaffBlService;
 import elms.dataservice.DataFactory;
@@ -38,6 +37,17 @@ public class StaffManager implements StaffBlService, DataFactory {
 
 	StaffDataService staffData;
 
+	public static void main(String[] args){
+		StaffManager sm = new StaffManager();
+//		StaffVO vo = sm.findStaff("kd000001");
+//		System.out.println(vo.getAge());
+		ArrayList<StaffVO> staff = sm.findByJob("全部");
+		for(int i = 0; i < staff.size(); i++){
+			StaffVO vo = staff.get(i);
+			System.out.println(vo.getAge()+vo.getName());
+		}
+	}
+	
 	public StaffManager() {
 		try {
 			staffData = this.getStaffData();
@@ -46,7 +56,18 @@ public class StaffManager implements StaffBlService, DataFactory {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public ResultMessage initAll(){
+		try {
+			staffData.init();
+			return ResultMessage.Success;
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+			return ResultMessage.Failed;
+		}
+		
+	}
 
 	public ResultMessage addStaff(StaffVO vo) {
 		// TODO 自动生成的方法存根
@@ -123,6 +144,26 @@ public class StaffManager implements StaffBlService, DataFactory {
 		}
 
 	}
+	
+	//职位，基本工资，比例（工资提成，计次）
+	public ResultMessage changeSalaryByJob(String job,double eSalary,double rate){
+		ArrayList<StaffVO> staff = findByJob(job);
+		if(staff==null){
+			return ResultMessage.findIDFailed; //无对应职位的员工
+		}
+		for(int i = 0; i < staff.size(); i++){
+			StaffVO vo = staff.get(i);
+			vo.setEssentialSalary(eSalary);
+			vo.setRate(rate);
+			ResultMessage rm = updateStaff(vo);
+			if(rm==ResultMessage.findIDFailed){
+				return ResultMessage.changeFailed;  //找不到对应id的员工(不会出现这种情况吧)
+				
+			}
+		}
+		return ResultMessage.Success;
+	}
+	
 
 	@Override
 	public ArrayList<StaffVO> findByJob(String job) {
@@ -138,6 +179,14 @@ public class StaffManager implements StaffBlService, DataFactory {
 		if (all == null) {
 			return null; // 职员清单为空
 		} else {
+			if(job.equals("全部")){
+				for(int i = 0; i < all.size(); i++){
+					StaffPO po = all.get(i);
+					StaffVO vo = getVO(po);
+					arr.add(vo);
+				}
+				return arr;
+			}
 			for (int i = 0; i < all.size(); i++) {
 				StaffPO po = all.get(i);
 				if(po.getJob().equals(job)){
@@ -149,12 +198,14 @@ public class StaffManager implements StaffBlService, DataFactory {
 		}
 		
 	}
+	
+	
 
 	private StaffPO getPO(StaffVO vo) {
 		StaffPO po = new StaffPO(vo.getID(), vo.getName(), vo.getAge(),
 				vo.getGender(), vo.getIdCard(), vo.getAddress(),
 				vo.getPhoneNum(), vo.getJob(), vo.getEssentialSalary(),
-				vo.getSalaryStrategy(), vo.getOrganization());
+				vo.getSalaryStrategy(), vo.getRate(),vo.getOrganization());
 		return po;
 	}
 
@@ -162,7 +213,7 @@ public class StaffManager implements StaffBlService, DataFactory {
 		StaffVO vo = new StaffVO(po.getID(), po.getName(), po.getAge(),
 				po.getGender(), po.getIdCard(), po.getAddress(),
 				po.getPhoneNum(), po.getJob(), po.getEssentialSalary(),
-				po.getSalaryStrategy(), po.getOrganization());
+				po.getSalaryStrategy(), po.getRate(),po.getOrganization());
 		return vo;
 	}
 
@@ -209,11 +260,11 @@ public class StaffManager implements StaffBlService, DataFactory {
 		return null;
 	}
 
-	@Override
-	public StorageDataService getStorageData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+//	@Override
+//	public StorageDataService getStorageData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 	@Override
 	public StaffDataService getStaffData() throws RemoteException {
@@ -229,51 +280,66 @@ public class StaffManager implements StaffBlService, DataFactory {
 	}
 
 	@Override
+	public StorageDataService getStorageData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
 	public LogDataService getLogData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public ArrivalListDataService getArrivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public SendingListDataService getSendingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public IncomeListDataService getIncomeListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public RecivalListDataService getRecivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public LoadingListDataService getLoadingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public TransferListDataService getTransferListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public DriverDataService getDriverData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public CarDataService getCarData() {
 		// TODO 自动生成的方法存根
 		return null;

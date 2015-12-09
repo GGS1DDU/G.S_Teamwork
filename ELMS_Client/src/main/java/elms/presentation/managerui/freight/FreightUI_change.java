@@ -62,6 +62,7 @@ public class FreightUI_change extends JFrame {
 
 		city1_j.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				setInfo(city1_j.getSelectedItem().toString(), city2_j
@@ -72,6 +73,7 @@ public class FreightUI_change extends JFrame {
 
 		city2_j.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				setInfo(city1_j.getSelectedItem().toString(), city2_j
@@ -162,6 +164,7 @@ public class FreightUI_change extends JFrame {
 
 		save_b.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				if (!cf.checkDouble(distance.getText())) {
@@ -202,6 +205,7 @@ public class FreightUI_change extends JFrame {
 
 		back.addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				FreightUI_change.this.dispose();

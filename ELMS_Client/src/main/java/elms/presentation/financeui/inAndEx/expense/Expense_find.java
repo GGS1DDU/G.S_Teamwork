@@ -64,7 +64,7 @@ public class Expense_find extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				if(!check.checkID(id_f.getText())){
+				if(!check.checkID(id_f.getText(),"ex",10)){
 					JOptionPane.showMessageDialog(null, "输入id格式错误！","失败",JOptionPane.ERROR_MESSAGE);
 				}else{
 				FExpenseVO vo = em.inquiryExpense(id_f.getText());

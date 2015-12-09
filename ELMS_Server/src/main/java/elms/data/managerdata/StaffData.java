@@ -24,17 +24,22 @@ public class StaffData extends UnicastRemoteObject implements StaffDataService {
 	public StaffData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+		
 	}
 	
 	public static void main(String[] args) throws Exception{
 		StaffData sd = new StaffData();
-		StaffPO po = new StaffPO("kd000001", "张文玘", 20, false,
+		
+//		StaffPO po1 = new StaffPO();
+//		sd.insert(po1);
+		StaffPO po = new StaffPO("kd000001", "张文玘","1995-12-25", false,
 				"140311199512251522", "南京大学", "18260068636", "快递员",
-				1500.0, "提成", "南京市仙林营业厅");
+				1500.0, "提成",0.2, "南京市仙林营业厅");
+		
 //		sd.insert(po);
 //		sd.delete(po);
-//		StaffPO po1 = sd.find("kd000001");
-//		System.out.println(po1.getName());
+		StaffPO po1 = sd.find("kd000003");
+		System.out.println(po1.getName());
 	}
 
 	public StaffPO find(String id) throws RemoteException, IOException {

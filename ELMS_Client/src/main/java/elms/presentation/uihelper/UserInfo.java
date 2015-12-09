@@ -9,6 +9,9 @@ import javax.swing.border.Border;
 
 import elms.vo.UserVO;
 
+/*
+ * 最上面的当前操作的用户信息，需要在调用的地方setBounds
+ */
 public class UserInfo extends JPanel {
 
 	JLabel jl;

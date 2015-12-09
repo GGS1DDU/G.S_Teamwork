@@ -12,9 +12,14 @@ import java.util.ArrayList;
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.po.FExpensePO;
 import elms.po.FreightStrategyPO;
+import elms.po.StaffPO;
 
 public class FreightStrategyData extends UnicastRemoteObject implements FreightStrategyDataService{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	File file = new File("FreightStrategy.ser");
 	FreightStrategyPO po1 = new FreightStrategyPO("11","南京","南京",30.0,23,1000);
 	FreightStrategyPO po2 = new FreightStrategyPO("12","南京","上海",266.0,23,1000);
@@ -30,50 +35,26 @@ public class FreightStrategyData extends UnicastRemoteObject implements FreightS
 	public FreightStrategyData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(file);
-			if(fis.available()<=0){
-				DefaultFreight();
-				insert(po1);
-				insert(po2);
-				insert(po3);
-				insert(po4);
-				insert(po5);
-				insert(po6);
-				insert(po7);
-				insert(po8);
-				insert(po9);
-				insert(po10);
-				
-			}
-		} catch (Exception e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
-		finally{
-			try {
-				fis.close();
-			} catch (IOException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
-			}
-		}
-		
+		isEmpty();
 	}
 
 	
 	
 	public static void main(String[] args) throws IOException{
 		FreightStrategyData fd = new FreightStrategyData();
-		FreightStrategyPO po1 = new FreightStrategyPO("13","南京","广州",200.0,
-				23, 1000);
+//		FreightStrategyPO po = new FreightStrategyPO();
+//		fd.insert(po);
+//		FreightStrategyPO po1 = new FreightStrategyPO("13","南京","广州",200.0,
+//				23, 1000);
 //		fd.delete(po1);
 //		System.out.println(fd.isEmpty());
 //		fd.insert(po1);
 //		FreightStrategyPO po2 = new FreightStrategyPO("00000001","南京","杭州",200.0,
 //				15.7,14.3, 18.5, 1000);
-		System.out.println(fd.find("12"));
+		ArrayList<FreightStrategyPO> arr = fd.findAll();
+		for(int i = 0; i < arr.size(); i++){
+			System.out.println(arr.get(i).getID());
+		}
 //		fd.insert(po1);
 //		fd.insert(po2);
 //		fd.delete(po1);
@@ -81,30 +62,31 @@ public class FreightStrategyData extends UnicastRemoteObject implements FreightS
 	
 	public FreightStrategyPO find(String id) throws RemoteException, IOException {
 		
-		FreightStrategyPO po = null;
-		ObjectInputStream os = null;
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
 		try{
-			FileInputStream fs = new FileInputStream(file);
-			os = new ObjectInputStream(fs);
-			po = (FreightStrategyPO)os.readObject();
-			if(po.getID().equals(id)){
-				os.close();
-				System.out.println("find successfully!");
-				return po;
-			}else{
-				do{
-					byte[] buf = new byte[4];
-					fs.read(buf);
-					po = (FreightStrategyPO) os.readObject();
-				}while(!(po.getID().equals(id)));
+			fis = new FileInputStream(file);
+			ois = new ObjectInputStream(fis);
+			
+			FreightStrategyPO po = (FreightStrategyPO) ois.readObject();
+			
+			while(fis.available()>0){
+				byte[] buf = new byte[4];
+				fis.read(buf);
+				po = (FreightStrategyPO) ois.readObject();
+				if(po.getID().equals(id)){
+					return po;
+				}
 			}
-			System.out.println("find successfully!");
-			return po;
+			System.out.println("can't find");
+			return null;
 		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Exception!");
 			return null;
 		}
 		finally{
-			os.close();
+			ois.close();
 		}
 	}
 
@@ -140,7 +122,7 @@ public class FreightStrategyData extends UnicastRemoteObject implements FreightS
 			FileInputStream fs =new FileInputStream(file);
 			ois=new ObjectInputStream(fs);
 			PO=(FreightStrategyPO)ois.readObject();			System.out.println(PO.getID());
-			arr.add(PO);
+//			arr.add(PO);
 			while(true){
 				byte[] buf=new byte[4];
 				fs.read(buf);
@@ -184,47 +166,90 @@ public class FreightStrategyData extends UnicastRemoteObject implements FreightS
 		
 	}
 	
-	private void DefaultFreight() throws RemoteException{
-		FreightStrategyPO po = new FreightStrategyPO("00","初始","初始",0.0,0,0);
-		insert(po);
-	}
+//	private void DefaultFreight() throws RemoteException{
+////		FreightStrategyPO po = new FreightStrategyPO("00","初始","初始",0.0,0,0);
+//		FreightStrategyPO po = new FreightStrategyPO();
+//		insert(po);
+//	}
 
 	public void init() throws RemoteException{
 		
 		file.delete();
 //		file = new File("FreightStrategy.ser");
-		DefaultFreight();
-		
+		FreightStrategyPO po = new FreightStrategyPO();
+		insert(po);
 	}
 	
-	public boolean isEmpty() throws IOException{
+	private boolean isEmpty(){
 		FileInputStream fis = null;
-		ObjectInputStream ois = null;
 		try{
 			fis = new FileInputStream(file);
-			ois = new ObjectInputStream(fis);
-			
-			FreightStrategyPO po = (FreightStrategyPO) ois.readObject();
-			int i = 1;
-			while(fis.available()>0){
-				byte[] buf = new byte[4];
-				fis.read(buf);
-				po = (FreightStrategyPO) ois.readObject();
-				i++;
-			}
-			System.out.println(i);
-			if(po.getID().equals("00")){
+			if(fis.available()<=0){
+				FreightStrategyPO po = new FreightStrategyPO();
+				insert(po);
+				insert(po1);
+				insert(po2);
+				insert(po3);
+				insert(po4);
+				insert(po5);
+				insert(po6);
+				insert(po7);
+				insert(po8);
+				insert(po9);
+				insert(po10);
+				
 				return true;
+			}else{
+				return false;
 			}
-			return false;
-			
 		}catch(Exception e){
 			return false;
 		}
 		finally{
-			ois.close();
+			try {
+				fis.close();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
-		
+	}
+	
+	
+	public ArrayList<FreightStrategyPO> findAll() throws RemoteException{
+		FreightStrategyPO po = null;
+		ObjectInputStream os = null;
+		ArrayList<FreightStrategyPO> arr = new ArrayList<FreightStrategyPO>();
+		try{
+			FileInputStream fs = new FileInputStream(file);
+			os = new ObjectInputStream(fs);
+			po = (FreightStrategyPO)os.readObject();
+//			if(po.getID().equals(id)){
+//				os.close();
+//				System.out.println("find successfully!");
+//				return po;
+//			}else{
+				while(fs.available()>0){
+					byte[] buf = new byte[4];
+					fs.read(buf);
+					po = (FreightStrategyPO) os.readObject();
+					arr.add(po);
+				}
+//			}
+			System.out.println("find successfully!");
+			return arr;
+		}catch(Exception e){
+			return null;
+		}
+		finally{
+			try {
+				os.close();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+
 	}
 	
 }

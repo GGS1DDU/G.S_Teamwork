@@ -66,9 +66,6 @@ public class Income_main extends JPanel{
 	IncomeManager im= new IncomeManager();
 	UserVO vo;
 	
-	
-	private FIncomeVO test = new FIncomeVO("zwq141250192","in00000001","2015-11-30",200,"南京市鼓楼营业厅","张文玘");
-	
 	public Income_main(Dimension d,final UserVO vo){
 		this.vo = vo;
 		

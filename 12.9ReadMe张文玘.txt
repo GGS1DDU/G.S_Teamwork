@@ -1,0 +1,6 @@
+张文玘 finance和manager
+12.9
+1.还有freightstrategy的data层类型转换有错误，不造要怎么解决，所以现在freightstrategy的从服务器到客户端都不可用
+2.finance部分已经全部实现了（如果没有记错的话。。。）
+3.manager的staff已经写完了
+4.如果报错很多的话打开freightstrategy的manager，有一个city报错，根据自动修复把项目一致性改成1.7就好了。。。

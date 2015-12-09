@@ -30,6 +30,9 @@ public class FreightListPanel extends ListPanel {
 	}
 
 	public void appendText(ArrayList<FreightStrategyVO> freight) {
+		if(freight==null){
+			return;
+		}
 		for (int i = 0; i < freight.size(); i++) {
 			text.append(getOutput(freight.get(i)));
 		}

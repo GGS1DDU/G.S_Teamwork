@@ -14,23 +14,21 @@ import javax.swing.JTextArea;
 import elms.vo.FExpenseVO;
 import elms.vo.FinanceVO;
 
+/*
+ * 列表父类，根据dimension生成对应大小的list，可以继承修改其中的方法addtag和addMenu，
+ * 私有方法addList给这个panel加一个有滚动条的textarea
+ * 另外，要给每个子类都实现一个叫做appendText方法来给textArea中添加数据
+ */
+
 public class ListPanel extends JPanel {
 
 	private Dimension d;
 
 	private JScrollPane scroll;
-	protected JTextArea text;
+	protected JTextArea text;    //用于供子类在text中添加信息
 
 	private JMenuBar bar;
-	private JMenu jm1; // id
-	private JMenu jm2; // 支出时间
-	private JMenu jm3; // 支出类型
-	private JMenu jm4; // 支出金额
-	private JMenu jm5; // 支出账户
-	private JMenu jm6; // 实际支出人员
-	private JMenu jm7; // 支出记录人员
 
-	private JPanel bp; // 按钮存放panel
 	private JPanel tag;
 	private JPanel scrollP;
 

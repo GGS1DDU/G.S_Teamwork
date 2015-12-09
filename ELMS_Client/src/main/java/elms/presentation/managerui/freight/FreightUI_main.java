@@ -1,13 +1,16 @@
 package elms.presentation.managerui.freight;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elms.businesslogic.managerbl.FreightStrategyManager;
 import elms.presentation.managerui.freight.freighthelper.FreightListPanel;
 import elms.presentation.uihelper.ButtonPanel;
 import elms.presentation.uihelper.ScreenSize;
+import elms.vo.FreightStrategyVO;
 import elms.vo.UserVO;
 
 public class FreightUI_main extends JFrame {
@@ -20,6 +23,8 @@ public class FreightUI_main extends JFrame {
 	private UserVO uservo;
 
 	private JPanel buttonPanel;
+	
+	private FreightStrategyManager fsm = new FreightStrategyManager();
 
 	public static void main(String[] args) {
 		UserVO vo = new UserVO();
@@ -36,15 +41,22 @@ public class FreightUI_main extends JFrame {
 		listD = new Dimension(this.getWidth() - 50, this.getHeight() * 2 / 3);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel fListPanel = new FreightListPanel(listD);
+		FreightListPanel fListPanel = new FreightListPanel(listD);
 		fListPanel.setLocation(25, 0);
 		add(fListPanel);
+		
+		ArrayList<FreightStrategyVO> list = fsm.findAll();
+		fListPanel.appendText(list);
 
 		buttonD = new Dimension(this.getWidth(), this.getHeight() / 3);
 		JPanel buttonPanel = new ButtonPanel(buttonD);
 		buttonPanel.setLocation(0, this.getHeight() * 2 / 3);
 		add(buttonPanel);
 
+	}
+	
+	private void addContent(){
+		
 	}
 
 }

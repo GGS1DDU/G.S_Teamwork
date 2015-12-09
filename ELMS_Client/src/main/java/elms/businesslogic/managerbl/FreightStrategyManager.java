@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 
 
 
+import java.util.ArrayList;
 
 import elms.businesslogic.ResultMessage;
 import elms.businesslogic_service.managerblservice.FreightStrategyBlService;
@@ -86,7 +87,11 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 				vo.getStandardPrice(),vo.getCoefficient());
 		return po;
 	}
-
+	private FreightStrategyVO POtoVO(FreightStrategyPO po){
+		FreightStrategyVO vo = new FreightStrategyVO(po.getID(),po.getCity1(),po.getCity2(),po.getDistance(),
+				po.getStandardPrice(),po.getCoefficient());
+		return vo;
+	}
 	public double getDistance(String city1,String city2){
 		
 		String id = getID(city1,city2);
@@ -145,12 +150,12 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 		if(id=="noCity")
 			return ResultMessage.lessThanMin;//代表没有对应城市的业务扩展
 		FreightStrategyVO freight = null;
-		if(!fsds.isEmpty()){
+//		if(!fsds.isEmpty()){
 			freight = getFreightStrategy(id);
 
 			if(freight!=null)
 				return ResultMessage.findIDFailed;     //代表现在数据中已经有这两个城市之间的运费策略了，返回信息通知用户
-		}
+//		}
 		freight = vo;
 		freight.setID(id);
 		
@@ -170,8 +175,8 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 		if(id=="noCity")
 			return ResultMessage.changeFailed;  //未扩展对应城市的业务
 		
-		if(fsds.isEmpty())
-			return ResultMessage.lessThanMin;
+//		if(fsds.isEmpty())
+//			return ResultMessage.lessThanMin;
 		
 		FreightStrategyVO freight = getFreightStrategy(id);
 		
@@ -208,6 +213,29 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 			return ResultMessage.Failed;
 		}
 	
+	}
+	
+	public ArrayList<FreightStrategyVO> findAll(){
+		ArrayList<FreightStrategyPO> arr = new ArrayList<FreightStrategyPO>();
+		try {
+			arr = fsds.findAll();
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		if(arr==null){
+			return null;
+		}else{
+			ArrayList<FreightStrategyVO> result = new ArrayList<FreightStrategyVO>();
+			for(int i = 0; i < arr.size();i++){
+				FreightStrategyVO vo = POtoVO(arr.get(i));
+				result.add(vo);
+			}
+			
+			return result;
+		}
+		
 	}
 	
 
@@ -255,14 +283,20 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 		return null;
 	}
 
+//	@Override
+//	public StorageDataService getStorageData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
+
 	@Override
-	public StorageDataService getStorageData() throws RemoteException {
+	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
 	@Override
-	public StaffDataService getStaffData() throws RemoteException {
+	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
@@ -273,50 +307,65 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 		return null;
 	}
 
+	@Override
 	public ArrivalListDataService getArrivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public SendingListDataService getSendingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public IncomeListDataService getIncomeListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public RecivalListDataService getRecivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public LoadingListDataService getLoadingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public TransferListDataService getTransferListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public DriverDataService getDriverData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public CarDataService getCarData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+//	@Override
+//	public LogDataService getLogData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 
 }

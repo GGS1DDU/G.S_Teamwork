@@ -1,11 +1,15 @@
 package elms.presentation.managerui;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elms.presentation.managerui.freight.FreightUI_main;
+import elms.presentation.managerui.staff.StaffUI_main;
 import elms.presentation.uihelper.ScreenSize;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.UserVO;
@@ -29,7 +33,7 @@ public class ManagerUI_main extends JFrame{
 		JFrame jf = new ManagerUI_main(vo);
 	}
 	
-	public ManagerUI_main(UserVO u_vo){
+	public ManagerUI_main(final UserVO u_vo){
 		setLayout(null);
 		setTitle("总经理");
 		setResizable(false);
@@ -68,6 +72,28 @@ public class ManagerUI_main extends JFrame{
 		approval_b.setBounds(width*3/7,height*3/5-20,width/7,height/6);
 		log_b.setBounds(width*5/7-10,height*3/5-20,width/7+20,height/6);
 		
+		
+		freight_b.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				JFrame freight = new FreightUI_main(u_vo);
+				freight.setVisible(true);
+			}
+			
+		});
+		
+		member_b.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				JFrame member = new StaffUI_main(u_vo);
+				member.setVisible(true);
+			}
+			
+		});
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

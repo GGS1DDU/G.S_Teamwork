@@ -21,7 +21,6 @@ public class InPanel extends ListPanel {
 
 	private JPanel in_info;
 	private JPanel in_info2;
-	private JTextArea in_text;
 
 	public InPanel(Dimension d) {
 		super(d);
@@ -34,8 +33,10 @@ public class InPanel extends ListPanel {
 
 	public void appendText(ArrayList<FIncomeVO> in) {
 
+		if(in==null)
+			return;
 		for (FIncomeVO vo : in) {
-			in_text.append(getOutput(vo));
+			text.append(getOutput(vo));
 		}
 	}
 
