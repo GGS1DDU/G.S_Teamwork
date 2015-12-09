@@ -19,4 +19,5 @@ public interface InitAllDataService extends Remote{
 	public  void  addAccount(AccountPO po) throws IOException;
 	public ArrayList<AccountPO> getAccount() throws ClassNotFoundException, IOException;
 	public void setInitState() throws RemoteException;
+	public void setInitState(int a) throws RemoteException;
 }

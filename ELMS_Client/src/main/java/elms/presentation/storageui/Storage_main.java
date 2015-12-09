@@ -104,6 +104,14 @@ public Storage_main(final UserVO vo){
 	bar.add(j);
 	bar.add(m);
 	setJMenuBar(bar);
+	
+	/*
+	 * 给菜单加监听  在菜单处选择初始化库存  
+	 * 初始化需要确认工作  
+	 * 界面提示输入一个随机生成的三位数  
+	 * 只有当用户正确的输入了验证码  才能够初始化库存  
+	 * 进入库存初始化界面
+	 */
   m.addMenuListener(new MenuListener(){
 
 	public void menuCanceled(MenuEvent e) {
@@ -137,6 +145,9 @@ public Storage_main(final UserVO vo){
 
   
   });
+  /*
+   * 界面创建时传入当前用户身份   在界面上可以显示当前用户的姓名、身份、和员工编号
+   */
 	JLabel jl=new JLabel("  当前用户：  "+vo.getName()+"  身份：  "+vo.getJob()+"  编号   "+vo.getId());
 	jl.setForeground(Color.lightGray);
 	JPanel user=new JPanel();
@@ -176,12 +187,19 @@ public Storage_main(final UserVO vo){
 			this.setFont(new Font("楷体",Font.CENTER_BASELINE,12));
 		}
 	}
+	
+	/*
+	 * 显示库存细节的项目与信息
+	 */
 	JMenu j1=new Menu("ID       ");JMenu j2=new Menu("区域       ");JMenu j3=new Menu("位置         ");JMenu j4=new Menu("订单号              ");
 	JMenu j5=new Menu("入库时间                   ");JMenu j6=new Menu("出库时间              ");JMenu j7=new Menu("状态        ");JMenu j8=new Menu("仓库             ");
 	jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);jbar.add(j6);jbar.add(j7);jbar.add(j8);
 	add(jbar);jbar.setBounds(5, 48, this.getWidth(), 20);
     add(info2); info2.setBounds(0,0,this.getWidth(),this.getHeight()/2);
     
+    /*
+     * 选择中转中心城市
+     */
     jcb=new JComboBox<String>();
 	jcb.addItem("北京");jcb.addItem("南京");jcb.addItem("上海");jcb.addItem("广州");
 	jcb.setBackground(Color.white);jcb.setFont(new Font("楷体",Font.CENTER_BASELINE,12));

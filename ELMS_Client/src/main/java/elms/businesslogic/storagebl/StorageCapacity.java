@@ -1,5 +1,9 @@
 package elms.businesslogic.storagebl;
-
+/*
+ * 这个类负责构建库存对象  并且设置相应的库存分区大小数值
+ * 默认的库存大小为三个100的固定区 和1000的机动区
+ * 在理论上   机动区应当为无限大
+ */
 public class StorageCapacity {
 String name;
 int air=100;

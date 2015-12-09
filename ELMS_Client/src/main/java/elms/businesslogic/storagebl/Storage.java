@@ -74,6 +74,9 @@ public class Storage implements StorageBlService,DataFactory {
 //    	s.storage_out("000125", "南京");
 //    	s.inquiry("000125");
 //  }
+    
+    
+    
     public boolean orderhasIN(String s) throws IOException{
     	StoragePO po=storage.find(s);
     	if(po!=null) return true;

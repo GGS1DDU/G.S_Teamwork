@@ -28,7 +28,13 @@ import javax.swing.SwingConstants;
 import elms.businesslogic.storagebl.Storage;
 import elms.businesslogic.storagebl.StorageCapacity;
 import elms.vo.StorageVO;
-
+/*
+ * 对具体库存信息的处理与修改界面    
+ * 因为是多种情况的复用界面  
+ * 所以会有很多的逻辑判断
+ * 
+ * 基本组件等同于基础的库存创建界面
+ */
 public class Storage_editStorage extends JFrame {
 	StorageVO voall;
 	Toolkit kit=Toolkit.getDefaultToolkit();

@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+		<list key="ciManagementUrl">
+		</list>
+		<list key="ciManagementSystem">
+		</list>
+		<list key="issueManagementSystem">
+		</list>
+		<list key="issueManagementUrl">
+		</list>
+	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="E:\LAVA\G.S_Teamwork\ELMS_Server"/>
+			<item value="E:\LAVA\G.S_Teamwork\ELMS_Client"/>
 			<item value="C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS_Server"/>
 			<item value="C:\学习\大二上\软件工程与计算2\快递物流管理系统\github\G.S_Teamwork\ELMS_Client"/>
 			<item value="D:\gitHub\G.S_Teamwork\ELMS_Client"/>
