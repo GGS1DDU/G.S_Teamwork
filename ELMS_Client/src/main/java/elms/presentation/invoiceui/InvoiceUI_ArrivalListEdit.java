@@ -50,7 +50,7 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 		
 		final JPanel newin=new JPanel();
 		newin.setLayout(null);
-		add(newin);newin.setBounds(0,0,this.getWidth(),3*this.getHeight()/5);
+		add(newin);newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel id=new JLabel("单据ID");
@@ -112,13 +112,22 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 		newin.add(dpf);dpf.setBounds(220, 130, 100, 24);dpf.setEditable(Edit);
 		dpf.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		JLabel place=new JLabel("所属营业厅");
+		newin.add(place);
+		place.setBounds(120, 160, 80, 20);
+		final JTextField pf=new JTextField(vo.getPlace());
+		pf.setFont(new Font("SansSerif",Font.PLAIN,12));
+		newin.add(pf);pf.setBounds(220, 160, 100, 24);pf.setEditable(Edit);
+		pf.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
 		JButton cancle=new JButton("编辑(E)");
 		buttonpanel.add(cancle);
-		cancle.setBounds(this.getWidth()/2+90,25,100,30);
+		cancle.setBounds(this.getWidth()/2+90,20,100,30);
 		add(buttonpanel);
-		buttonpanel.setBounds(0,3*this.getHeight()/5,this.getWidth(),70);
+		buttonpanel.setBounds(0,7*this.getHeight()/10,this.getWidth(),70);
 		
 		cancle.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -130,7 +139,7 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 		if(Edit){
 			JButton save=new JButton("保存(S)");
 			buttonpanel.add(save);
-			save.setBounds(this.getWidth()/3-120,25,100,30);
+			save.setBounds(this.getWidth()/3-120,20,100,30);
 			
 			save.addActionListener(new ActionListener(){
 				ArrivalListBL arrivallistdata=new ArrivalListBL();
@@ -169,7 +178,7 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 		if(Edit){
 			JButton back=new JButton("取消(C)");
 			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,25,100,30);
+			back.setBounds(this.getWidth()/2-50,20,100,30);
 			back.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					InvoiceUI_ArrivalListEdit.this.dispose();
@@ -181,7 +190,7 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 		else{
 			JButton back=new JButton("删除(D)");
 			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,25,100,30);
+			back.setBounds(this.getWidth()/2-50,20,100,30);
 			back.addActionListener(new ActionListener(){
 				ArrivalListBL arrivallistdata=new ArrivalListBL();
 

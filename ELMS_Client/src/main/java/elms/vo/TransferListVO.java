@@ -2,7 +2,7 @@ package elms.vo;
 
 import java.util.ArrayList;
 
-public class TransferListVO {
+public class TransferListVO extends InvoiceVO{
 	String id;
 	String time;	
 	String transferID;
@@ -11,10 +11,12 @@ public class TransferListVO {
 	String arrival;
 	String seatNumber;
 	String surpervior;
-	ArrayList<String> orderID;
+	String orderID;
+//	ArrayList<String> orderID;
 	double cost;
+	String place;
 	public TransferListVO(String i,String t,String td,String tn,String d,String a,String s,
-			String sr,ArrayList<String> o,double c){
+			String sr,String o,double c,String p){
 		this.id=i;
 		this.time=t;		
 		this.transferID=td;
@@ -24,7 +26,8 @@ public class TransferListVO {
 		this.seatNumber=s;
 		this.surpervior=sr;
 		this.orderID=o;
-		this.cost=c;	
+		this.cost=c;
+		this.place=p;
 	}
 	public String getID(){
 		return id;
@@ -50,11 +53,14 @@ public class TransferListVO {
 	public String getSurpervior(){
 		return surpervior;
 	}
-	public ArrayList<String> getOrderID(){
+	public String getOrderID(){
 		return orderID;
 	}
 	public double getCost(){
 		return cost;
+	}
+	public String getPlace(){
+		return place;
 	}
 
 

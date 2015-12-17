@@ -5,15 +5,9 @@ import java.rmi.Naming;
 //import java.util.ArrayList;
 
 
-import java.rmi.RemoteException;
-
 import elms.businesslogic_service.invoiceblservice.ArrivalListBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
-import elms.dataservice.financedataservice.BankAccountDataService;
-import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.IncomeDataService;
-import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.invoicedataservice.ArrivalListDataService;
 import elms.dataservice.invoicedataservice.IncomeListDataService;
 import elms.dataservice.invoicedataservice.LoadingListDataService;
@@ -21,12 +15,8 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
-import elms.dataservice.managerdataservice.FreightStrategyDataService;
-import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
 import elms.dataservice.memberdataservice.DriverDataService;
-import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.ArrivalListPO;
 import elms.vo.ArrivalListVO;
@@ -64,7 +54,7 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 	public ArrivalListVO inquiry(String id) throws IOException {
 		ArrivalListPO po=arrivallistdata.find(id);
 		if(po!=null){
-			ArrivalListVO vo=new ArrivalListVO(po.getID(),po.getOrder(),po.getTime(),po.getState(),po.getFrom());
+			ArrivalListVO vo=new ArrivalListVO(po.getID(),po.getOrder(),po.getTime(),po.getState(),po.getFrom(),po.getPlace());
 			
 //			System.out.println(po.getID()+"  "+po.getOrder()+"  "+po.getTime()+"  "+po.getState()+"  "+po.getFrom());
 			return vo;
@@ -79,7 +69,7 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 
 
 	public ArrivalListVO record(ArrivalListVO vo) throws IOException{
-		ArrivalListPO po=new ArrivalListPO(vo.getID(),vo.getOrder(),vo.getTime(),vo.getState(),vo.getFrom());
+		ArrivalListPO po=new ArrivalListPO(vo.getID(),vo.getOrder(),vo.getTime(),vo.getState(),vo.getFrom(),vo.getPlace());
 		arrivallistdata.insert(po);
 		return vo;
 	}
@@ -104,7 +94,7 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 	public ArrivalListDataService getArrivalListData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
 		return df.getArrivalListData();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -152,47 +142,6 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 	}
 
 	public CarDataService getCarData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public StorageDataService getStorageData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public FreightStrategyDataService getFreightStrategyData()
-			throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}

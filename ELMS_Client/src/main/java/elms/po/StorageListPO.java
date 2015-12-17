@@ -54,6 +54,5 @@ public class StorageListPO extends InvoicePO implements Serializable{
 	public String getName() {
 		return name;
 	}
-	
 
 }

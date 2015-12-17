@@ -2,10 +2,12 @@ package elms.presentation.invoiceui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -24,7 +27,10 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.memberbl.CarBL;
+import elms.presentation.memberui.MemberUI_CarInit;
 import elms.presentation.memberui.MemberUI_CarMain;
+import elms.presentation.memberui.MemberUI_DriverInit;
 import elms.presentation.memberui.MemberUI_DriverMain;
 import elms.vo.ArrivalListVO;
 import elms.vo.IncomeListVO;
@@ -39,6 +45,16 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 	JTextArea text;
 	
 	public static ArrayList<IncomeListVO> arr=new ArrayList<IncomeListVO>();
+	
+	public static void main(String arg[]){
+		EventQueue.invokeLater(new Runnable(){
+			public void run(){
+				UserVO vo=new UserVO();
+				JFrame YYTStaff_IL=new InvoiceUI_YYTStaff_IL(vo);
+			}
+		});
+	}
+
 	
 	public InvoiceUI_YYTStaff_IL(final UserVO vo){
 		setLayout(null);
@@ -57,6 +73,9 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 		m4.setSelected(true);m4.setEnabled(false);
 		JMenu m5=new JMenu("车辆信息管理");
 		JMenu m6=new JMenu("司机信息管理");
+		JMenu m7=new JMenu("车辆初始化");
+		JMenu m8=new JMenu("司机初始化");
+		
 		
 		bar.add(m1);
 		bar.add(m2);
@@ -64,6 +83,9 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 		bar.add(m4);
 		bar.add(m5);
 		bar.add(m6);
+		bar.add(m7);
+		bar.add(m8);
+		
 		setJMenuBar(bar);
 		m1.addMenuListener(new MenuListener(){
 
@@ -121,6 +143,54 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 			public void menuCanceled(MenuEvent e) {		
 			}		
 		});
+		m7.addMenuListener(new MenuListener(){
+			public void menuSelected(MenuEvent e) {
+				int a=(int)(Math.random()*1000);
+				String s=a+"";
+				
+				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化车辆");
+				if(obj.equals(s)){
+					InvoiceUI_YYTStaff_IL.this.dispose();
+					new MemberUI_CarInit(vo);
+					CarBL cardata=new CarBL();
+					try{
+						cardata.init();
+					}catch(IOException e1){
+						e1.printStackTrace();
+					}
+				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
+				
+			}
+			public void menuDeselected(MenuEvent e) {			
+			}
+			public void menuCanceled(MenuEvent e) {		
+			}		
+		});
+		
+		m8.addMenuListener(new MenuListener(){
+			public void menuSelected(MenuEvent e) {
+				int a=(int)(Math.random()*1000);
+				String s=a+"";
+				
+				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化司机");
+				if(obj.equals(s)){
+					InvoiceUI_YYTStaff_IL.this.dispose();
+					new MemberUI_DriverInit(vo);
+					CarBL cardata=new CarBL();
+					try{
+						cardata.init();
+					}catch(IOException e1){
+						e1.printStackTrace();
+					}
+				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
+				
+			}
+			public void menuDeselected(MenuEvent e) {			
+			}
+			public void menuCanceled(MenuEvent e) {		
+			}		
+		});
+		
 		
 		JLabel jl=new JLabel("   当前用户： "+vo.getName()+"   身份： "+vo.getJob()+"   编号： "+vo.getId());
 		jl.setForeground(Color.lightGray);
@@ -160,9 +230,9 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu("      收款日期        ");JMenu j2=new Menu("     收费金额       ");
-		JMenu j3=new Menu("     快递员姓名       "); JMenu j4=new Menu("     到达日期        "); 
-		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);
+		JMenu j1=new Menu("         收款日期");JMenu j2=new Menu("       收费金额");
+		JMenu j3=new Menu("       快递员姓名"); JMenu j4=new Menu("       到达日期"); JMenu j5=new Menu("         所属营业厅");
+		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
 		add(info2);
@@ -204,7 +274,7 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 					arr=temp;
 				text.setText("");
 				for(IncomeListVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getPostage()+"   "+alvo.getCourier()+"   "+alvo.getTime()+"\r\n");				
+					text.append(alvo.getID()+"   "+alvo.getPostage()+"   "+alvo.getCourier()+"   "+alvo.getTime()+"    "+alvo.getPlace()+"\r\n");				
 			}
 			
 		});

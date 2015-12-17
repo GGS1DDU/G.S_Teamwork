@@ -32,15 +32,15 @@ public class InvoiceUI_LoadingListZZ extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	
-//	public static void main(String args[]){
-//	new InvoiceUI_LoadingListZZ();
-//}
+	public static void main(String args[]){
+	new InvoiceUI_LoadingListZZ();
+}
 	
 	public InvoiceUI_LoadingListZZ(){
 		setLayout(null);
 		setResizable(false);
 		setTitle("新建中转中心装车单   ");
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,6*screenHeight/8);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,11*screenHeight/16);
 		setVisible(true);
 		
 		final JPanel newin=new JPanel();
@@ -61,11 +61,11 @@ public class InvoiceUI_LoadingListZZ extends JFrame{
 		
 		JLabel date=new JLabel("装车日期");
 		newin.add(date);
-		date.setBounds(120,60,80,20);
+		date.setBounds(120,55,80,20);
 		final JTextField datef=new JTextField();
 		datef.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
 		newin.add(datef);
-		datef.setBounds(220,60,100,24);
+		datef.setBounds(220,55,100,24);
 		datef.setHorizontalAlignment(SwingConstants.CENTER);
 		datef.addMouseListener(new MouseAdapter(){
 			
@@ -80,73 +80,82 @@ public class InvoiceUI_LoadingListZZ extends JFrame{
 		JLabel transNum=new JLabel("汽运编号");
 		//20位
 		newin.add(transNum);
-		transNum.setBounds(120,100,80,20);
+		transNum.setBounds(120,90,80,20);
 		final JTextField tnf=new JTextField();
 		tnf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(tnf);
-		tnf.setBounds(220, 100, 100, 24);
+		tnf.setBounds(220, 90, 100, 24);
 		tnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel arrivalPlace=new JLabel("到达地");
 		//本地中转中心或其他营业厅
 		newin.add(arrivalPlace);
-		arrivalPlace.setBounds(120,140,80,20);
+		arrivalPlace.setBounds(120,125,80,20);
 		final JTextField apf=new JTextField();
 		apf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(apf);
-		apf.setBounds(220, 140, 100, 24);
+		apf.setBounds(220, 125, 100, 24);
 		apf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel carNum=new JLabel("车辆代号");
 		//9位
 		newin.add(carNum);
-		carNum.setBounds(120,180,80,20);
+		carNum.setBounds(120,160,80,20);
 		final JTextField cnf=new JTextField();
 		cnf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(cnf);
-		cnf.setBounds(220, 180, 100, 24);
+		cnf.setBounds(220, 160, 100, 24);
 		cnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel surpervisor=new JLabel("监装员");
 		newin.add(surpervisor);
-		surpervisor.setBounds(120,220,80,20);
+		surpervisor.setBounds(120,195,80,20);
 		final JTextField s1f=new JTextField();
 		s1f.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(s1f);
-		s1f.setBounds(220, 220, 100, 24);
+		s1f.setBounds(220,195, 100, 24);
 		s1f.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel supercargo=new JLabel("押运员");
 		newin.add(supercargo);
-		supercargo.setBounds(120,260,80,20);
+		supercargo.setBounds(120,230,80,20);
 		final JTextField s2f=new JTextField();
 		s2f.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(s2f);
-		s2f.setBounds(220, 260, 100, 24);
+		s2f.setBounds(220, 230, 100, 24);
 		s2f.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel orderNum=new JLabel("订单条形号码");
 		//10位 多文本域
 		newin.add(orderNum);
-		orderNum.setBounds(120,300,80,20);
+		orderNum.setBounds(120,265,80,20);
 		final JTextArea area=new JTextArea();
 		area.setLineWrap(true);
 		area.setFont(new Font("SanSerif",Font.PLAIN,12));
 		JScrollPane pane=new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		newin.add(pane);
 		pane.setViewportView(area);
-		pane.setBounds(220,300,100,64);
+		pane.setBounds(220,265,100,64);
 
 		
 		//应该是自动生成的，这边暂时先写输入的
 		JLabel cost=new JLabel("运费");
 		newin.add(cost);
-		cost.setBounds(120,380,80,20);
+		cost.setBounds(120,340,80,20);
 		final JTextField cf=new JTextField();
 		cf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(cf);
-		cf.setBounds(220, 380, 100, 24);
+		cf.setBounds(220, 340, 100, 24);
 		cf.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel place=new JLabel("所属中转中心");
+		newin.add(place);
+		place.setBounds(120,375,80,20);
+		final JTextField pf=new JTextField();
+		pf.setFont(new Font("SanSerif",Font.PLAIN,12));
+		newin.add(pf);
+		pf.setBounds(220, 375, 100, 24);
+		pf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
@@ -168,14 +177,14 @@ public class InvoiceUI_LoadingListZZ extends JFrame{
 							.length()!=21||cnf.getText().length()!=9)				
 						JOptionPane.showMessageDialog(null, "中转中心装车单格式错误");				
 					else{	
-						String data=area.getText();
-						String[] str=data.split("\n");
-					    ArrayList<String> arr=new ArrayList<String>();
-					    for(int i=0;i<str.length;i++){
-					    	arr.add(str[i]);
-					    }
+//						String data=area.getText();
+//						String[] str=data.split("\n");
+//					    ArrayList<String> arr=new ArrayList<String>();
+//					    for(int i=0;i<str.length;i++){
+//					    	arr.add(str[i]);
+//					    }
 						LoadingListZZVO vo=new LoadingListZZVO(inf.getText(),datef.getText(),
-								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),arr,Double.valueOf(cf.getText()));		
+								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),area.getText(),Double.valueOf(cf.getText()),pf.getText());		
 						JOptionPane.showMessageDialog(newin, "保存至中转中心装车单");
 						loadinglistzzdata.record(vo);
 						InvoiceUI_LoadingListZZ.this.dispose();

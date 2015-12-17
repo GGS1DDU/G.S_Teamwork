@@ -2,15 +2,10 @@ package elms.businesslogic.invoicebl;
 
 import java.io.IOException;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
 
 import elms.businesslogic_service.invoiceblservice.RecivalListBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
-import elms.dataservice.financedataservice.BankAccountDataService;
-import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.IncomeDataService;
-import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.invoicedataservice.ArrivalListDataService;
 import elms.dataservice.invoicedataservice.IncomeListDataService;
 import elms.dataservice.invoicedataservice.LoadingListDataService;
@@ -18,12 +13,8 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
-import elms.dataservice.managerdataservice.FreightStrategyDataService;
-import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
 import elms.dataservice.memberdataservice.DriverDataService;
-import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.RecivalListPO;
 import elms.vo.RecivalListVO;
@@ -62,7 +53,7 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	public RecivalListDataService getRecivalListData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
             return df.getRecivalListData();		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -73,7 +64,7 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	public RecivalListVO inquiry(String id) throws IOException {
 		RecivalListPO po=recivallistdata.find(id);
 		if(po!=null){
-			RecivalListVO vo=new RecivalListVO(po.getID(),po.getTime(),po.getCenterID(),po.getOrderID(),po.getFrom(),po.getState());
+			RecivalListVO vo=new RecivalListVO(po.getID(),po.getTime(),po.getCenterID(),po.getOrderID(),po.getFrom(),po.getState(),po.getPlace());
 			
 //			System.out.println(po.getID()+"  "+po.getTime()+"  "+po.getCenterID()+"  "+po.getOrderID()+"  "+po.getFrom()+"   "+po.getState());
 			return vo;
@@ -83,7 +74,7 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	}
 
 	public RecivalListVO record(RecivalListVO vo) throws IOException {
-		RecivalListPO po=new RecivalListPO(vo.getID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),vo.getState());
+		RecivalListPO po=new RecivalListPO(vo.getID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),vo.getState(),vo.getPlace());
 		recivallistdata.insert(po);
 		return vo;
 	}
@@ -123,39 +114,6 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 		return null;
 	}
 	public CarDataService getCarData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public StorageDataService getStorageData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public FreightStrategyDataService getFreightStrategyData()
-			throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}

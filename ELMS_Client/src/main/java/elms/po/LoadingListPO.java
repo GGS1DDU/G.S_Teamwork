@@ -3,11 +3,8 @@ package elms.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LoadingListPO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4860237118376678854L;
+public class LoadingListPO extends InvoicePO implements Serializable{
+	private static final long serialVersionUID = -1679107517967715487L;
 	String id;//单据id
 	String time;//装车日期
 	String shopNumber;//本营业厅编号
@@ -16,12 +13,14 @@ public class LoadingListPO implements Serializable{
 	String carNumber;//车辆代号
 	String surpervisor;//监装员
 	String supercargo;//押运员
-	ArrayList<String> orderNumber;
+	String orderNumber;
+//	ArrayList<String> orderNumber;
 	double cost;//运费
+	String place;
 	
 
 	public LoadingListPO(String id,String time,String shopNumber,String transportNumber,String arrival,String carNumber,
-			String surpervisor,String supercargo,ArrayList<String> orderNumber,double cost){
+			String surpervisor,String supercargo,String orderNumber,double cost,String place){
 		super();
 		this.id=id;
 		this.time=time;
@@ -32,7 +31,8 @@ public class LoadingListPO implements Serializable{
 		this.surpervisor=surpervisor;
 		this.supercargo=supercargo;
 		this.orderNumber=orderNumber;
-		this.cost=cost;		
+		this.cost=cost;	
+		this.place=place;
 	}
 	public String getID(){
 		return id;
@@ -58,10 +58,13 @@ public class LoadingListPO implements Serializable{
 	public String getSupercargo(){
 		return supercargo;
 	}
-	public ArrayList<String> getOrderNumber(){
+	public String getOrderNumber(){
 		return orderNumber;
 	}
 	public double getCost(){
 		return cost;
+	}
+	public String getPlace(){
+		return place;
 	}
 }

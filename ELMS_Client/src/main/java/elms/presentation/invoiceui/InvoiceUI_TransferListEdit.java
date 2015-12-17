@@ -55,7 +55,7 @@ public class InvoiceUI_TransferListEdit extends JFrame{
 		
 		final JPanel newin=new JPanel();
 		newin.setLayout(null);
-		add(newin);newin.setBounds(0,0,this.getWidth(),3*this.getHeight()/5);
+		add(newin);newin.setBounds(0,0,this.getWidth(),4*this.getHeight()/5);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel id=new JLabel("单据ID");
@@ -67,10 +67,10 @@ public class InvoiceUI_TransferListEdit extends JFrame{
 		idf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel date=new JLabel("装车日期");
-		newin.add(date);date.setBounds(120,60,80,20);
+		newin.add(date);date.setBounds(120,55,80,20);
 		final JTextField df=new JTextField(vo.getTime());
 		df.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
-		newin.add(df);df.setBounds(220, 60, 100, 24);
+		newin.add(df);df.setBounds(220, 55, 100, 24);
 		df.setEditable(Edit);
 		df.setHorizontalAlignment(SwingConstants.CENTER);
 		if(Edit){
@@ -86,71 +86,79 @@ public class InvoiceUI_TransferListEdit extends JFrame{
 		
 		JLabel transferID=new JLabel("中转单编号");
 		//21位
-		newin.add(transferID);transferID.setBounds(120,100,80,20);
+		newin.add(transferID);transferID.setBounds(120,90,80,20);
 		final JTextField tif=new JTextField(vo.getTransferID());
 		tif.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(tif);tif.setBounds(220, 100, 160, 24);tif.setEditable(Edit);
+		newin.add(tif);tif.setBounds(220, 90, 160, 24);tif.setEditable(Edit);
 		tif.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel transportNum=new JLabel("航班号/车次号");
-		newin.add(transportNum);transportNum.setBounds(120,140,90,20);
+		newin.add(transportNum);transportNum.setBounds(120,125,90,20);
 		final JTextField tnf=new JTextField(vo.getTransportNum());
 		tnf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(tnf);tnf.setBounds(220,140, 150, 24);tnf.setEditable(Edit);
+		newin.add(tnf);tnf.setBounds(220,125, 150, 24);tnf.setEditable(Edit);
 		tnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel departurePlace=new JLabel("出发地");
 		newin.add(departurePlace);
-		departurePlace.setBounds(120, 180, 80, 20);
+		departurePlace.setBounds(120, 160, 80, 20);
 		final JTextField dpf=new JTextField(vo.getDeparture());
 		dpf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(dpf);dpf.setBounds(220, 180, 100, 24);dpf.setEditable(Edit);
+		newin.add(dpf);dpf.setBounds(220, 160, 100, 24);dpf.setEditable(Edit);
 		dpf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel arrivalPlace=new JLabel("到达地");
 		newin.add(arrivalPlace);
-		arrivalPlace.setBounds(120, 220, 80, 20);
+		arrivalPlace.setBounds(120, 195, 80, 20);
 		final JTextField apf=new JTextField(vo.getArrival());
 		apf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(apf);apf.setBounds(220, 220, 100, 24);apf.setEditable(Edit);
+		newin.add(apf);apf.setBounds(220, 195, 100, 24);apf.setEditable(Edit);
 		apf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel seatNum=new JLabel("货柜号");
-		newin.add(seatNum);seatNum.setBounds(120,260,80,20);
+		newin.add(seatNum);seatNum.setBounds(120,230,80,20);
 		final JTextField snf=new JTextField(vo.getSeatNumber());
 		snf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(snf);snf.setBounds(220, 260, 100, 24);snf.setEditable(Edit);
+		newin.add(snf);snf.setBounds(220, 230, 100, 24);snf.setEditable(Edit);
 		snf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel supervisor=new JLabel("监装员");
-		newin.add(supervisor);supervisor.setBounds(120,300,80,20);
+		newin.add(supervisor);supervisor.setBounds(120,265,80,20);
 		final JTextField s1f=new JTextField(vo.getSurpervior());
 		s1f.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(s1f);s1f.setBounds(220, 300, 100, 24);s1f.setEditable(Edit);
+		newin.add(s1f);s1f.setBounds(220, 265, 100, 24);s1f.setEditable(Edit);
 		s1f.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel orderID=new JLabel("订单条形号码");
-		newin.add(orderID);orderID.setBounds(120,340,80,20);
-		ArrayList<String> arr=new ArrayList<String>(vo.getOrderID());
-		String[] strs=new String[arr.size()];
-		String str=null;
-		for(int i=0;i<arr.size();i++){
-			strs[i]=arr.get(i)+"\n";
-			str+=strs[i];
-		}		
-		final JTextArea area=new JTextArea(str);
+		newin.add(orderID);orderID.setBounds(120,300,80,20);
+//		ArrayList<String> arr=new ArrayList<String>(vo.getOrderID());
+//		String[] strs=new String[arr.size()];
+//		String str=null;
+//		for(int i=0;i<arr.size();i++){
+//			strs[i]=arr.get(i)+"\n";
+//			str+=strs[i];
+//		}		
+//		final JTextArea area=new JTextArea(str);
+		final JTextArea area=new JTextArea(vo.getOrderID());
 		area.setLineWrap(true);
 		area.setFont(new Font("SanSerif",Font.PLAIN,12));
 		JScrollPane pane=new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		newin.add(pane);
 		pane.setViewportView(area);
-		pane.setBounds(220,340,100,64);
+		pane.setBounds(220,300,100,64);
 		
 		JLabel cost=new JLabel("运费");
-		newin.add(cost);cost.setBounds(120,420,80,20);
+		newin.add(cost);cost.setBounds(120,375,80,20);
 		final JTextField cf=new JTextField(String.valueOf(vo.getCost()));
 		cf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(cf);cf.setBounds(220, 300, 100, 24);cf.setEditable(Edit);
+		newin.add(cf);cf.setBounds(220, 375, 100, 24);cf.setEditable(Edit);
+		cf.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel place=new JLabel("所属中转中心");
+		newin.add(place);place.setBounds(120,375,80,20);
+		final JTextField pf=new JTextField(String.valueOf(vo.getCost()));
+		pf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
+		newin.add(pf);pf.setBounds(220, 375, 100, 24);pf.setEditable(Edit);
 		cf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonpanel=new JPanel();
@@ -159,7 +167,7 @@ public class InvoiceUI_TransferListEdit extends JFrame{
 		buttonpanel.add(cancle);
 		cancle.setBounds(this.getWidth()/2+90,25,100,30);
 		add(buttonpanel);
-		buttonpanel.setBounds(0,3*this.getHeight()/5,this.getWidth(),70);
+		buttonpanel.setBounds(0,4*this.getHeight()/5,this.getWidth(),70);
 		
 		cancle.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

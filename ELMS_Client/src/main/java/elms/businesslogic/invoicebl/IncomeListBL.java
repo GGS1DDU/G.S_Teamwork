@@ -2,15 +2,10 @@ package elms.businesslogic.invoicebl;
 
 import java.io.IOException;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
 
 import elms.businesslogic_service.invoiceblservice.IncomeListBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
-import elms.dataservice.financedataservice.BankAccountDataService;
-import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.IncomeDataService;
-import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.invoicedataservice.ArrivalListDataService;
 import elms.dataservice.invoicedataservice.IncomeListDataService;
 import elms.dataservice.invoicedataservice.LoadingListDataService;
@@ -18,12 +13,8 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
-import elms.dataservice.managerdataservice.FreightStrategyDataService;
-import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
 import elms.dataservice.memberdataservice.DriverDataService;
-import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.IncomeListPO;
 import elms.vo.IncomeListVO;
@@ -38,7 +29,7 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 	public IncomeListVO inquiry(String id) throws IOException {
 		IncomeListPO po=incomelistdata.find(id);
 		if(po!=null){
-			IncomeListVO vo=new IncomeListVO(po.getID(),po.getPostage(),po.getCourier(),po.getTime(),po.getOrderID());
+			IncomeListVO vo=new IncomeListVO(po.getID(),po.getPostage(),po.getCourier(),po.getTime(),po.getOrderID(),po.getPlace());
 			return vo;
 		}else
 		return null;
@@ -46,7 +37,7 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 	}
 
 	public IncomeListVO record(IncomeListVO vo) throws IOException {
-		IncomeListPO po=new IncomeListPO(vo.getID(),vo.getPostage(),vo.getCourier(),vo.getTime(),vo.getOrderID());
+		IncomeListPO po=new IncomeListPO(vo.getID(),vo.getPostage(),vo.getCourier(),vo.getTime(),vo.getOrderID(),vo.getPlace());
 		incomelistdata.insert(po);
 		return vo;
 	}
@@ -94,7 +85,7 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 	public IncomeListDataService getIncomeListData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
 		return df.getIncomeListData();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -128,47 +119,6 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 	}
 
 	public CarDataService getCarData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public StorageDataService getStorageData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public FreightStrategyDataService getFreightStrategyData()
-			throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}

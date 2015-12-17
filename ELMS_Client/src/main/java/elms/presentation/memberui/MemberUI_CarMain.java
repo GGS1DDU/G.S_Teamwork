@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -25,6 +27,7 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.memberbl.CarBL;
 import elms.presentation.invoiceui.InvoiceUI_YYTStaff;
 import elms.presentation.invoiceui.InvoiceUI_YYTStaff_IL;
 import elms.presentation.invoiceui.InvoiceUI_YYTStaff_LL;
@@ -67,6 +70,8 @@ public class MemberUI_CarMain extends JFrame{
 		JMenu m5=new JMenu("车辆信息管理");
 		m5.setSelected(true);m5.setEnabled(false);
 		JMenu m6=new JMenu("司机信息管理");
+		JMenu m7=new JMenu("车辆初始化");
+		JMenu m8=new JMenu("司机初始化");
 		
 		bar.add(m1);
 		bar.add(m2);
@@ -74,6 +79,8 @@ public class MemberUI_CarMain extends JFrame{
 		bar.add(m4);
 		bar.add(m5);
 		bar.add(m6);
+		bar.add(m7);
+		bar.add(m8);
 		
 		setJMenuBar(bar);
 		m1.addMenuListener(new MenuListener(){
@@ -124,6 +131,54 @@ public class MemberUI_CarMain extends JFrame{
 			public void menuSelected(MenuEvent e) {
 				MemberUI_CarMain.this.dispose();
 				new MemberUI_DriverMain(vo);
+			}
+			public void menuDeselected(MenuEvent e) {			
+			}
+			public void menuCanceled(MenuEvent e) {		
+			}		
+		});
+		
+		m7.addMenuListener(new MenuListener(){
+			public void menuSelected(MenuEvent e) {
+				int a=(int)(Math.random()*1000);
+				String s=a+"";
+				
+				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化车辆");
+				if(obj.equals(s)){
+					MemberUI_CarMain.this.dispose();
+					new MemberUI_CarInit(vo);
+					CarBL cardata=new CarBL();
+					try{
+						cardata.init();
+					}catch(IOException e1){
+						e1.printStackTrace();
+					}
+				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
+				
+			}
+			public void menuDeselected(MenuEvent e) {			
+			}
+			public void menuCanceled(MenuEvent e) {		
+			}		
+		});
+		
+		m8.addMenuListener(new MenuListener(){
+			public void menuSelected(MenuEvent e) {
+				int a=(int)(Math.random()*1000);
+				String s=a+"";
+				
+				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化司机");
+				if(obj.equals(s)){
+					MemberUI_CarMain.this.dispose();
+					new MemberUI_DriverInit(vo);
+					CarBL cardata=new CarBL();
+					try{
+						cardata.init();
+					}catch(IOException e1){
+						e1.printStackTrace();
+					}
+				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
+				
 			}
 			public void menuDeselected(MenuEvent e) {			
 			}

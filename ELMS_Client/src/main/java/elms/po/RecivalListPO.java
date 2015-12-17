@@ -2,18 +2,16 @@ package elms.po;
 
 import java.io.Serializable;
 
-public class RecivalListPO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8105038715671597319L;
+public class RecivalListPO extends InvoicePO implements Serializable{
+	private static final long serialVersionUID = 788430721492741089L;
 	String id;
 	String time;
 	String centerID;
 	String orderID;
 	String from;
 	String state;
-	public RecivalListPO(String i,String t,String ci,String o,String f,String s){
+	String place;
+	public RecivalListPO(String i,String t,String ci,String o,String f,String s,String p){
 		super();
 		this.id=i;
 		this.centerID=ci;
@@ -21,6 +19,7 @@ public class RecivalListPO implements Serializable{
 		this.orderID=o;
 		this.from=f;
 		this.state=s;
+		this.place=p;
 	}
 	public String getCenterID(){
 		return centerID;
@@ -39,6 +38,9 @@ public class RecivalListPO implements Serializable{
 	}
 	public String getState(){
 		return state;
+	}
+	public String getPlace(){
+		return place;
 	}
 
 }

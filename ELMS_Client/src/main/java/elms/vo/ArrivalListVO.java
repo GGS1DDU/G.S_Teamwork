@@ -1,18 +1,20 @@
 package elms.vo;
 
-public class ArrivalListVO {
+public class ArrivalListVO extends InvoiceVO{
 
 	String id;
 	String order;
 	String time;
 	String state;
 	String from;
-	public ArrivalListVO(String i,String o,String t,String s,String f){
+	String place;
+	public ArrivalListVO(String i,String o,String t,String s,String f,String p){
 		this.id=i;
 		this.order=o;
 		this.time=t;
 		this.state=s;
 		this.from=f;
+		this.place=p;
 	}
 	public String getID(){
 		return id;
@@ -28,6 +30,9 @@ public class ArrivalListVO {
 	}
 	public String getFrom(){
 		return from;
+	}
+	public String getPlace(){
+		return place;
 	}
 
 }

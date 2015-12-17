@@ -46,7 +46,7 @@ public class InvoiceUI_IncomeList extends JFrame{
 		final JPanel newin=new JPanel();
 		newin.setLayout(null);
 		add(newin);
-		newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10);
+		newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10+10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel invoiceNum=new JLabel("单据ID");
@@ -107,6 +107,15 @@ public class InvoiceUI_IncomeList extends JFrame{
 		newin.add(pane);
 		pane.setViewportView(area);
 		pane.setBounds(220,180,100,64);
+		
+		JLabel place=new JLabel("所属营业厅");
+		newin.add(place);
+		place.setBounds(120,250,80,20);
+		final JTextField pf=new JTextField();
+		pf.setFont(new Font("SanSerif",Font.PLAIN,12));
+		newin.add(pf);
+		pf.setBounds(220,250,100,24);
+		pf.setHorizontalAlignment(SwingConstants.CENTER);
 			
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
@@ -117,7 +126,7 @@ public class InvoiceUI_IncomeList extends JFrame{
 		save.setBounds(this.getWidth()/2-140,25,100,30);
 		cancel.setBounds(this.getWidth()/2+30, 25, 100, 30);
 		add(buttonpanel);
-		buttonpanel.setBounds(0, 7*this.getHeight()/10,this.getWidth(),70);
+		buttonpanel.setBounds(0, 7*this.getHeight()/10+10,this.getWidth(),70);
 		
 		save.addActionListener(new ActionListener(){
 			IncomeListBL incomelistdata=new IncomeListBL();
@@ -127,13 +136,15 @@ public class InvoiceUI_IncomeList extends JFrame{
 					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}"))				
 						JOptionPane.showMessageDialog(null, "营业厅收款单格式错误");				
 					else{	
-						String data=area.getText();
-						String[] str=data.split("\n");
-					    ArrayList<String> arr=new ArrayList<String>();
-					    for(int i=0;i<str.length;i++){
-					    	arr.add(str[i]);
-					    }
-						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),arr);		
+//						String data=area.getText();
+//						String[] str=data.split("\n");
+//					    ArrayList<String> arr=new ArrayList<String>();
+//					    for(int i=0;i<str.length;i++){
+//					    	arr.add(str[i]);
+//					    }						
+//						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),arr,pf.getText());		
+						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),area.getText(),pf.getText());		
+
 						JOptionPane.showMessageDialog(newin, "保存至营业厅装车单");
 						incomelistdata.record(vo);
 						InvoiceUI_IncomeList.this.dispose();

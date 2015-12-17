@@ -2,7 +2,7 @@ package elms.vo;
 
 import java.util.ArrayList;
 
-public class LoadingListVO {
+public class LoadingListVO extends InvoiceVO{
 	String id;//单据id
 	String time;//装车日期
 	String shopNumber;//本营业厅编号
@@ -11,11 +11,13 @@ public class LoadingListVO {
 	String carNumber;//车辆代号
 	String surpervisor;//监装员
 	String supercargo;//押运员
-	ArrayList<String> orderNumber;
+	String orderNumber;
+//	ArrayList<String> orderNumber;
 	double cost;//运费
+	String place;
 
 	public LoadingListVO(String id,String time,String shopNumber,String transportNumber,String arrival,String carNumber,
-			String surpervisor,String supercargo,ArrayList<String> orderNumber,double cost){
+			String surpervisor,String supercargo,String orderNumber,double cost,String p){
 		this.id=id;
 		this.time=time;
 		this.shopNumber=shopNumber;
@@ -25,7 +27,8 @@ public class LoadingListVO {
 		this.surpervisor=surpervisor;
 		this.supercargo=supercargo;
 		this.orderNumber=orderNumber;
-		this.cost=cost;				
+		this.cost=cost;			
+		this.place=p;
 	}
 
 	public String getID(){
@@ -52,10 +55,13 @@ public class LoadingListVO {
 	public String getSupercargo(){
 		return supercargo;
 	}
-	public ArrayList<String> getOrderNumber(){
+	public String getOrderNumber(){
 		return orderNumber;
 	}
 	public double getCost(){
 		return cost;
+	}
+	public String getPlace(){
+		return place;
 	}
 }

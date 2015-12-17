@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -25,7 +27,10 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.memberbl.CarBL;
+import elms.presentation.memberui.MemberUI_CarInit;
 import elms.presentation.memberui.MemberUI_CarMain;
+import elms.presentation.memberui.MemberUI_DriverInit;
 import elms.presentation.memberui.MemberUI_DriverMain;
 import elms.vo.LoadingListVO;
 import elms.vo.UserVO;
@@ -65,6 +70,9 @@ public class InvoiceUI_YYTStaff_LL extends JFrame{
 		JMenu m4=new JMenu("收款单管理");
 		JMenu m5=new JMenu("车辆信息管理");
 		JMenu m6=new JMenu("司机信息管理");
+		JMenu m7=new JMenu("车辆初始化");
+		JMenu m8=new JMenu("司机初始化");
+		
 		
 		bar.add(m1);
 		bar.add(m2);
@@ -72,6 +80,8 @@ public class InvoiceUI_YYTStaff_LL extends JFrame{
 		bar.add(m4);
 		bar.add(m5);
 		bar.add(m6);
+		bar.add(m7);
+		bar.add(m8);
 		
 		setJMenuBar(bar);
 		m1.addMenuListener(new MenuListener(){
@@ -129,6 +139,54 @@ public class InvoiceUI_YYTStaff_LL extends JFrame{
 			}		
 		});
 		
+		m7.addMenuListener(new MenuListener(){
+			public void menuSelected(MenuEvent e) {
+				int a=(int)(Math.random()*1000);
+				String s=a+"";
+				
+				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化车辆");
+				if(obj.equals(s)){
+					InvoiceUI_YYTStaff_LL.this.dispose();
+					new MemberUI_CarInit(vo);
+					CarBL cardata=new CarBL();
+					try{
+						cardata.init();
+					}catch(IOException e1){
+						e1.printStackTrace();
+					}
+				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
+				
+			}
+			public void menuDeselected(MenuEvent e) {			
+			}
+			public void menuCanceled(MenuEvent e) {		
+			}		
+		});
+		
+		m8.addMenuListener(new MenuListener(){
+			public void menuSelected(MenuEvent e) {
+				int a=(int)(Math.random()*1000);
+				String s=a+"";
+				
+				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化司机");
+				if(obj.equals(s)){
+					InvoiceUI_YYTStaff_LL.this.dispose();
+					new MemberUI_DriverInit(vo);
+					CarBL cardata=new CarBL();
+					try{
+						cardata.init();
+					}catch(IOException e1){
+						e1.printStackTrace();
+					}
+				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
+				
+			}
+			public void menuDeselected(MenuEvent e) {			
+			}
+			public void menuCanceled(MenuEvent e) {		
+			}		
+		});
+		
 		JLabel jl=new JLabel("   当前用户： "+vo.getName()+"   身份： "+vo.getJob()+"   编号： "+vo.getId());
 		jl.setForeground(Color.lightGray);
 		JPanel user=new JPanel();
@@ -167,11 +225,11 @@ public class InvoiceUI_YYTStaff_LL extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu(" ID ");JMenu j2=new Menu(" 装车日期 ");JMenu j3=new Menu(" 营业厅编号 ");
-		JMenu j4=new Menu(" 汽运编号 ");JMenu j5=new Menu(" 到达地 ");JMenu j6=new Menu(" 车辆代号 ");
-		JMenu j7=new Menu(" 监装员 ");JMenu j8=new Menu(" 押运员 ");JMenu j9=new Menu(" 运费 ");
+		JMenu j1=new Menu(" ID");JMenu j2=new Menu(" 装车日期");JMenu j3=new Menu(" 营业厅编号");
+		JMenu j4=new Menu(" 汽运编号");JMenu j5=new Menu(" 到达地");JMenu j6=new Menu(" 车辆代号");
+		JMenu j7=new Menu(" 监装员");JMenu j8=new Menu(" 押运员");JMenu j9=new Menu(" 运费");JMenu j10=new Menu(" 所属营业厅");
 		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);
-		jbar.add(j6);jbar.add(j7);jbar.add(j8);jbar.add(j9);
+		jbar.add(j6);jbar.add(j7);jbar.add(j8);jbar.add(j9);jbar.add(j10);
 		//订单条形号码不在这里显示了
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
@@ -214,9 +272,9 @@ public class InvoiceUI_YYTStaff_LL extends JFrame{
 					arr=temp;
 				text.setText("");
 				for(LoadingListVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getTime()+"   "+alvo.getShopNumber()+"   "+
-				alvo.getTransportNumber()+"   "+alvo.getArrival()+"   "+alvo.getCarNumber()+"   "+
-				alvo.getSurpervior()+"   "+alvo.getSupercargo()+"   "+alvo.getCost()+"\r\n");
+					text.append(alvo.getID()+alvo.getTime()+alvo.getShopNumber()+
+				alvo.getTransportNumber()+alvo.getArrival()+alvo.getCarNumber()+
+				alvo.getSurpervior()+alvo.getSupercargo()+alvo.getCost()+alvo.getPlace()+"\r\n");
 			}
 		});
 		

@@ -126,11 +126,12 @@ public class InvoiceUI_ZZZXStaff_LL extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu("  ID  ");JMenu j2=new Menu("  装车日期  ");
-		JMenu j4=new Menu("  汽运编号  ");JMenu j5=new Menu("  到达地  ");JMenu j6=new Menu("  车辆代号  ");
-		JMenu j7=new Menu("  监装员  ");JMenu j8=new Menu("  押运员  ");JMenu j9=new Menu("  运费  ");
+		JMenu j1=new Menu("  ID");JMenu j2=new Menu("  装车日期");
+		JMenu j4=new Menu("  汽运编号");JMenu j5=new Menu("  到达地");JMenu j6=new Menu("  车辆代号");
+		JMenu j7=new Menu("  监装员");JMenu j8=new Menu("  押运员");JMenu j9=new Menu("  运费");
+		JMenu j10=new Menu("  所属中转中心");
 		jbar.add(j1);jbar.add(j2);             jbar.add(j4);jbar.add(j5);
-		jbar.add(j6);jbar.add(j7);jbar.add(j8);jbar.add(j9);
+		jbar.add(j6);jbar.add(j7);jbar.add(j8);jbar.add(j9);jbar.add(j10);
 		//订单条形号码不在这里显示了
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
@@ -175,7 +176,7 @@ public class InvoiceUI_ZZZXStaff_LL extends JFrame{
 				for(LoadingListZZVO alvo:arr)
 					text.append(alvo.getID()+"   "+alvo.getTime()+"   "+
 				alvo.getTransportNumber()+"   "+alvo.getArrival()+"   "+alvo.getCarNumber()+"   "+
-				alvo.getSurpervior()+"   "+alvo.getSupercargo()+"   "+alvo.getCost()+"\r\n");
+				alvo.getSurpervior()+"   "+alvo.getSupercargo()+"   "+alvo.getCost()+alvo.getPlace()+"\r\n");
 			}
 		});
 		

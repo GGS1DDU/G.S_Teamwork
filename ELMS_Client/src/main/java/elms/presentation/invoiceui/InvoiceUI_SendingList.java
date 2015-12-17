@@ -33,9 +33,9 @@ public class InvoiceUI_SendingList extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	
-//	public static void main(String args[]){
-//		  new InvoiceUI_SendingList();
-//	  }
+	public static void main(String args[]){
+		  new InvoiceUI_SendingList();
+	  }
 	  
 	public InvoiceUI_SendingList(){
 		setLayout(null);
@@ -54,42 +54,42 @@ public class InvoiceUI_SendingList extends JFrame{
 		JLabel invoiceNum=new JLabel("单据ID");
 		//前两位sl 后面五位数字
 		newin.add(invoiceNum);
-		invoiceNum.setBounds(100,20,80,20);
+		invoiceNum.setBounds(100,10,80,20);
 		final JTextField inf=new JTextField();
 		inf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(inf);
-		inf.setBounds(220, 20, 100, 24);
+		inf.setBounds(220, 10, 100, 24);
 		inf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		
 		JLabel orderNum=new JLabel("托运订单条形号码");
 		//10位
 		newin.add(orderNum);
-		orderNum.setBounds(100,60,120,20);
+		orderNum.setBounds(100,40,120,20);
 		final JTextField onf=new JTextField();
 		onf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(onf);
-		onf.setBounds(220, 60, 100, 24);
+		onf.setBounds(220, 40, 100, 24);
 		onf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		
 		JLabel courier=new JLabel("派件员");
 		newin.add(courier);
-		courier.setBounds(100, 100, 80, 20);
+		courier.setBounds(100, 70, 80, 20);
 		final JTextField cf=new JTextField();
 		cf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(cf);
-		cf.setBounds(220, 100, 100, 24);
+		cf.setBounds(220, 70, 100, 24);
 		cf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		
 		JLabel date=new JLabel("到达日期");
 		newin.add(date);
-		date.setBounds(100,140,80,20);
+		date.setBounds(100,100,80,20);
 		final JTextField datef=new JTextField();
 		datef.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
 		newin.add(datef);
-		datef.setBounds(220, 140, 100, 24);
+		datef.setBounds(220, 100, 100, 24);
 		datef.setHorizontalAlignment(SwingConstants.CENTER);
 		datef.addMouseListener(new MouseAdapter(){
 			
@@ -101,6 +101,14 @@ public class InvoiceUI_SendingList extends JFrame{
 			}
 		});
 		
+		JLabel place=new JLabel("所属营业厅");
+		newin.add(place);
+		place.setBounds(100, 130, 80, 20);
+		final JTextField pf=new JTextField();
+		pf.setFont(new Font("SanSerif",Font.PLAIN,12));
+		newin.add(pf);
+		pf.setBounds(220, 130, 100, 24);
+		pf.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
@@ -121,7 +129,7 @@ public class InvoiceUI_SendingList extends JFrame{
 					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||onf.getText().length()!=10)				
 						JOptionPane.showMessageDialog(null, "营业厅派件单格式错误");				
 					else{				
-						SendingListVO vo=new SendingListVO(inf.getText(),onf.getText(),cf.getText(),datef.getText());		
+						SendingListVO vo=new SendingListVO(inf.getText(),onf.getText(),cf.getText(),datef.getText(),pf.getText());		
 						JOptionPane.showMessageDialog(newin, "保存至营业厅派件单");
 						sendinglistdata.record(vo);
 						InvoiceUI_SendingList.this.dispose();

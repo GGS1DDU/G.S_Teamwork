@@ -1,12 +1,6 @@
-package elms.po;
+package elms.vo;
 
-import java.io.Serializable;
-
-public class StorageListPO extends InvoicePO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7582414198025670599L;
+public class StorageListVO extends InvoiceVO{
 	String id;
 	String area;//分区
 	String seat;//位置
@@ -15,9 +9,9 @@ public class StorageListPO extends InvoicePO implements Serializable{
 	String timeOut;//出库时间
 	String state;//状态
 	String name;//中转中心
-	public StorageListPO(String id, String area, String seat, String order,
+	public StorageListVO(String id, String area, String seat, String order,
 			String timeIn, String timeOut, String state, String name) {
-		super();
+		
 		this.id = id;
 		this.area = area;
 		this.seat = seat;
@@ -27,7 +21,7 @@ public class StorageListPO extends InvoicePO implements Serializable{
 		this.state = state;
 		this.name = name;
 	}
-	public StorageListPO() {
+	public StorageListVO() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getId() {
@@ -54,6 +48,6 @@ public class StorageListPO extends InvoicePO implements Serializable{
 	public String getName() {
 		return name;
 	}
-	
+
 
 }

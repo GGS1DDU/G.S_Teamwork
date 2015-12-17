@@ -138,9 +138,9 @@ public class InvoiceUI_ZZZXStaff extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu("   ID  ");JMenu j2=new Menu("   装车日期   ");JMenu j3=new Menu("   中转中心编号   ");
-		JMenu j4=new Menu("   中转单编号    ");JMenu j5=new Menu("   出发地   ");JMenu j6=new Menu("  货物到达状态 ");
-		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);jbar.add(j6);
+		JMenu j1=new Menu("  ID");JMenu j2=new Menu("  装车日期 ");JMenu j3=new Menu("  中转中心编号");
+		JMenu j4=new Menu("  中转单编号");JMenu j5=new Menu("    出发地");JMenu j6=new Menu("  货物到达状态");JMenu j7=new Menu("   所属中转中心");
+		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);jbar.add(j6);jbar.add(j7);
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
 		add(info2);
@@ -182,7 +182,7 @@ public class InvoiceUI_ZZZXStaff extends JFrame{
 					arr=temp;
 				text.setText("");
 				for(RecivalListVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getTime()+"   "+alvo.getCenterID()+"   "+alvo.getOrderID()+"   "+alvo.getFrom()+"   "+alvo.getState()+"\r\n");				
+					text.append(alvo.getID()+"   "+alvo.getTime()+"   "+alvo.getCenterID()+"   "+alvo.getOrderID()+"   "+alvo.getFrom()+"   "+alvo.getState()+"   "+alvo.getPlace()+"\r\n");				
 			}
 			
 		});

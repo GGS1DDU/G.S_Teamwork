@@ -1,15 +1,17 @@
 package elms.vo;
 
-public class SendingListVO {
+public class SendingListVO extends InvoiceVO{
 	String courier;
 	String time;
 	String id;
 	String orderID;
-	public SendingListVO(String i,String o,String u,String t){
+	String place;
+	public SendingListVO(String i,String o,String u,String t,String p){
 		this.id= i;
 		this.courier =u;
 		this.time =t;
 		this.orderID=o;
+		this.place=p;
 	}
 	public String getID(){
 		return id;
@@ -22,6 +24,9 @@ public class SendingListVO {
 	}
 	public String getTime(){
 		return time;
+	}
+	public String getPlace(){
+		return place;
 	}
 
 

@@ -3,11 +3,11 @@ package elms.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LoadingListZZPO implements Serializable{
+public class LoadingListZZPO extends InvoicePO implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -451114294366844449L;
+	private static final long serialVersionUID = 635541957124985766L;
 		//ZZZX loadingList
 		String id;//单据id
 		String time;//装车日期
@@ -16,11 +16,13 @@ public class LoadingListZZPO implements Serializable{
 		String carNumber;//车辆代号
 		String surpervisor;//监装员
 		String supercargo;//押运员
-		ArrayList<String> orderNumber;
+		String orderNumber;
+//		ArrayList<String> orderNumber;
 		double cost;//运费
+		String place;
 
 		public LoadingListZZPO(String id,String time,String transportNumber,String arrival,String carNumber,
-				String surpervisor,String supercargo,ArrayList<String> orderNumber,double cost){
+				String surpervisor,String supercargo,String orderNumber,double cost,String p){
 			super();
 			this.id=id;
 			this.time=time;
@@ -30,7 +32,8 @@ public class LoadingListZZPO implements Serializable{
 			this.surpervisor=surpervisor;
 			this.supercargo=supercargo;
 			this.orderNumber=orderNumber;
-			this.cost=cost;		
+			this.cost=cost;	
+			this.place=p;
 		}
 		public LoadingListZZPO() {
 			// TODO 自动生成的构造函数存根
@@ -56,10 +59,13 @@ public class LoadingListZZPO implements Serializable{
 		public String getSupercargo(){
 			return supercargo;
 		}
-		public ArrayList<String> getOrderNumber(){
+		public String getOrderNumber(){
 			return orderNumber;
 		}
 		public double getCost(){
 			return cost;
+		}
+		public String getPlace(){
+			return place;
 		}
 }

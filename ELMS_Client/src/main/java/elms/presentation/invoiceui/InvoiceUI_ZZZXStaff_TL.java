@@ -86,6 +86,8 @@ public class InvoiceUI_ZZZXStaff_TL extends JFrame{
 		m3.addMenuListener(new MenuListener(){
 
 			public void menuSelected(MenuEvent e) {
+				InvoiceUI_ZZZXStaff_TL.this.dispose();
+				new InvoiceUI_ZZZXStaff_LL(vo);
 			}
 
 			public void menuDeselected(MenuEvent e) {		
@@ -133,11 +135,12 @@ public class InvoiceUI_ZZZXStaff_TL extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu(" ID ");JMenu j2=new Menu(" 装车日期 ");JMenu j3=new Menu(" 中转单编号 ");
-		JMenu j4=new Menu(" 航班号/车次号 ");JMenu j5=new Menu(" 出发地 ");JMenu j6=new Menu(" 到达地 ");
-		JMenu j7=new Menu(" 货柜号 ");JMenu j8=new Menu(" 监装员 ");JMenu j9=new Menu(" 运费 ");
+		JMenu j1=new Menu("ID");JMenu j2=new Menu(" 装车日期");JMenu j3=new Menu(" 中转单编号");
+		JMenu j4=new Menu(" 航班号/车次号");JMenu j5=new Menu(" 出发地");JMenu j6=new Menu(" 到达地");
+		JMenu j7=new Menu(" 货柜号");JMenu j8=new Menu(" 监装员");JMenu j9=new Menu(" 运费");
+		JMenu j10=new Menu(" 所属中转中心");
 		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);jbar.add(j6);
-		jbar.add(j7);jbar.add(j8);jbar.add(j9);
+		jbar.add(j7);jbar.add(j8);jbar.add(j9);jbar.add(j10);
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
 		add(info2);
@@ -180,7 +183,7 @@ public class InvoiceUI_ZZZXStaff_TL extends JFrame{
 				text.setText("");
 				for(TransferListVO alvo:arr)
 					text.append(alvo.getID()+alvo.getTime()+alvo.getTransferID()+alvo.getTransportNum()+alvo.getDeparture()+
-							alvo.getArrival()+alvo.getSeatNumber()+alvo.getSurpervior()+alvo.getCost()+"\r\n");				
+							alvo.getArrival()+alvo.getSeatNumber()+alvo.getSurpervior()+alvo.getCost()+alvo.getPlace()+"\r\n");				
 			}			
 		});
 		

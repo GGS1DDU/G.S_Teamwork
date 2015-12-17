@@ -45,14 +45,14 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 		setLayout(null);
 		setTitle("收款单  No："+vo.getID());
 		setResizable(false);
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,3*screenHeight/8);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2);
 		setVisible(true);
 		
 		Edit=edit;
 		
 		final JPanel newin=new JPanel();
 		newin.setLayout(null);
-		add(newin);newin.setBounds(0,0,this.getWidth(),3*this.getHeight()/5);
+		add(newin);newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10+10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel id=new JLabel("单据ID");
@@ -98,20 +98,29 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 		
 		JLabel orderNum=new JLabel("订单条形号码");
 		newin.add(orderNum);orderNum.setBounds(120,180,80,20);
-		ArrayList<String> arr=new ArrayList<String>(vo.getOrderID());
-		String[] strs=new String[arr.size()];
-		String str=null;
-		for(int i=0;i<arr.size();i++){
-			strs[i]=arr.get(i)+"\n";
-			str+=strs[i];
-		}		
-		final JTextArea area=new JTextArea(str);
+//		ArrayList<String> arr=new ArrayList<String>(vo.getOrderID());
+//		String[] strs=new String[arr.size()];
+//		String str=null;
+//		for(int i=0;i<arr.size();i++){
+//			strs[i]=arr.get(i)+"\n";
+//			str+=strs[i];
+//		}		
+//		final JTextArea area=new JTextArea(str);
+		final JTextArea area=new JTextArea(vo.getOrderID());
 		area.setLineWrap(true);
 		area.setFont(new Font("SanSerif",Font.PLAIN,12));
 		JScrollPane pane=new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		newin.add(pane);
 		pane.setViewportView(area);
 		pane.setBounds(220,180,100,64);
+		
+		JLabel place=new JLabel("所属营业厅");
+		newin.add(place);place.setBounds(120,250,80,20);
+		final JTextField pf=new JTextField(vo.getCourier());
+		pf.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
+		newin.add(pf);pf.setBounds(220, 250, 100, 24);
+		pf.setEditable(Edit);
+		pf.setHorizontalAlignment(SwingConstants.CENTER);
 			
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
@@ -119,7 +128,7 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 		buttonpanel.add(cancle);
 		cancle.setBounds(this.getWidth()/2+90,25,100,30);
 		add(buttonpanel);
-		buttonpanel.setBounds(0,3*this.getHeight()/5,this.getWidth(),70);
+		buttonpanel.setBounds(0,7*this.getHeight()/10+10,this.getWidth(),70);
 		
 		cancle.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {

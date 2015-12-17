@@ -62,10 +62,10 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		idf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel date=new JLabel("装车日期");
-		newin.add(date);date.setBounds(120,60,80,20);
+		newin.add(date);date.setBounds(120,55,80,20);
 		final JTextField df=new JTextField(vo.getTime());
 		df.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
-		newin.add(df);df.setBounds(220, 60, 100, 24);
+		newin.add(df);df.setBounds(220, 55, 100, 24);
 		df.setEditable(Edit);
 		df.setHorizontalAlignment(SwingConstants.CENTER);
 		if(Edit){
@@ -80,43 +80,51 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		}
 		
 		JLabel centerNum=new JLabel("中转中心编号");
-		newin.add(centerNum);centerNum.setBounds(120,100,80,20);
+		newin.add(centerNum);centerNum.setBounds(120,90,80,20);
 		final JTextField cnf=new JTextField(vo.getCenterID());
 		cnf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(cnf);cnf.setBounds(220, 100, 100, 24);cnf.setEditable(Edit);
+		newin.add(cnf);cnf.setBounds(220, 90, 100, 24);cnf.setEditable(Edit);
 		cnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel transferNum=new JLabel("中转单编号");
-		newin.add(transferNum);transferNum.setBounds(120,140,80,20);
+		newin.add(transferNum);transferNum.setBounds(120,125,80,20);
 		final JTextField tnf=new JTextField(vo.getOrderID());
 		tnf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(tnf);tnf.setBounds(220, 140, 160, 24);tnf.setEditable(Edit);
+		newin.add(tnf);tnf.setBounds(220, 125, 160, 24);tnf.setEditable(Edit);
 		tnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel departurePlace=new JLabel("出发地");
 		newin.add(departurePlace);
-		departurePlace.setBounds(120, 180, 80, 20);
+		departurePlace.setBounds(120, 160, 80, 20);
 		final JTextField dpf=new JTextField(vo.getFrom());
 		dpf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(dpf);dpf.setBounds(220, 180, 100, 24);dpf.setEditable(Edit);
+		newin.add(dpf);dpf.setBounds(220, 160, 100, 24);dpf.setEditable(Edit);
 		dpf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel state=new JLabel("到达状态");
-		newin.add(state);state.setBounds(120, 220, 80, 20);
+		newin.add(state);state.setBounds(120, 195, 80, 20);
 		final JComboBox<String> jcb=new JComboBox<String>();
 		if(Edit){
 			jcb.addItem("完整");jcb.addItem("损坏");jcb.addItem("丢失");
 			jcb.setBackground(Color.WHITE);jcb.setFont(new Font("楷体",Font.BOLD,12));
-			newin.add(jcb);jcb.setBounds(220, 220, 100, 24);
+			newin.add(jcb);jcb.setBounds(220, 195, 100, 24);
 			jcb.setSelectedItem(vo.getState());
 		}else{
 			JLabel sf=new JLabel(vo.getState());sf.setFont(new Font("楷体",Font.BOLD,12));
 			sf.setOpaque(false);
 			newin.add(sf);
-			sf.setBounds(220, 220, 100, 24);
+			sf.setBounds(220, 195, 100, 24);
 			sf.setHorizontalAlignment(SwingConstants.CENTER);
 			sf.setEnabled(false);
 		}
+		
+		JLabel place=new JLabel("出发地");
+		newin.add(place);
+		place.setBounds(120, 230, 80, 20);
+		final JTextField pf=new JTextField(vo.getFrom());
+		pf.setFont(new Font("SansSerif",Font.PLAIN,12));
+		newin.add(pf);pf.setBounds(220,230, 100, 24);pf.setEditable(Edit);
+		pf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
@@ -124,7 +132,7 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		buttonpanel.add(cancle);
 		cancle.setBounds(this.getWidth()/2+90,25,100,30);
 		add(buttonpanel);
-		buttonpanel.setBounds(0,7*this.getHeight()/10,this.getWidth(),70);
+		buttonpanel.setBounds(0,7*this.getHeight()/10,this.getWidth(),90);
 		
 		cancle.addActionListener(new ActionListener(){
 

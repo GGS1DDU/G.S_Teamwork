@@ -57,33 +57,33 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 		
 		JLabel id=new JLabel("单据ID");
 		newin.add(id);
-		id.setBounds(100,20,80,20);
+		id.setBounds(100,10,80,20);
 		final JTextField idf=new JTextField(vo.getID());
 		newin.add(idf);
-		idf.setBounds(220,20,100,24);
+		idf.setBounds(220,10,100,24);
 		idf.setEditable(Edit);
 		idf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel orderNum=new JLabel("托运订单条形号码");
-		newin.add(orderNum);orderNum.setBounds(100,60,120,20);
+		newin.add(orderNum);orderNum.setBounds(100,40,120,20);
 		final JTextField onf=new JTextField(vo.getOrderID());
 		onf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(onf);onf.setBounds(220, 60, 100, 24);onf.setEditable(Edit);
+		newin.add(onf);onf.setBounds(220, 40, 100, 24);onf.setEditable(Edit);
 		onf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel courier=new JLabel("派件员");
 		newin.add(courier);
-		courier.setBounds(100, 100, 80, 20);
+		courier.setBounds(100, 70, 80, 20);
 		final JTextField cf=new JTextField(vo.getCourier());
 		cf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(cf);cf.setBounds(220, 100, 100, 24);cf.setEditable(Edit);
+		newin.add(cf);cf.setBounds(220, 70, 100, 24);cf.setEditable(Edit);
 		cf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel date=new JLabel("到达日期");
-		newin.add(date);date.setBounds(100,140,80,20);
+		newin.add(date);date.setBounds(100,100,80,20);
 		final JTextField df=new JTextField(vo.getTime());
 		df.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
-		newin.add(df);df.setBounds(220, 140, 100, 24);
+		newin.add(df);df.setBounds(220, 100, 100, 24);
 		df.setEditable(Edit);
 		df.setHorizontalAlignment(SwingConstants.CENTER);
 		if(Edit){
@@ -96,6 +96,15 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 				}
 			});
 		}
+		
+		JLabel place=new JLabel("派件员");
+		newin.add(place);
+		place.setBounds(100, 130, 80, 20);
+		final JTextField pf=new JTextField(vo.getCourier());
+		pf.setFont(new Font("SansSerif",Font.PLAIN,12));
+		newin.add(pf);pf.setBounds(220, 130, 100, 24);pf.setEditable(Edit);
+		pf.setHorizontalAlignment(SwingConstants.CENTER);
+		
 			
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);

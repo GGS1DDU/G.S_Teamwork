@@ -2,15 +2,11 @@ package elms.businesslogic.invoicebl;
 
 import java.io.IOException;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
 
+import elms.businesslogic.dealbl.DealBL;
 import elms.businesslogic_service.invoiceblservice.SendingListBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
-import elms.dataservice.financedataservice.BankAccountDataService;
-import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.IncomeDataService;
-import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.invoicedataservice.ArrivalListDataService;
 import elms.dataservice.invoicedataservice.IncomeListDataService;
 import elms.dataservice.invoicedataservice.LoadingListDataService;
@@ -18,18 +14,16 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
-import elms.dataservice.managerdataservice.FreightStrategyDataService;
-import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
 import elms.dataservice.memberdataservice.DriverDataService;
-import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.SendingListPO;
 import elms.vo.SendingListVO;
 
 public class SendingListBL implements SendingListBLService,DataFactory{
 	SendingListDataService sendinglistdata;
+	
+	
 	
 	public SendingListBL(){
 		sendinglistdata=getSendingListData();
@@ -49,7 +43,7 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 	public SendingListVO inquiry(String id) throws IOException {
 		SendingListPO po=sendinglistdata.find(id);
 		if(po!=null){
-			SendingListVO vo=new SendingListVO(po.getID(),po.getOrderID(),po.getCourier(),po.getTime());
+			SendingListVO vo=new SendingListVO(po.getID(),po.getOrderID(),po.getCourier(),po.getTime(),po.getPlace());
 			
 //			System.out.println(po.getID()+"   "+po.getOrderID()+"   "+po.getCourier()+"   "+po.getTime());
 			return vo;
@@ -64,9 +58,12 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 	}
 
 	public SendingListVO record(SendingListVO vo) throws IOException{
-		SendingListPO po=new SendingListPO(vo.getID(),vo.getOrderID(),vo.getCourier(),vo.getTime());
+		DealBL dealdata=new DealBL();
+		SendingListPO po=new SendingListPO(vo.getID(),vo.getOrderID(),vo.getCourier(),vo.getTime(),vo.getPlace());
 		sendinglistdata.insert(po);
+		dealdata.updataTrack(po.getOrderID(), "到达"+po.getPlace());
 		return vo;
+		
 	}
 
 	public void delete(SendingListVO vo) throws IOException {
@@ -89,7 +86,7 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 	public SendingListDataService getSendingListData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
 		return df.getSendingListData();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -142,55 +139,6 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 
 
 	public CarDataService getCarData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public StorageDataService getStorageData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public FreightStrategyDataService getFreightStrategyData()
-			throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-
-	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}

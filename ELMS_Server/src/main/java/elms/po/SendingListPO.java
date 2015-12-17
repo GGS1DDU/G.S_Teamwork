@@ -2,21 +2,21 @@ package elms.po;
 
 import java.io.Serializable;
 
-public class SendingListPO implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 9130639063981787683L;
+public class SendingListPO extends InvoicePO implements Serializable{
+
+	private static final long serialVersionUID = -7351852415123070993L;
 	String courier;//单据ID
 	String time;//托运订单条形号码
 	String id;//派送员
 	String orderID;//到达日期
-	public SendingListPO(String i,String o,String u,String t){
+	String place;//所属营业厅
+	public SendingListPO(String i,String o,String u,String t,String p){
 		super();
 		this.id= i;
 		this.courier =u;
 		this.time =t;
 		this.orderID=o;
+		this.place=p;
 		
 	}
 	public SendingListPO() {
@@ -34,6 +34,8 @@ public class SendingListPO implements Serializable{
 	public String getTime(){
 		return time;
 	}
-	
+	public String getPlace(){
+		return place;
+	}
 
 }
