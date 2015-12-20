@@ -14,18 +14,17 @@ public class RMIHelper {
 	
 	private static boolean inited = false;
 	
-	
 	public synchronized static void init() throws ServerInitException {
         if (inited) {
             return;
         }
         try{
         	
-        	System.setProperty("java.rmi.server.hostname", "192.168.191.1");
+        	System.setProperty("java.rmi.server.hostname", RMI_ip.getIP());
     		LocateRegistry.createRegistry(1099);		
 			DataFactory df=new DataFactoryImpl();
-			
-			java.rmi.Naming.rebind("rmi://192.168.191.1:1099/df",df);
+			String s="rmi://"+RMI_ip.getIP()+":1099/df";
+			java.rmi.Naming.rebind(s,df);
 			System.out.println("Server Ready!");
 						
 					

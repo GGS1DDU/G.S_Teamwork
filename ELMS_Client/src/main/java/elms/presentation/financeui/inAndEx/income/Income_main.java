@@ -125,7 +125,7 @@ public class Income_main extends JPanel{
 		
 		hall.addActionListener(new ActionListener(){
 
-			@Override
+	
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String sHall = hall.getSelectedItem().toString();
@@ -167,7 +167,6 @@ public class Income_main extends JPanel{
 	private void addActionListener(){
 		add.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame j_add = new Income_add(vo);
@@ -177,7 +176,7 @@ public class Income_main extends JPanel{
 		});
 		delete.addActionListener(new ActionListener(){
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame j_find = new Income_find(vo);
@@ -187,7 +186,6 @@ public class Income_main extends JPanel{
 		});
 		findByTime.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame find_time = new Income_findTime(hall.getSelectedItem().toString());
@@ -197,7 +195,7 @@ public class Income_main extends JPanel{
 		});
 		refresh.addActionListener(new ActionListener(){
 
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				text.setText("");

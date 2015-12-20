@@ -13,7 +13,11 @@ import java.util.ArrayList;
 
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.UserPO;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class UserData extends UnicastRemoteObject implements UserDataService{
 	
 	File file=new File("User.ser");
@@ -37,10 +41,12 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		for(int i=0;i<arr.size();i++){
 			System.out.println(arr.get(i).getId());
 		}
-	}
+	} 
 	
 	
-	
+	/**
+	 * 根据ID找到一个UserPO
+	 */
 	public UserPO find(String id) throws IOException   {		
 		UserPO po=null;
 		ObjectInputStream os=null;
@@ -67,7 +73,9 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 			os.close();
 		}				
 	} 
-
+	/**
+	 * 返回所有UserPO
+	 */
 	public ArrayList<UserPO> findall() throws RemoteException, IOException {
 		ArrayList<UserPO> arr=new ArrayList<UserPO>();
 		ObjectInputStream os=null;
@@ -93,7 +101,9 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 	} 
 	
 	
-
+	/**
+	 * 新增User
+	 */
 	public void insert(UserPO po) throws IOException  {
 		ObjectOutputStream oos=null;
 		try {
@@ -111,7 +121,9 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 
 		
 	}
-
+	/**
+	 * 删除User
+	 */
 	public void delete(UserPO po) throws RemoteException {
 		UserPO PO=null;
 		ObjectInputStream ois=null;
@@ -155,7 +167,9 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		}
 	}		
 }
-
+	/**
+	 * 更新一个user
+	 */
 	public void update(UserPO po) throws RemoteException {
 		delete(po);
 		try {
@@ -169,7 +183,9 @@ public class UserData extends UnicastRemoteObject implements UserDataService{
 		
 	
 		
-	
+	/**
+	 * 初始化
+	 */
 
 	public void init() throws RemoteException {
 		file.delete();

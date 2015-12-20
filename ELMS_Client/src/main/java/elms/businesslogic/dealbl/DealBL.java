@@ -3,40 +3,30 @@ package elms.businesslogic.dealbl;
 
 import java.io.IOException;
 import java.rmi.Naming;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import elms.businesslogic_service.dealblservice.DealBlService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
-import elms.dataservice.financedataservice.BankAccountDataService;
-import elms.dataservice.financedataservice.ExpenseDataService;
-import elms.dataservice.financedataservice.IncomeDataService;
-import elms.dataservice.financedataservice.InitAllDataService;
-import elms.dataservice.invoicedataservice.ArrivalListDataService;
-import elms.dataservice.invoicedataservice.IncomeListDataService;
-import elms.dataservice.invoicedataservice.LoadingListDataService;
-import elms.dataservice.invoicedataservice.LoadingListZZDataService;
-import elms.dataservice.invoicedataservice.RecivalListDataService;
-import elms.dataservice.invoicedataservice.SendingListDataService;
-import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
-import elms.dataservice.managerdataservice.FreightStrategyDataService;
-import elms.dataservice.managerdataservice.StaffDataService;
-import elms.dataservice.memberdataservice.CarDataService;
-import elms.dataservice.memberdataservice.DriverDataService;
-import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.DealPO;
 import elms.vo.DealVO;
 
+/**
+ * @author ZWH
+ *
+ */
+
+
 public class DealBL implements DealBlService ,DataFactory{
-	
 	DealDataService dealdata;
-	
+	/**
+	 * 构造方法:从服务器端获取dealdata
+	 */
 	public DealBL(){
 		dealdata=getDealData();
 	}
+	
 
 	public boolean BuildOrder(DealVO vo) throws IOException {		
 		if(FindOrder(vo.getOrderID())==null){
@@ -59,7 +49,7 @@ public class DealBL implements DealBlService ,DataFactory{
 		
 	
 	}
-
+	
 	public DealVO FindOrder(String orderID) throws IOException  {
 		DealPO dealpo=dealdata.find(orderID);
 		
@@ -73,6 +63,7 @@ public class DealBL implements DealBlService ,DataFactory{
 	}
 	
 	
+
 	public ArrayList<DealVO> FindAllOrder() throws IOException{
 		ArrayList<DealVO> arr0=new ArrayList<DealVO>();
 		ArrayList<DealPO> arr1=dealdata.findall();
@@ -105,6 +96,11 @@ public class DealBL implements DealBlService ,DataFactory{
 		
 	}
 
+	/**
+	 * 根据订单号以及所在营业厅或者中转中心 更新物流信息
+	 * @param orderID
+	 * @param newTrack 
+	 */
 	public boolean updataTrack(String orderID,String newTrack) throws IOException{
 		DealVO vo=FindOrder(orderID);
 		if(vo==null){
@@ -128,7 +124,7 @@ public class DealBL implements DealBlService ,DataFactory{
 	public DealDataService getDealData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
 			return df.getDealData();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -137,92 +133,6 @@ public class DealBL implements DealBlService ,DataFactory{
 	}
 	
 	public UserDataService getUserData() {
-		return null;
-	}
-
-	public LogDataService getLogData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public StorageDataService getStorageData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public FreightStrategyDataService getFreightStrategyData()
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public InitAllDataService getInitData() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public StaffDataService getStaffData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public ArrivalListDataService getArrivalListData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public SendingListDataService getSendingListData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public IncomeListDataService getIncomeListData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public RecivalListDataService getRecivalListData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public LoadingListDataService getLoadingListData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public TransferListDataService getTransferListData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public LoadingListZZDataService getLoadingListZZData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public DriverDataService getDriverData() {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	public CarDataService getCarData() {
-		// TODO 自动生成的方法存根
 		return null;
 	}
 

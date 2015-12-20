@@ -16,6 +16,11 @@ import java.util.ArrayList;
 
 import elms.dataservice.dealdataservice.DealDataService;
 import elms.po.DealPO;
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealData extends UnicastRemoteObject implements DealDataService {
 	File file=new File("Deal.ser");
 	FileInputStream fis;
@@ -42,7 +47,9 @@ public class DealData extends UnicastRemoteObject implements DealDataService {
 	}*/
 
 	
-
+	/**
+	 * 根据ID返回一个DealPO
+	 */
 	public DealPO find(String id) throws RemoteException,IOException {
 		fis=new FileInputStream(file);
 		ois=new ObjectInputStream(fis);
@@ -67,7 +74,10 @@ public class DealData extends UnicastRemoteObject implements DealDataService {
 			ois.close();
 		} 
 	}
-
+	
+	/**
+	 * 返回所有DealPO
+	 */
 	public ArrayList<DealPO> findall() throws IOException{
 		fis=new FileInputStream(file);
 		ois=new ObjectInputStream(fis);
@@ -103,7 +113,10 @@ public class DealData extends UnicastRemoteObject implements DealDataService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	/**
+	 * 新增一个DealPO
+	 */
 	public void insert(DealPO po) throws RemoteException ,IOException{
 		try{
 			FileOutputStream fs=new FileOutputStream(file,true);
@@ -118,7 +131,9 @@ public class DealData extends UnicastRemoteObject implements DealDataService {
 		
 		
 	}
-
+	/**
+	 * 删除一个DealPO
+	 */
 	public void delete(DealPO po) throws RemoteException ,IOException{
 		fis=new FileInputStream(file);
 		ois=new ObjectInputStream(fis);
@@ -157,14 +172,18 @@ public class DealData extends UnicastRemoteObject implements DealDataService {
 		}
 	}
 
-	
+	/**
+	 * 删除与传入DealPO的ID相同的po，再插入
+	 */
 	public void update(DealPO po) throws RemoteException,IOException {
 		delete(po);
 		insert(po);
 		
 		
 	}
-
+	/**
+	 * 初始化
+	 */
 	public  void init() throws RemoteException {
 		file.delete();	
 		DealPO po=new DealPO();

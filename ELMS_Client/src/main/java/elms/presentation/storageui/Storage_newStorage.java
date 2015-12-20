@@ -130,10 +130,10 @@ public Storage_newStorage(){
 					Storage_newStorage.this.dispose();	
 				}}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated catch block   
 				e.printStackTrace();
 			}
-
+        
 		}
 		
 	});

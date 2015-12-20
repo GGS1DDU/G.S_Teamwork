@@ -1,0 +1,11 @@
+package elms.init;
+
+import javax.swing.JOptionPane;
+
+public class RMI_ip {
+private static String IP;
+	public static void main(String[] args) {
+		IP=JOptionPane.showInputDialog("请输入新的IP地址");
+	}
+
+}

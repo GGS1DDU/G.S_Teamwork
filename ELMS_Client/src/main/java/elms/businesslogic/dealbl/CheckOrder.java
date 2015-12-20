@@ -1,8 +1,16 @@
 package elms.businesslogic.dealbl;
 
 
+/**
+ * @author ZWH
+ * @version 1.0
+ */
 public class CheckOrder {
-	
+	/**
+	 * 
+	 * @param ID
+	 * @return
+	 */
 	public int IsTenNumbers(String ID){
 		String [] id=ID.split("");
 		if(id.length!=10){

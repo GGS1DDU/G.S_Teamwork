@@ -71,7 +71,7 @@ public class Income_findTime extends JFrame{
 		
 		ok.addActionListener(new ActionListener(){
 
-			@Override
+		
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				
@@ -103,7 +103,7 @@ public class Income_findTime extends JFrame{
 		
 		cancel.addActionListener(new ActionListener(){
 
-			@Override
+	
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				Income_findTime.this.dispose();

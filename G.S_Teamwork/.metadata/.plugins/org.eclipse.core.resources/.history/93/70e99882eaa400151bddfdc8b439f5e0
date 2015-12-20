@@ -1,0 +1,15 @@
+package elms.init;
+
+import javax.swing.JOptionPane;
+
+public class RMI_ip {
+private static String IP=null;
+	public static void main(String[] args) {
+		String temp=JOptionPane.showInputDialog("请输入新的IP地址");
+		if(IP.matches("\\d{3}.\\d{3}.\\d{3}.\\d{1}"))
+			IP=temp;
+		else JOptionPane.showMessageDialog(null, "您输入的IP格式有误");
+		System.out.println("dd");	
+	}
+
+}

@@ -236,6 +236,7 @@ JButton cancel=new JButton("编辑(E)");
         	   storage.delete(getVO());
 			storage.storage_inRecord(newvo);
 			new Storage_editStorage(newvo,false);
+			Storage_main.table.updateUI();
 	}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

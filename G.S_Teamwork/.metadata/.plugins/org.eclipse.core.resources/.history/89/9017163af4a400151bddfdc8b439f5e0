@@ -1,0 +1,25 @@
+package elms.presentation.storageui;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+
+public class test extends JFrame{
+	Toolkit kit=Toolkit.getDefaultToolkit();
+	Dimension screenSize=kit.getScreenSize();
+	int screenWidth=(int) screenSize.getWidth();
+	int screenHeight=(int)screenSize.getHeight();
+	public static void main(String[] args) {
+		new test();
+	}
+public test(){
+	setLayout(null);
+	setTitle("库存管理");
+	setResizable(false);
+	setSize(screenWidth/2,3*screenHeight/4);
+	setLocation(screenWidth/4, screenHeight/8);
+	setVisible(true);
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+}

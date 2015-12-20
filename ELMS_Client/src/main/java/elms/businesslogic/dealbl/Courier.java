@@ -1,17 +1,26 @@
 package elms.businesslogic.dealbl;
 
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import elms.vo.DealVO;
 
+/**
+ * 
+ * @author ZWH
+ *	
+ */
 public class Courier {
 	ArrayList<DealVO> arr=new ArrayList<DealVO>();
 	
 	/**
-	 * 获得对应姓名的快递员当月快递件数的方法
+	 * 计算快递员当月的订单数量
+	 * @param name
+	 * @return number
+	 * @throws IOException
 	 */
 	public int getNumberOfOrderThisMonth(String name) throws IOException{
 		int number=0;

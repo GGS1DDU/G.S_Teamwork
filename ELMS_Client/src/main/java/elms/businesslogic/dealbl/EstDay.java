@@ -6,8 +6,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import elms.vo.DealVO;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class EstDay {
+	/**
+	 * 估算订单到达日期。
+	 * @param name1
+	 * @param name2
+	 * @return result
+	 */
 	public int Estimate(String name1,String name2) {
 		DealBL db=new DealBL();
 		int result=0;
@@ -41,8 +51,13 @@ public class EstDay {
 	}
 
 
-
-	public static long DaysBetweenTwoData(String time1,String time2){
+/**
+ * 计算两个日期之间的天数。
+ * @param time1
+ * @param time2
+ * @return result
+ */
+	private static long DaysBetweenTwoData(String time1,String time2){
 		long result=0;
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		try{

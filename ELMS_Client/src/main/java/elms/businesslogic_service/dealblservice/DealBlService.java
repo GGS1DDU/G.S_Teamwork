@@ -7,7 +7,12 @@ import elms.vo.DealVO;
 
 
 public interface DealBlService {
-				
+	/**
+	 * 
+	 * @param vo
+	 * @return
+	 * @throws IOException
+	 */
 	public boolean BuildOrder(DealVO vo) throws IOException;
 	
 	

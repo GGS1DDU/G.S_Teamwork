@@ -1,0 +1,74 @@
+package elms.presentation.storageui;
+
+import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
+
+import elms.businesslogic.ResultMessage;
+import elms.businesslogic.financebl.inandex.IncomeManager;
+import elms.presentation.financeui.inAndEx.income.Income_main;
+import elms.vo.FIncomeVO;
+
+public class TableModel extends AbstractTableModel {
+	protected Vector content = null;
+	int count = 0;
+	private String[] title_name ;
+	
+	public TableModel(String[] title) {
+		content = new Vector();
+		this.count = title.length;
+		this.title_name = title;
+	}
+
+	// 给每一个需要列表的类写一个类继承自tablemodel，重写addRow方法
+	public void addRow(Object[] con) {
+		Vector v = new Vector(count);
+		for(int i = 0; i < con.length; i++){
+			v.add(con[i]);
+		}
+		content.addElement(v);
+	}
+
+	//只删除table中，不删除数据层的内容
+	public void removeRow(int row) {
+		content.removeElement(row);
+	}
+	
+	public void removeAllRows(int count) {
+		while(count>=0) {
+			content.removeElementAt(count);
+			count--;	
+		}	
+	}
+
+	public void setValueAt(Object value, int row, int col) {
+		((Vector) content.get(row)).remove(col);
+		((Vector) content.get(row)).add(col, value);
+		this.fireTableCellUpdated(row, col); 
+	}
+
+	public String getColumnName(int col) {
+		return title_name[col];
+	}
+
+
+	public int getColumnCount() {
+		return title_name.length;
+
+	}
+
+
+	public int getRowCount() {
+		return content.size();
+	}
+
+
+	public Object getValueAt(int row, int col) {
+		return ((Vector) content.get(row)).get(col);
+	}
+
+}
