@@ -15,6 +15,7 @@ import elms.businesslogic.managerbl.StaffManager;
 import elms.presentation.financeui.inAndEx.expense.Expense_edit;
 import elms.presentation.financeui.inAndEx.expense.Expense_find;
 import elms.presentation.managerui.staff.staffhelper.GetIdentifier;
+import elms.presentation.managerui.staff.staffhelper.StaffList;
 import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.ScreenSize;
 import elms.vo.FExpenseVO;
@@ -36,8 +37,10 @@ public class StaffUI_find extends JFrame{
 	private GetIdentifier gi = new GetIdentifier();
 	private CheckFormat check;
 	private UserVO uservo;
-	public StaffUI_find(){
-		
+	private StaffList staffList;
+	
+	public StaffUI_find(StaffList list){
+		this.staffList = list;
 		check = new CheckFormat();
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +77,7 @@ public class StaffUI_find extends JFrame{
 					JOptionPane.showMessageDialog(null, "输入id格式错误！","失败",JOptionPane.ERROR_MESSAGE);
 				}else{
 				StaffVO vo = sm.findStaff(id_f.getText());
-				JFrame edit = new StaffUI_edit(vo);
+				JFrame edit = new StaffUI_edit(staffList,vo);
 				edit.setVisible(true);
 				StaffUI_find.this.dispose();
 				}

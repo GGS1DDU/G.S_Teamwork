@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -30,6 +31,7 @@ public class BankAccount_edit extends JFrame{
 	int screenHeight=(int)screenSize.getHeight();
 	
 	BankAccountManager bam = new BankAccountManager();
+	BankAccountList accountList;
 	
 	JPanel operator;
 	JPanel info;
@@ -47,10 +49,11 @@ public class BankAccount_edit extends JFrame{
 	public static void main(String[] args){
 		BankAccountVO vo = new BankAccountVO();
 		UserVO u_vo = new UserVO();
-		BankAccount_edit be = new BankAccount_edit(vo,u_vo);
+//		BankAccount_edit be = new BankAccount_edit(vo,u_vo);
 	}
 	
-	public BankAccount_edit(final BankAccountVO vo,UserVO u_vo){
+	public BankAccount_edit(BankAccountList list,final BankAccountVO vo,UserVO u_vo){
+		this.accountList = list;
 		setTitle("账户信息");
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,7 +108,21 @@ public class BankAccount_edit extends JFrame{
 				// TODO 自动生成的方法存根
 				try {
 					bam.changeAccount(vo.getID(), name_j.getText());
+					vo.setName(name_j.getText());
 					JOptionPane.showMessageDialog(null, "信息修改成功！");
+					
+					ArrayList<BankAccountVO> account = BankAccount_main.arr;
+					for(int i = 0; i < account.size(); i++){
+						BankAccountVO baVO = account.get(i);
+						if(baVO.getID().equals(vo.getID())){
+							account.remove(i);
+							account.add(i, vo);
+						}
+					}
+					
+					BankAccount_main.arr = account;
+					accountList.removeAllData();
+					accountList.addAllData(account);
 					BankAccount_edit.this.dispose();
 				} catch (IOException e) {
 					// TODO 自动生成的 catch 块

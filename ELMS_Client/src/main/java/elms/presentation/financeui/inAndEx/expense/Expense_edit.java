@@ -48,14 +48,16 @@ public class Expense_edit extends JFrame{
 	
 	private BankAccountManager bam = new BankAccountManager();
 	private ExpenseManager em = new ExpenseManager();
+	private ExpenseList exList;
 	
 	public static void main(String[] args){
 		FExpenseVO vo = new FExpenseVO();
 		UserVO vo1 = new UserVO();
-		JFrame jf = new Expense_edit(vo,vo1);
+//		JFrame jf = new Expense_edit(vo,vo1);
 	}
 	
-	public Expense_edit(final FExpenseVO vo,UserVO u_vo){
+	public Expense_edit(ExpenseList list,final FExpenseVO vo,UserVO u_vo){
+		this.exList = list;
 		this.exvo = vo;
 		this.uservo = u_vo;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -165,6 +167,9 @@ public class Expense_edit extends JFrame{
 						}
 					}
 					Expense_main.arr = in;
+					
+					exList.removeAllData();
+					exList.addAllData(in);
 					Expense_edit.this.dispose();
 				
 			}

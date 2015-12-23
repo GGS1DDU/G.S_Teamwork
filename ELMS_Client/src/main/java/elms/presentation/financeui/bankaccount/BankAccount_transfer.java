@@ -21,129 +21,151 @@ import elms.presentation.uihelper.UserInfo;
 import elms.vo.BankAccountVO;
 import elms.vo.UserVO;
 
-public class BankAccount_transfer extends JFrame{
+public class BankAccount_transfer extends JFrame {
 
 	int screenWidth = ScreenSize.screenWidth;
 	int screenHeight = ScreenSize.screenHeight;
-	
+
 	BankAccountManager bam = new BankAccountManager();
-	
+
 	JLabel j1;
 	JLabel j2;
 	JLabel j3;
-	
+
 	JComboBox<String> out;
 	JComboBox<String> in;
 	JTextField amount;
-	
+
 	JButton ok;
 	JButton back;
-	
-	public static void main(String[] args){
+
+	private BankAccountList accountList;
+
+	public static void main(String[] args) {
 		UserVO vo = new UserVO();
-		BankAccount_transfer bt = new BankAccount_transfer(vo);
+//		BankAccount_transfer bt = new BankAccount_transfer(vo);
 	}
-	
-	public BankAccount_transfer(UserVO vo){
+
+	public BankAccount_transfer(BankAccountList list, UserVO vo) {
+		this.accountList = list;
 		setLayout(null);
 		setTitle("转账");
-		setBounds(screenWidth/3,screenHeight/4,screenWidth/3,screenHeight/2+20);
+		setBounds(screenWidth / 3, screenHeight / 4, screenWidth / 3,
+				screenHeight / 2 + 20);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JPanel user = new UserInfo(vo);
 		user.setBounds(0, 0, this.getWidth(), 25);
 		add(user);
-		
+
 		j1 = new JLabel("转出账户");
-		j1.setBounds(this.getWidth()/5,this.getHeight()/6,80,30);
+		j1.setBounds(this.getWidth() / 5, this.getHeight() / 6, 80, 30);
 		add(j1);
-		
+
 		j2 = new JLabel("转入账户");
-		j2.setBounds(this.getWidth()/5,this.getHeight()*2/6,80,30);
+		j2.setBounds(this.getWidth() / 5, this.getHeight() * 2 / 6, 80, 30);
 		add(j2);
-		
+
 		j3 = new JLabel("转账金额");
-		j3.setBounds(this.getWidth()/5,this.getHeight()*3/6,80,30);
+		j3.setBounds(this.getWidth() / 5, this.getHeight() * 3 / 6, 80, 30);
 		add(j3);
-		
-		
+
 		String[] out_label = getAccounts();
 		String[] in_label = getAccounts();
 		out = new JComboBox<String>(out_label);
 		in = new JComboBox<String>(in_label);
-		out.setBounds(this.getWidth()/5+80,this.getHeight()/6,140,30);
-		in.setBounds(this.getWidth()/5+80,this.getHeight()*2/6,140,30);
+		out.setBounds(this.getWidth() / 5 + 80, this.getHeight() / 6, 140, 30);
+		in.setBounds(this.getWidth() / 5 + 80, this.getHeight() * 2 / 6, 140,
+				30);
 		add(out);
 		add(in);
-		
+
 		amount = new JTextField();
-		amount.setBounds(this.getWidth()/5+80,this.getHeight()*3/6,140,30);
+		amount.setBounds(this.getWidth() / 5 + 80, this.getHeight() * 3 / 6,
+				140, 30);
 		add(amount);
-		
+
 		ok = new JButton("确定");
-		ok.setBounds(this.getWidth()/6,this.getHeight()*4/6+15,80,30);
+		ok.setBounds(this.getWidth() / 6, this.getHeight() * 4 / 6 + 15, 80, 30);
 		add(ok);
-		
+
 		back = new JButton("返回");
-		back.setBounds(this.getWidth()*4/6,this.getHeight()*4/6+15,80,30);
+		back.setBounds(this.getWidth() * 4 / 6, this.getHeight() * 4 / 6 + 15,
+				80, 30);
 		add(back);
-	
-		back.addActionListener(new ActionListener(){
+
+		back.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				BankAccount_transfer.this.dispose();
 			}
-			
+
 		});
-		ok.addActionListener(new ActionListener(){
+		ok.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				
+
 				double money = Double.parseDouble(amount.getText());
 				try {
-					ResultMessage rm = bam.transferAccount(out.getSelectedItem().toString(),
-							in.getSelectedItem().toString(), money);
-					if(rm==ResultMessage.findIDFailed)
-						JOptionPane.showMessageDialog(null, "未找到对应账户！", "失败", JOptionPane.ERROR_MESSAGE);
-					if(rm==ResultMessage.lessThanMin)
-						JOptionPane.showMessageDialog(null, "账户余额不足","失败",JOptionPane.ERROR_MESSAGE);
-					else
-						JOptionPane.showMessageDialog(null, "成功转账！","成功",JOptionPane.INFORMATION_MESSAGE);
+					
+					String outName = out.getSelectedItem().toString();
+					String inName = in.getSelectedItem().toString();
+					ResultMessage rm = bam.transferAccount(outName,inName, money);
+					if (rm == ResultMessage.findIDFailed) {
+						JOptionPane.showMessageDialog(null, "未找到对应账户！", "失败",
+								JOptionPane.ERROR_MESSAGE);
+					} else if (rm == ResultMessage.lessThanMin) {
+						JOptionPane.showMessageDialog(null, "转出账户余额不足", "失败",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						ArrayList<BankAccountVO> account = BankAccount_main.arr;
+						for(int i = 0; i < account.size(); i++){
+							BankAccountVO outVO = bam.inquiryName(outName);
+							BankAccountVO inVO = bam.inquiryName(inName);
+							BankAccountVO vo = account.get(i);
+							if(vo.getName().equals(outName)){
+								account.remove(i);
+								account.add(i,outVO);
+							}else if(vo.getName().equals(inName)){
+								account.remove(i);
+								account.add(i,inVO);
+							}
+						}
+						
+						BankAccount_main.arr = account;
+						
+						//对应列表操作
+						accountList.removeAllData();
+						accountList.addAllData(account);
+						JOptionPane.showMessageDialog(null, "成功转账！", "成功",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
 				} catch (IOException e) {
 					// TODO 自动生成的 catch 块
 					e.printStackTrace();
 				}
 			}
-			
+
 		});
-		
-		
-		
-		
+
 		setVisible(true);
 	}
-	
-	public String[] getAccounts(){
-		
-			ArrayList<BankAccountVO> outArr = new ArrayList<BankAccountVO>();
-			try {
-				outArr = bam.getAllAccount();
-			} catch (RemoteException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
-			}
-			String[] out_label = new String[outArr.size()];
-			for(int i = 0; i < out_label.length; i++){
-				out_label[i] = outArr.get(i).getName();
-			}
-	
+
+	public String[] getAccounts() {
+
+		ArrayList<BankAccountVO> outArr = new ArrayList<BankAccountVO>();
+
+		outArr = bam.getAllAccount();
+
+		String[] out_label = new String[outArr.size()];
+		for (int i = 0; i < out_label.length; i++) {
+			out_label[i] = outArr.get(i).getName();
+		}
+
 		return out_label;
 	}
 }

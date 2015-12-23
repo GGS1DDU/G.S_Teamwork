@@ -1,5 +1,6 @@
 package elms.presentation.financeui.inAndEx;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,8 +13,11 @@ import javax.swing.JPanel;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.presentation.MyPanel;
 import elms.presentation.financeui.inAndEx.expense.Expense_main;
+import elms.presentation.financeui.inAndEx.income.IncomeList;
 import elms.presentation.financeui.inAndEx.income.Income_main;
+//import elms.presentation.financeui.inAndEx.income.Income_main;
 import elms.presentation.uihelper.ScreenSize;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.UserVO;
@@ -29,6 +33,7 @@ public class InAndEx_main extends JFrame{
 	JPanel expense_p;
 	JPanel static_p;
 //	JPanel contentPane;
+//	JPanel contentPane;
 	
 	
 	JMenu income_m;
@@ -38,18 +43,24 @@ public class InAndEx_main extends JFrame{
 	JMenuBar bar;
 	
 	public static void main(String[] args){
-		UserVO vo = new UserVO();
+		UserVO vo = new UserVO("00000001","123123","张文玘","快递员");
 		JFrame im = new InAndEx_main(vo);
 	}
 	
 	public InAndEx_main(final UserVO vo){
-		setLayout(null);
+
+//		setLayout(null);
 		setTitle("收支管理");
 		setResizable(false);
 		setSize(screenWidth/2,3*screenHeight/4);
 		setLocation(screenWidth/4, screenHeight/8);
 		d = new Dimension(this.getWidth(),this.getHeight());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+//		contentPane = new MyPanel("mainImage.jpg");
+//		contentPane.setBounds(0, 0, this.getWidth(), this.getHeight());
+//		add(contentPane);
+//		contentPane.setLayout(null);
 		
 //		contentPane = new JPanel();
 //		contentPane.setBounds(0, 0, this.getWidth(), this.getHeight());
@@ -73,8 +84,10 @@ public class InAndEx_main extends JFrame{
 		setJMenuBar(bar);
 		
 		income_p = new Income_main(d,vo);
+		
 		income_p.setLocation(0,25);
 		income_p.setVisible(true);
+		income_p.setOpaque(false);
 		add(income_p);
 		
 		expense_p = new Expense_main(d,vo);
@@ -163,7 +176,7 @@ public class InAndEx_main extends JFrame{
 			@Override
 			public void menuSelected(MenuEvent arg0) {
 				// TODO 自动生成的方法存根
-				JFrame time = new InAndEx_findTime();
+				JFrame time = new InAndEx_findTime(vo);
 				time.setVisible(true);
 				//为什么输入时建的窗口刚刚建出来的时候总是在这个窗口的下面？
 			}

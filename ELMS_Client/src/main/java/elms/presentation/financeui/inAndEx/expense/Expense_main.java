@@ -12,12 +12,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import elms.businesslogic.financebl.inandex.ExpenseManager;
+import elms.presentation.financeui.inAndEx.income.Income_edit;
+import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.ScreenSize;
 import elms.presentation.uihelper.TagPanel;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.FExpenseVO;
+import elms.vo.FIncomeVO;
 import elms.vo.UserVO;
 
 public class Expense_main extends JPanel{
@@ -43,8 +48,8 @@ public class Expense_main extends JPanel{
 	
 	private JButton add;
 	private JButton delete;
+	private JButton edit;
 	private JButton find;
-	private JButton refresh;
 	private JButton back;
 	
 	private JComboBox<String> type;   //支出类型（人员工资（月，快递元提成，司机计次，业务员月薪），物流运费（次），租金（按年）
@@ -58,6 +63,8 @@ public class Expense_main extends JPanel{
 	private UserVO u_vo;
 	
 	private ExpenseManager em = new ExpenseManager();
+	private ExpenseList exList;
+	private CheckFormat check;
 	
 	public static ArrayList<FExpenseVO> arr;
 	
@@ -65,6 +72,7 @@ public class Expense_main extends JPanel{
 	
 	
 	public Expense_main(Dimension d,UserVO u_vo){
+		check = new CheckFormat();
 		this.d = d;
 		setSize(d.width,d.height-25);
 		setLayout(null);
@@ -77,7 +85,7 @@ public class Expense_main extends JPanel{
 		add(tag);
 		
 		addButton();
-		addMenu();
+//		addMenu();
 		addList();
 		addTime();
 		
@@ -85,7 +93,7 @@ public class Expense_main extends JPanel{
 		String endTime = end.getText();
 		
 		getShowList(startTime,endTime);
-		showList();
+//		showList();
 		
 	}
 	
@@ -100,21 +108,21 @@ public class Expense_main extends JPanel{
 		
 		
 		add = new JButton("新建");
-		delete = new JButton("更改/删除");
-		find = new JButton("查询");
-		refresh = new JButton("刷新");   refresh.setForeground(Color.GREEN);
+		delete = new JButton("删除");
+		edit = new JButton("更改");
+		find = new JButton("查询");   
 		back = new JButton("返回");      back.setForeground(Color.red);
 		
 		add.setBounds(50, 30, 102, 30);
 		delete.setBounds(200, 30, 104, 30);  
-		find.setBounds(350, 30, 102, 30);
-		refresh.setBounds(560,15,80,30);  
+		edit.setBounds(350, 30, 102, 30);
+		find.setBounds(560,15,80,30);  
 		back.setBounds(560,55,80,30);
 		
 		bp.add(add);
 		bp.add(delete);
+		bp.add(edit);
 		bp.add(find);
-		bp.add(refresh);
 		bp.add(back);
 		
 		add.addActionListener(new ActionListener(){
@@ -122,7 +130,7 @@ public class Expense_main extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				JFrame addEx = new Expense_add(u_vo);
+				JFrame addEx = new Expense_add(exList,u_vo);
 				addEx.setVisible(true);
 			}
 			
@@ -133,8 +141,32 @@ public class Expense_main extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				JFrame findEx = new Expense_find(u_vo);
-				findEx.setVisible(true);
+//				JFrame findEx = new Expense_find(u_vo);
+//				findEx.setVisible(true);
+				exList.removeData();
+			}
+			
+		});
+		
+		edit.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				String id = exList.getSelectedID();
+				if (id == null) {
+					JOptionPane.showMessageDialog(null, "请选择要修改的支出项!");
+				} else {
+					try {
+						FExpenseVO inVO = em.inquiryExpense(id);
+						Expense_edit edit = new Expense_edit(exList,inVO, u_vo);
+						edit.setVisible(true);
+					} catch (Exception e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}
+
+				}
 			}
 			
 		});
@@ -144,19 +176,8 @@ public class Expense_main extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				getShowList(start.getText(),end.getText());
-				showList();
-			}
-			
-		});
-		
-		refresh.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				getShowList(start.getText(),end.getText());
-				showList();
+				JFrame findframe = new Expense_find(exList,u_vo);
+				findframe.setVisible(true);
 			}
 			
 		});
@@ -172,46 +193,13 @@ public class Expense_main extends JPanel{
 		});
 	}
 	
-	private void addMenu(){
-		class Menu extends JMenu{
-			public Menu(String s){
-				super(s);
-				this.setFont(new Font("楷体",Font.CENTER_BASELINE,14));
-			}
-		}
-		bar = new JMenuBar();
-		
-		jm1 = new Menu("   ID   ");
-		jm2 = new Menu("    支出记录时间 ");
-		jm3 = new Menu("   支出类型 ");
-		jm4 = new Menu("   支出金额 ");
-		jm5 = new Menu(" 支出账户");
-		jm6 = new Menu(" 实际支出人员");
-		jm7 = new Menu(" 支出记录人员");
-		bar.add(jm1);  bar.add(jm2);  bar.add(jm3);  bar.add(jm4);
-		bar.add(jm5);  bar.add(jm6);  bar.add(jm7);
-		bar.setBounds(10,50,this.getWidth()-20,25);
-
-		
-		add(bar);
-	}
+	
 	
 	private void addList(){
-		text = new JTextArea(10,10);
-		text.setEditable(false);
-		text.setFont(new Font("Serif",Font.PLAIN,14));
-	    
-		scrollP = new JPanel();
-		scrollP.setLayout(null);
-		scrollP.setBackground(Color.white);
-		
-		scrollP.setBounds(10,80,this.getWidth()-20,this.getHeight()/2-70);
-		scroll=new JScrollPane(text);
-		scrollP.add(scroll);
-		scroll.setBounds(0,0,this.getWidth()-20,this.getHeight()/2-70);
-		scroll.setBackground(Color.white);
-		
-		add(scrollP);
+
+		Dimension exD = new Dimension(d.width,d.height*2/3-100);
+		exList = new ExpenseList(exD,u_vo);
+		add(exList);
 	}
 	
 	private void getShowList(String startTime,String endTime){
@@ -219,7 +207,7 @@ public class Expense_main extends JPanel{
 
 			arr = em.inquiryAll();
 		}else if(startTime.length()<1||endTime.length()<1){
-			
+			arr = em.inquiryAll();
 		}else{
 			
 			arr = em.inquiryByTime(startTime, endTime);
@@ -227,23 +215,16 @@ public class Expense_main extends JPanel{
 	}
 	
 	private void showList(){
-		text.setText("");
+		exList.removeAllData();
 		if(arr==null){
 			return;
 		}
 		for(int i = 0; i < arr.size(); i++){
 			FExpenseVO vo = arr.get(i);
-			text.append(getOutput(vo));
+			exList.addData(vo);
 		}
 	}
-	
-	private String getOutput(FExpenseVO vo){
-		String s = " "+vo.getID()+"   "+vo.getTime()+"            "+vo.getCategory()+"                 "+vo.getExpense()+
-				"        "+
-				vo.getBankAccountName()+"      "+vo.getClerk()+"          "+vo.getAssistant()+"\r\n";
-		return s;
-	}
-	
+
 	private void addTime(){
 		j1 = new JLabel("起始时间：");
 		j2 = new JLabel("结束时间：");
@@ -274,6 +255,130 @@ public class Expense_main extends JPanel{
 					end.setText(sdf.format(new Date()));
 				}
 			}
+		});
+		
+		//开始和结束时间的输入框中加监听，自动显示规定时间内的支出项
+		start.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				if (start.getText().length() < 10) {
+					return;
+				}
+				if (check.checkData("yyyy-MM-dd hh:mm:ss", end.getText())) {
+					if (check.checkData("yyyy-MM-dd hh:mm:ss", start.getText())) {
+						if (check.lessThan("yyyy-MM-dd hh:mm:ss", start.getText(),
+								end.getText())) {
+							getShowList(start.getText(), end.getText());
+							showList();
+						} else {
+							JOptionPane
+									.showMessageDialog(null, "开始时间必须小于结束时间！");
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"请在开始时间一栏中输入格式为yyyy-MM-dd hh:mm:ss格式的时间！");
+					}
+				} else {
+					if (end.getText().length() < 1)
+						JOptionPane.showMessageDialog(null,
+								"请在结束时间一栏中输入格式为yyyy-MM-dd hh:mm:ss格式的时间!");
+				}
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				if (start.getText().length() < 10) {
+					return;
+				}
+				if (check.checkData("yyyy-MM-dd hh:mm:ss", end.getText())) {
+					if (check.checkData("yyyy-MM-dd hh:mm:ss", start.getText())) {
+						getShowList(start.getText(), end.getText());
+						showList();
+
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"请在开始时间一栏中输入格式为yyyy-MM-dd hh:mm:ss格式的时间！");
+					}
+				} else {
+					// if(end.getText().length()<1)
+					// JOptionPane.showMessageDialog(null,
+					// "请在结束时间一栏中输入格式为yyyy-MM-dd格式的时间!");
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				arr = em.inquiryAll();
+				showList();
+			}
+		});
+
+		end.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				if (end.getText().length() != 10)
+					return;
+				if (check.checkData("yyyy-MM-dd hh:mm:ss", end.getText())) {
+					if (check.checkData("yyyy-MM-dd hh:mm:ss", start.getText())) {
+						if (check.lessThan("yyyy-MM-dd hh:mm:ss", start.getText(),
+								end.getText())) {
+							getShowList(start.getText(), end.getText());
+							showList();
+						} else {
+							JOptionPane
+									.showMessageDialog(null, "开始时间必须小于结束时间！");
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"请在开始时间一栏中输入格式为yyyy-MM-dd hh:mm:ss时间！");
+					}
+				} else {
+
+					JOptionPane.showMessageDialog(null,
+							"请在结束时间一栏中输入格式为yyyy-MM-dd hh:mm:ss时间!");
+				}
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				if (end.getText().length() != 10)
+					return;
+				if (check.checkData("yyyy-MM-dd hh:mm:ss", end.getText())) {
+					if (check.checkData("yyyy-MM-dd hh:mm:ss", start.getText())) {
+						if (check.lessThan("yyyy-MM-dd hh:mm:ss", start.getText(),
+								end.getText())) {
+							getShowList(start.getText(), end.getText());
+							showList();
+						} else {
+							JOptionPane
+									.showMessageDialog(null, "开始时间必须小于结束时间！");
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"请在开始时间一栏中输入格式为yyyy-MM-dd hh:mm:ss时间！");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"请在结束时间一栏中输入格式为yyyy-MM-dd hh:mm:ss时间!");
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				arr = em.inquiryAll();
+				showList();
+			}
+
 		});
 	}
 }

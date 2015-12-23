@@ -38,24 +38,7 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 	public static void main(String args[]) throws IOException{
 		BankAccountManager bm = new BankAccountManager();
 		BankAccountVO vo1 = new BankAccountVO("ba00000001","zwq141250194", 0.0, "中国人民银行");
-//		System.out.println(bm.addAccount(vo1));
-//		System.out.println(bm.changeBalance("ba00000002", "income",500.0));
 
-//		BankAccountVO find = bm.inquiryAccount("ba00000003");
-
-//		System.out.println(find.getName());
-//		BankAccountVO vo2 = new BankAccountVO("ba00000002","张文玘", 0.0, "中国银行");
-
-//			bm.changeBalance( vo1.getAccountID(), "income", 200.0);
-//		System.out.println(bm.changeBalance("ba00000003", "expense", 100.0));
-//		System.out.println(bm.transferAccount("阿斯顿", "阿斯蒂芬", 200.0));
-//		bm.deleteAccount("ba00000001");
-//		ArrayList<BankAccountVO> arr = bm.inquiryAccountByBank("中国人民银行");
-//		for(int i = 0; i < arr.size();i ++){
-//			System.out.println("account id:"+arr.get(i).getID()+" account name:"+arr.get(i).getName()+
-//					" account balance:"+arr.get(i).getAmount()+" bank name:"+arr.get(i).getBank());
-//		}
-//		
 		
 	}
 	
@@ -75,11 +58,11 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 			return ResultMessage.findIDFailed;
 		
 		System.out.println(out.getID());
-		ResultMessage rm = changeBalance(out.getID(),"expense",amount);
+		ResultMessage rm = changeBalance(out.getName(),"expense",amount);
 //		System.out.println(rm);
 		if(rm==ResultMessage.lessThanMin)
 			return ResultMessage.lessThanMin;  //提示用户转出账户余额不足
-		changeBalance(in.getID(),"income",amount);
+		changeBalance(in.getName(),"income",amount);
 		
 		return ResultMessage.Success;
 		
@@ -294,15 +277,9 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 
 	public String[] getNameList(){
 		ArrayList<BankAccountVO> accountList = new ArrayList<BankAccountVO>();
-		try {
-			accountList = getAllAccount();
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+
+		accountList = getAllAccount();
+		
 		
 		String[] nameList = new String[accountList.size()];
 		for(int i = 0; i < accountList.size(); i++){
@@ -310,11 +287,16 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 		}
 		return nameList;
 	}
-	public ArrayList<BankAccountVO> getAllAccount() throws RemoteException, IOException {
+	public ArrayList<BankAccountVO> getAllAccount() {
 		// TODO 自动生成的方法存根
-		ArrayList<BankAccountPO> poList;
+		ArrayList<BankAccountPO> poList = new ArrayList<BankAccountPO>();
 		
-			poList = bankdata.findAll();
+			try {
+				poList = bankdata.findAll();
+			} catch (Exception e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			} 
 		
 		ArrayList<BankAccountVO> voList = new ArrayList<BankAccountVO>();
 		for(int i = 0; i < poList.size(); i++){
@@ -388,46 +370,55 @@ public class BankAccountManager implements BankAccountBlService,DataFactory{
 		return null;
 	}
 
+	@Override
 	public ArrivalListDataService getArrivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public SendingListDataService getSendingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public IncomeListDataService getIncomeListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public RecivalListDataService getRecivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public LoadingListDataService getLoadingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public TransferListDataService getTransferListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public DriverDataService getDriverData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
 	public CarDataService getCarData() {
 		// TODO 自动生成的方法存根
 		return null;

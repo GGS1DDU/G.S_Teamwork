@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import elms.businesslogic.managerbl.StaffManager;
 import elms.presentation.managerui.staff.staffhelper.StaffJobPanel;
+import elms.presentation.managerui.staff.staffhelper.StaffList;
 import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.ScreenSize;
 import elms.vo.StaffVO;
@@ -26,13 +27,16 @@ public class StaffUI_editSalary extends JFrame {
 	private ArrayList<StaffVO> arr = new ArrayList<StaffVO>();
 	private StaffJobPanel job;
 	private JPanel buttonPanel;
+	
+	private StaffList staffList;
 
 	public static void main(String[] args) {
-		JFrame jf = new StaffUI_editSalary();
-		jf.setVisible(true);
+//		JFrame jf = new StaffUI_editSalary();
+//		jf.setVisible(true);
 	}
 
-	public StaffUI_editSalary() {
+	public StaffUI_editSalary(StaffList list) {
+		this.staffList = list;
 		setTitle("修改职务工资");
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,10 +144,13 @@ public class StaffUI_editSalary extends JFrame {
 			vo.setSalaryStrategy(strategy);
 			vo.setEssentialSalary(es);
 			vo.setRate(r);
-			System.out.println(vo.getName());
+	
 			sm.updateStaff(vo);
 			
 		}
+		arr = sm.findByJob("全部");
+		staffList.removeAllData();
+		staffList.addAllData(arr);
 		JOptionPane.showMessageDialog(null, "更改成功！");
 	}
 }

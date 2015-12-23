@@ -1,9 +1,11 @@
 package elms.presentation.financeui.bankaccount;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -11,19 +13,24 @@ import javax.swing.border.Border;
 
 import elms.businesslogic.financebl.BankAccountManager;
 import elms.presentation.uihelper.ScreenSize;
+import elms.presentation.uihelper.TagPanel;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.BankAccountVO;
 import elms.vo.UserVO;
 
 public class BankAccount_init extends JFrame {
 
-	JTextArea text = new JTextArea(10, 10);
+//	JTextArea text = new JTextArea(10, 10);
 	String bank = null;
 	JComboBox<String> bank_c;
 	ArrayList<BankAccountVO> arr;// 全部的账户vo
 	BankAccountManager bam = new BankAccountManager();
 	int screenWidth = ScreenSize.screenWidth;
 	int screenHeight = ScreenSize.screenHeight;
+	
+	private BankAccountList accountList;
+	private JPanel tag;
+	private UserVO uservo;
 
 	public static void main(String args[]) {
 		UserVO vo = new UserVO();
@@ -31,6 +38,7 @@ public class BankAccount_init extends JFrame {
 	}
 
 	public BankAccount_init(final UserVO vo) {
+		this.uservo = vo;
 		setLayout(null);
 		setTitle("账户初始化");
 		setResizable(false);
@@ -39,18 +47,13 @@ public class BankAccount_init extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JPanel user = new UserInfo(vo);
+		JPanel user = new UserInfo(uservo);
 		user.setBounds(0, 0, this.getWidth(), 25);
 		add(user);
 		// 在账户管理界面上显示的各种清单列表
-		JLabel zhqd = new JLabel("账户清单");
-		JPanel info = new JPanel();
-		info.setLayout(new java.awt.BorderLayout());
-		info.add(zhqd);
-		info.setBounds(0, 23, 70, 25);
-		Border l2 = BorderFactory.createLoweredBevelBorder();
-		info.setBorder(l2);
-		add(info);
+		tag = new TagPanel("账户清单");
+		tag.setBounds(0, 23, 70, 25);
+		add(tag);
 
 		// 表头和内容
 		JPanel info2 = new JPanel();
@@ -59,33 +62,11 @@ public class BankAccount_init extends JFrame {
 		info2.setBounds(50, 75, this.getWidth() - 110,
 				this.getHeight() / 2 - 70);
 
-		// text=new JTextArea(10,10);
-		text.setEditable(false);
-		text.setFont(new Font("Serif", Font.PLAIN, 14));
 
-		JScrollPane scrollpane = new JScrollPane(text);
-		info2.add(scrollpane);
-		scrollpane.setBounds(0, 0, this.getWidth() - 40,
-				this.getHeight() / 2 - 70);
+		Dimension accountD =new Dimension(this.getWidth(),this.getHeight()*2/3-15);
+		accountList = new BankAccountList(accountD,uservo);
+		add(accountList);
 
-		JMenuBar jbar = new JMenuBar();
-		class Menu extends JMenu {
-			public Menu(String s) {
-				super(s);
-				this.setFont(new Font("楷体", Font.CENTER_BASELINE, 15));
-			}
-		}
-		JMenu j1 = new Menu("     ID    ");
-		JMenu j2 = new Menu("     账户名        ");
-		JMenu j3 = new Menu("    余额       ");
-		JMenu j4 = new Menu("    所属银行      ");
-		jbar.add(j1);
-		jbar.add(j2);
-		jbar.add(j3);
-		jbar.add(j4);
-		jbar.setBounds(50, 50, this.getWidth() - 110, 25);
-		add(jbar);
-		add(info2);
 
 		// 选择银行类别的combobox
 		bank_c = new JComboBox<String>();
@@ -100,56 +81,32 @@ public class BankAccount_init extends JFrame {
 		bank_c.setBounds(3 * this.getWidth() / 4 - 20,
 				this.getHeight() / 2 + 15, 135, 25);
 		bam = new BankAccountManager();
-		try {
-			arr = bam.getAllAccount();
-		} catch (Exception e1) {
-			// TODO 自动生成的 catch 块
-			e1.printStackTrace();
-		}
-		for (BankAccountVO vo1 : arr) {
-			text.append("        " + vo1.getID() + "         " + vo1.getName()
-					+ "                         " + vo1.getAmount()
-					+ "                          " + vo1.getBank()
-					+ "              \r\n");
-		}
-
+		
+		accountList.removeAllData();
 		bank_c.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				text.setText("");
+				accountList.removeAllData();
 				bank = bank_c.getSelectedItem().toString();
 
 				try {
+					
 					arr = bam.getAllAccount();
 				} catch (Exception e) {
 					// TODO 自动生成的 catch 块
 					System.out.println("there is no account in the file!");
 					e.printStackTrace();
 				}
-				System.out.println(arr == null);
-				// for(BankAccountVO vo:arr){
-				// text.append("   "+vo.getID()+"    "+vo.getName()+"   "+vo.getAmount()+
-				// "    "+vo.getBank()+"  ");
-				// };
+
 				switch (bank) {
 				case "全部":
-					for (BankAccountVO vo : arr) {
-						text.append("        " + vo.getID() + "         "
-								+ vo.getName() + "                         "
-								+ vo.getAmount() + "                          "
-								+ vo.getBank() + "              \r\n");
-					}
-					;
+					accountList.removeAllData();
+					accountList.addAllData(arr);
 					break;
 				default: {
 					arr = bam.inquiryAccountByBank(bank);
-					for (BankAccountVO vo : arr) {
-						text.append("        " + vo.getID() + "         "
-								+ vo.getName() + "                         "
-								+ vo.getAmount() + "                          "
-								+ vo.getBank() + "              \r\n");
-					}
+					accountList.addAllData(arr);
 				}
 				}
 			}
@@ -157,12 +114,12 @@ public class BankAccount_init extends JFrame {
 		});
 
 		JButton add = new JButton("添加账户");
-		JButton delete = new JButton("修改账户");
+		JButton edit = new JButton("修改账户");
 		JButton back = new JButton("返回");
 		add(add);
 		add.setBounds(screenWidth / 12, screenHeight / 4 + 20, 100, 28);
-		add(delete);
-		delete.setBounds(screenWidth / 5, screenHeight / 4 + 20, 100, 28);
+		add(edit);
+		edit.setBounds(screenWidth / 5, screenHeight / 4 + 20, 100, 28);
 		add(back);
 		back.setBounds(screenWidth / 3, screenHeight / 4 + 20, 100, 28);
 
@@ -171,18 +128,31 @@ public class BankAccount_init extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				JFrame j_add = new BankAccount_add();
+				JFrame j_add = new BankAccount_add(accountList);
 				j_add.setVisible(true);
 			}
 
 		});
 
-		delete.addActionListener(new ActionListener() {
+		edit.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				JFrame j_change = new BankAccount_find(vo);
+				String id = accountList.getSelectedID();
+				
+				BankAccountVO b_vo = null;
+				try {
+					b_vo = bam.inquiryAccount(id);
+				} catch (IOException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+				}
+				if(b_vo==null){
+					JOptionPane.showMessageDialog(null, "请选择一个银行账户！");
+					return;
+				}
+				JFrame j_change = new BankAccount_edit(accountList,b_vo,vo);
 				j_change.setVisible(true);
 			}
 

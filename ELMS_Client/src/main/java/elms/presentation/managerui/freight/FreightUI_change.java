@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,8 +16,13 @@ import javax.swing.JTextField;
 
 
 
+
+
+
 import elms.businesslogic.ResultMessage;
 import elms.businesslogic.managerbl.FreightStrategyManager;
+import elms.presentation.financeui.inAndEx.income.Income_main;
+import elms.presentation.managerui.freight.freighthelper.FreightList;
 import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.ScreenSize;
 import elms.vo.FreightStrategyVO;
@@ -43,12 +49,13 @@ public class FreightUI_change extends JFrame {
 	private CheckFormat cf;
 
 	private FreightStrategyManager fsm = new FreightStrategyManager();
-
-	public static void main(String[] args) {
-		JFrame jf = new FreightUI_change();
-	}
-
-	public FreightUI_change() {
+	private FreightList freightList;
+	private FreightStrategyVO freightVO;
+	
+	public FreightUI_change(FreightList list,FreightStrategyVO vo) {
+		this.freightList = list;
+		this.freightVO = vo;
+		setTitle("运费策略");
 		setLayout(null);
 		setBounds(screenWidth / 3, screenHeight / 4, screenWidth / 3,
 				screenHeight / 2 + 50);
@@ -125,6 +132,12 @@ public class FreightUI_change extends JFrame {
 
 		coefficient = new JTextField();
 		coefficient.setBounds(jl5.getX() + jl5.getWidth(), jl5.getY(), 140, 30);
+		
+		city1_j.setSelectedItem(freightVO.getCity1());
+		city2_j.setSelectedItem(freightVO.getCity2().substring(0, 2));
+		distance.setText(""+freightVO.getDistance());
+		price.setText(""+freightVO.getStandardPrice());
+		coefficient.setText(""+freightVO.getCoefficient());
 
 		add(city1_j);
 		add(city2_j);
@@ -190,13 +203,30 @@ public class FreightUI_change extends JFrame {
 					if (rm == ResultMessage.findIDFailed) {
 						try {
 							fsm.addFreight(vo);
+							
 						} catch (IOException e1) {
 							// TODO 自动生成的 catch 块
 							e1.printStackTrace();
 						}
 						JOptionPane.showMessageDialog(null, "新建成功！");
+						
 					} else {
 						JOptionPane.showMessageDialog(null, "修改成功！");
+						FreightUI_change.this.dispose();
+						
+						ArrayList<FreightStrategyVO> freight = FreightUI_main.arr;
+						int i = 0; 
+						for(; i < freight.size(); i++){
+							if(freight.get(i).getID().equals(vo.getID())){
+								freight.remove(i);
+								freight.add(i, vo);
+								break;
+							}
+						}
+						FreightUI_main.arr = freight;
+						
+						freightList.removeAllData();
+						freightList.addAllData(freight);
 					}
 				}
 			}

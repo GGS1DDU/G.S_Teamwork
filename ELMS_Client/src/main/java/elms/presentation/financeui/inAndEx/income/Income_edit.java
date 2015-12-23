@@ -47,6 +47,7 @@ public class Income_edit extends JFrame {
 	
 	IncomeManager im = new IncomeManager();
 	BankAccountManager bam = new BankAccountManager();
+	IncomeList incomeList;
 
 	/**
 	 * Launch the application.
@@ -57,8 +58,8 @@ public class Income_edit extends JFrame {
 				try {
 					FIncomeVO vo= new FIncomeVO();
 					UserVO u_vo = new UserVO();
-					Income_edit frame = new Income_edit(vo,u_vo);
-					frame.setVisible(true);
+//					Income_edit frame = new Income_edit(vo,u_vo);
+//					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,7 +70,8 @@ public class Income_edit extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Income_edit(FIncomeVO vo,UserVO u_vo) {
+	public Income_edit(IncomeList list,FIncomeVO vo,UserVO u_vo) {
+		incomeList = list;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setBounds(screenWidth/3,screenHeight/7,screenWidth/3,screenHeight*3/5+50);
@@ -118,12 +120,14 @@ public class Income_edit extends JFrame {
 		amount = new JTextField();
 		amount.setBounds(this.getWidth()/5+80,this.getHeight()/8+100,140,30);
 		amount.setText(""+vo.getIncome());
+		amount.setEditable(false);
 		getContentPane().add(amount);
 		
 		String[] hallList = {"南京市鼓楼营业厅","南京市仙林营业厅"};
 		hall = new JComboBox<String>(hallList);
 		hall.setBounds(this.getWidth()/5+80,this.getHeight()/8+150,140,30);
 		hall.setSelectedItem(vo.getShop());
+		hall.setEditable(false);
 		getContentPane().add(hall);
 		
 		clerk = new JTextField();
@@ -149,15 +153,19 @@ public class Income_edit extends JFrame {
 		save_b.setBounds(buttonPanel.getWidth()/7,buttonPanel.getHeight()/2,buttonPanel.getWidth()/7,buttonPanel.getHeight()/6);
 		save_b.addActionListener(new ActionListener(){
 			
-	
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				
 					FIncomeVO vo = getVO();
 					ArrayList<FIncomeVO> in = Income_main.arr;
 					
-					im.changeIncome(vo);
+//					im.changeIncome(vo);
+					im.addIncome(vo);
 					JOptionPane.showMessageDialog(null, "信息修改成功！");
+					
+					
+					
 					int i = 0;
 					for(; i < in.size(); i++){
 						if(in.get(i).getID().equals(vo.getID())){
@@ -167,6 +175,9 @@ public class Income_edit extends JFrame {
 						}
 					}
 					Income_main.arr = in;
+					
+					incomeList.removeAllData();
+					incomeList.addAllData(in);
 					Income_edit.this.dispose();
 				
 			}
@@ -178,6 +189,7 @@ public class Income_edit extends JFrame {
 		delete_b.setBounds(3*buttonPanel.getWidth()/7,buttonPanel.getHeight()/2,buttonPanel.getWidth()/7,buttonPanel.getHeight()/6);
 		delete_b.addActionListener(new ActionListener(){
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				try {
@@ -212,7 +224,7 @@ public class Income_edit extends JFrame {
 		back_b.setBounds(5*buttonPanel.getWidth()/7,buttonPanel.getHeight()/2,buttonPanel.getWidth()/7,buttonPanel.getHeight()/6);
 		back_b.addActionListener(new ActionListener(){
 
-	
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				Income_edit.this.dispose();

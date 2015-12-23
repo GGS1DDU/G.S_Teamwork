@@ -6,21 +6,50 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 
 
+
+
+
+
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+
+
+
+
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import java.util.ArrayList;
 
 
 
+
+
+
+
+
+
+
+
+
+
 import elms.businesslogic.financebl.inandex.StatisticManager;
+import elms.presentation.financeui.inAndEx.expense.ExpenseList;
+import elms.presentation.financeui.inAndEx.income.IncomeList;
+import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.ScreenSize;
 import elms.vo.FExpenseVO;
 import elms.vo.FIncomeVO;
+import elms.vo.UserVO;
 
 
 public class InAndEx_form extends JFrame {
@@ -32,8 +61,8 @@ public class InAndEx_form extends JFrame {
 	private JLabel jl1;
 	private JLabel jl2;
 	private JLabel jl3;
-	private JLabel start;
-	private JLabel end;
+	private JTextField start;
+	private JTextField end;
 	private JLabel part;
 	
 	
@@ -42,9 +71,17 @@ public class InAndEx_form extends JFrame {
 	private JTextField profit;
 	
 	private JButton derive;
+	private JButton back;
+	
 	
 	private ArrayList<FIncomeVO> incomeList;
 	private ArrayList<FExpenseVO> expenseList;
+	private IncomeList inPanel;
+	private ExpenseList exPanel;
+	private UserVO uservo;
+	
+	private String dateFormat;
+	private CheckFormat check = new CheckFormat();
 
 	private StatisticManager sm = new StatisticManager();
 	/**
@@ -54,8 +91,8 @@ public class InAndEx_form extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InAndEx_form frame = new InAndEx_form("123","123");
-					frame.setVisible(true);
+//					InAndEx_form frame = new InAndEx_form("123","123");
+//					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,17 +103,79 @@ public class InAndEx_form extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InAndEx_form(String time1,String time2) {
+	public InAndEx_form(String time1,String time2,UserVO u_vo) {
 		
 		setTitle("统计报表");
 		setLayout(null);
 		setBounds(screenWidth/4, 1,screenWidth/2,screenHeight);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		start = new JLabel(time1);
-		end = new JLabel(time2);
+		start = new JTextField(time1);
+		end = new JTextField(time2);
 		part = new JLabel("--");
+		dateFormat = "yyyy-MM-dd hh:mm:ss";
+		start.getDocument().addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				if(!(check.checkData(dateFormat, start.getText())||check.checkData(dateFormat, end.getText()))){
+					JOptionPane.showMessageDialog(null, "请输入格式为"+dateFormat+"的时间！");
+					return;
+				}else if(!check.lessThan(dateFormat, start.getText(), end.getText())){
+					JOptionPane.showMessageDialog(null, "输入时间顺序错误！");
+				}
+				getShowList(start.getText(),end.getText());
+				showList();
+				totalIn.setText(""+sm.getTotalIn(incomeList));
+				totalEx.setText(""+sm.getTotalEx(expenseList));
+				
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				getShowList(start.getText(),end.getText());
+				showList();
+				totalIn.setText(""+sm.getTotalIn(incomeList));
+				totalEx.setText(""+sm.getTotalEx(expenseList));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				// TODO 自动生成的方法存根
+				
+			}
+			
+		});
 		
+		end.getDocument().addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO 自动生成的方法存根
+				getShowList(start.getText(),end.getText());
+				showList();
+				totalIn.setText(""+sm.getTotalIn(incomeList));
+				totalEx.setText(""+sm.getTotalEx(expenseList));
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				// TODO 自动生成的方法存根
+				getShowList(start.getText(),end.getText());
+				showList();
+				totalIn.setText(""+sm.getTotalIn(incomeList));
+				totalEx.setText(""+sm.getTotalEx(expenseList));
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO 自动生成的方法存根
+				
+			}
+			
+		});
 		start.setBounds(this.getWidth()/2-140,0,130,30);
 		end.setBounds(this.getWidth()/2+10,0,130,30);
 		part.setBounds(start.getX()+130,start.getY(),130,30);
@@ -89,11 +188,10 @@ public class InAndEx_form extends JFrame {
 //		add(test);
 		
 		Dimension d = new Dimension(this.getWidth(),this.getHeight()/3);
-		InPanel income = new InPanel(d);
-		income.setBackground(Color.WHITE);
+		inPanel = new IncomeList(d,uservo);
 		
-		income.setLocation(0,30);
-		add(income);
+		inPanel.setLocation(0,30);
+		add(inPanel);
 		
 		
 		jl1 = new JLabel("总收入");
@@ -109,9 +207,9 @@ public class InAndEx_form extends JFrame {
 		add(jl3);
 		
 		
-		ExPanel expense = new ExPanel(d);
-		expense.setLocation(0,310);
-		add(expense);
+		exPanel = new ExpenseList(d,uservo);
+		exPanel.setLocation(0,310);
+		add(exPanel);
 		
 		incomeList = sm.getIncome(time1, time2);
 		expenseList = sm.getExpense(time1, time2);
@@ -120,10 +218,12 @@ public class InAndEx_form extends JFrame {
 		double exAmount = sm.getTotalEx(expenseList);
 		
 		if(incomeList!=null){
-			income.appendText(incomeList);
+			inPanel.removeAllData();
+			inPanel.addAllData(incomeList);
 		}
 		if(expenseList!=null){
-			expense.appendText(expenseList);
+			exPanel.removeAllData();
+			exPanel.addAllData(expenseList);
 		}
 		
 		totalIn = new JTextField();
@@ -145,11 +245,59 @@ public class InAndEx_form extends JFrame {
 		add(profit);
 		
 		derive = new JButton("导出报表");
-		derive.setBounds(150,jl3.getY(),140,30);
+		derive.setBounds(50,jl3.getY(),140,30);
 		add(derive);
+		
+		back = new JButton("返回");
+		back.setBounds(250, derive.getY(), 140, 30);
+		add(back);
+		
+		back.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				InAndEx_form.this.dispose();
+			}
+			
+		});
 	}
 	
-	
+	//根据时间获取收入项信息
+		private void getShowList(String startTime,String endTime){
+//			if(startTime.length()<1&&endTime.length()<1){  //若开始和结束输入框中全为空，默认查询所有
+
+				incomeList = sm.getIncome(startTime, endTime);
+				expenseList = sm.getExpense(startTime, endTime);
+//			}else if(startTime.length()<1||endTime.length()<1){
+//				arr = im.inquiryAll();
+//			}else{
+//				String hallName = hall.getSelectedItem().toString();
+//				if(hallName.equals("全部")){
+//					arr = im.inquiryIncomeByTime(startTime, endTime);
+//				}else{
+//					arr = im.inquiryInByTimeHall(startTime, endTime,hallName );
+//				}
+				
+//			}
+		}
+		
+		private void showList(){
+			inPanel.removeAllData();
+			exPanel.removeAllData();
+			if(incomeList==null||expenseList==null){
+				return;
+			}
+			for(int i = 0; i < incomeList.size(); i++){
+				FIncomeVO vo = incomeList.get(i);
+				inPanel.addData(vo);
+			}
+			for(int i = 0; i < expenseList.size(); i++){
+				FExpenseVO vo = expenseList.get(i);
+				exPanel.addData(vo);
+			}
+		}
+		
 		
 	
 }

@@ -2,6 +2,7 @@ package elms.presentation.managerui.staff;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,7 +11,9 @@ import javax.swing.JPanel;
 
 import elms.businesslogic.ResultMessage;
 import elms.businesslogic.managerbl.StaffManager;
+import elms.presentation.managerui.staff.staffhelper.GetIdentifier;
 import elms.presentation.managerui.staff.staffhelper.StaffInfoFrame;
+import elms.presentation.managerui.staff.staffhelper.StaffList;
 import elms.vo.StaffVO;
 import elms.vo.UserVO;
 
@@ -18,17 +21,22 @@ public class StaffUI_edit extends StaffInfoFrame {
 
 	private JPanel buttonPanel;
 	private StaffManager sm = new StaffManager();
-
+	private StaffList staffList;
 	public static void main(String[] args) {
 		StaffVO vo = new StaffVO();
-		StaffUI_edit se = new StaffUI_edit(vo);
-		se.setVisible(true);
+//		StaffUI_edit se = new StaffUI_edit(vo);
+//		se.setVisible(true);
 	}
 
-	public StaffUI_edit(StaffVO vo) {
+	public StaffUI_edit(StaffList list,StaffVO vo) {
 		super();
+		this.staffList = list;
+		
+	
+//		String startID = vo.getID();
+		System.out.println(vo.getID());
 		id.setText(vo.getID());
-		id.setEnabled(false);
+		id.setEditable(false);
 
 		name.setText(vo.getName());
 
@@ -55,6 +63,21 @@ public class StaffUI_edit extends StaffInfoFrame {
 		rate.setText(""+vo.getRate());
 		
 		organization.setText(vo.getOrganization());
+		
+//		job.addActionListener(new ActionListener(){
+//
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				// TODO 自动生成的方法存根
+//				id.setEditable(true);
+//				String identify = gi.getIdentifier(job.getSelectedItem().toString());
+//				if(job.getSelectedItem()!="全部"){
+//					id.setText(identify+staffvo.getID().substring(2, staffvo.getID().length()));
+//				}
+//				id.setEditable(false);
+//			}
+//			
+//		});
 		
 		addButton();
 
@@ -89,13 +112,27 @@ public class StaffUI_edit extends StaffInfoFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (StaffUI_edit.this.checkInput()) {
-					
+//					System.out.println(StaffUI_edit.this.rate.getText());
 					ResultMessage rm = sm.updateStaff(getVO());
 					if (rm == ResultMessage.findIDFailed) {
 						JOptionPane.showMessageDialog(null,
 								"找不到对应id的职员，请重新输入职员id！");
 					} else {
 						JOptionPane.showMessageDialog(null, "修改成功！");
+						ArrayList<StaffVO> staff = StaffUI_main.arr;
+						
+						for(int i = 0; i < staff.size(); i++){
+							StaffVO svo = staff.get(i);
+							if(svo.getID().equals(getVO().getID())){
+								staff.remove(i);
+								staff.add(i, getVO());
+								break;
+							}
+						}
+						
+						StaffUI_main.arr = staff;
+						staffList.removeAllData();
+						staffList.addAllData(staff);
 					}
 					
 				}

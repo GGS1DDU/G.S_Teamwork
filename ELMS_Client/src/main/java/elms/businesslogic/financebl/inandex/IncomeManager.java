@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import elms.businesslogic.HallInfo;
 import elms.businesslogic.ResultMessage;
 import elms.businesslogic.financebl.BankAccountManager;
 import elms.businesslogic_service.financeblservice.IncomeBlService;
@@ -35,44 +36,45 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 	
 	IncomeDataService incomedata;
 	BankAccountManager bankmanage;
+	ArrayList<HallInfo> hallInfo = new ArrayList<HallInfo>();
 
 	//收入项支出项id由用户输入
-	public static void main(String [] args) throws IOException{
-		IncomeManager im = new IncomeManager();
-		FIncomeVO vo = new FIncomeVO("ba00000002","in00000002","2015-01-01",0.0,
-				"南京市仙林营业厅","张文玘");
-//		boolean addSuccess = im.addIncome(new FIncomeVO("ba00000003","in00000008","2015-01-01",200.0,
-//				"南京市鼓楼营业厅","张文玘"));
-		System.out.println(im.addIncome(vo));
-//		System.out.println(im.addIncome(vo));
-//		System.out.println(im.deleteIncome(vo));
-//		System.out.println(im.changeIncome(vo));
-//		System.out.println(addSuccess);
-//		im.deleteIncome(vo);
-//		BankAccountManager bankmanage1 = new BankAccountManager();
-//		System.out.println(bankmanage1.inquiryAccount("ba00000002").getAmount());
 
-		FIncomeVO vo1 = im.inquiryIncome("in00000003");
-		
-//		ArrayList<FIncomeVO> arr = im.inquiryIncomeByHall("南京市仙林营业厅");
-//		for(int i = 0; i < arr.size(); i++){
-//			FIncomeVO vo1 = arr.get(i);
-			System.out.println("in bank account id:"+vo1.getBankAccountName()+" income id:"+vo1.getID()+
-					" income time:"+vo1.getTime()+" income amount:"+vo1.getIncome()+
-					" income hall"+vo1.getShop()+" record person:"+vo1.getClerk());
-//		}
-	}
 	public IncomeManager(){
 		incomedata = getIncomeData();
+		//测试用
+		HallInfo info = new HallInfo("2015-12-17",123,"南京市鼓楼营业厅");
+		HallInfo info1 = new HallInfo("2015-12-17",123,"南京市仙林营业厅");
+		HallInfo info2 = new HallInfo("2015-12-18",123,"南京市鼓楼营业厅");
+		HallInfo info3 = new HallInfo("2015-12-18",123,"南京市仙林营业厅");
+		addHallInfo(info);
+		addHallInfo(info1);
+		addHallInfo(info2);
+		addHallInfo(info3);
 	}
 	
+	public void addHallInfo(HallInfo info){
+		hallInfo.add(info);
+	}
 	
+	public ArrayList<HallInfo> getHallInfo(){
+		return hallInfo;
+	}
 	
 	public ResultMessage addIncome(FIncomeVO vo) {
 		//需要再写一个给对应账户增加余额的功能
 		try {
-			if(inquiryIncome(vo.getID())!=null)
-				return ResultMessage.findIDFailed;   //findIDFailed代表已经存在这样的id，要求用户重新输入收入项id
+//			if(inquiryIncome(vo.getID())!=null)
+//				return ResultMessage.findIDFailed;   //findIDFailed代表已经存在这样的id，要求用户重新输入收入项id
+			//id:时间+营业厅（8+2）
+//			String[] t = vo.getTime().split("-");
+//			String time = null;
+//			for(int i = 0; i < t.length; i++){
+//				time = time+t[i];
+//			}
+//			String hall = getHallId(vo.getShop());
+//			if(hall!=null){  //若未能获取到对应营业厅的id？？
+//			vo.setID(time+hall);
 			FIncomePO po = new FIncomePO(vo.getBankAccountName(),vo.getID(),vo.getTime(),
 						vo.getIncome(),vo.getShop(),vo.getClerk());	
 		
@@ -90,6 +92,7 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 			else
 			incomedata.insert(po);
 			return ResultMessage.Success;
+//			}
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -170,10 +173,19 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 		return ResultMessage.Failed;
 	}
 
-	public FIncomeVO inquiryIncome(String id) throws RemoteException, IOException {
+	public FIncomeVO inquiryIncome(String id){
 
 		
-		FIncomePO po = incomedata.find(id);
+		FIncomePO po = null;
+		try {
+			po = incomedata.find(id);
+		} catch (RemoteException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		System.out.println(po);
 		if(po==null){
 			return null;
@@ -185,7 +197,7 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 		
 	}
 	
-	public ArrayList<FIncomeVO> getVOList(ArrayList<FIncomePO> arr){
+	private ArrayList<FIncomeVO> getVOList(ArrayList<FIncomePO> arr){
 		ArrayList<FIncomeVO> result = new ArrayList<FIncomeVO>();
 		for(int i = 0; i < arr.size(); i++){
 			FIncomePO po = arr.get(i);
@@ -210,7 +222,7 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 	}
 
 	public ArrayList<FIncomeVO> inquiryIncomeByTime(String time1, String time2)
-			throws RemoteException {
+			 {
 		// TODO 自动生成的方法存根
 		ArrayList<FIncomePO> arr;
 		try {
@@ -257,12 +269,12 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 	public double getTotalIn(String time1,String time2){
 		ArrayList<FIncomeVO> income = new ArrayList<FIncomeVO>();
 		double totalIn = 0.0;
-		try {
+//		try {
 			income = inquiryIncomeByTime(time1,time2);
-		} catch (RemoteException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+//		} catch (RemoteException e) {
+//			// TODO 自动生成的 catch 块
+//			e.printStackTrace();
+//		}
 		for(int i = 0; i < income.size(); i++){
 			FIncomeVO vo = income.get(i);
 			totalIn = vo.getIncome()+totalIn;
@@ -331,38 +343,56 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public ArrivalListDataService getArrivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public SendingListDataService getSendingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public IncomeListDataService getIncomeListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public RecivalListDataService getRecivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public LoadingListDataService getLoadingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public TransferListDataService getTransferListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public DriverDataService getDriverData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	@Override
 	public CarDataService getCarData() {
 		// TODO 自动生成的方法存根
 		return null;

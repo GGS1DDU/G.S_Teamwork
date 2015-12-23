@@ -4,25 +4,34 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import elms.businesslogic.financebl.inandex.IncomeManager;
 import elms.presentation.financeui.bankaccount.BankAccount_edit;
 import elms.presentation.financeui.bankaccount.BankAccount_find;
+import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.ScreenSize;
 import elms.vo.BankAccountVO;
 import elms.vo.FIncomeVO;
 import elms.vo.UserVO;
+
 public class Income_find extends JFrame{
 
+	private int screenWidth = ScreenSize.screenWidth;
+	private int screenHeight = ScreenSize.screenHeight;
 	
-	int screenWidth = ScreenSize.screenWidth;
-	int screenHeight = ScreenSize.screenHeight;
+	private JTextField id_f;
+	private IncomeManager im = new IncomeManager();
+	private IncomeList inList;
+	private CheckFormat check = new CheckFormat();
 	
-	JTextField id_f;
-	IncomeManager im = new IncomeManager();
-	
-	public Income_find(final UserVO vo){
+	public Income_find(IncomeList list,final UserVO uservo){
+		this.inList = list;
+		
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(screenWidth/4,screenHeight/3,screenWidth/2,screenHeight/4);
@@ -45,7 +54,7 @@ public class Income_find extends JFrame{
 		
 			ensure.addActionListener(new ActionListener(){
 				
-
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					String id = id_f.getText();
 					FIncomeVO b_vo = null;
@@ -56,11 +65,15 @@ public class Income_find extends JFrame{
 						e.printStackTrace();
 					}
 					// TODO 自动生成的方法存根
-					if(b_vo==null){
-						JOptionPane.showMessageDialog(null, "系统中没有此账户！，请重新输入");
-						id_f.setText("");
-					}else{
-						JFrame edit = new Income_edit(b_vo,vo);
+					if(!(check.checkInteger(id)||check.checkID(id, 10))){
+						JOptionPane.showMessageDialog(null, "请输入十位的数字ID！");
+						return;
+					}
+					
+					if(b_vo==null)
+						JOptionPane.showMessageDialog(null, "系统中没有此收入项！，请重新输入");
+					else{
+						JFrame edit = new Income_edit(inList,b_vo,uservo);
 						edit.setVisible(true);
 						Income_find.this.dispose();
 					}
@@ -74,7 +87,7 @@ public class Income_find extends JFrame{
 		back.setBounds(this.getWidth()*3/5+50,3*this.getHeight()/5,70,20);
 		back.addActionListener(new ActionListener(){
 
-
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				Income_find.this.dispose();
@@ -84,5 +97,6 @@ public class Income_find extends JFrame{
 		add(back);
 		
 		setVisible(true);
+		
 	}
 }

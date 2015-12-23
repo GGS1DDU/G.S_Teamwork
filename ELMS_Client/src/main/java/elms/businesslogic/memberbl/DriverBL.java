@@ -2,10 +2,15 @@ package elms.businesslogic.memberbl;
 
 import java.io.IOException;
 import java.rmi.Naming;
+import java.rmi.RemoteException;
 
 import elms.businesslogic_service.memberblservice.DriverBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
+import elms.dataservice.financedataservice.BankAccountDataService;
+import elms.dataservice.financedataservice.ExpenseDataService;
+import elms.dataservice.financedataservice.IncomeDataService;
+import elms.dataservice.financedataservice.InitAllDataService;
 import elms.dataservice.invoicedataservice.ArrivalListDataService;
 import elms.dataservice.invoicedataservice.IncomeListDataService;
 import elms.dataservice.invoicedataservice.LoadingListDataService;
@@ -13,8 +18,12 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
+import elms.dataservice.logdataservice.LogDataService;
+import elms.dataservice.managerdataservice.FreightStrategyDataService;
+import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
 import elms.dataservice.memberdataservice.DriverDataService;
+import elms.dataservice.storagedataservice.StorageDataService;
 import elms.dataservice.userdataservice.UserDataService;
 import elms.po.DriverPO;
 import elms.vo.DriverVO;
@@ -114,6 +123,55 @@ public class DriverBL implements DriverBLService,DataFactory{
 	}
 
 	public CarDataService getCarData() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public LogDataService getLogData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public StorageDataService getStorageData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public IncomeDataService getIncomeData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ExpenseDataService getExpenseData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public BankAccountDataService getBankAccountData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public FreightStrategyDataService getFreightStrategyData()
+			throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public InitAllDataService getInitData() throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}

@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import elms.businesslogic.financebl.BankAccountManager;
+import elms.presentation.uihelper.CheckFormat;
 import elms.vo.BankAccountVO;
 import elms.vo.UserVO;
 
@@ -28,13 +29,16 @@ public class BankAccount_find extends JFrame{
 	JTextField id_f;
 	
 	BankAccountManager bam = new BankAccountManager();
+	BankAccountList accountList;
+	private CheckFormat check = new CheckFormat();
 	
 	public static void main(String args[]){
 		UserVO vo = new UserVO();
-		JFrame jf = new BankAccount_find(vo);
+//		JFrame jf = new BankAccount_find(vo);
 	}
 	
-	public BankAccount_find(final UserVO vo){
+	public BankAccount_find(BankAccountList list,final UserVO vo){
+		this.accountList = list;
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(screenWidth/4,screenHeight/3,screenWidth/2,screenHeight/4);
@@ -68,10 +72,15 @@ public class BankAccount_find extends JFrame{
 						e.printStackTrace();
 					}
 					// TODO 自动生成的方法存根
+					if(!(check.checkID(id, "ba", 10))){
+						JOptionPane.showMessageDialog(null, "请输入格式为ba加8位数字的ID！");
+						return;
+					}
+					
 					if(b_vo==null)
 						JOptionPane.showMessageDialog(null, "系统中没有此账户！，请重新输入");
 					else{
-						JFrame edit = new BankAccount_edit(b_vo,vo);
+						JFrame edit = new BankAccount_edit(accountList,b_vo,vo);
 						edit.setVisible(true);
 						BankAccount_find.this.dispose();
 					}

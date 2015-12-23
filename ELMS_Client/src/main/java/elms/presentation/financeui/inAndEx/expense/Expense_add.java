@@ -47,16 +47,18 @@ public class Expense_add extends JFrame{
 	private JButton cancel;
 	
 	private UserVO u_vo;
+	private ExpenseList exList;
 	
 	private BankAccountManager bam = new BankAccountManager();
 	private ExpenseManager em = new ExpenseManager();
 	
 	public static void main(String[] args){
 		UserVO vo = new UserVO();
-		JFrame jf = new Expense_add(vo);
+//		JFrame jf = new Expense_add(vo);
 	}
 	
-	public Expense_add(UserVO vo){
+	public Expense_add(ExpenseList list,UserVO vo){
+		this.exList = list;
 		this.u_vo = vo;
 		setLayout(null);
 		setTitle("新建支出");
@@ -162,6 +164,7 @@ public class Expense_add extends JFrame{
 					}else if(rm==ResultMessage.lessThanMin){
 						JOptionPane.showMessageDialog(null, "该银行账户余额不足","失败",JOptionPane.ERROR_MESSAGE);
 					}else{
+						exList.addData(vo);
 						JOptionPane.showMessageDialog(null, "成功新建！","成功",JOptionPane.INFORMATION_MESSAGE);			
 						Expense_add.this.dispose();
 					}
