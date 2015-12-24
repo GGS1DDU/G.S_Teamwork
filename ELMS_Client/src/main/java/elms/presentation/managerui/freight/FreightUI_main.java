@@ -12,11 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import elms.businesslogic.managerbl.FreightStrategyManager;
-
+import elms.presentation.managerui.ManagerUI_main;
 import elms.presentation.managerui.freight.freighthelper.FreightList;
-
 import elms.presentation.uihelper.ScreenSize;
-
 import elms.vo.FreightStrategyVO;
 import elms.vo.UserVO;
 
@@ -28,6 +26,7 @@ public class FreightUI_main extends JFrame {
 
 
 	private FreightList freightList;
+	private UserVO uservo;
 
 
 	private JPanel bp;
@@ -46,6 +45,7 @@ public class FreightUI_main extends JFrame {
 
 	public FreightUI_main(UserVO u_vo) {
 		arr = fsm.findAll();
+		this.uservo = u_vo;
 		
 		setLayout(null);
 		setTitle("运费策略");
@@ -162,7 +162,9 @@ public class FreightUI_main extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				
+				JFrame jf = new ManagerUI_main(uservo);
+				jf.setVisible(true);
+				FreightUI_main.this.dispose();
 			}
 			
 		});

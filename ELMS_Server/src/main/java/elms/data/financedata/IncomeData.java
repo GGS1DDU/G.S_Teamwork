@@ -189,7 +189,7 @@ public class IncomeData extends UnicastRemoteObject implements IncomeDataService
 		ArrayList<FIncomePO> income = new ArrayList<FIncomePO>();
 		ObjectInputStream os = null;
 
-		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
 		try{
 			Date date1 = formatter.parse(time1);
 			Date date2 =formatter.parse(time2);

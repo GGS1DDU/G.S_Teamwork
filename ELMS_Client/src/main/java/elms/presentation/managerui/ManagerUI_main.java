@@ -3,11 +3,14 @@ package elms.presentation.managerui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import elms.presentation.financeui.inAndEx.InAndEx_form;
 import elms.presentation.managerui.freight.FreightUI_main;
 import elms.presentation.managerui.staff.StaffUI_main;
 import elms.presentation.uihelper.ScreenSize;
@@ -91,6 +94,20 @@ public class ManagerUI_main extends JFrame{
 				// TODO 自动生成的方法存根
 				JFrame member = new StaffUI_main(u_vo);
 				member.setVisible(true);
+			}
+			
+		});
+		
+		form_b.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				SimpleDateFormat sdf = new SimpleDateFormat(
+						"yyyy-MM-dd hh:mm:ss");
+				String endTime = sdf.format(new Date());
+				JFrame form = new ManagerUI_form("2015-12-12 00:00:00",endTime,u_vo);
+				form.setVisible(true);
 			}
 			
 		});

@@ -26,7 +26,7 @@ public class BankAccountData extends UnicastRemoteObject implements BankAccountD
 	
 	public BankAccountData() throws RemoteException,IOException{
 		super();
-		
+		isEmpty();
 	}
 	
 	public static void main(String[] args) throws IOException{

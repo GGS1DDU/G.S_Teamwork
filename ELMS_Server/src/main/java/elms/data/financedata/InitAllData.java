@@ -17,7 +17,7 @@ import elms.po.StoragePO;
 public class InitAllData extends UnicastRemoteObject implements InitAllDataService{
    
     
-   static   boolean initMember;
+   static  boolean initMember;
    static	boolean initStorage;
    static	boolean initAccount;
    static	boolean initCar;
@@ -52,9 +52,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
 		Path p3=Paths.get(time,time+" Car.ser");
 		Path p4=Paths.get("Car.ser");
-		Files.copy(p4,p3,StandardCopyOption.REPLACE_EXISTING);	
-		
-		
+		Files.copy(p4,p3,StandardCopyOption.REPLACE_EXISTING);		
 		setInitState();
 		   //    在告知初始化前  现将现有的数据情况储存起来  然后设置初始化状态  告知初始化
 	}

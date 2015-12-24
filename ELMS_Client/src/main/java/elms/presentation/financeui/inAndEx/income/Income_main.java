@@ -2,38 +2,32 @@ package elms.presentation.financeui.inAndEx.income;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
-
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import javax.swing.JTextField;
-
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 
 
 import elms.businesslogic.HallInfo;
 import elms.businesslogic.financebl.inandex.IncomeManager;
 import elms.presentation.GetHall;
-
+import elms.presentation.financeui.FinanceUI_main;
 import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.TagPanel;
-
 import elms.vo.FIncomeVO;
 import elms.vo.UserVO;
 
@@ -258,7 +252,11 @@ public class Income_main extends JPanel {
 			}
 
 		});
-
+		
+	}
+	
+	public JButton getBackButton(){
+		return back;
 	}
 
 	// 根据营业厅信息显示对应的收入项信息

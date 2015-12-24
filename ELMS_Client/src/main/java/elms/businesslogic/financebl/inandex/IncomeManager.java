@@ -226,9 +226,14 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 		// TODO 自动生成的方法存根
 		ArrayList<FIncomePO> arr;
 		try {
+			if(time1==null||time2==null){
+				arr = incomedata.findAll();
+			}else{
 			arr = incomedata.findByTime(time1, time2);
+			}
 			ArrayList<FIncomeVO> result = getVOList(arr);
 			return result;
+			
 		} catch (IOException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

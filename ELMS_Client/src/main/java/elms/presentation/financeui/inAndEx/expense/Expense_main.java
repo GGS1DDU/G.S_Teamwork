@@ -33,13 +33,13 @@ public class Expense_main extends JPanel{
 	private JTextArea text;
 	
 	private JMenuBar bar;
-	private JMenu jm1;  //id
-	private JMenu jm2;  //支出时间
-	private JMenu jm3;  //支出类型
-	private JMenu jm4;  //支出金额
-	private JMenu jm5;  //支出账户
-	private JMenu jm6;  //实际支出人员
-	private JMenu jm7;  //支出记录人员
+//	private JMenu jm1;  //id
+//	private JMenu jm2;  //支出时间
+//	private JMenu jm3;  //支出类型
+//	private JMenu jm4;  //支出金额
+//	private JMenu jm5;  //支出账户
+//	private JMenu jm6;  //实际支出人员
+//	private JMenu jm7;  //支出记录人员
 	
 	private JPanel bp;  //按钮存放panel
 	private JPanel tag;
@@ -182,18 +182,12 @@ public class Expense_main extends JPanel{
 			
 		});
 		
-		back.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				
-			}
-			
-		});
+		
 	}
 	
-	
+	public JButton getBackButton(){
+		return back;
+	}
 	
 	private void addList(){
 

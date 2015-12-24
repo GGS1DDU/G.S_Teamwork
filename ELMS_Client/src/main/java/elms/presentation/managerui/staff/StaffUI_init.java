@@ -1,5 +1,6 @@
 package elms.presentation.managerui.staff;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,8 +49,8 @@ public class StaffUI_init extends JFrame {
 
 		JButton add = new JButton("新建");
 		JButton delete = new JButton("修改");
-		JButton refresh = new JButton("刷新");
-		JButton back = new JButton("返回");
+		JButton refresh = new JButton("刷新");  refresh.setForeground(Color.WHITE);
+		JButton back = new JButton("返回");    back.setForeground(Color.RED);
 		add(add);
 		add.setBounds(this.getWidth() / 5 - 50, this.getHeight()*2 / 4 + 60, 100, 30);
 		add(delete);
@@ -83,6 +84,8 @@ public class StaffUI_init extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
+				JFrame jf = new StaffUI_main(uservo);
+				jf.setVisible(true);
 				StaffUI_init.this.dispose();
 			}
 
