@@ -27,11 +27,19 @@ import javax.swing.JTextField;
 
 
 
+
+
+
+
 import elms.businesslogic.dealbl.DealBL;
 import elms.businesslogic.userbl.UserManage;
 import elms.presentation.dealui.DealUI_main;
 import elms.presentation.dealui.DealUI_Search;
 import elms.presentation.dealui.DealUI_trackMessage;
+import elms.presentation.financeui.FinanceUI_main;
+import elms.presentation.invoiceui.InvoiceUI_YYTStaff;
+import elms.presentation.invoiceui.InvoiceUI_ZZZXStaff;
+import elms.presentation.managerui.ManagerUI_main;
 import elms.presentation.storageui.Storage_main;
 import elms.presentation.userui.UserUI_main;
 import elms.vo.DealVO;
@@ -118,14 +126,35 @@ public class LoginUI extends JFrame {
 					LoginUI.this.dispose();
 					//快递员，进入DealUI_main界面
 				}
-				if(n==3){
+				if(n==3){//营业厅业务员进入InvoiceUI_YYTStaff
+					JFrame  yytstaff=new InvoiceUI_YYTStaff(vo);
+					yytstaff.setVisible(true);
+					LoginUI.this.dispose();
 					
 				}
+				if(n==4){//中转中心业务员InvoiceUI_ZZZXStaff
+					JFrame zzzxstaff=new InvoiceUI_ZZZXStaff(vo);
+					zzzxstaff.setVisible(true);
+					LoginUI.this.dispose();
+					
+				}
+				
 				if(n==5){
 					JFrame Storage_main=new Storage_main(vo);
 					Storage_main.setVisible(true);
 					LoginUI.this.dispose();
 				}
+				if(n==6){
+					JFrame Finance=new FinanceUI_main(vo);
+					Finance.setVisible(true);
+					LoginUI.this.dispose();
+				}
+				if(n==7){
+					JFrame Manager=new ManagerUI_main(vo);
+					Manager.setVisible(true);
+					LoginUI.this.dispose();
+				}
+				
 				
 				
 				

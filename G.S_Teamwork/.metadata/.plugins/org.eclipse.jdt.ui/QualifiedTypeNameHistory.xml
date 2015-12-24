@@ -5,4 +5,7 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="elms.vo.StorageVO"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_YYTStaff"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_ZZZXStaff"/>
+<fullyQualifiedTypeName name="java.text.ParseException"/>
 </qualifiedTypeNameHistroy>

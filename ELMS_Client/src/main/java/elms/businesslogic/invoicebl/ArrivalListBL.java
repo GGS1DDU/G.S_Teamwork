@@ -229,10 +229,11 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 		ArrayList<ArrivalListVO> voarr=new ArrayList<ArrivalListVO>();
 		ArrayList<ArrivalListPO> poarr=new ArrayList<ArrivalListPO>();
 		poarr=arrivallistdata.findall();
+		if(poarr.size()>0){
 		for(ArrivalListPO po:poarr){
 			ArrivalListVO vo=new ArrivalListVO(po.getID(),po.getOrder(),po.getTime(),po.getState(),po.getFrom(),po.getPlace(),po.getMaker(),po.getAuditState());
 			voarr.add(vo);
-		}
+		}}
 		return voarr;
 	}
 
