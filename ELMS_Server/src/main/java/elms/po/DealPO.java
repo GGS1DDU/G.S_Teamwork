@@ -7,7 +7,7 @@ public class DealPO implements Serializable{
 		
 		
 
-		 String OrderID;
+		String OrderID;
 		 String courier_name; 
 		 String hall;  //应该用枚举
 		 String dealTime; //生成该订单的日期 

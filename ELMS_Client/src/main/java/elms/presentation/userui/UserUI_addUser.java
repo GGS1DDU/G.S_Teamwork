@@ -1,7 +1,9 @@
 package elms.presentation.userui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,7 +25,11 @@ import java.rmi.RemoteException;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class UserUI_addUser extends JFrame {
 
 	private JPanel contentPane;
@@ -32,13 +38,13 @@ public class UserUI_addUser extends JFrame {
 	private JTextField nametext;
 
 
-
-	/**
-	 * Create the frame.
-	 */
 	public UserUI_addUser() {
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screensize.getWidth();
+		int height = (int)screensize.getHeight();
+		
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 403, 442);
+		setBounds((width-1000)/2, (height-650)/2, 403, 442);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -94,6 +100,7 @@ public class UserUI_addUser extends JFrame {
 				}
 				if(addsucceed==true){
 					UserUI_addUser.this.dispose();
+					UserUI_AllUser.updateTable();
 					JOptionPane.showMessageDialog(null, "该账户已成功生成!", "成功!", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else{

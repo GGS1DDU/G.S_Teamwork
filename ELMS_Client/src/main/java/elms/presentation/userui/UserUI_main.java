@@ -6,12 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.CardLayout;
+
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import java.awt.Component;
 import java.awt.Rectangle;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
@@ -20,14 +24,22 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Point;
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class UserUI_main extends JFrame {
 	private JPanel contentPane;
 
 	public UserUI_main() {
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screensize.getWidth();
+		int height = (int)screensize.getHeight();
 		setRootPaneCheckingEnabled(false);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 807, 557);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds((width-807)/2, (height-557)/2, 807, 557);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

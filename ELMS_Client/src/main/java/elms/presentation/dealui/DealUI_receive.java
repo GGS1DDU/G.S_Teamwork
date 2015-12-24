@@ -10,9 +10,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 
@@ -26,7 +28,11 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealUI_receive extends JFrame {
 
 	private JPanel contentPane;
@@ -43,12 +49,17 @@ public class DealUI_receive extends JFrame {
 	private JTextField dd;
 
 
-	/**
-	 * Create the frame.
-	 */
+/**
+ * 
+ * @param vo
+ */
 	public DealUI_receive(UserVO vo) {
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screensize.getWidth();
+		int height = (int)screensize.getHeight();
+		
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 896, 494);
+		setBounds((width-896)/2, (height-100)/2, 896, 494);
 		contentPane = new JPanel();
 		contentPane.setForeground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

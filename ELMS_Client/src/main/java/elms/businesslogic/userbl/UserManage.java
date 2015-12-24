@@ -240,106 +240,89 @@ public class UserManage implements UserBlService ,DataFactory {
 		return null;
 	}
 
-	@Override
 	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public StorageDataService getStorageData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public StaffDataService getStaffData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public ArrivalListDataService getArrivalListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public SendingListDataService getSendingListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public IncomeListDataService getIncomeListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public RecivalListDataService getRecivalListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public LoadingListDataService getLoadingListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public TransferListDataService getTransferListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public DriverDataService getDriverData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public CarDataService getCarData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 

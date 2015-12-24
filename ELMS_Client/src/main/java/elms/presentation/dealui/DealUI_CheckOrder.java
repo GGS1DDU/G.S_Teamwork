@@ -18,7 +18,11 @@ import java.awt.Rectangle;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealUI_CheckOrder extends JFrame {
 	UserVO uservo;
 	DealVO dealvo;
@@ -46,7 +50,11 @@ public class DealUI_CheckOrder extends JFrame {
 	private JTextField receivercity;
 	private JTextField type;
 	private JTextField pack;
-
+/**
+ * 
+ * @param uservo
+ * @param dealvo
+ */
 	public DealUI_CheckOrder(UserVO uservo,DealVO dealvo) {
 		this.dealvo=dealvo;
 		this.uservo=uservo;

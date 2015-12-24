@@ -156,104 +156,104 @@ public class DealBL implements DealBlService ,DataFactory{
 
 
 	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public StorageDataService getStorageData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public IncomeDataService getIncomeData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public ExpenseDataService getExpenseData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public BankAccountDataService getBankAccountData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public InitAllDataService getInitData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public StaffDataService getStaffData() throws RemoteException {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public ArrivalListDataService getArrivalListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public SendingListDataService getSendingListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public IncomeListDataService getIncomeListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public RecivalListDataService getRecivalListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public LoadingListDataService getLoadingListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public TransferListDataService getTransferListData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public LoadingListZZDataService getLoadingListZZData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public DriverDataService getDriverData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	public CarDataService getCarData() {
-		// TODO 自动生成的方法存根
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -10,11 +10,17 @@ public class InvoiceVO{
 	public String getID(){
 		return id;
 	}
-	public String setState(){
+	public String setAuditState(){
 		return auditState;
 	}
-	public String getState(){
+	public String getAuditState(){
 		return auditState;
+	}
+	public String getMaker() {
+		return maker;
+	}
+	public void setMaker(String maker) {
+		this.maker = maker;
 	}
 
 }

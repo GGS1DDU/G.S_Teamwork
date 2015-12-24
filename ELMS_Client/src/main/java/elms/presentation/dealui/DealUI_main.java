@@ -1,13 +1,16 @@
 package elms.presentation.dealui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+
 
 
 
@@ -18,18 +21,30 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
 
+import javax.swing.JLabel;
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealUI_main extends JFrame {
 
 	private JPanel contentPane;
 	UserVO vo;
 
-
+	/**
+	 * 
+	 * @param vo
+	 */
 	public DealUI_main(final UserVO vo) {
 		this.vo=vo;
-		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 753, 516);
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screensize.getWidth();
+		int height = (int)screensize.getHeight();
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds((width-753)/2, (height-516)/2, 753, 516);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

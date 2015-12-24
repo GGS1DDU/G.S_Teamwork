@@ -1,7 +1,9 @@
 package elms.presentation.dealui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,16 +24,27 @@ import elms.vo.UserVO;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealUI_Search extends JFrame {
 	UserVO uservo=null;
 	private JTextField textField;
 
-
+	/**
+	 * 
+	 * @param uservo
+	 */
 	public DealUI_Search(final UserVO uservo) {
 		this.uservo=uservo;
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screensize.getWidth();
+		int height = (int)screensize.getHeight();
+		
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 747, 374);
+		setBounds((width-747)/2, (height)/2, 747, 374);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

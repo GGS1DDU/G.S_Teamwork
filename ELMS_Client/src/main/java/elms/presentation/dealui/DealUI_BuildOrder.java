@@ -31,7 +31,11 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealUI_BuildOrder extends JFrame {
 
 	private JPanel Jp;
@@ -56,7 +60,10 @@ public class DealUI_BuildOrder extends JFrame {
 	private JTextField receivetime;
 
 	
-
+	/**
+	 * 
+	 * @param vo
+	 */
 	public DealUI_BuildOrder(UserVO vo) {
 		this.vo=vo;
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);

@@ -1,5 +1,9 @@
 package elms.vo;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealVO {
 	
 	
@@ -30,15 +34,41 @@ public class DealVO {
 	 double fee;  //邮费+包装费
 	 int delaydays; //预计到达所需天数
 	 
-	 String actualreceiver_name;
-	 String receivaltime;
+	 String actualreceiver_name; //实际收件人
+	 String receivaltime; //实际到达时间
 	 
-	 String track;
+	 String track;  //物流信息
 	 
 	 String state; //应该用枚举
 	 
 	 
-	 
+	 /**
+	  * 构造函数
+	  * @param orderID
+	  * @param courier_name
+	  * @param hall
+	  * @param dealTime
+	  * @param sender_name
+	  * @param sender_city
+	  * @param sender_company
+	  * @param sender_phonenumber
+	  * @param receiver_name
+	  * @param receiver_city
+	  * @param receiver_company
+	  * @param receiver_phonenumber
+	  * @param goods_name
+	  * @param goods_amount
+	  * @param goods_weight
+	  * @param goods_volume
+	  * @param type
+	  * @param pack
+	  * @param fee
+	  * @param delaydays
+	  * @param actualreceiver_name
+	  * @param receivaltime
+	  * @param track
+	  * @param state
+	  */
 	 public DealVO(String orderID, String courier_name, String hall,
 				String dealTime, String sender_name, String sender_city,
 				String sender_company, String sender_phonenumber,

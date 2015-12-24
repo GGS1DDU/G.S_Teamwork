@@ -2,6 +2,11 @@ package elms.po;
 
 import java.io.Serializable;
 
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealPO implements Serializable{
 	
 		
@@ -41,7 +46,33 @@ public class DealPO implements Serializable{
 		 String state; //应该用枚举
 		 
 		 
-		 
+		 /**
+		  * 构造函数
+		  * @param orderID
+		  * @param courier_name
+		  * @param hall
+		  * @param dealTime
+		  * @param sender_name
+		  * @param sender_city
+		  * @param sender_company
+		  * @param sender_phonenumber
+		  * @param receiver_name
+		  * @param receiver_city
+		  * @param receiver_company
+		  * @param receiver_phonenumber
+		  * @param goods_name
+		  * @param goods_amount
+		  * @param goods_weight
+		  * @param goods_volume
+		  * @param type
+		  * @param pack
+		  * @param fee
+		  * @param delaydays
+		  * @param actualreceiver_name
+		  * @param receivaltime
+		  * @param track
+		  * @param state
+		  */
 		 public DealPO(String orderID, String courier_name, String hall,
 					String dealTime, String sender_name, String sender_city,
 					String sender_company, String sender_phonenumber,

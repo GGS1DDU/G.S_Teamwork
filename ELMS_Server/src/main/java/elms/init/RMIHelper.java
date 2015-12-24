@@ -34,5 +34,26 @@ public class RMIHelper {
         }
 
 }
+	
+	
+//	public synchronized static void init() throws ServerInitException {
+//        if (inited) {
+//            return;
+//        }
+//        try{
+//        	
+//    		LocateRegistry.createRegistry(1099);		
+//			DataFactory df=new DataFactoryImpl();
+//			java.rmi.Naming.rebind("rmi://localhost:1099/df",df);
+//			System.out.println("Server Ready!");
+//			
+//			
+//					
+//        }
+//        catch(Exception e){
+//        	throw new ServerInitException(e);
+//        }
+//
+//}
 
 }

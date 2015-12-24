@@ -1,7 +1,9 @@
 package elms.presentation.userui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +19,11 @@ import elms.vo.UserVO;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class UserUI_ChangeUser extends JFrame {
 
 	private JPanel contentPane;
@@ -31,8 +37,11 @@ public class UserUI_ChangeUser extends JFrame {
 	 * Create the frame.
 	 */
 	public UserUI_ChangeUser() {
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screensize.getWidth();
+		int height = (int)screensize.getHeight();
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 714, 222);
+		setBounds((width-714)/2, (height-600)/2, 714, 222);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

@@ -16,10 +16,18 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class DealUI_trackMessage extends JFrame {
 	String wlxx="";
 	private JTextField ID;
+	/**
+	 * 
+	 * @param dealvo
+	 */
 	public DealUI_trackMessage(DealVO dealvo){
 		wlxx=dealvo.getTrack();
 		

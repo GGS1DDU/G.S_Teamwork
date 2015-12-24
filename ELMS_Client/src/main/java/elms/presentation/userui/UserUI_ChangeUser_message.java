@@ -1,7 +1,9 @@
 package elms.presentation.userui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +24,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-
+/**
+ * 
+ * @author ZWH
+ *
+ */
 public class UserUI_ChangeUser_message extends JFrame {
 	UserVO vo=null;
 	private JButton deleteUser;
@@ -35,9 +41,11 @@ public class UserUI_ChangeUser_message extends JFrame {
 
 	public UserUI_ChangeUser_message(UserVO VO){
 		this.vo=VO;
-		
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int)screensize.getWidth();
+		int height = (int)screensize.getHeight();
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds(100, 100, 427, 443);
+		setBounds((width-900)/2, (height-500)/2, 427, 443);
 		JPanel UserMessage = new JPanel();
 		UserMessage.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(UserMessage);
@@ -78,6 +86,7 @@ public class UserUI_ChangeUser_message extends JFrame {
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
+				UserUI_AllUser.updateTable();
 				JOptionPane.showMessageDialog(null, "该账户信息已修改成功!", "成功!", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -94,6 +103,7 @@ public class UserUI_ChangeUser_message extends JFrame {
 				try {
 					user.deleteUser(uservo);
 					UserUI_ChangeUser_message.this.dispose();
+					UserUI_AllUser.updateTable();
 					JOptionPane.showMessageDialog(null, "已成功删除该账户！", "成功!", JOptionPane.INFORMATION_MESSAGE);
 				} catch (RemoteException e) {
 					e.printStackTrace();
@@ -124,7 +134,7 @@ public class UserUI_ChangeUser_message extends JFrame {
 		password.setColumns(10);
 		
 		jobchoose = new JComboBox();
-		jobchoose.setModel(new DefaultComboBoxModel(new String[] {"快递员", "营业厅业务员", "中转中心业务员", "中转中心仓库管理人员", "财务人员", "总经理", "系统管理员"}));
+		jobchoose.setModel(new DefaultComboBoxModel(new String[] {"快递员", "营业厅业务员", "中转中心业务员", "中转中心仓库管理人员", "财务人员", "总经理"}));
 		if(vo.getJob().equals("快递员")){
 			jobchoose.setSelectedIndex(0);
 		}

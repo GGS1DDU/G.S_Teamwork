@@ -1,6 +1,11 @@
 package elms.po;
 
 import java.io.Serializable;
+/**
+ * 
+ * @author ZWH
+ *
+ */
 
 public class UserPO implements Serializable {
 
@@ -9,7 +14,13 @@ public class UserPO implements Serializable {
 	String password;
 	String name;
 	String job;
-	
+	/**
+	 * 构造函数
+	 * @param id
+	 * @param password
+	 * @param name
+	 * @param job
+	 */
 	public UserPO(String id,String password,String name,String job){
 		this.id=id;
 		this.password=password;
