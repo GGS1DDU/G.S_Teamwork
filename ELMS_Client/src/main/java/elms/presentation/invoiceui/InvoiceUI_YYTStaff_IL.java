@@ -27,6 +27,8 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.invoicebl.ArrivalListBL;
+import elms.businesslogic.invoicebl.IncomeListBL;
 import elms.businesslogic.memberbl.CarBL;
 import elms.presentation.memberui.MemberUI_CarInit;
 import elms.presentation.memberui.MemberUI_CarMain;
@@ -49,7 +51,8 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 	public static void main(String arg[]){
 		EventQueue.invokeLater(new Runnable(){
 			public void run(){
-				UserVO vo=new UserVO();
+//				UserVO vo=new UserVO();
+				UserVO vo = new UserVO("00000001","891213","周颖婷","营业厅业务员");
 				JFrame YYTStaff_IL=new InvoiceUI_YYTStaff_IL(vo);
 			}
 		});
@@ -230,9 +233,11 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu("         收款日期");JMenu j2=new Menu("       收费金额");
-		JMenu j3=new Menu("       快递员姓名"); JMenu j4=new Menu("       到达日期"); JMenu j5=new Menu("         所属营业厅");
+		JMenu j1=new Menu("      收款日期");JMenu j2=new Menu("   收费金额");
+		JMenu j3=new Menu(" 快递员姓名"); JMenu j4=new Menu("     到达日期"); JMenu j5=new Menu("      所属营业厅");
+		JMenu j6=new Menu("      生成者");
 		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);
+		jbar.add(j6);
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
 		add(info2);
@@ -255,7 +260,7 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 		xjskd.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				new InvoiceUI_IncomeList();
+				new InvoiceUI_IncomeList(vo);
 			}	
 		});
 		find.addActionListener(new ActionListener(){
@@ -266,16 +271,22 @@ public class InvoiceUI_YYTStaff_IL extends JFrame{
 		});
 		
 		refresh.addActionListener(new ActionListener(){
+			IncomeListBL incomelistdata=new IncomeListBL();
 
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<IncomeListVO> temp=new ArrayList<IncomeListVO>();
-				temp=arr;
-//				if(arr.size()!=0)
-					arr=temp;
+		
 				text.setText("");
-				for(IncomeListVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getPostage()+"   "+alvo.getCourier()+"   "+alvo.getTime()+"    "+alvo.getPlace()+"\r\n");				
-			}
+				try{
+					arr=incomelistdata.inquiryAll();
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
+				for(IncomeListVO svo:arr){
+					text.append("             "+svo.getID()+"             "+svo.getPostage()+"             "+svo.getCourier()+"             "+
+				svo.getTime()+"             "+svo.getPlace()+"            "+svo.getMaker()+"   "+"\r\n");
+					
+				}	
+				}
 			
 		});
 		

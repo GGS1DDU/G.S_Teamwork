@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,7 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.invoicebl.RecivalListBL;
 import elms.vo.RecivalListVO;
 import elms.vo.UserVO;
 
@@ -45,7 +47,8 @@ public class InvoiceUI_ZZZXStaff extends JFrame{
 	public static void main(String arg[]){
 		EventQueue.invokeLater(new Runnable(){
 			public void run(){
-				UserVO vo=new UserVO();
+//				UserVO vo=new UserVO();
+				UserVO vo = new UserVO("00000001","891213","周颖婷","中转中心业务员");
 				JFrame ZZZXStaff=new InvoiceUI_ZZZXStaff(vo);
 			}
 		});
@@ -138,9 +141,11 @@ public class InvoiceUI_ZZZXStaff extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu("  ID");JMenu j2=new Menu("  装车日期 ");JMenu j3=new Menu("  中转中心编号");
-		JMenu j4=new Menu("  中转单编号");JMenu j5=new Menu("    出发地");JMenu j6=new Menu("  货物到达状态");JMenu j7=new Menu("   所属中转中心");
+		JMenu j1=new Menu("    ID");JMenu j2=new Menu("    装车日期 ");JMenu j3=new Menu("中转中心编号");
+		JMenu j4=new Menu("   中转单编号");JMenu j5=new Menu("    出发地");JMenu j6=new Menu("到达状态");
+		JMenu j7=new Menu("所属中转中心");JMenu j8=new Menu("生成者");
 		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);jbar.add(j6);jbar.add(j7);
+		jbar.add(j8);
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
 		add(info2);
@@ -163,7 +168,7 @@ public class InvoiceUI_ZZZXStaff extends JFrame{
 		xjjsd.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				new InvoiceUI_RecivalList();
+				new InvoiceUI_RecivalList(vo);
 			}	
 		});
 		find.addActionListener(new ActionListener(){
@@ -174,15 +179,18 @@ public class InvoiceUI_ZZZXStaff extends JFrame{
 		});
 		
 		refresh.addActionListener(new ActionListener(){
+			RecivalListBL recivallistdata=new RecivalListBL();
 
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<RecivalListVO> temp=new ArrayList<RecivalListVO>();
-				temp=arr;
-//				if(arr.size()!=0)
-					arr=temp;
 				text.setText("");
+				try{
+					arr=recivallistdata.inquiryAll();
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
 				for(RecivalListVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getTime()+"   "+alvo.getCenterID()+"   "+alvo.getOrderID()+"   "+alvo.getFrom()+"   "+alvo.getState()+"   "+alvo.getPlace()+"\r\n");				
+					text.append("     "+alvo.getID()+"     "+alvo.getTime()+"     "+alvo.getCenterID()+"     "+
+				alvo.getOrderID()+"  "+alvo.getFrom()+"     "+alvo.getState()+"     "+alvo.getPlace()+"        "+alvo.getMaker()+"\r\n");				
 			}
 			
 		});

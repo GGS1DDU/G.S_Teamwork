@@ -16,6 +16,7 @@ import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,7 +46,7 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 		setLayout(null);
 		setTitle("收款单  No："+vo.getID());
 		setResizable(false);
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2+80);
 		setVisible(true);
 		
 		Edit=edit;
@@ -115,12 +116,31 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 		pane.setBounds(220,180,100,64);
 		
 		JLabel place=new JLabel("所属营业厅");
-		newin.add(place);place.setBounds(120,250,80,20);
-		final JTextField pf=new JTextField(vo.getCourier());
-		pf.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
-		newin.add(pf);pf.setBounds(220, 250, 100, 24);
-		pf.setEditable(Edit);
-		pf.setHorizontalAlignment(SwingConstants.CENTER);
+		newin.add(place);
+		place.setBounds(120, 260, 80, 20);
+		final JComboBox<String> jcb2=new JComboBox<String>();
+		if(Edit){
+			jcb2.addItem("南京仙林");jcb2.addItem("南京鼓楼");
+			jcb2.setBackground(Color.WHITE);jcb2.setFont(new Font("楷体",Font.BOLD,12));
+			newin.add(jcb2);jcb2.setBounds(220, 260, 100, 24);
+			jcb2.setSelectedItem(vo.getPlace());
+			
+		}else{
+			JLabel pf=new JLabel(vo.getPlace());pf.setFont(new Font("楷体",Font.BOLD,12));
+			pf.setOpaque(false);
+			newin.add(pf);
+			pf.setBounds(220, 260, 100, 24);
+			pf.setHorizontalAlignment(SwingConstants.CENTER);
+			pf.setEnabled(false);
+		}
+		
+		JLabel maker=new JLabel("单据生成者");
+		newin.add(maker);
+		maker.setBounds(120, 300, 80, 20);
+		final JTextField mf=new JTextField(vo.getMaker());
+		mf.setFont(new Font("SansSerif",Font.PLAIN,12));
+		newin.add(mf);mf.setBounds(220, 300, 100, 24);mf.setEditable(Edit);
+		mf.setHorizontalAlignment(SwingConstants.CENTER);
 			
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);

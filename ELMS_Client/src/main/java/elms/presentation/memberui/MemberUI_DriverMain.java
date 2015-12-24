@@ -28,6 +28,7 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
 import elms.businesslogic.memberbl.CarBL;
+import elms.businesslogic.memberbl.DriverBL;
 import elms.presentation.invoiceui.InvoiceUI_YYTStaff;
 import elms.presentation.invoiceui.InvoiceUI_YYTStaff_IL;
 import elms.presentation.invoiceui.InvoiceUI_YYTStaff_LL;
@@ -262,15 +263,20 @@ public class MemberUI_DriverMain extends JFrame{
 		});
 		
 		refresh.addActionListener(new ActionListener(){
-
+            DriverBL driverdata=new DriverBL();
+            
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<DriverVO> temp=new ArrayList<DriverVO>();
-				temp=arr;
-//				if(arr.size()!=0)
-					arr=temp;
+				
 				text.setText("");
+				try{
+					arr=driverdata.inquiryAll();
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
 				for(DriverVO alvo:arr)
-					text.append(alvo.getID()+alvo.getName()+alvo.getBirthday()+alvo.getIDcard()+alvo.getCallNumber()+alvo.getGender()+alvo.getLicenseDate()+"\r\n");
+					text.append(" "+alvo.getID()+"        "+alvo.getName()+"      "+alvo.getBirthday()+
+							"       "+alvo.getIDcard()+"           "+alvo.getCallNumber()+"           "
+							+alvo.getGender()+"                 "+alvo.getLicenseDate()+"\r\n");
 			}
 			
 		});

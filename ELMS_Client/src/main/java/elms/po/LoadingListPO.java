@@ -17,10 +17,11 @@ public class LoadingListPO extends InvoicePO implements Serializable{
 //	ArrayList<String> orderNumber;
 	double cost;//运费
 	String place;
-	
+	String maker;
+	String auditState;
 
 	public LoadingListPO(String id,String time,String shopNumber,String transportNumber,String arrival,String carNumber,
-			String surpervisor,String supercargo,String orderNumber,double cost,String place){
+			String surpervisor,String supercargo,String orderNumber,double cost,String place,String maker,String auditState){
 		super();
 		this.id=id;
 		this.time=time;
@@ -33,6 +34,8 @@ public class LoadingListPO extends InvoicePO implements Serializable{
 		this.orderNumber=orderNumber;
 		this.cost=cost;	
 		this.place=place;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	public String getID(){
 		return id;
@@ -66,5 +69,12 @@ public class LoadingListPO extends InvoicePO implements Serializable{
 	}
 	public String getPlace(){
 		return place;
+	}
+	public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
 	}
 }

@@ -3,6 +3,7 @@ package elms.businesslogic.memberbl;
 import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import elms.businesslogic_service.memberblservice.DriverBLService;
 import elms.dataservice.DataFactory;
@@ -94,14 +95,14 @@ public class DriverBL implements DriverBLService,DataFactory{
 	public DriverVO inquiry(String id) throws IOException {
 		DriverPO po=driverdata.find(id);
 		if(po!=null){
-			DriverVO vo=new DriverVO(po.getID(),po.getName(),po.getBirthday(),po.getID(),po.getCallNumber(),po.getGender(),po.getLicenseDate());
+			DriverVO vo=new DriverVO(po.getID(),po.getName(),po.getBirthday(),po.getIDcard(),po.getCallNumber(),po.getGender(),po.getLicenseDate());
             return vo;
 		}else
 			return null;
 	}
 
 	public DriverVO record(DriverVO vo) throws IOException {
-		DriverPO po=new DriverPO(vo.getID(),vo.getName(),vo.getBirthday(),vo.getID(),vo.getCallNumber(),vo.getGender(),vo.getLicenseDate());
+		DriverPO po=new DriverPO(vo.getID(),vo.getName(),vo.getBirthday(),vo.getIDcard(),vo.getCallNumber(),vo.getGender(),vo.getLicenseDate());
 		driverdata.insert(po);
 		return vo;
 	}
@@ -127,50 +128,55 @@ public class DriverBL implements DriverBLService,DataFactory{
 		return null;
 	}
 
-	@Override
+	public ArrayList<DriverVO> inquiryAll() throws IOException {
+		// TODO 自动生成的方法存根
+		ArrayList<DriverVO> voarr=new ArrayList<DriverVO>();
+		ArrayList<DriverPO> poarr=new ArrayList<DriverPO>();
+		poarr=driverdata.findall();
+		for(DriverPO po:poarr){
+			DriverVO vo=new DriverVO(po.getID(),po.getName(),po.getBirthday(),po.getIDcard(),
+					po.getCallNumber(),po.getGender(),po.getLicenseDate());
+			voarr.add(vo);
+		}
+		return voarr;
+	}
+
 	public LogDataService getLogData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public IncomeDataService getIncomeData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public ExpenseDataService getExpenseData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public BankAccountDataService getBankAccountData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public InitAllDataService getInitData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;

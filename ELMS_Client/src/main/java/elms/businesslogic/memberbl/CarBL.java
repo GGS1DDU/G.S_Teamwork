@@ -3,6 +3,7 @@ package elms.businesslogic.memberbl;
 import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import elms.businesslogic_service.memberblservice.CarBLService;
 import elms.dataservice.DataFactory;
@@ -127,50 +128,54 @@ public class CarBL implements CarBLService,DataFactory{
 		
 	}
 
-	@Override
+	public ArrayList<CarVO> inquiryAll() throws IOException {
+		// TODO 自动生成的方法存根
+		ArrayList<CarVO> voarr=new ArrayList<CarVO>();
+		ArrayList<CarPO> poarr=new ArrayList<CarPO>();
+		poarr=cardata.findall();
+		for(CarPO po:poarr){
+			CarVO vo=new CarVO(po.getID(),po.getPlateNumber(),po.getUsingTime());
+			voarr.add(vo);
+		}
+		return voarr;
+	}
+
 	public LogDataService getLogData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public IncomeDataService getIncomeData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public ExpenseDataService getExpenseData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public BankAccountDataService getBankAccountData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public InitAllDataService getInitData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;

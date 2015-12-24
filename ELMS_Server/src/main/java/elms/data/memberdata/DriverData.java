@@ -70,8 +70,14 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-				po1=(DriverPO)ois.readObject();
-				arr.add(po1);
+//zyt
+//				po1=(DriverPO)ois.readObject();
+//				arr.add(po1);
+//zyt
+//zwh
+				DriverPO driverpo=(DriverPO)ois.readObject();
+				arr.add(driverpo);
+//zwh				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -98,6 +104,33 @@ public class DriverData extends UnicastRemoteObject implements DriverDataService
 	public void update(DriverPO po) throws RemoteException, IOException {
 		delete(po);
 		insert(po);
+	}
+	
+	public ArrayList<DriverPO> findall() throws RemoteException, IOException{
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis); 
+		ArrayList<DriverPO> arr=new ArrayList<DriverPO>();
+					
+		try{
+			DriverPO po=(DriverPO)ois.readObject();
+			arr.add(po);
+			while(fis.available()>0){
+				byte[] buf=new byte[4];
+				fis.read(buf);
+				DriverPO driverpo=(DriverPO)ois.readObject();
+				arr.add(driverpo);
+			}
+			return arr;
+		}catch(Exception e){
+			return arr;
+		}
+		finally{
+			try{
+				ois.close();
+			}catch(Exception e){
+						
+			}
+		}				
 	}
 	
 	public void init() throws RemoteException {

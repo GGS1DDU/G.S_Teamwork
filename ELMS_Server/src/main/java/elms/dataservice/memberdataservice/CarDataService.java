@@ -3,6 +3,7 @@ package elms.dataservice.memberdataservice;
 import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import elms.po.CarPO;
 
@@ -18,6 +19,9 @@ public interface CarDataService extends Remote{
 	
 	
 	public void update(CarPO po) throws RemoteException, IOException;
+	
+	
+	public ArrayList<CarPO> findall() throws RemoteException,IOException;
 	
 	
 	public void init() throws RemoteException;

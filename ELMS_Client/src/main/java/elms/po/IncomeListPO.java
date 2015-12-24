@@ -12,7 +12,9 @@ public class IncomeListPO extends InvoicePO implements Serializable{
 	String orderID;
 //	ArrayList<String> orderID;
 	String place;
-	public IncomeListPO(String i,double pt,String c,String t,String o,String p){
+	String maker;
+	String auditState;
+	public IncomeListPO(String i,double pt,String c,String t,String o,String p,String maker,String auditState){
 		super();
 		this.id=i;
 		this.postage=pt;
@@ -20,6 +22,8 @@ public class IncomeListPO extends InvoicePO implements Serializable{
 		this.time=t;
 		this.orderID=o;
 		this.place=p;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	public String getID(){
 		return id;
@@ -39,5 +43,11 @@ public class IncomeListPO extends InvoicePO implements Serializable{
     public String getPlace(){
     	return place;
     }
-
+    public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
+	}
 }

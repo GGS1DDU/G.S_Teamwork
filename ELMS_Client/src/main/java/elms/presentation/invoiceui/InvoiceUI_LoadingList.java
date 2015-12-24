@@ -1,5 +1,6 @@
 package elms.presentation.invoiceui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -15,6 +16,7 @@ import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +28,7 @@ import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.LoadingListBL;
 import elms.vo.LoadingListVO;
+import elms.vo.UserVO;
 
 public class InvoiceUI_LoadingList extends JFrame{
 	Toolkit kit=Toolkit.getDefaultToolkit();
@@ -33,15 +36,15 @@ public class InvoiceUI_LoadingList extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	
-	public static void main(String args[]){
-		new InvoiceUI_LoadingList();
-	}
+//	public static void main(String args[]){
+//		new InvoiceUI_LoadingList();
+//	}
 	
-	public InvoiceUI_LoadingList(){
+	public InvoiceUI_LoadingList(final UserVO vo){
 		setLayout(null);
 		setResizable(false);
 		setTitle("新建营业厅装车单   ");
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,6*screenHeight/8);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,6*screenHeight/8+40);
 		setVisible(true);
 		
 		final JPanel newin=new JPanel();
@@ -161,12 +164,23 @@ public class InvoiceUI_LoadingList extends JFrame{
 		
 		JLabel place=new JLabel("所属营业厅");
 		newin.add(place);
-		place.setBounds(120,420,80,20);
-		final JTextField pf=new JTextField();
-		pf.setFont(new Font("SanSerif",Font.PLAIN,12));
-		newin.add(pf);
-		pf.setBounds(220, 420, 100, 24);
-		pf.setHorizontalAlignment(SwingConstants.CENTER);
+		place.setBounds(120, 415, 80, 20);
+		final JComboBox<String> jcb2=new JComboBox<String>();
+		jcb2.addItem("南京仙林");
+		jcb2.addItem("南京鼓楼");
+		jcb2.setBackground(Color.WHITE);
+		jcb2.setFont(new Font("SanSerif",Font.CENTER_BASELINE,12));
+		newin.add(jcb2);
+		jcb2.setBounds(220, 415, 100, 24);
+		
+		JLabel maker=new JLabel("单据生成者");
+		newin.add(maker);
+		maker.setBounds(120,450,80,20);
+		final JTextField mf=new JTextField(vo.getId());
+		mf.setFont(new Font("SanSerif",Font.PLAIN,12));
+		newin.add(mf);
+		mf.setBounds(220, 450, 100, 24);mf.setEditable(true);
+		mf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
@@ -195,7 +209,7 @@ public class InvoiceUI_LoadingList extends JFrame{
 //					    	arr.add(str[i]);
 //					    }
 						LoadingListVO vo=new LoadingListVO(inf.getText(),datef.getText(),snf.getText(),
-								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),area.getText(),Double.valueOf(cf.getText()),pf.getText());		
+								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),area.getText(),Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
 						JOptionPane.showMessageDialog(newin, "保存至营业厅装车单");
 						loadinglistdata.record(vo);
 						InvoiceUI_LoadingList.this.dispose();

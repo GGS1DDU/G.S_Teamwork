@@ -10,13 +10,17 @@ public class IncomeListVO extends InvoiceVO{
 	String orderID;
 //	ArrayList<String> orderID;
 	String place;
-	public IncomeListVO(String i,double pt,String c,String t,String o,String p){
+	String maker;
+	String auditState;
+	public IncomeListVO(String i,double pt,String c,String t,String o,String p,String maker,String auditState){
 		this.id=i;
 		this.postage=pt;
 		this.courier=c;
 		this.time=t;
 		this.orderID=o;
 		this.place=p;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	
 	public String getID(){
@@ -37,6 +41,12 @@ public class IncomeListVO extends InvoiceVO{
     public String getPlace(){
     	return place;
     }
-
+    public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
+	}
 
 }

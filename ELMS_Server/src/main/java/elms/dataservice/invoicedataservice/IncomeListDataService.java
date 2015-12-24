@@ -3,6 +3,7 @@ package elms.dataservice.invoicedataservice;
 import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import elms.po.IncomeListPO;
 
@@ -18,6 +19,9 @@ public interface IncomeListDataService extends Remote{
 	
 	
 	public void update(IncomeListPO po) throws RemoteException, IOException;
+	
+	
+	public ArrayList<IncomeListPO> findall() throws RemoteException,IOException;
 	
 	
 	public void init() throws RemoteException;

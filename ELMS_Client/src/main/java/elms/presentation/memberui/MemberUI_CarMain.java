@@ -202,7 +202,7 @@ public class MemberUI_CarMain extends JFrame{
 		JPanel info=new JPanel();
 		info.setLayout(new java.awt.BorderLayout());
 		info.add(jsd);
-		info.setBounds(0, 23, 70, 25);
+		info.setBounds(0, 23, 100, 25);
 		info.setBorder(l2);
 		add(info);
 		
@@ -260,15 +260,20 @@ public class MemberUI_CarMain extends JFrame{
 		});
 		
 		refresh.addActionListener(new ActionListener(){
-
+            CarBL cardata=new CarBL();
+            
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<CarVO> temp=new ArrayList<CarVO>();
-				temp=arr;
-//				if(arr.size()!=0)
-					arr=temp;
+				
 				text.setText("");
+				try{
+					arr=cardata.inquiryAll();
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
 				for(CarVO alvo:arr)
-					text.append(alvo.getID()+alvo.getPlateNumber()+alvo.getUsingTime()+"\r\n");
+					text.append("               "+alvo.getID()+
+							    "                                             "+alvo.getPlateNumber()+
+							    "                                          "+alvo.getUsingTime()+"\r\n");
 			}
 			
 		});

@@ -15,8 +15,10 @@ public class TransferListVO extends InvoiceVO{
 //	ArrayList<String> orderID;
 	double cost;
 	String place;
+	String maker;
+	String auditState;
 	public TransferListVO(String i,String t,String td,String tn,String d,String a,String s,
-			String sr,String o,double c,String p){
+			String sr,String o,double c,String p,String maker,String auditState){
 		this.id=i;
 		this.time=t;		
 		this.transferID=td;
@@ -28,6 +30,8 @@ public class TransferListVO extends InvoiceVO{
 		this.orderID=o;
 		this.cost=c;
 		this.place=p;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	public String getID(){
 		return id;
@@ -62,6 +66,12 @@ public class TransferListVO extends InvoiceVO{
 	public String getPlace(){
 		return place;
 	}
-
+	public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
+	}
 
 }

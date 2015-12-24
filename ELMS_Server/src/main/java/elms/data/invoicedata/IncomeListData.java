@@ -72,8 +72,14 @@ public class IncomeListData extends UnicastRemoteObject implements IncomeListDat
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-				po1=(IncomeListPO)ois.readObject();
-				arr.add(po1);
+//zyt				
+//				po1=(IncomeListPO)ois.readObject();
+//				arr.add(po1);
+//zyt
+//zwh
+				IncomeListPO incomelistpo=(IncomeListPO)ois.readObject();
+				arr.add(incomelistpo);
+//zwh				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -105,6 +111,36 @@ public class IncomeListData extends UnicastRemoteObject implements IncomeListDat
 		
 	}
 
+	//zwh
+	//这个方法要返回传入的maker的所有未通过审核的单据集合
+	public ArrayList<IncomeListPO> findall() throws RemoteException, IOException{
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis); 
+		ArrayList<IncomeListPO> arr=new ArrayList<IncomeListPO>();
+					
+		try{
+			IncomeListPO po=(IncomeListPO)ois.readObject();
+			arr.add(po);
+			while(fis.available()>0){
+				byte[] buf=new byte[4];
+				fis.read(buf);
+				IncomeListPO incomelistpo=(IncomeListPO)ois.readObject();
+				arr.add(incomelistpo);
+			}
+			return arr;
+		}catch(Exception e){
+			return arr;
+		}
+		finally{
+			try{
+				ois.close();
+			}catch(Exception e){
+					
+			}
+		}				
+	}
+//zwh
+	
 	public void init() throws RemoteException {
 		file.delete();
 		IncomeListPO po=new IncomeListPO();

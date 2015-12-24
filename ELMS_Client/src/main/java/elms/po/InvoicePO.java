@@ -2,6 +2,7 @@ package elms.po;
 
 public class InvoicePO {
 	String id;
+	String maker;
 	String auditState;
 	public String setID(){
 		return id;

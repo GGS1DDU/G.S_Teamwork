@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 
+
 import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.po.LoadingListZZPO;
 
@@ -74,8 +75,14 @@ public class LoadingListZZData extends UnicastRemoteObject implements LoadingLis
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-				po1=(LoadingListZZPO)ois.readObject();
-				arr.add(po1);
+//zyt				
+//				po1=(LoadingListZZPO)ois.readObject();
+//				arr.add(po1);
+//zyt
+//zwh
+				LoadingListZZPO loadinglistzzpo=(LoadingListZZPO)ois.readObject();
+				arr.add(loadinglistzzpo);
+//zwh				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -104,6 +111,36 @@ public class LoadingListZZData extends UnicastRemoteObject implements LoadingLis
 		insert(po);
 	}
 
+	//zwh
+	//这个方法要返回传入的maker的所有未通过审核的单据集合
+	public ArrayList<LoadingListZZPO> findall() throws RemoteException, IOException{
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis); 
+		ArrayList<LoadingListZZPO> arr=new ArrayList<LoadingListZZPO>();
+					
+		try{
+			LoadingListZZPO po=(LoadingListZZPO)ois.readObject();
+			arr.add(po);
+			while(fis.available()>0){
+				byte[] buf=new byte[4];
+				fis.read(buf);
+				LoadingListZZPO loadinglistzzpo=(LoadingListZZPO)ois.readObject();
+				arr.add(loadinglistzzpo);
+			}
+			return arr;
+		}catch(Exception e){
+			return arr;
+		}
+		finally{
+			try{
+				ois.close();
+			}catch(Exception e){
+						
+			}
+		}					
+	}
+//zwh
+	
 	public void init() throws RemoteException {
 		file.delete();
 		LoadingListZZPO po=new LoadingListZZPO();

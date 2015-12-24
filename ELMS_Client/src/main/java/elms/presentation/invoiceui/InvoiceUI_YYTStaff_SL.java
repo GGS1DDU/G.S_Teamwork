@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.invoicebl.SendingListBL;
 import elms.businesslogic.memberbl.CarBL;
 import elms.presentation.memberui.MemberUI_CarInit;
 import elms.presentation.memberui.MemberUI_CarMain;
@@ -48,7 +49,8 @@ public class InvoiceUI_YYTStaff_SL extends JFrame{
 	public static void main(String arg[]){
 		EventQueue.invokeLater(new Runnable(){
 			public void run(){
-				UserVO vo=new UserVO();
+//				UserVO vo=new UserVO();
+				UserVO vo = new UserVO("00000001","891213","周颖婷","营业厅业务员");
 				JFrame YYTStaff_SL=new InvoiceUI_YYTStaff_SL(vo);
 			}
 		});
@@ -238,9 +240,11 @@ public class InvoiceUI_YYTStaff_SL extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu("        ID");JMenu j2=new Menu("         托运订单条型号码");
-		JMenu j3=new Menu("       派送员"); JMenu j4=new Menu("        到达日期"); JMenu j5=new Menu("        所属营业厅");
+		JMenu j1=new Menu("        ID");JMenu j2=new Menu("    托运订单条型号码");
+		JMenu j3=new Menu("  派送员"); JMenu j4=new Menu("      到达日期"); JMenu j5=new Menu("     所属营业厅");
+		JMenu j6=new Menu("     生成者");
 		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);
+		jbar.add(j6);
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
 		add(info2);
@@ -263,7 +267,7 @@ public class InvoiceUI_YYTStaff_SL extends JFrame{
 		xjpjd.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				new InvoiceUI_SendingList();
+				new InvoiceUI_SendingList(vo);
 			}	
 		});
 		find.addActionListener(new ActionListener(){
@@ -273,15 +277,20 @@ public class InvoiceUI_YYTStaff_SL extends JFrame{
 			}		
 		});
 		refresh.addActionListener(new ActionListener(){
+			SendingListBL sendinglistdata=new SendingListBL();
 
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<SendingListVO> temp=new ArrayList<SendingListVO>();
-				temp=arr;
-//				if(arr.size()!=0)
-					arr=temp;
+			
 				text.setText("");
+				try{
+					arr=sendinglistdata.inquiryAll();
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
 				for(SendingListVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getOrderID()+"   "+alvo.getCourier()+"   "+alvo.getTime()+"   "+alvo.getPlace()+"\r\n");
+					text.append("           "+alvo.getID()+"           "+alvo.getOrderID()+"           "+
+				alvo.getCourier()+"           "+alvo.getTime()+"           "+alvo.getPlace()+"           "+
+							alvo.getMaker()+"       "+"\r\n");
 			}
 			
 		});

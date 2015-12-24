@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import elms.dataservice.invoicedataservice.ArrivalListDataService;
 import elms.po.ArrivalListPO;
+import elms.po.SendingListPO;
 
 public class ArrivalListData extends UnicastRemoteObject implements ArrivalListDataService{
 	/**
@@ -85,8 +86,14 @@ public class ArrivalListData extends UnicastRemoteObject implements ArrivalListD
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-				po1=(ArrivalListPO)ois.readObject();
-				arr.add(po1);
+//zyt				
+//				po1=(ArrivalListPO)ois.readObject();
+//				arr.add(po1);
+//zyt			
+//zwh
+				ArrivalListPO arrivallistpo=(ArrivalListPO)ois.readObject();
+				arr.add(arrivallistpo);
+//zwh				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -118,6 +125,36 @@ public class ArrivalListData extends UnicastRemoteObject implements ArrivalListD
 		
 	}
 
+	//zwh
+	//这个方法要返回传入的maker的所有未通过审核的单据集合
+	public ArrayList<ArrivalListPO> findall() throws RemoteException, IOException{
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis); 
+		ArrayList<ArrivalListPO> arr=new ArrayList<ArrivalListPO>();
+					
+		try{
+			ArrivalListPO po=(ArrivalListPO)ois.readObject();
+			arr.add(po);
+			while(fis.available()>0){
+				byte[] buf=new byte[4];
+				fis.read(buf);
+				ArrivalListPO arrivallistpo=(ArrivalListPO)ois.readObject();
+				arr.add(arrivallistpo);
+			}
+			return arr;
+		}catch(Exception e){
+			return arr;
+		}
+		finally{
+			try{
+				ois.close();
+			}catch(Exception e){
+					
+			}
+		}				
+	}
+//zwh
+	
 	public void init() throws RemoteException {
 		file.delete();
 		ArrivalListPO po=new ArrivalListPO();
@@ -133,6 +170,4 @@ public class ArrivalListData extends UnicastRemoteObject implements ArrivalListD
 		// TODO 自动生成的方法存根
 		
 	}
-	
-
 }

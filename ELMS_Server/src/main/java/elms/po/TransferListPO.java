@@ -17,8 +17,10 @@ public class TransferListPO extends InvoicePO implements Serializable{
 //	ArrayList<String> orderID;//托运订单
 	double cost;//运费
 	String place;//所属中转中心
+	String maker;
+	String auditState;
 	public TransferListPO(String i,String t,String td,String tn,String d,String a,String s,
-			String sr,String o,double c,String p){
+			String sr,String o,double c,String p,String maker,String auditState){
 		super();
 		this.id=i;
 		this.time=t;		
@@ -67,6 +69,13 @@ public class TransferListPO extends InvoicePO implements Serializable{
 	}
 	public String getPlace(){
 		return place;
+	}
+	public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
 	}
 
 }

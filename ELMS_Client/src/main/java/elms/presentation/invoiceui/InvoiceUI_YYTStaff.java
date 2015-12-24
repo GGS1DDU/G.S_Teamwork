@@ -55,13 +55,15 @@ public class InvoiceUI_YYTStaff extends JFrame{
 	public static void main(String arg[]){
 		EventQueue.invokeLater(new Runnable(){
 			public void run(){
-				UserVO vo=new UserVO();
+//				UserVO vo=new UserVO();
+				UserVO vo = new UserVO("00000001","891213","周颖婷","营业厅业务员");
 				JFrame YYTStaff=new InvoiceUI_YYTStaff(vo);
 			}
 		});
 	}
 	
 	public InvoiceUI_YYTStaff(final UserVO vo){
+			
 		setLayout(null);
 		setTitle("营业厅管理");
 		setResizable(false);
@@ -233,32 +235,15 @@ public class InvoiceUI_YYTStaff extends JFrame{
 			}
 		}
 		
-		JMenu j1=new Menu("    ID  ");JMenu j2=new Menu("    中转单编号  ");JMenu j3=new Menu("    到达日期  ");
-		JMenu j4=new Menu("    到达状态  ");JMenu j5=new Menu("    出发地  ");JMenu j6=new Menu("    所属营业厅    ");
+		JMenu j1=new Menu("     ID");JMenu j2=new Menu("           中转单编号");JMenu j3=new Menu("         到达日期");
+		JMenu j4=new Menu(" 到达状态");JMenu j5=new Menu("出发地");JMenu j6=new Menu(" 所属营业厅");
+		JMenu j7=new Menu("  生成者");
 		jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);jbar.add(j6);
+		jbar.add(j7);
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
 		add(info2);
 		info2.setBounds(0,0,this.getWidth(),this.getHeight()/2);
-		
-		JButton update=new JButton("单据刷新");
-        add(update);
-        update.setBounds(5*this.getWidth()/6, this.getHeight()/2, 90, 25);
-		
-        update.addActionListener(new ActionListener(){
-        	ArrivalListBL arrivallistdata=new ArrivalListBL();
-
-			public void actionPerformed(ActionEvent e) {
-				text.setText("");
-				for(ArrivalListVO svo:arr){
-					text.append(svo.getID()+svo.getOrder()+svo.getTime()+svo.getState()+svo.getFrom()+svo.getPlace()+"\r\n");
-					System.out.println(svo.getID()+svo.getOrder()+svo.getTime()+svo.getState()+svo.getFrom()+svo.getPlace()+"\r\n");
-				}
-				
-			}
-        	
-        });
-        
         
 		JButton xjddd=new JButton("新建到达单");
 		JButton find=new JButton("查询");
@@ -277,7 +262,7 @@ public class InvoiceUI_YYTStaff extends JFrame{
 		xjddd.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				new InvoiceUI_ArrivalList();
+				new InvoiceUI_ArrivalList(vo);
 			}	
 		});
 		find.addActionListener(new ActionListener(){
@@ -288,21 +273,25 @@ public class InvoiceUI_YYTStaff extends JFrame{
 		});
 		
 		refresh.addActionListener(new ActionListener(){
+			ArrivalListBL arrivallistdata=new ArrivalListBL();
 
 			public void actionPerformed(ActionEvent e) {
 		
-
-				ArrayList<ArrivalListVO> temp=new ArrayList<ArrivalListVO>();
-				temp=arr;
-//				if(arr.size()!=0)
-					arr=temp;
 				text.setText("");
-				for(ArrivalListVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getOrder()+"   "+alvo.getTime()+"   "+alvo.getState()+"   "+alvo.getFrom()+alvo.getPlace()+"\r\n");
+				try{
+					arr=arrivallistdata.inquiryAll();
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
+				for(ArrivalListVO svo:arr){
+					text.append("       "+svo.getID()+"       "+svo.getOrder()+"       "+svo.getTime()+"       "+svo.getState()
+							+"       "+svo.getFrom()+"       "+svo.getPlace()+"      "+svo.getMaker()+"      "+"\r\n");
+					
+				}
 			}
 			
 		});
-		
+	
 		back.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent e){

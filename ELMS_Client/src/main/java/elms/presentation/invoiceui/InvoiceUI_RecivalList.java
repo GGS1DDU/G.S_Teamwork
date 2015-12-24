@@ -26,6 +26,7 @@ import elms.businesslogic.invoicebl.ArrivalListBL;
 import elms.businesslogic.invoicebl.RecivalListBL;
 import elms.vo.ArrivalListVO;
 import elms.vo.RecivalListVO;
+import elms.vo.UserVO;
 
 public class InvoiceUI_RecivalList extends JFrame{
 	Toolkit kit=Toolkit.getDefaultToolkit();
@@ -33,15 +34,15 @@ public class InvoiceUI_RecivalList extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	
-	public static void main(String args[]){
-		new InvoiceUI_RecivalList();
-	}
+//	public static void main(String args[]){
+//		new InvoiceUI_RecivalList();
+//	}
 	
-	public InvoiceUI_RecivalList(){
+	public InvoiceUI_RecivalList(final UserVO vo){
 		setLayout(null);
 		setResizable(false);
 		setTitle("新建中转中心接收单   ");
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2+40);
 		setVisible(true);
 		
 		final JPanel newin=new JPanel();
@@ -124,11 +125,22 @@ public class InvoiceUI_RecivalList extends JFrame{
 		JLabel place=new JLabel("所属中转中心");
 		newin.add(place);
 		place.setBounds(120, 230, 80, 20);
-		final JTextField pf=new JTextField();
-		pf.setFont(new Font("SanSerif",Font.PLAIN,12));
-		newin.add(pf);
-		pf.setBounds(220, 230, 100, 24);
-		pf.setHorizontalAlignment(SwingConstants.CENTER);
+		final JComboBox<String> jcb2=new JComboBox<String>();
+		jcb2.addItem("南京仙林");
+		jcb2.addItem("南京鼓楼");
+		jcb2.setBackground(Color.WHITE);
+		jcb2.setFont(new Font("SanSerif",Font.CENTER_BASELINE,12));
+		newin.add(jcb2);
+		jcb2.setBounds(220, 230, 100, 24);
+		
+		JLabel maker=new JLabel("单据生成者");
+		newin.add(maker);
+		maker.setBounds(120,265,80,20);
+		final JTextField mf=new JTextField(vo.getId());
+		mf.setFont(new Font("SanSerif",Font.PLAIN,12));
+		newin.add(mf);
+		mf.setBounds(220,265, 100, 24);mf.setEditable(true);
+		mf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
@@ -149,7 +161,7 @@ public class InvoiceUI_RecivalList extends JFrame{
 					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tnf.getText().length()!=21||cnf.getText().length()!=6||jcb.getSelectedItem()==null)				
 						JOptionPane.showMessageDialog(null, "中转中心接收单格式错误");				
 					else{				
-						RecivalListVO vo=new RecivalListVO(inf.getText(),datef.getText(),cnf.getText(),tnf.getText(),dpf.getText(),jcb.getSelectedItem().toString(),pf.getText());		
+						RecivalListVO vo=new RecivalListVO(inf.getText(),datef.getText(),cnf.getText(),tnf.getText(),dpf.getText(),jcb.getSelectedItem().toString(),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
 						JOptionPane.showMessageDialog(newin, "保存至中转中心接收单");
 						recivallistdata.record(vo);
 						InvoiceUI_RecivalList.this.dispose();

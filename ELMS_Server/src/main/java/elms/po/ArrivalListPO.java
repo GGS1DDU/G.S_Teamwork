@@ -11,8 +11,9 @@ public class ArrivalListPO extends InvoicePO implements Serializable{
 	String state;//到达状态
 	String from;//出发地
 	String place;//所属营业厅
-	
-	public ArrivalListPO(String i,String o,String t,String s,String f,String p){
+	String maker;
+	String auditState;
+	public ArrivalListPO(String i,String o,String t,String s,String f,String p,String maker,String auditState){
 		super();
 		this.id=i;
 		this.order=o;
@@ -20,6 +21,8 @@ public class ArrivalListPO extends InvoicePO implements Serializable{
 		this.state=s;
 		this.from=f;
 		this.place=p;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	
 	public ArrivalListPO() {
@@ -44,5 +47,12 @@ public class ArrivalListPO extends InvoicePO implements Serializable{
     public String getPlace(){
     	return place;
     }
+    public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
+	}
 
 }

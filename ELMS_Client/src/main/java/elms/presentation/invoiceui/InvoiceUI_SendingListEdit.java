@@ -45,7 +45,7 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 		setLayout(null);
 		setTitle("派件单  No："+vo.getID());
 		setResizable(false);
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,3*screenHeight/8);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,3*screenHeight/8+40);
 		setVisible(true);
 		
 		Edit=edit;
@@ -97,15 +97,33 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 			});
 		}
 		
-		JLabel place=new JLabel("派件员");
+		JLabel place=new JLabel("所属营业厅");
 		newin.add(place);
 		place.setBounds(100, 130, 80, 20);
-		final JTextField pf=new JTextField(vo.getCourier());
-		pf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(pf);pf.setBounds(220, 130, 100, 24);pf.setEditable(Edit);
-		pf.setHorizontalAlignment(SwingConstants.CENTER);
-		
+		final JComboBox<String> jcb2=new JComboBox<String>();
+		if(Edit){
+			jcb2.addItem("南京仙林");jcb2.addItem("南京鼓楼");
+			jcb2.setBackground(Color.WHITE);jcb2.setFont(new Font("楷体",Font.BOLD,12));
+			newin.add(jcb2);jcb2.setBounds(220, 160, 100, 24);
+			jcb2.setSelectedItem(vo.getPlace());
 			
+		}else{
+			JLabel pf=new JLabel(vo.getPlace());pf.setFont(new Font("楷体",Font.BOLD,12));
+			pf.setOpaque(false);
+			newin.add(pf);
+			pf.setBounds(220, 130, 100, 24);
+			pf.setHorizontalAlignment(SwingConstants.CENTER);
+			pf.setEnabled(false);
+		}
+			
+		JLabel maker=new JLabel("单据生成者");
+		newin.add(maker);
+		maker.setBounds(100, 160, 80, 20);
+		final JTextField mf=new JTextField(vo.getMaker());
+		mf.setFont(new Font("SansSerif",Font.PLAIN,12));
+		newin.add(mf);mf.setBounds(220, 160, 100, 24);mf.setEditable(Edit);
+		mf.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
 		JButton cancle=new JButton("编辑(E)");

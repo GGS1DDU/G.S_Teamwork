@@ -69,8 +69,14 @@ public class CarData extends UnicastRemoteObject implements CarDataService{
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-				po1=(CarPO)ois.readObject();
-				arr.add(po1);
+//zyt
+//				po1=(CarPO)ois.readObject();
+//				arr.add(po1);
+//zyt
+//zwh
+				CarPO carpo=(CarPO)ois.readObject();
+				arr.add(carpo);
+//zwh				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -99,6 +105,33 @@ public class CarData extends UnicastRemoteObject implements CarDataService{
 		delete(po);
 		insert(po);
 		
+	}
+	
+	public ArrayList<CarPO> findall() throws RemoteException, IOException{
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis); 
+		ArrayList<CarPO> arr=new ArrayList<CarPO>();
+					
+		try{
+			CarPO po=(CarPO)ois.readObject();
+			arr.add(po);
+			while(fis.available()>0){
+				byte[] buf=new byte[4];
+				fis.read(buf);
+				CarPO carpo=(CarPO)ois.readObject();
+					arr.add(carpo);
+			}
+			return arr;
+		}catch(Exception e){
+			return arr;
+		}
+		finally{
+			try{
+				ois.close();
+			}catch(Exception e){
+						
+			}
+		}				
 	}
 
 	public void init() throws RemoteException {

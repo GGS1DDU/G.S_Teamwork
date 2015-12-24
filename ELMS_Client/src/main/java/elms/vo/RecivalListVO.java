@@ -8,7 +8,9 @@ public class RecivalListVO extends InvoiceVO{
 	String from;
 	String state;
 	String place;
-	public RecivalListVO(String i,String t,String ci,String o,String f,String s,String p){
+	String maker;
+	String auditState;
+	public RecivalListVO(String i,String t,String ci,String o,String f,String s,String p,String maker,String auditState){
 		this.orderID=o;
 		this.centerID=ci;
 		this.time=t;
@@ -16,6 +18,8 @@ public class RecivalListVO extends InvoiceVO{
 		this.from=f;
 		this.state=s;
 		this.place=p;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	public String getCenterID(){
 		return centerID;
@@ -37,6 +41,13 @@ public class RecivalListVO extends InvoiceVO{
 	}
 	public String getPlace(){
 		return place;
+	}
+	public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
 	}
 
 

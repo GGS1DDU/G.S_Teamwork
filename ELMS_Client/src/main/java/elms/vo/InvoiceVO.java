@@ -2,6 +2,7 @@ package elms.vo;
 
 public class InvoiceVO{
 	String id;
+	String maker;
 	String auditState;
 	public String setID(){
 		return id;

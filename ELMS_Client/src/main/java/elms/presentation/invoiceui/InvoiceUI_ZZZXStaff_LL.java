@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,7 @@ import javax.swing.border.Border;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.businesslogic.invoicebl.LoadingListZZBL;
 import elms.vo.LoadingListZZVO;
 import elms.vo.UserVO;
 
@@ -40,7 +42,8 @@ public class InvoiceUI_ZZZXStaff_LL extends JFrame{
 	public static void main(String arg[]){
 		EventQueue.invokeLater(new Runnable(){
 			public void run(){
-				UserVO vo=new UserVO();
+//				UserVO vo=new UserVO();
+				UserVO vo = new UserVO("00000001","891213","周颖婷","中转中心业务员");
 				JFrame ZZZXStaff_LL=new InvoiceUI_ZZZXStaff_LL(vo);
 			}
 		});
@@ -116,7 +119,7 @@ public class InvoiceUI_ZZZXStaff_LL extends JFrame{
 		
 		JScrollPane scrollpane=new JScrollPane(text);
 		info2.add(scrollpane);
-		scrollpane.setBounds(5,70,this.getWidth()-40,this.getHeight()/2-70);
+		scrollpane.setBounds(5,70,this.getWidth(),this.getHeight()/2-70);
 		
 		JMenuBar jbar=new JMenuBar();
 		class Menu extends JMenu{
@@ -127,11 +130,12 @@ public class InvoiceUI_ZZZXStaff_LL extends JFrame{
 		}
 		
 		JMenu j1=new Menu("  ID");JMenu j2=new Menu("  装车日期");
-		JMenu j4=new Menu("  汽运编号");JMenu j5=new Menu("  到达地");JMenu j6=new Menu("  车辆代号");
-		JMenu j7=new Menu("  监装员");JMenu j8=new Menu("  押运员");JMenu j9=new Menu("  运费");
-		JMenu j10=new Menu("  所属中转中心");
+		JMenu j4=new Menu("      汽运编号");JMenu j5=new Menu("      到达地");JMenu j6=new Menu("车辆代号");
+		JMenu j7=new Menu("监装员");JMenu j8=new Menu("押运员");JMenu j9=new Menu("运费");
+		JMenu j10=new Menu("所属中转中心");JMenu j11=new Menu("生成者");
 		jbar.add(j1);jbar.add(j2);             jbar.add(j4);jbar.add(j5);
 		jbar.add(j6);jbar.add(j7);jbar.add(j8);jbar.add(j9);jbar.add(j10);
+		jbar.add(j11);
 		//订单条形号码不在这里显示了
 		add(jbar);
 		jbar.setBounds(5,48,this.getWidth(),20);
@@ -155,7 +159,7 @@ public class InvoiceUI_ZZZXStaff_LL extends JFrame{
 		xjzcd.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
-				new InvoiceUI_LoadingListZZ();
+				new InvoiceUI_LoadingListZZ(vo);
 			}	
 		});
 		find.addActionListener(new ActionListener(){
@@ -166,17 +170,20 @@ public class InvoiceUI_ZZZXStaff_LL extends JFrame{
 		});
 		
 		refresh.addActionListener(new ActionListener(){
+			LoadingListZZBL loadinglistzzdata=new LoadingListZZBL();
 
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<LoadingListZZVO> temp=new ArrayList<LoadingListZZVO>();
-				temp=arr;
-//				if(arr.size()!=0)
-					arr=temp;
+				
 				text.setText("");
+				try{
+					arr=loadinglistzzdata.inquiryAll();
+				}catch(IOException e1){
+					e1.printStackTrace();
+				}
 				for(LoadingListZZVO alvo:arr)
-					text.append(alvo.getID()+"   "+alvo.getTime()+"   "+
-				alvo.getTransportNumber()+"   "+alvo.getArrival()+"   "+alvo.getCarNumber()+"   "+
-				alvo.getSurpervior()+"   "+alvo.getSupercargo()+"   "+alvo.getCost()+alvo.getPlace()+"\r\n");
+					text.append(" "+alvo.getID()+" "+alvo.getTime()+" "+
+				alvo.getTransportNumber()+" "+alvo.getArrival()+"   "+alvo.getCarNumber()+" "+
+				alvo.getSurpervior()+"   "+alvo.getSupercargo()+" "+alvo.getCost()+"   "+alvo.getPlace()+"     "+alvo.getMaker()+"\r\n");
 			}
 		});
 		

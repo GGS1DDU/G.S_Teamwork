@@ -9,13 +9,17 @@ public class SendingListPO extends InvoicePO implements Serializable{
 	String id;
 	String orderID;
 	String place;
-	public SendingListPO(String i,String o,String u,String t,String p){
+	String maker;
+	String auditState;
+	public SendingListPO(String i,String o,String u,String t,String p,String maker,String auditState){
 		super();
 		this.id= i;
 		this.courier =u;
 		this.time =t;
 		this.orderID=o;
 		this.place=p;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	public String getID(){
 		return id;
@@ -31,6 +35,14 @@ public class SendingListPO extends InvoicePO implements Serializable{
 	}
 	public String getPlace(){
 		return place;
+	}
+	
+	public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
 	}
 
 }

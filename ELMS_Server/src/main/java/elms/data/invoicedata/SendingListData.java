@@ -46,7 +46,6 @@ public class SendingListData extends UnicastRemoteObject implements SendingListD
 		}
 	}
 
-
 	public void insert(SendingListPO po) throws RemoteException, IOException {
 		try{
 			FileOutputStream fs=new FileOutputStream(file,true);
@@ -70,8 +69,14 @@ public class SendingListData extends UnicastRemoteObject implements SendingListD
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-				po1=(SendingListPO)ois.readObject();
-				arr.add(po1);
+//zyt
+//				po1=(SendingListPO)ois.readObject();
+//				arr.add(po1);
+//zyt
+//zwh
+				SendingListPO sendinglistpo=(SendingListPO)ois.readObject();
+				arr.add(sendinglistpo);
+//zwh							
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -103,6 +108,36 @@ public class SendingListData extends UnicastRemoteObject implements SendingListD
 		
 	}
 
+	//zwh
+	//这个方法要返回传入的maker的所有未通过审核的单据集合
+	public ArrayList<SendingListPO> findall() throws RemoteException, IOException{
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis); 
+		ArrayList<SendingListPO> arr=new ArrayList<SendingListPO>();
+				
+		try{
+			SendingListPO po=(SendingListPO)ois.readObject();
+			arr.add(po);
+			while(fis.available()>0){
+				byte[] buf=new byte[4];
+				fis.read(buf);
+				SendingListPO sendinglistpo=(SendingListPO)ois.readObject();
+				arr.add(sendinglistpo);
+			}
+			return arr;
+		}catch(Exception e){
+			return arr;
+		}
+		finally{
+			try{
+				ois.close();
+			}catch(Exception e){
+					
+			}
+		}				
+	}
+	//zwh
+	
 	public void init() throws RemoteException {
 		file.delete();
 		SendingListPO po=new SendingListPO();

@@ -1,5 +1,6 @@
 package elms.presentation.invoiceui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -14,6 +15,7 @@ import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,6 +27,7 @@ import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.IncomeListBL;
 import elms.vo.IncomeListVO;
+import elms.vo.UserVO;
 
 public class InvoiceUI_IncomeList extends JFrame{	
 	Toolkit kit=Toolkit.getDefaultToolkit();
@@ -32,15 +35,15 @@ public class InvoiceUI_IncomeList extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	
-	public static void main(String args[]){
-		new InvoiceUI_IncomeList();
-	}
+//	public static void main(String args[]){
+//		new InvoiceUI_IncomeList();
+//	}
 	
-	public InvoiceUI_IncomeList(){
+	public InvoiceUI_IncomeList(final UserVO vo){
 		setLayout(null);
 		setResizable(false);
 		setTitle("新建收款单");
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2+80);
 		setVisible(true);
 		
 		final JPanel newin=new JPanel();
@@ -110,13 +113,24 @@ public class InvoiceUI_IncomeList extends JFrame{
 		
 		JLabel place=new JLabel("所属营业厅");
 		newin.add(place);
-		place.setBounds(120,250,80,20);
-		final JTextField pf=new JTextField();
-		pf.setFont(new Font("SanSerif",Font.PLAIN,12));
-		newin.add(pf);
-		pf.setBounds(220,250,100,24);
-		pf.setHorizontalAlignment(SwingConstants.CENTER);
+		place.setBounds(120, 260, 80, 20);
+		final JComboBox<String> jcb2=new JComboBox<String>();
+		jcb2.addItem("南京仙林");
+		jcb2.addItem("南京鼓楼");
+		jcb2.setBackground(Color.WHITE);
+		jcb2.setFont(new Font("SanSerif",Font.CENTER_BASELINE,12));
+		newin.add(jcb2);
+		jcb2.setBounds(220, 260, 100, 24);
 			
+		JLabel maker=new JLabel("单据生成者");
+		newin.add(maker);
+		maker.setBounds(120,300,80,20);
+		final JTextField mf=new JTextField(vo.getId());
+		mf.setFont(new Font("SanSerif",Font.PLAIN,12));
+		newin.add(mf);
+		mf.setBounds(220, 300, 100, 24);mf.setEditable(true);
+		mf.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);
 		JButton save=new JButton("保存(S)");
@@ -143,7 +157,7 @@ public class InvoiceUI_IncomeList extends JFrame{
 //					    	arr.add(str[i]);
 //					    }						
 //						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),arr,pf.getText());		
-						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),area.getText(),pf.getText());		
+						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),area.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
 
 						JOptionPane.showMessageDialog(newin, "保存至营业厅装车单");
 						incomelistdata.record(vo);

@@ -21,9 +21,11 @@ public class LoadingListZZPO extends InvoicePO implements Serializable{
 //			ArrayList<String> orderNumber;//托运单号
 			double cost;//运费
 			String place;//所属中转中心
+			String maker;
+			String auditState;
 
 			public LoadingListZZPO(String id,String time,String transportNumber,String arrival,String carNumber,
-					String surpervisor,String supercargo,String orderNumber,double cost,String p){
+					String surpervisor,String supercargo,String orderNumber,double cost,String p,String maker,String auditState){
 				super();
 				this.id=id;
 				this.time=time;
@@ -35,6 +37,8 @@ public class LoadingListZZPO extends InvoicePO implements Serializable{
 				this.orderNumber=orderNumber;
 				this.cost=cost;		
 				this.place=p;
+				this.maker=maker;
+				this.auditState=auditState;
 			}
 			public LoadingListZZPO() {
 				// TODO 自动生成的构造函数存根
@@ -68,6 +72,13 @@ public class LoadingListZZPO extends InvoicePO implements Serializable{
 			}
 			public String getPlace(){
 				return place;
+			}
+			public String getMaker(){
+				return maker;
+			}
+			
+			public String getAuditState(){
+				return auditState;
 			}
 
 }

@@ -1,5 +1,6 @@
 package elms.presentation.invoiceui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -51,7 +52,7 @@ public class InvoiceUI_LoadingListEdit extends JFrame{
 		setLayout(null);
 		setTitle("装车单  No："+vo.getID());
 		setResizable(false);
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,6*screenHeight/8);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,6*screenHeight/8+40);
 		setVisible(true);
 		
 		Edit=edit;
@@ -157,11 +158,31 @@ public class InvoiceUI_LoadingListEdit extends JFrame{
 		cf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel place=new JLabel("所属营业厅");
-		newin.add(place);place.setBounds(120,420,80,20);
-		final JTextField pf=new JTextField(String.valueOf(vo.getCost()));
-		pf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(pf);pf.setBounds(220, 420, 100, 24);pf.setEditable(Edit);
-		pf.setHorizontalAlignment(SwingConstants.CENTER);
+		newin.add(place);
+		place.setBounds(120, 415, 80, 20);
+		final JComboBox<String> jcb2=new JComboBox<String>();
+		if(Edit){
+			jcb2.addItem("南京仙林");jcb2.addItem("南京鼓楼");
+			jcb2.setBackground(Color.WHITE);jcb2.setFont(new Font("楷体",Font.BOLD,12));
+			newin.add(jcb2);jcb2.setBounds(220, 415, 100, 24);
+			jcb2.setSelectedItem(vo.getPlace());
+			
+		}else{
+			JLabel pf=new JLabel(vo.getPlace());pf.setFont(new Font("楷体",Font.BOLD,12));
+			pf.setOpaque(false);
+			newin.add(pf);
+			pf.setBounds(220, 415, 100, 24);
+			pf.setHorizontalAlignment(SwingConstants.CENTER);
+			pf.setEnabled(false);
+		}
+		
+		JLabel maker=new JLabel("单据生成者");
+		newin.add(maker);
+		maker.setBounds(120, 450, 80, 20);
+		final JTextField mf=new JTextField(vo.getMaker());
+		mf.setFont(new Font("SansSerif",Font.PLAIN,12));
+		newin.add(mf);mf.setBounds(220, 450, 100, 24);mf.setEditable(Edit);
+		mf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonpanel=new JPanel();
 		buttonpanel.setLayout(null);

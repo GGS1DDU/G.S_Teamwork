@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.po.RecivalListPO;
+import elms.po.SendingListPO;
 
 public class RecivalListData extends UnicastRemoteObject implements RecivalListDataService{
 	File file=new File("RecivalList.ser");
@@ -69,8 +70,14 @@ public class RecivalListData extends UnicastRemoteObject implements RecivalListD
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-				po1=(RecivalListPO)ois.readObject();
-				arr.add(po1);
+//zyt
+//				po1=(RecivalListPO)ois.readObject();
+//				arr.add(po1);
+//zyt
+//zwh
+				RecivalListPO recivallistpo=(RecivalListPO)ois.readObject();
+				arr.add(recivallistpo);
+//zwh				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -100,7 +107,40 @@ public class RecivalListData extends UnicastRemoteObject implements RecivalListD
 		insert(po);
 		
 	}
-
+		
+	//zwh
+	//这个方法要返回传入的maker的所有未通过审核的单据集合
+	public ArrayList<RecivalListPO> findall() throws RemoteException, IOException{
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis); 
+		ArrayList<RecivalListPO> arr=new ArrayList<RecivalListPO>();
+					
+			try{
+				RecivalListPO po=(RecivalListPO)ois.readObject();
+				arr.add(po);
+				while(fis.available()>0){
+					byte[] buf=new byte[4];
+					fis.read(buf);
+					RecivalListPO recivallistpo=(RecivalListPO)ois.readObject();
+					arr.add(recivallistpo);
+				}
+				return arr;
+			}catch(Exception e){
+				return arr;
+			}
+			finally{
+				try{
+					ois.close();
+				}catch(Exception e){
+						
+				}
+			}
+					
+					
+					
+		}
+		//zwh
+	
 	public void init() throws RemoteException {
 		file.delete();
 		RecivalListPO po=new RecivalListPO();

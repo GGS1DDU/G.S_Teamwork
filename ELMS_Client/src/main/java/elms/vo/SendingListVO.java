@@ -6,12 +6,16 @@ public class SendingListVO extends InvoiceVO{
 	String id;
 	String orderID;
 	String place;
-	public SendingListVO(String i,String o,String u,String t,String p){
+	String maker;
+	String auditState;
+	public SendingListVO(String i,String o,String u,String t,String p,String maker,String auditState){
 		this.id= i;
 		this.courier =u;
 		this.time =t;
 		this.orderID=o;
 		this.place=p;
+		this.maker=maker;
+		this.auditState=auditState;
 	}
 	public String getID(){
 		return id;
@@ -30,4 +34,11 @@ public class SendingListVO extends InvoiceVO{
 	}
 
 
+	public String getMaker(){
+		return maker;
+	}
+	
+	public String getAuditState(){
+		return auditState;
+	}
 }
