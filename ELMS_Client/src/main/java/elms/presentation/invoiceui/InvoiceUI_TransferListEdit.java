@@ -219,12 +219,15 @@ public class InvoiceUI_TransferListEdit extends JFrame{
 						try{
 							if(!df.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tif.getText().length()!=21){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
-							}
+							}else{
 							InvoiceUI_TransferListEdit.this.dispose();
 							loadinglistdata.delete(getVO());
+							newvo=new TransferListVO(idf.getText(),df.getText(),tif.getText(),tnf.getText(),dpf.getText(),
+									apf.getText(),snf.getText(),s1f.getText(),area.getText(),Double.valueOf(cf.getText()),
+									jcb2.getSelectedItem().toString(),mf.getText(),"提交");
 							loadinglistdata.record(newvo);
 							new InvoiceUI_TransferListEdit(newvo,false);
-							
+							}
 						}catch(HeadlessException e2){
 							e2.printStackTrace();
 						}

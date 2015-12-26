@@ -209,7 +209,8 @@ public class InvoiceUI_TransferList extends JFrame{
 //					    	arr.add(str[i]);
 //					    }
 						TransferListVO vo=new TransferListVO(inf.getText(),datef.getText(),tif.getText(),tnf.getText(),
-								dpf.getText(),apf.getText(),snf.getText(),s1f.getText(),area.getText(),Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
+								dpf.getText(),apf.getText(),snf.getText(),s1f.getText(),area.getText(),
+								Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
 						JOptionPane.showMessageDialog(newin, "保存至中转中心中转单");
 						transferlistdata.record(vo);
 						InvoiceUI_TransferList.this.dispose();

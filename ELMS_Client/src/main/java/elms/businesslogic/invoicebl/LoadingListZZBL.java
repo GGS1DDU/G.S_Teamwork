@@ -133,7 +133,7 @@ public class LoadingListZZBL implements LoadingListZZBLService,DataFactory{
 	public ArrayList<LoadingListZZVO> findNoaudit() throws IOException{
 		ArrayList<LoadingListZZPO> all=loadinglistzzdata.findall();
 		ArrayList<LoadingListZZVO> no_audit=new ArrayList<LoadingListZZVO>(); 
-		for(int i=1;i<all.size();i++){		
+		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){		
 				LoadingListZZVO vo=new LoadingListZZVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getTransportNumber(),
 						all.get(i).getArrival(),all.get(i).getCarNumber(),all.get(i).getSurpervior(),all.get(i).getSupercargo(),
@@ -149,7 +149,7 @@ public class LoadingListZZBL implements LoadingListZZBLService,DataFactory{
 	public ArrayList<LoadingListZZVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<LoadingListZZPO> all=loadinglistzzdata.findall();
 		ArrayList<LoadingListZZVO> result=new ArrayList<LoadingListZZVO>(); 
-		for(int i=1;i<all.size();i++){
+		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
 				LoadingListZZVO vo=new LoadingListZZVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getTransportNumber(),
 						all.get(i).getArrival(),all.get(i).getCarNumber(),all.get(i).getSurpervior(),all.get(i).getSupercargo(),
@@ -217,12 +217,13 @@ public class LoadingListZZBL implements LoadingListZZBLService,DataFactory{
 		ArrayList<LoadingListZZVO> voarr=new ArrayList<LoadingListZZVO>();
 		ArrayList<LoadingListZZPO> poarr=new ArrayList<LoadingListZZPO>();
 		poarr=loadinglistzzdata.findall();
+		if(poarr.size()>0){
 		for(LoadingListZZPO po:poarr){
 			LoadingListZZVO vo=new LoadingListZZVO(po.getID(),po.getTime(),po.getTransportNumber(),po.getArrival(),po.getCarNumber(),
 					po.getSurpervior(),po.getSupercargo(),po.getOrderNumber(),po.getCost(),po.getPlace(),
 					po.getMaker(),po.getAuditState());
 			voarr.add(vo);
-		}
+		}}
 		return voarr;
 	}
 

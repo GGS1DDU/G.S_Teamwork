@@ -158,12 +158,13 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 						try{
 							if(df.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s")||onf.getText().length()!=10){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
-							}
+							}else{
 							InvoiceUI_SendingListEdit.this.dispose();
 							sendinglistdata.delete(getVO());
+							newvo=new SendingListVO(idf.getText(),onf.getText(),cf.getText(),df.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
 							sendinglistdata.record(newvo);
 							new InvoiceUI_SendingListEdit(newvo,false);
-							
+							}
 						}catch(HeadlessException e2){
 							e2.printStackTrace();
 						}

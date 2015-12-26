@@ -209,7 +209,8 @@ public class InvoiceUI_LoadingList extends JFrame{
 //					    	arr.add(str[i]);
 //					    }
 						LoadingListVO vo=new LoadingListVO(inf.getText(),datef.getText(),snf.getText(),
-								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),area.getText(),Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
+								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),area.getText(),
+								Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
 						JOptionPane.showMessageDialog(newin, "保存至营业厅装车单");
 						loadinglistdata.record(vo);
 						InvoiceUI_LoadingList.this.dispose();

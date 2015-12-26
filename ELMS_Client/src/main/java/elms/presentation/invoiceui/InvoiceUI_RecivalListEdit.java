@@ -181,11 +181,13 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 						try{
 							if(df.getText().matches("\\{4}-\\{2}-\\{2}\\s")||cnf.getText().length()!=6||tnf.getText().length()!=21){
 								JOptionPane.showMessageDialog(newin, "修改信息格式错误");
-							}
+							}else{
 							InvoiceUI_RecivalListEdit.this.dispose();
 							recivallistdata.delete(getVO());
+							newvo=new RecivalListVO(idf.getText(),df.getText(),cnf.getText(),tnf.getText(),dpf.getText(),jcb.getSelectedItem().toString(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
 							recivallistdata.record(newvo);
 							new InvoiceUI_RecivalListEdit(newvo,false);		
+							}						
 						}catch(HeadlessException e2){
 							e2.printStackTrace();
 						}catch(IOException e2){

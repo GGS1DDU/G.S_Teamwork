@@ -176,12 +176,14 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 						try{
 							if(df.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s")){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
-							}
+							}else{
 							InvoiceUI_IncomeListEdit.this.dispose();
 							incomelistdata.delete(getVO());
+							newvo=new IncomeListVO(idf.getText(),Double.valueOf(icf.getText()),cnf.getText(),df.getText(),area.getText(),
+									jcb2.getSelectedItem().toString(),mf.getText(),"提交");
 							incomelistdata.record(newvo);
 							new InvoiceUI_IncomeListEdit(newvo,false);
-							
+							}
 						}catch(HeadlessException e2){
 							e2.printStackTrace();
 						}

@@ -158,10 +158,13 @@ public class InvoiceUI_RecivalList extends JFrame{
 	
 			public void actionPerformed(ActionEvent arg0){
 				try{				
-					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tnf.getText().length()!=21||cnf.getText().length()!=6||jcb.getSelectedItem()==null)				
+					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tnf.getText().length()!=21||
+							cnf.getText().length()!=6||jcb.getSelectedItem()==null)				
 						JOptionPane.showMessageDialog(null, "中转中心接收单格式错误");				
 					else{				
-						RecivalListVO vo=new RecivalListVO(inf.getText(),datef.getText(),cnf.getText(),tnf.getText(),dpf.getText(),jcb.getSelectedItem().toString(),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
+						RecivalListVO vo=new RecivalListVO(inf.getText(),datef.getText(),cnf.getText(),
+								tnf.getText(),dpf.getText(),jcb.getSelectedItem().toString(),jcb2.getSelectedItem().toString(),
+								mf.getText(),"提交");		
 						JOptionPane.showMessageDialog(newin, "保存至中转中心接收单");
 						recivallistdata.record(vo);
 						InvoiceUI_RecivalList.this.dispose();

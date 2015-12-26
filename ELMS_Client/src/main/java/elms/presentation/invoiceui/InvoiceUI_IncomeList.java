@@ -157,7 +157,8 @@ public class InvoiceUI_IncomeList extends JFrame{
 //					    	arr.add(str[i]);
 //					    }						
 //						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),arr,pf.getText());		
-						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),datef.getText(),area.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
+						IncomeListVO vo=new IncomeListVO(inf.getText(),Double.valueOf(icf.getText()),cnf.getText(),
+								datef.getText(),area.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
 
 						JOptionPane.showMessageDialog(newin, "保存至营业厅装车单");
 						incomelistdata.record(vo);

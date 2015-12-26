@@ -117,7 +117,7 @@ public class LoadingListBL implements LoadingListBLService,DataFactory{
 	public ArrayList<LoadingListVO> findNoaudit() throws IOException{
 		ArrayList<LoadingListPO> all=loadinglistdata.findall();
 		ArrayList<LoadingListVO> no_audit=new ArrayList<LoadingListVO>(); 
-		for(int i=1;i<all.size();i++){		
+		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){
 			LoadingListVO vo=new LoadingListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getShopNumber(),
 					all.get(i).getTransportNumber(),all.get(i).getArrival(),all.get(i).getCarNumber(),all.get(i).getSurpervior(),
@@ -133,7 +133,7 @@ public class LoadingListBL implements LoadingListBLService,DataFactory{
 	public ArrayList<LoadingListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<LoadingListPO> all=loadinglistdata.findall();
 		ArrayList<LoadingListVO> result=new ArrayList<LoadingListVO>(); 
-		for(int i=1;i<all.size();i++){
+		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
 				LoadingListVO vo=new LoadingListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getShopNumber(),
 						all.get(i).getTransportNumber(),all.get(i).getArrival(),all.get(i).getCarNumber(),all.get(i).getSurpervior(),
@@ -219,13 +219,14 @@ public class LoadingListBL implements LoadingListBLService,DataFactory{
 		ArrayList<LoadingListVO> voarr=new ArrayList<LoadingListVO>();
 		ArrayList<LoadingListPO> poarr=new ArrayList<LoadingListPO>();
 		poarr=loadinglistdata.findall();
+		if(poarr.size()>0){
 		for(LoadingListPO po:poarr){
 			LoadingListVO vo=new LoadingListVO(po.getID(),po.getTime(),po.getShopNumber(),po.getTransportNumber(),
 					po.getArrival(),po.getCarNumber(),po.getSurpervior(),po.getSupercargo(),po.getOrderNumber(),po.getCost(),
 					po.getPlace(),po.getMaker(),po.getAuditState());
 			voarr.add(vo);
 		}
-		
+		}
 		return voarr;
 	}
 

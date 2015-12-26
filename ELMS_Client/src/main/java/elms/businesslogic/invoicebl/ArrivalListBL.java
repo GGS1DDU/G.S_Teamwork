@@ -111,7 +111,7 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 	public ArrayList<ArrivalListVO> findNoaudit() throws IOException{
 		ArrayList<ArrivalListPO> all=arrivallistdata.findall();
 		ArrayList<ArrivalListVO> no_audit=new ArrayList<ArrivalListVO>(); 
-		for(int i=1;i<all.size();i++){		
+		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){
 			ArrivalListVO vo=new ArrivalListVO(all.get(i).getID(),all.get(i).getOrder(),all.get(i).getTime(),all.get(i).getState(),all.get(i).getFrom(),all.get(i).getPlace(),all.get(i).getMaker(),all.get(i).getAuditState());
 			no_audit.add(vo);		
@@ -124,7 +124,7 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 	public ArrayList<ArrivalListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<ArrivalListPO> all=arrivallistdata.findall();
 		ArrayList<ArrivalListVO> result=new ArrayList<ArrivalListVO>(); 
-		for(int i=1;i<all.size();i++){
+		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
 				ArrivalListVO vo=new ArrivalListVO(all.get(i).getID(),all.get(i).getOrder(),all.get(i).getTime(),all.get(i).getState(),all.get(i).getFrom(),all.get(i).getPlace(),all.get(i).getMaker(),all.get(i).getAuditState());
 				result.add(vo);				

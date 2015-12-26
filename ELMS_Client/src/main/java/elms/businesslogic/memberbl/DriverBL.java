@@ -133,11 +133,12 @@ public class DriverBL implements DriverBLService,DataFactory{
 		ArrayList<DriverVO> voarr=new ArrayList<DriverVO>();
 		ArrayList<DriverPO> poarr=new ArrayList<DriverPO>();
 		poarr=driverdata.findall();
+		if(poarr.size()>0){
 		for(DriverPO po:poarr){
 			DriverVO vo=new DriverVO(po.getID(),po.getName(),po.getBirthday(),po.getIDcard(),
 					po.getCallNumber(),po.getGender(),po.getLicenseDate());
 			voarr.add(vo);
-		}
+		}}
 		return voarr;
 	}
 

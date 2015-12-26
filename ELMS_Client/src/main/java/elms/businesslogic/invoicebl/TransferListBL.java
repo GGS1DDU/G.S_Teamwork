@@ -132,7 +132,7 @@ public class TransferListBL implements TransferListBLService,DataFactory{
 	public ArrayList<TransferListVO> findNoaudit() throws IOException{
 		ArrayList<TransferListPO> all=transferlistdata.findall();
 		ArrayList<TransferListVO> no_audit=new ArrayList<TransferListVO>(); 
-		for(int i=1;i<all.size();i++){		
+		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){		
 				TransferListVO vo=new TransferListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getTransferID(),
 						all.get(i).getTransportNum(),all.get(i).getDeparture(),all.get(i).getArrival(),all.get(i).getSeatNumber(),
@@ -148,7 +148,7 @@ public class TransferListBL implements TransferListBLService,DataFactory{
 	public ArrayList<TransferListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<TransferListPO> all=transferlistdata.findall();
 		ArrayList<TransferListVO> result=new ArrayList<TransferListVO>(); 
-		for(int i=1;i<all.size();i++){
+		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
 				TransferListVO vo=new TransferListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getTransferID(),
 				all.get(i).getTransportNum(),all.get(i).getDeparture(),all.get(i).getArrival(),all.get(i).getSeatNumber(),
@@ -218,12 +218,13 @@ public class TransferListBL implements TransferListBLService,DataFactory{
 		ArrayList<TransferListVO> voarr=new ArrayList<TransferListVO>();
 		ArrayList<TransferListPO> poarr=new ArrayList<TransferListPO>();
 		poarr=transferlistdata.findall();
+		if(poarr.size()>0){
 		for(TransferListPO po:poarr){
 			TransferListVO vo=new TransferListVO(po.getID(),po.getTime(),po.getTransferID(),po.getTransportNum(),
 					po.getDeparture(),po.getArrival(),po.getSeatNumber(),po.getSurpervior(),po.getOrderID(),po.getCost(),
 					po.getPlace(),po.getMaker(),po.getAuditState());
 			voarr.add(vo);
-		}
+		}}
  		return voarr;
 	}
 

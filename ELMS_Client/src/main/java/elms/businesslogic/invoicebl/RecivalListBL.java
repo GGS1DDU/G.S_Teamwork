@@ -120,7 +120,7 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	public ArrayList<RecivalListVO> findNoaudit() throws IOException{
 		ArrayList<RecivalListPO> all=recivallistdata.findall();
 		ArrayList<RecivalListVO> no_audit=new ArrayList<RecivalListVO>(); 
-		for(int i=1;i<all.size();i++){		
+		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){
 			RecivalListVO vo=new RecivalListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getCenterID(),
 					all.get(i).getOrderID(),all.get(i).getFrom(),all.get(i).getState(),all.get(i).getPlace(),
@@ -135,7 +135,7 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	public ArrayList<RecivalListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<RecivalListPO> all=recivallistdata.findall();
 		ArrayList<RecivalListVO> result=new ArrayList<RecivalListVO>(); 
-		for(int i=1;i<all.size();i++){
+		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
 				RecivalListVO vo=new RecivalListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getCenterID(),
 						all.get(i).getOrderID(),all.get(i).getFrom(),all.get(i).getState(),all.get(i).getPlace(),
@@ -208,11 +208,12 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 		ArrayList<RecivalListVO> voarr=new ArrayList<RecivalListVO>();
 		ArrayList<RecivalListPO> poarr=new ArrayList<RecivalListPO>();
 		poarr=recivallistdata.findall();
+		if(poarr.size()>0){
 		for(RecivalListPO po:poarr){
 			RecivalListVO vo=new RecivalListVO(po.getID(),po.getTime(),po.getCenterID(),po.getOrderID(),po.getFrom(),
 					po.getState(),po.getPlace(),po.getMaker(),po.getAuditState());
 			voarr.add(vo);
-		}
+		}}
 		return voarr;
 	}
 	public LogDataService getLogData() throws RemoteException {

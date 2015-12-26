@@ -199,7 +199,8 @@ public class InvoiceUI_LoadingListZZ extends JFrame{
 //					    	arr.add(str[i]);
 //					    }
 						LoadingListZZVO vo=new LoadingListZZVO(inf.getText(),datef.getText(),
-								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),area.getText(),Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
+								tnf.getText(),apf.getText(),cnf.getText(),s1f.getText(),s2f.getText(),
+								area.getText(),Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
 						JOptionPane.showMessageDialog(newin, "保存至中转中心装车单");
 						loadinglistzzdata.record(vo);
 						InvoiceUI_LoadingListZZ.this.dispose();

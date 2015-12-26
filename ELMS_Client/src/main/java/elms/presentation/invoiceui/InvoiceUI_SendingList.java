@@ -139,7 +139,8 @@ public class InvoiceUI_SendingList extends JFrame{
 					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||onf.getText().length()!=10)				
 						JOptionPane.showMessageDialog(null, "营业厅派件单格式错误");				
 					else{				
-						SendingListVO vo=new SendingListVO(inf.getText(),onf.getText(),cf.getText(),datef.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"草稿");		
+						SendingListVO vo=new SendingListVO(inf.getText(),onf.getText(),cf.getText(),datef.getText(),
+								jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
 						JOptionPane.showMessageDialog(newin, "保存至营业厅派件单");
 						sendinglistdata.record(vo);
 						InvoiceUI_SendingList.this.dispose();

@@ -93,7 +93,7 @@ public class RecivalListData extends UnicastRemoteObject implements RecivalListD
 		}
 		try{
 			init();
-			for(int i=0;i<arr.size();i++){
+			for(int i=1;i<arr.size();i++){
 				insert(arr.get(i));
 			}
 		}catch(Exception e){

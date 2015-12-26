@@ -133,10 +133,11 @@ public class CarBL implements CarBLService,DataFactory{
 		ArrayList<CarVO> voarr=new ArrayList<CarVO>();
 		ArrayList<CarPO> poarr=new ArrayList<CarPO>();
 		poarr=cardata.findall();
+		if(poarr.size()>0){
 		for(CarPO po:poarr){
 			CarVO vo=new CarVO(po.getID(),po.getPlateNumber(),po.getUsingTime());
 			voarr.add(vo);
-		}
+		}}
 		return voarr;
 	}
 

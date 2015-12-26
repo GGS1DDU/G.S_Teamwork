@@ -121,7 +121,7 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 	public ArrayList<SendingListVO> findNoaudit() throws IOException{
 		ArrayList<SendingListPO> all=sendinglistdata.findall();
 		ArrayList<SendingListVO> no_audit=new ArrayList<SendingListVO>(); 
-		for(int i=1;i<all.size();i++){		
+		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){
 			SendingListVO vo=new SendingListVO(all.get(i).getID(),all.get(i).getOrderID(),all.get(i).getCourier(),all.get(i).getTime(),all.get(i).getPlace(),all.get(i).getMaker(),all.get(i).getAuditState());
 			no_audit.add(vo);		
@@ -134,7 +134,7 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 	public ArrayList<SendingListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<SendingListPO> all=sendinglistdata.findall();
 		ArrayList<SendingListVO> result=new ArrayList<SendingListVO>(); 
-		for(int i=1;i<all.size();i++){
+		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
 				SendingListVO vo=new SendingListVO(all.get(i).getID(),all.get(i).getOrderID(),all.get(i).getCourier(),all.get(i).getTime(),all.get(i).getPlace(),all.get(i).getMaker(),all.get(i).getAuditState());
 				result.add(vo);				
@@ -241,11 +241,12 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 		ArrayList<SendingListVO> voarr=new ArrayList<SendingListVO>();
 		ArrayList<SendingListPO> poarr=new ArrayList<SendingListPO>();
 		poarr=sendinglistdata.findall();
+		if(poarr.size()>0){
 		for(SendingListPO po:poarr){
 			SendingListVO vo=new SendingListVO(po.getID(),po.getOrderID(),po.getCourier(),po.getTime(),po.getPlace(),
 					po.getMaker(),po.getAuditState());
 			voarr.add(vo);
-		}
+		}}
 		return voarr;
 	}
 

@@ -220,12 +220,15 @@ public class InvoiceUI_LoadingListEdit extends JFrame{
 							if(!df.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||snf.getText().length()!=7||tnf.getText()
 									.length()!=20||cnf.getText().length()!=9){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
-							}
+							}else{
 							InvoiceUI_LoadingListEdit.this.dispose();
 							loadinglistdata.delete(getVO());
+							newvo=new LoadingListVO(idf.getText(),df.getText(),snf.getText(),tnf.getText(),apf.getText(),
+									cnf.getText(),s1f.getText(),s2f.getText(),area.getText(),Double.valueOf(cf.getText()),jcb2.getSelectedItem().toString(),
+									mf.getText(),"提交");
 							loadinglistdata.record(newvo);
 							new InvoiceUI_LoadingListEdit(newvo,false);
-							
+							}
 						}catch(HeadlessException e2){
 							e2.printStackTrace();
 						}

@@ -111,7 +111,7 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 	public ArrayList<IncomeListVO> findNoaudit() throws IOException{
 		ArrayList<IncomeListPO> all=incomelistdata.findall();
 		ArrayList<IncomeListVO> no_audit=new ArrayList<IncomeListVO>(); 
-		for(int i=1;i<all.size();i++){		
+		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){		
 				IncomeListVO vo=new IncomeListVO(all.get(i).getID(),all.get(i).getPostage(),all.get(i).getCourier(),
 						all.get(i).getTime(),all.get(i).getOrderID(),all.get(i).getPlace(),all.get(i).getMaker(),
@@ -126,7 +126,7 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 	public ArrayList<IncomeListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<IncomeListPO> all=incomelistdata.findall();
 		ArrayList<IncomeListVO> result=new ArrayList<IncomeListVO>(); 
-		for(int i=1;i<all.size();i++){
+		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
 				IncomeListVO vo=new IncomeListVO(all.get(i).getID(),all.get(i).getPostage(),all.get(i).getCourier(),
 						all.get(i).getTime(),all.get(i).getOrderID(),all.get(i).getPlace(),all.get(i).getMaker(),
@@ -240,10 +240,11 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 		ArrayList<IncomeListVO> voarr=new ArrayList<IncomeListVO>();
 		ArrayList<IncomeListPO> poarr=new ArrayList<IncomeListPO>();
 		poarr=incomelistdata.findall();
+		if(poarr.size()>0){
 		for(IncomeListPO po:poarr){
 			IncomeListVO vo=new IncomeListVO(po.getID(),po.getPostage(),po.getCourier(),po.getTime(),po.getOrderID(),po.getPlace(),po.getMaker(),po.getAuditState());
             voarr.add(vo);
-		}
+		}}
 		return voarr;
 	}
 
