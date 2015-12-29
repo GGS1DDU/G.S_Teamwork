@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 7 elements from project &apos;ELMS_Server&apos;&#x0D;&#x0A;- Original project: &apos;ELMS_Server&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     ArrivalList.ser&#x0D;&#x0A;     IncomeList.ser&#x0D;&#x0A;     LoadingList.ser&#x0D;&#x0A;     LoadingListZZ.ser&#x0D;&#x0A;     RecivalList.ser&#x0D;&#x0A;     SendingList.ser&#x0D;&#x0A;     TransferList.ser" description="Delete elements" element1="IncomeList.ser" element2="LoadingListZZ.ser" element3="ArrivalList.ser" element4="RecivalList.ser" element5="SendingList.ser" element6="LoadingList.ser" element7="TransferList.ser" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="7" stamp="1451191286303" subPackages="false" version="1.0"/>
+</session>

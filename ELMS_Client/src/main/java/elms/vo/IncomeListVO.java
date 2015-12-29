@@ -23,6 +23,10 @@ public class IncomeListVO extends InvoiceVO{
 		this.auditState=auditState;
 	}
 	
+	public IncomeListVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getID(){
 		return id;
 	}

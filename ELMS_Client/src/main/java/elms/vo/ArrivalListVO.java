@@ -20,6 +20,9 @@ public class ArrivalListVO extends InvoiceVO{
 		this.maker=maker;
 		this.auditState=auditState;
 	}
+	public ArrivalListVO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getID(){
 		return id;
 	}

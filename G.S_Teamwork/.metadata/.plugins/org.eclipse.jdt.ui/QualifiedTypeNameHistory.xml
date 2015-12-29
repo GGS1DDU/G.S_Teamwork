@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
-<fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="elms.vo.StorageVO"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
 <fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_YYTStaff"/>
 <fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_ZZZXStaff"/>
 <fullyQualifiedTypeName name="java.text.ParseException"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_ArrivalListEdit"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_IncomeListEdit"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_LoadingListEdit"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_LoadingListZZEdit"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_RecivalListEdit"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_SendingListEdit"/>
+<fullyQualifiedTypeName name="elms.presentation.invoiceui.InvoiceUI_TransferListEdit"/>
+<fullyQualifiedTypeName name="elms.vo.LoadingListZZVO"/>
+<fullyQualifiedTypeName name="javax.swing.UIManager"/>
+<fullyQualifiedTypeName name="javax.swing.border.EtchedBorder"/>
+<fullyQualifiedTypeName name="javax.swing.border.TitledBorder"/>
+<fullyQualifiedTypeName name="elms.presentation.MyButton"/>
+<fullyQualifiedTypeName name="elms.businesslogic.invoicebl.LoadingListBL"/>
+<fullyQualifiedTypeName name="elms.businesslogic.invoicebl.RecivalListBL"/>
+<fullyQualifiedTypeName name="elms.businesslogic.invoicebl.SendingListBL"/>
+<fullyQualifiedTypeName name="elms.businesslogic.invoicebl.ArrivalListBL"/>
+<fullyQualifiedTypeName name="elms.businesslogic.invoicebl.IncomeListBL"/>
+<fullyQualifiedTypeName name="elms.businesslogic.invoicebl.LoadingListZZBL"/>
+<fullyQualifiedTypeName name="elms.businesslogic.invoicebl.TransferListBL"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="elms.presentation.managerui.aduit.aduit_main"/>
+<fullyQualifiedTypeName name="elms.presentation.MyPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="elms.businesslogic.storagebl.Storage"/>
+<fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
 </qualifiedTypeNameHistroy>

@@ -30,13 +30,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.table.TableColumnModel;
 
 import elms.businesslogic.financebl.InitAll;
 import elms.businesslogic.storagebl.Storage;
+import elms.presentation.MyButton;
+import elms.presentation.MyPanel;
 import elms.vo.StorageVO;
 import elms.vo.UserVO;
 
@@ -46,10 +52,12 @@ Dimension screenSize=kit.getScreenSize();
 int screenWidth=(int) screenSize.getWidth();
 int screenHeight=(int)screenSize.getHeight();
 JTextArea text;
-private TableModel model;
+int button=40;
+public static TableModel model;
 public static JTable table;
 final JComboBox<String> jcb;
-
+public static ArrayList<String>  ins=new ArrayList<String>();
+public static ArrayList<String>  outs=new ArrayList<String>();
 String center=null;
 
 public static ArrayList<StorageVO>  arr=new ArrayList<StorageVO>();
@@ -61,8 +69,7 @@ public static ArrayList<StorageVO>  arr=new ArrayList<StorageVO>();
  * = 由中转中心库存管理员get数据  进行入库出库操作  并清空ins  outs  
  * 采用time间隔询问是否有新的入库出库请求 
  */
-public static ArrayList<String>  ins=new ArrayList<String>();
-public static ArrayList<String>  outs=new ArrayList<String>();//
+//
 /*
  * 本地在在入库出库后 在这里添加库存项    并为为中转中心业务员设置了get方法
  * 中转中心业务员在get了ino outo后  根据其中内容生成相应的入库单出库单
@@ -70,19 +77,6 @@ public static ArrayList<String>  outs=new ArrayList<String>();//
  */
 public static ArrayList<StorageVO>  ino=new ArrayList<StorageVO>();//
 public static ArrayList<StorageVO>  outo=new ArrayList<StorageVO>();
-
-public static ArrayList<StorageVO>  getStorageInList(){
-	return ino;
-}
-public static void  clearStorageInList(){
-	ino.clear();
-}
-public static ArrayList<StorageVO>  getStorageOutList(){
-	return outo;
-}
-public static void  clearStorageOutList(){
-	outo.clear();
-}
 
 
 public static void main(String args[]){
@@ -99,86 +93,108 @@ public Storage_main(final UserVO vo){
 	setLayout(null);
 	setTitle("库存管理");
 	setResizable(false);
-	setSize(screenWidth/2,3*screenHeight/4);
-	setLocation(screenWidth/4, screenHeight/8);
+	setBounds(screenWidth/6,screenHeight/8,screenWidth*2/3,screenHeight*3/4);
+	try {
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	} catch (ClassNotFoundException | InstantiationException
+			| IllegalAccessException | UnsupportedLookAndFeelException e2) {
+		// TODO Auto-generated catch block
+		e2.printStackTrace();
+	}
+	//setUndecorated(true);
 	setVisible(true);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	JMenuBar bar=new JMenuBar();
-	JMenu j=new JMenu("库存管理");
-	j.setSelected(true);j.setEnabled(false);
-	final JMenu m=new JMenu("库存初始化");
-	bar.add(j);
-	bar.add(m);
-	setJMenuBar(bar);
 	
-	/*
-	 * 给菜单加监听  在菜单处选择初始化库存  
-	 * 初始化需要确认工作  
-	 * 界面提示输入一个随机生成的三位数  
-	 * 只有当用户正确的输入了验证码  才能够初始化库存  
-	 * 进入库存初始化界面
-	 */
-  m.addMenuListener(new MenuListener(){
-
-	public void menuCanceled(MenuEvent e) {
-		
-	}
-
-	public void menuDeselected(MenuEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void menuSelected(MenuEvent e){
-    	int a=(int)(Math.random()*1000);
-    	String s=a+"";
-    	
-    	String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化库存");
-		if(obj.equals(s)){
-		Storage_main.this.dispose();
-		new Storage_init(vo);
-		Storage storage=new Storage();
-		try {
-			storage.init();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+	final MyPanel contentPane = new MyPanel("inbg.jpg");
+	contentPane.setBounds(0, 0, this.getWidth(), this.getHeight());
+	add(contentPane);
+	contentPane.setLayout(null);
+	
+	JPanel buttonPanel = new JPanel();
+	buttonPanel.setBorder(new TitledBorder(new EtchedBorder()));
+	buttonPanel.setLayout(null);
+	buttonPanel.setBounds(0, 0, 200, this.getHeight());
+	buttonPanel.setBackground(Color.white);
+	contentPane.add(buttonPanel);
+	
+	final JButton gl = new MyButton("库存管理",20);
+	//UIManager.put("Button.background", false);
+	gl.setEnabled(false);
+	gl.setForeground(Color.gray);
+	gl.setBounds(0,0,200,(int) (1.5*button));
+	buttonPanel.add(gl);	
+	
+	final JButton ini = new MyButton("库存初始化",15);
+	ini.setBounds(0,(int) (1.5*button),200,button);
+	ini.setBackground(Color.black);
+	buttonPanel.add(ini);
+	
+	gl.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			int a=(int)(Math.random()*10000);
+	    	String s=a+"";
+	    	
+	    	String obj=JOptionPane.showInputDialog(contentPane,"请输入 验证码  "+a+" 确认初始化完成");
+			if(obj!=null){
+					if(obj.equals(s)){
+			gl.setFont(new Font("宋体",1,20));
+			gl.setForeground(Color.gray);gl.setBounds(0,0,200,(int) (1.5*button));
+			ini.setFont(new Font("宋体",1,15));
+			ini.setForeground(Color.black);ini.setBounds(0,(int) (1.5*button),200,button);
+			ini.setEnabled(true);
+			gl.setEnabled(false);
+			InitAll ia=new InitAll();
+			try {
+				ia.setInitState(3);
+				JOptionPane.showMessageDialog(contentPane, "库存已新建", null, 2);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}}
+			
+			else  JOptionPane.showMessageDialog(contentPane, "验证码错误！",null,0);
 		}
 		}
-		else  JOptionPane.showMessageDialog(null, "验证码错误！",null,0);
-			}
+	});
 	
 
-  
-  });
-  /*
-   * 界面创建时传入当前用户身份   在界面上可以显示当前用户的姓名、身份、和员工编号
-   */
-	JLabel jl=new JLabel("  当前用户：  "+vo.getName()+"  身份：  "+vo.getJob()+"  编号   "+vo.getId());
-	jl.setForeground(Color.lightGray);
-	JPanel user=new JPanel();
-	user.add(jl);
-	user.setBounds(0, 0, this.getWidth(),25);	
 	
-	Border li=BorderFactory.createEtchedBorder();
-	Border t=BorderFactory.createTitledBorder(li);
-	Border l2=BorderFactory.createLoweredBevelBorder();
-	user.setBorder(t);
-	add(user);
-	
-	
-    JLabel kcqd=new JLabel("库存清单");
-	JPanel info=new JPanel();
-	info.setLayout(new java.awt.BorderLayout()); 
-	info.add(kcqd);
-	info.setBounds(0, 23, 70,25);
-	info.setBorder(l2);
-	add(info);
-	
-	
-	JPanel info2=new JPanel();
-	info2.setLayout(null);
+	ini.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			int a=(int)(Math.random()*10000);
+	    	String s=a+"";
+	    	
+	    	String obj=JOptionPane.showInputDialog(contentPane,"请输入 验证码  "+a+" 确认初始化库存");
+			if(obj!=null){
+					if(obj.equals(s)){
+			gl.setFont(new Font("宋体",1,15));
+			gl.setForeground(Color.black);gl.setBounds(0,0,200,button);
+			ini.setFont(new Font("宋体",1,20));
+			ini.setForeground(Color.gray);ini.setBounds(0,button,200,(int) (1.5*button));
+			ini.setEnabled(false);
+			gl.setEnabled(true);
+			Storage storage=new Storage();
+			try {
+				storage.init();
+				JOptionPane.showMessageDialog(contentPane, "初始化库存成功", null, 2);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}}
+			
+			else  JOptionPane.showMessageDialog(contentPane, "验证码错误！",null,0);
+		}
+		}
+	});
+
+	JLabel jl=new JLabel(" 当前用户：  "+vo.getName()+"  身份：  "+vo.getJob()+"  编号   "+vo.getId());
+	JPanel user=new JPanel(); user.setLayout(null);
+	user.add(jl);jl.setBounds(200, 0, this.getWidth(), 25);
+	user.setBounds(200, 0, this.getWidth()-200,this.getHeight());	
+	contentPane.add(user);
+	user.setOpaque(false);
+
 	String[] title_name = { "ID", "区域", "位置", "订单号", "入库时间", "出库时间","状态","仓库"};
 			model = new TableModel(title_name);
 			table = new JTable(model);
@@ -211,39 +227,18 @@ public Storage_main(final UserVO vo){
 		    });
 			table.setBackground(Color.white);
 			TableColumnModel tcm = table.getColumnModel();
-			tcm.getColumn(7).setPreferredWidth(20);
-			tcm.getColumn(6).setPreferredWidth(30);
-			tcm.getColumn(5).setPreferredWidth(100);	
-			tcm.getColumn(4).setPreferredWidth(100);
-			tcm.getColumn(3).setPreferredWidth(60);
-			tcm.getColumn(2).setPreferredWidth(40);
-			tcm.getColumn(1).setPreferredWidth(40);
-			tcm.getColumn(0).setPreferredWidth(40);
-//	text=new JTextArea(10,10);
-//	text.setEditable(false);
-//	text.setFont(new Font("Serif",Font.PLAIN,14));
-    
-	JScrollPane scrollpane=new JScrollPane(table);
-	info2.add(scrollpane);
-	
-	scrollpane.setBounds(5,70,this.getWidth()-40,this.getHeight()/2-70);
-//	
-//	JMenuBar jbar=new JMenuBar(); 
-//	class Menu extends JMenu{
-//		public Menu(String s){
-//			super(s);
-//			this.setFont(new Font("楷体",Font.CENTER_BASELINE,12));
-//		}
-//	}
-//	
-//	/*
-//	 * 显示库存细节的项目与信息
-//	 */
-//	JMenu j1=new Menu("ID       ");JMenu j2=new Menu("区域       ");JMenu j3=new Menu("位置         ");JMenu j4=new Menu("订单号              ");
-//	JMenu j5=new Menu("入库时间                   ");JMenu j6=new Menu("出库时间              ");JMenu j7=new Menu("状态        ");JMenu j8=new Menu("仓库             ");
-//	jbar.add(j1);jbar.add(j2);jbar.add(j3);jbar.add(j4);jbar.add(j5);jbar.add(j6);jbar.add(j7);jbar.add(j8);
-//	add(jbar);jbar.setBounds(5, 48, this.getWidth(), 20);
-    add(info2); info2.setBounds(0,0,this.getWidth(),this.getHeight()/2);
+			tcm.getColumn(7).setPreferredWidth(this.getWidth()/3);
+			tcm.getColumn(6).setPreferredWidth(this.getWidth()/15);
+			tcm.getColumn(5).setPreferredWidth(4*this.getWidth()/18);	
+			tcm.getColumn(4).setPreferredWidth(4*this.getWidth()/18);
+			tcm.getColumn(3).setPreferredWidth(2*this.getWidth()/15);
+			tcm.getColumn(2).setPreferredWidth(this.getWidth()/15);
+			tcm.getColumn(1).setPreferredWidth(this.getWidth()/15);
+			tcm.getColumn(0).setPreferredWidth(this.getWidth()/15);  
+			JScrollPane scrollpane=new JScrollPane(table);
+			user.add(scrollpane);
+			scrollpane.setBounds(-1,70,this.getWidth()-40,this.getHeight()/2-70);
+            scrollpane.setOpaque(false);scrollpane.getViewport().setOpaque(false);
     
     /*
      * 选择中转中心城市
@@ -251,13 +246,12 @@ public Storage_main(final UserVO vo){
     jcb=new JComboBox<String>();
 	jcb.addItem("北京");jcb.addItem("南京");jcb.addItem("上海");jcb.addItem("广州");
 	jcb.setBackground(Color.white);jcb.setFont(new Font("楷体",Font.CENTER_BASELINE,12));
-	add(jcb); jcb.setBounds(5*this.getWidth()/6, this.getHeight()/2, 60, 25);
+	user.add(jcb); jcb.setBounds(8*user.getWidth()/9, user.getHeight()/2,user.getWidth()/9 , 25);jcb.setOpaque(false);
 	
 	jcb.addActionListener(new ActionListener(){
        Storage storage=new Storage();
     
-		public void actionPerformed(ActionEvent e) {
-	//			text.setText(""); 
+		public void actionPerformed(ActionEvent e) { 
 			center=jcb.getSelectedItem().toString();
 			model.removeAllRows(model.getRowCount());
 				try {					
@@ -268,12 +262,8 @@ public Storage_main(final UserVO vo){
 				}
 				for(StorageVO svo:arr)  {					
 					model.addRow(model.changeRow(svo));
-
-//					if(svo.getState().equals("OUT"))
-//					text.append(svo.getId()+"   "+svo.getArea()+"    "+svo.getSeat()+"    "+svo.getOrder()+"     "+svo.getTimeIn()+"    "+svo.getTimeOut()+"    "+svo.getState()+"\r\n");
-//					else
-//					text.append(svo.getId()+"   "+svo.getArea()+"    "+svo.getSeat()+"    "+svo.getOrder()+"     "+svo.getTimeIn()+"             "+svo.getTimeOut()+"                    "+svo.getState()+"\r\n");
-				}					table.updateUI();
+				}					
+				table.updateUI();
 		}	
 		});
 
@@ -281,20 +271,20 @@ public Storage_main(final UserVO vo){
     JButton xzrk=new JButton("新增入库(A)");
     JButton find=new JButton("库存查询(S)");
     JButton zbdy=new JButton("制表打印(P)");
-    JButton refresh=new JButton("刷新(R)");refresh.setForeground(Color.GREEN);
+    JButton refresh=new JButton("刷新(R)");
     JButton back=new JButton("返回(B)");back.setForeground(Color.red);
-    JPanel buttonPal=new JPanel();buttonPal.setLayout(null);
+    JPanel buttonPal=new JPanel();buttonPal.setLayout(null);buttonPal.setOpaque(false);
     buttonPal.add(xzrk); buttonPal.add(find); buttonPal.add(zbdy); buttonPal.add(refresh); buttonPal.add(back);
     xzrk.setBounds(30, 30, 102, 30);find.setBounds(190, 30, 104, 30);  zbdy.setBounds(350, 30, 102, 30);
     refresh.setBounds(560,15,80,30);  back.setBounds(560,55,80,30);
-    add(buttonPal);
-    buttonPal.setBounds(0,this.getHeight()/2+100,this.getWidth()-30,90);
-    buttonPal.setBorder(BorderFactory.createTitledBorder("库存操作"));
+    user.add(buttonPal);
+    buttonPal.setBounds(-1,this.getHeight()/2+40,user.getWidth()+2,90);
     
     xzrk.addActionListener(new ActionListener(){
 
 		public void actionPerformed(ActionEvent e) {
-			new Storage_newStorage();
+		new Storage_newStorage();
+			
 		}
     	
     });
@@ -351,22 +341,18 @@ public Storage_main(final UserVO vo){
 		}
     	
     });
-    JPanel tp=new JPanel();
     final JLabel time=new JLabel();
     final JLabel in=new JLabel();
     final JLabel out=new JLabel();
     time.setFont(new Font("Serif",Font.BOLD,15));
-    tp.add(in);
-    tp.add(time);
-    tp.add(out);
-    add(tp);
-    tp.setBounds(0,this.getHeight()-80,this.getWidth(),40);
-    
+    user.add(in);in.setBounds(25, 3*this.getHeight()/4, 120, 25);
+    user.add(time); time.setBounds(5*user.getWidth()/12, user.getHeight()-50, user.getWidth()/3, 25);
+    user.add(out);out.setBounds(25, 3*this.getHeight()/4+50, 120, 25);
     Timer timer = new Timer(100,new ActionListener(){
        InitAll i=new InitAll();
 		public void actionPerformed(ActionEvent arg0) {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			in.setText("入库待处理项： "+ins.size()+"                 ");
+			in.setText("入库待处理项： "+ins.size());
 			try {
 				if(i.getInitState(3))
 				time.setText("需要初始化！");
@@ -377,7 +363,7 @@ public Storage_main(final UserVO vo){
 				e.printStackTrace();
 			}
 			
-			out.setText("            出库待处理项： "+outs.size());
+			out.setText("出库待处理项： "+outs.size());
 
 		}
     	

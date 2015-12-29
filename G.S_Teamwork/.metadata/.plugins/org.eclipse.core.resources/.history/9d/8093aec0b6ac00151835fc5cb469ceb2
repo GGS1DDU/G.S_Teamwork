@@ -1,0 +1,10 @@
+package elms.presentation.invoiceui;
+
+public class InvoiceUI_Unaduit {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

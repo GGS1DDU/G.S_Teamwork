@@ -1,0 +1,15 @@
+package elms.presentation.invoiceui;
+
+import javax.swing.JPanel;
+
+public class InvoiceUI_Unaduit extends JPanel {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public InvoiceUI_Unaduit(){
+		
+	}
+
+}

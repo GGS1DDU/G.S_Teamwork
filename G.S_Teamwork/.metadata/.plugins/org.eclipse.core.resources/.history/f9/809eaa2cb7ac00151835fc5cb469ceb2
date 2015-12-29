@@ -1,0 +1,26 @@
+package elms.presentation.invoiceui;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
+
+import elms.presentation.storageui.TableModel;
+
+public class InvoiceUI_Unaduit extends JPanel {
+	public TableModel model;
+	public JTable table;
+	Toolkit kit=Toolkit.getDefaultToolkit();
+	Dimension screenSize=kit.getScreenSize();
+	int screenWidth=(int) screenSize.getWidth();
+	int screenHeight=(int)screenSize.getHeight();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public InvoiceUI_Unaduit(){
+		
+	}
+
+}

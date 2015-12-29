@@ -33,6 +33,10 @@ public class LoadingListZZVO extends InvoiceVO{
 				this.auditState=auditState;
 			}
 
+			public LoadingListZZVO() {
+				// TODO Auto-generated constructor stub
+			}
+
 			public String getID(){
 				return id;
 			}

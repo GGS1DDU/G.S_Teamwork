@@ -21,6 +21,9 @@ public class RecivalListVO extends InvoiceVO{
 		this.maker=maker;
 		this.auditState=auditState;
 	}
+	public RecivalListVO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getCenterID(){
 		return centerID;
 	}

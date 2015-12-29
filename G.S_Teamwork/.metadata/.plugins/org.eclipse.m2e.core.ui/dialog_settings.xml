@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\ELMS_Server"/>
+			<item value="D:\ELMS_Client"/>
 			<item value="E:\LAVA\G.S_Teamwork\ELMS_Server"/>
 			<item value="E:\LAVA\G.S_Teamwork\ELMS_Client"/>
 		</list>

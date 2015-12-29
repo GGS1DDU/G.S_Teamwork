@@ -1,0 +1,155 @@
+package elms.businesslogic.invoicebl;
+
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import elms.businesslogic.storagebl.Storage;
+import elms.presentation.invoiceui.InvoiceUI_ArrivalListEdit;
+import elms.presentation.invoiceui.InvoiceUI_IncomeListEdit;
+import elms.presentation.invoiceui.InvoiceUI_LoadingListEdit;
+import elms.presentation.invoiceui.InvoiceUI_LoadingListZZEdit;
+import elms.presentation.invoiceui.InvoiceUI_RecivalListEdit;
+import elms.presentation.invoiceui.InvoiceUI_SendingListEdit;
+import elms.presentation.invoiceui.InvoiceUI_TransferListEdit;
+import elms.presentation.storageui.TableModel;
+import elms.vo.InvoiceVO;
+import elms.vo.LoadingListZZVO;
+
+public class Invoice_unaduit extends JPanel{
+	public TableModel model;
+	public JTable table;
+	static JFrame f;
+	public static void main(String[] args) throws IOException {
+		 f=new JFrame();
+		f.setTitle("审批单据");
+		f.setResizable(false);
+		f.setSize(300,400);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Invoice_unaduit s=new Invoice_unaduit("333");
+		f.add(s);
+	}
+	
+	public Invoice_unaduit(final String maker) throws IOException{
+	setVisible(true);
+	setSize(300,400);
+	
+	String[] title_name = { "ID", "单据类型","制表人"};
+	model = new TableModel(title_name);
+	table = new JTable(model);
+	table.setBackground(Color.white);
+    table.addMouseListener(new MouseAdapter(){
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			if(e.getClickCount()==2) {
+				if(table.getSelectedColumn()!=-1){
+					
+				String	s=(String) model.getValueAt(table.getSelectedRow(), 0);
+				String  c=(String) model.getValueAt(table.getSelectedRow(), 1);
+				if(c.equals("到达单")) 	{
+					ArrivalListBL  al=new ArrivalListBL();
+					try {
+						new InvoiceUI_ArrivalListEdit(al.inquiry(s),false);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+										}			
+				else	if(c.equals("营业厅收入单")) {
+					IncomeListBL  il=new IncomeListBL();
+					try {
+						new InvoiceUI_IncomeListEdit(il.inquiry(s),false);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+												}
+				else	if(c.equals("营业厅装车单")) {
+					LoadingListBL  ll=new LoadingListBL();
+					try {
+						new InvoiceUI_LoadingListEdit(ll.inquiry(s),false);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+												}
+				else	if(c.equals("中转中心装车单")) {
+					LoadingListZZBL  zc=new LoadingListZZBL();
+					try {
+						
+						new InvoiceUI_LoadingListZZEdit(zc.inquiry(s),false);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+												}
+				else	if(c.equals("中转中心接收单")) {
+					RecivalListBL  rl=new RecivalListBL();
+					try {
+						new InvoiceUI_RecivalListEdit(rl.inquiry(s),false);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+												}
+				else	if(c.equals("快递员派件单")) {
+					SendingListBL  sl=new SendingListBL();
+					try {
+						new InvoiceUI_SendingListEdit(sl.inquiry(s),false);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+												}
+				else{
+					TransferListBL  tl=new TransferListBL();
+					try {
+						new InvoiceUI_TransferListEdit(tl.inquiry(s),false);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+												}			
+					}
+			}	
+		}
+    	
+    });
+    ArrayList<InvoiceVO>   arr=new ArrayList<InvoiceVO>();
+    ArrivalListBL al=new ArrivalListBL();
+    IncomeListBL il=new IncomeListBL();
+    LoadingListBL ll=new LoadingListBL();
+    LoadingListZZBL zc=new LoadingListZZBL();
+    RecivalListBL rl=new RecivalListBL();
+    SendingListBL sl=new SendingListBL();
+    TransferListBL tl=new TransferListBL();
+   
+	arr.addAll(al.findByMakerAndNoaudit(maker));
+	arr.addAll(il.findByMakerAndNoaudit(maker));
+	arr.addAll(ll.findByMakerAndNoaudit(maker));
+	arr.addAll(zc.findByMakerAndNoaudit(maker));
+	arr.addAll(rl.findByMakerAndNoaudit(maker));
+	arr.addAll(sl.findByMakerAndNoaudit(maker));
+	arr.addAll(tl.findByMakerAndNoaudit(maker));
+	for(InvoiceVO vo:arr)			model.addRow(model.changeRow_Inv(vo));	
+	
+	JScrollPane scrollpane=new JScrollPane(table);
+	add(scrollpane);scrollpane.setSize(300, 400);
+
+}
+}

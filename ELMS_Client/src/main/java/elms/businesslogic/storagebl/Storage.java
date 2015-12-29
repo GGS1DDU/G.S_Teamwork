@@ -44,12 +44,16 @@ import elms.vo.StorageVO;
 public class Storage implements StorageBlService,DataFactory {
     StorageDataService  storage;
     StorageCapacity capacity;
+
     public Storage(){
     	storage=getStorageData();
     	
     }
-//   public static void main(String args[]) throws IOException{
-//  	Storage s=new Storage();
+  public static void main(String args[]) throws IOException{
+	  
+	Storage s=new Storage();
+	s.setIn("1201");s.setIn("1254");
+System.out.print(14);
 //    	ArrayList<StorageVO> arr=new ArrayList<StorageVO>();
 //    	StorageVO vo=new StorageVO("000125",  "航运区","R2D3L5", "0000000001", "2015-02-14 14:32:10", "null","IN", "南京");
 //    	StorageVO vo1=new StorageVO("000126","航运区",  "R2D3L4", "0000000002", "2015-02-12 14:32:10", "2015-02-16 14:32:10","OUT", "南京");
@@ -73,9 +77,20 @@ public class Storage implements StorageBlService,DataFactory {
 //   	System.out.println(s.storage_inChoose("汽运区", c));
 //    	s.storage_out("000125", "南京");
 //    	s.inquiry("000125");
-//  }
+  }
     
-    
+	public void setIn(String s)throws RemoteException ,IOException {
+		storage.setIn(s);
+	}
+	public void setOut(String s)throws RemoteException ,IOException {
+		storage.setOut(s);
+	}
+	public void getIn(int s)throws RemoteException,IOException  {
+		storage.getIn(s);
+	}
+	public void getOut(int s)throws RemoteException ,IOException {
+		storage.getOut(s);
+	}
     
     public boolean orderhasIN(String s) throws IOException{
     	StoragePO po=storage.find(s);
@@ -209,7 +224,7 @@ try {
 	public StorageDataService getStorageData() {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
 			return df.getStorageData();
 		}catch(Exception e){
 			e.printStackTrace();
