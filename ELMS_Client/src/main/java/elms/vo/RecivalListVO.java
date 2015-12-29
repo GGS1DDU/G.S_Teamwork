@@ -2,6 +2,7 @@ package elms.vo;
 
 public class RecivalListVO extends InvoiceVO{
 	String id;
+	String dealOrderID;
 	String time;
 	String centerID;
 	String orderID;
@@ -10,8 +11,9 @@ public class RecivalListVO extends InvoiceVO{
 	String place;
 	String maker;
 	String auditState;
-	public RecivalListVO(String i,String t,String ci,String o,String f,String s,String p,String maker,String auditState){
-		this.orderID=o;
+	public RecivalListVO(String i,String did,String t,String ci,String o,String f,String s,String p,String maker,String auditState){
+		this.dealOrderID=did;
+		this.orderID=o;	
 		this.centerID=ci;
 		this.time=t;
 		this.id=i;
@@ -26,6 +28,9 @@ public class RecivalListVO extends InvoiceVO{
 	}
 	public String getCenterID(){
 		return centerID;
+	}
+	public String getdealOrderID(){
+		return dealOrderID;
 	}
 	public String getTime(){
 		return time;

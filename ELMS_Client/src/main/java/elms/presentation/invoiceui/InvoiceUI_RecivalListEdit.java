@@ -38,20 +38,26 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 	public RecivalListVO getVO(){
 		return voall;
 	}
+	
+	public static void main(String args[]){
+		RecivalListVO vo=new RecivalListVO("rl99999","1234567890","2015-12-27","111111","111111111111111111111","上海","完整","南京仙林","周颖婷","提交");
+	    boolean edit=false;
+	    new InvoiceUI_RecivalListEdit(vo,edit);
+	}
 
 	public InvoiceUI_RecivalListEdit(RecivalListVO vo,boolean edit){
 		voall=vo;
 		setLayout(null);
 		setTitle("接收单  No："+vo.getID());
 		setResizable(false);
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2+40);
+		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2+55);
 		setVisible(true);
 		
 		Edit=edit;
 		
 		final JPanel newin=new JPanel();
 		newin.setLayout(null);
-		add(newin);newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10);
+		add(newin);newin.setBounds(0,0,this.getWidth(),8*this.getHeight()/10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel id=new JLabel("单据ID");
@@ -61,11 +67,18 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		idf.setEditable(Edit);
 		idf.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		JLabel dealOrderID=new JLabel("订单条形号码");
+		newin.add(dealOrderID);dealOrderID.setBounds(120,55,80,20);
+		final JTextField doid=new JTextField(vo.getdealOrderID());
+		newin.add(doid);doid.setBounds(220,55,100,24);
+		doid.setEditable(Edit);
+		doid.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		JLabel date=new JLabel("装车日期");
-		newin.add(date);date.setBounds(120,55,80,20);
+		newin.add(date);date.setBounds(120,90,80,20);
 		final JTextField df=new JTextField(vo.getTime());
 		df.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
-		newin.add(df);df.setBounds(220, 55, 100, 24);
+		newin.add(df);df.setBounds(220, 90, 100, 24);
 		df.setEditable(Edit);
 		df.setHorizontalAlignment(SwingConstants.CENTER);
 		if(Edit){
@@ -80,69 +93,69 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		}
 		
 		JLabel centerNum=new JLabel("中转中心编号");
-		newin.add(centerNum);centerNum.setBounds(120,90,80,20);
+		newin.add(centerNum);centerNum.setBounds(120,125,80,20);
 		final JTextField cnf=new JTextField(vo.getCenterID());
 		cnf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(cnf);cnf.setBounds(220, 90, 100, 24);cnf.setEditable(Edit);
+		newin.add(cnf);cnf.setBounds(220, 125, 100, 24);cnf.setEditable(Edit);
 		cnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel transferNum=new JLabel("中转单编号");
-		newin.add(transferNum);transferNum.setBounds(120,125,80,20);
+		newin.add(transferNum);transferNum.setBounds(120,160,80,20);
 		final JTextField tnf=new JTextField(vo.getOrderID());
 		tnf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(tnf);tnf.setBounds(220, 125, 160, 24);tnf.setEditable(Edit);
+		newin.add(tnf);tnf.setBounds(220, 160, 160, 24);tnf.setEditable(Edit);
 		tnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel departurePlace=new JLabel("出发地");
 		newin.add(departurePlace);
-		departurePlace.setBounds(120, 160, 80, 20);
+		departurePlace.setBounds(120, 195, 80, 20);
 		final JTextField dpf=new JTextField(vo.getFrom());
 		dpf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(dpf);dpf.setBounds(220, 160, 100, 24);dpf.setEditable(Edit);
+		newin.add(dpf);dpf.setBounds(220, 195, 100, 24);dpf.setEditable(Edit);
 		dpf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel state=new JLabel("到达状态");
-		newin.add(state);state.setBounds(120, 195, 80, 20);
+		newin.add(state);state.setBounds(120, 230, 80, 20);
 		final JComboBox<String> jcb=new JComboBox<String>();
 		if(Edit){
 			jcb.addItem("完整");jcb.addItem("损坏");jcb.addItem("丢失");
 			jcb.setBackground(Color.WHITE);jcb.setFont(new Font("楷体",Font.BOLD,12));
-			newin.add(jcb);jcb.setBounds(220, 195, 100, 24);
+			newin.add(jcb);jcb.setBounds(220, 230, 100, 24);
 			jcb.setSelectedItem(vo.getState());
 		}else{
 			JLabel sf=new JLabel(vo.getState());sf.setFont(new Font("楷体",Font.BOLD,12));
 			sf.setOpaque(false);
 			newin.add(sf);
-			sf.setBounds(220, 195, 100, 24);
+			sf.setBounds(220, 230, 100, 24);
 			sf.setHorizontalAlignment(SwingConstants.CENTER);
 			sf.setEnabled(false);
 		}
 		
 		JLabel place=new JLabel("所属中转中心");
 		newin.add(place);
-		place.setBounds(120, 160, 80, 20);
+		place.setBounds(120, 265, 80, 20);
 		final JComboBox<String> jcb2=new JComboBox<String>();
 		if(Edit){
 			jcb2.addItem("南京仙林");jcb2.addItem("南京鼓楼");
 			jcb2.setBackground(Color.WHITE);jcb2.setFont(new Font("楷体",Font.BOLD,12));
-			newin.add(jcb2);jcb2.setBounds(220, 160, 100, 24);
+			newin.add(jcb2);jcb2.setBounds(220, 265, 100, 24);
 			jcb2.setSelectedItem(vo.getPlace());
 			
 		}else{
 			JLabel pf=new JLabel(vo.getPlace());pf.setFont(new Font("楷体",Font.BOLD,12));
 			pf.setOpaque(false);
 			newin.add(pf);
-			pf.setBounds(220, 160, 100, 24);
+			pf.setBounds(220, 265, 100, 24);
 			pf.setHorizontalAlignment(SwingConstants.CENTER);
 			pf.setEnabled(false);
 		}
 		
 		JLabel maker=new JLabel("单据生成者");
 		newin.add(maker);
-		maker.setBounds(120, 190, 80, 20);
+		maker.setBounds(120, 300, 80, 20);
 		final JTextField mf=new JTextField(vo.getMaker());
 		mf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(mf);mf.setBounds(220, 190, 100, 24);mf.setEditable(Edit);
+		newin.add(mf);mf.setBounds(220, 300, 100, 24);mf.setEditable(Edit);
 		mf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		
@@ -150,9 +163,9 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		buttonpanel.setLayout(null);
 		JButton cancle=new JButton("编辑(E)");
 		buttonpanel.add(cancle);
-		cancle.setBounds(this.getWidth()/2+90,25,100,30);
+		cancle.setBounds(this.getWidth()/2+90,20,100,30);
 		add(buttonpanel);
-		buttonpanel.setBounds(0,7*this.getHeight()/10,this.getWidth(),90);
+		buttonpanel.setBounds(0,8*this.getHeight()/10,this.getWidth(),90);
 		
 		cancle.addActionListener(new ActionListener(){
 
@@ -165,7 +178,7 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		if(Edit){
 			JButton save=new JButton("保存(S)");
 			buttonpanel.add(save);
-			save.setBounds(this.getWidth()/3-120,25,100,30);
+			save.setBounds(this.getWidth()/3-120,20,100,30);
 			
 			save.addActionListener(new ActionListener(){
 				RecivalListBL recivallistdata=new RecivalListBL();
@@ -184,7 +197,7 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 							}else{
 							InvoiceUI_RecivalListEdit.this.dispose();
 							recivallistdata.delete(getVO());
-							newvo=new RecivalListVO(idf.getText(),df.getText(),cnf.getText(),tnf.getText(),dpf.getText(),jcb.getSelectedItem().toString(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
+							newvo=new RecivalListVO(idf.getText(),doid.getText(),df.getText(),cnf.getText(),tnf.getText(),dpf.getText(),jcb.getSelectedItem().toString(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
 							recivallistdata.record(newvo);
 							new InvoiceUI_RecivalListEdit(newvo,false);		
 							}						
@@ -201,7 +214,7 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		if(Edit){
 			JButton back=new JButton("取消(C)");
 			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,25,100,30);
+			back.setBounds(this.getWidth()/2-50,20,100,30);
 			back.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
 					InvoiceUI_RecivalListEdit.this.dispose();
@@ -212,7 +225,7 @@ public class InvoiceUI_RecivalListEdit extends JFrame{
 		else{
 			JButton back=new JButton("删除(D)");
 			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,25,100,30);
+			back.setBounds(this.getWidth()/2-50,20,100,30);
 			back.addActionListener(new ActionListener(){
 				RecivalListBL recivallistdata=new RecivalListBL();
 
