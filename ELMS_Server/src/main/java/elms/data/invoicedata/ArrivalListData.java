@@ -28,17 +28,17 @@ public class ArrivalListData extends UnicastRemoteObject implements ArrivalListD
 		super();
 	}
 
-//	public static void main(String arg[])throws IOException,ClassNotFoundException,ParseException{
-//		ArrivalListData data=new ArrivalListData();
-//		ArrivalListPO aer=new ArrivalListPO();
-//		data.init();
-//		data.insert(new ArrivalListPO("al00001","025000201511190000001","2015-11-19","完整","北京"));
-//		data.insert(new ArrivalListPO("al00002","025000201511200000002","2015-11-20","损坏","上海"));
-//		data.insert(new ArrivalListPO("al00003","025000201511210000003","2015-11-21","丢失","广州"));
-//		data.insert(new ArrivalListPO("al00004","025000201511220000004","2015-11-22","完整","南京"));
-//		aer=data.find("al00001");
-//		System.out.println(aer.getID()+"  "+aer.getOrder()+"   "+aer.getTime()+"   "+aer.getState()+"   "+aer.getFrom());
-//	}
+	public static void main(String arg[])throws IOException,ClassNotFoundException{
+		ArrivalListData data=new ArrivalListData();
+		ArrivalListPO aer=new ArrivalListPO();
+		data.init();
+		data.insert(new ArrivalListPO("al00001","025000201511190000001","2015-11-19","完整","北京","333","333" , "提交"));
+		data.insert(new ArrivalListPO("al00002","025000201511200000002","2015-11-20","损坏","上海","333","333" , "提交"));
+		data.insert(new ArrivalListPO("al00003","025000201511210000003","2015-11-21","丢失","广州","333","333" , "提交"));
+		data.insert(new ArrivalListPO("al00004","025000201511220000004","2015-11-22","完整","南京","333","333" , "提交"));
+		aer=data.find("al00001");
+		System.out.println(aer.getID()+"  "+aer.getOrder()+"   "+aer.getTime()+"   "+aer.getState()+"   "+aer.getFrom());
+	}
 	
 	//arrivalList到达单的id定义为al开头+五位数字，一个七位id
 	public ArrivalListPO find(String id) throws RemoteException, IOException {
@@ -86,11 +86,6 @@ public class ArrivalListData extends UnicastRemoteObject implements ArrivalListD
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
-//zyt				
-//				po1=(ArrivalListPO)ois.readObject();
-//				arr.add(po1);
-//zyt			
-//zwh
 				ArrivalListPO arrivallistpo=(ArrivalListPO)ois.readObject();
 				arr.add(arrivallistpo);
 //zwh				
@@ -119,7 +114,6 @@ public class ArrivalListData extends UnicastRemoteObject implements ArrivalListD
 	}
 
 	public void update(ArrivalListPO po) throws RemoteException, IOException {
-	
 		delete(po);
 		insert(po);
 		
@@ -134,7 +128,6 @@ public class ArrivalListData extends UnicastRemoteObject implements ArrivalListD
 					
 		try{
 			ArrivalListPO po=(ArrivalListPO)ois.readObject();
-			arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);

@@ -18,7 +18,9 @@ import javax.swing.UIManager;
 import elms.businesslogic.financebl.InitAll;
 import elms.presentation.MyButton;
 import elms.presentation.MyPanel;
+import elms.presentation.TimeLabel;
 import elms.presentation.financeui.inAndEx.InAndEx_form;
+import elms.presentation.managerui.aduit.aduit_main;
 import elms.presentation.managerui.freight.FreightUI_main;
 import elms.presentation.managerui.staff.StaffUI_main;
 import elms.presentation.uihelper.ScreenSize;
@@ -42,6 +44,7 @@ public class ManagerUI_main extends JFrame {
 	private StaffUI_main staff;
 	private JPanel freight;
 	private JPanel form;
+	private JPanel audit;
 
 	private JButton freight_b;
 	private JButton member_b;
@@ -50,7 +53,7 @@ public class ManagerUI_main extends JFrame {
 	private JButton form_b;
 	private JButton staffInit;
 
-	private JLabel time;// 时间label
+	private JPanel time;
 
 	private Dimension d;
 
@@ -78,7 +81,9 @@ public class ManagerUI_main extends JFrame {
 		contentPane.setLayout(null);
 
 //		addTimer();// 添加时间面板
-
+		
+		time = new TimeLabel(this.getWidth()-buttonWidth,30);
+		
 		user = new UserInfo(u_vo);
 		user.setBounds(buttonWidth, 0, this.getWidth() - buttonWidth, 30);
 		user.setOpaque(false);
@@ -91,13 +96,18 @@ public class ManagerUI_main extends JFrame {
 		contentPane.add(buttonPanel);
 
 		d = new Dimension(this.getWidth() - buttonWidth, this.getHeight()
-				- user.getHeight());
-		staff = new StaffUI_main(d, u_vo);
+				- user.getHeight()-time.getHeight());
+		staff = new StaffUI_main(new Dimension(d.width,d.height+time.getHeight()), u_vo);
 		staff.setLocation(buttonWidth, 0);
 		contentPane.add(staff);
-
+		
+		time.setLocation(buttonWidth, this.getHeight()-60);
+		
 		freight = new FreightUI_main(d, u_vo);
 		freight.setLocation(buttonWidth, 0);
+		
+		audit = new aduit_main(d);
+		audit.setLocation(buttonWidth, user.getHeight());
 
 		freight_b = new MyButton("运费策略", 15);
 		member_b = new MyButton("人员管理", 15);
@@ -106,6 +116,8 @@ public class ManagerUI_main extends JFrame {
 		log_b = new MyButton("查看系统日志", 15);
 		setDefaultBSize();
 		setDefaultBLocation();
+		
+	
 
 		freight_b.addActionListener(new ActionListener() {
 
@@ -114,7 +126,7 @@ public class ManagerUI_main extends JFrame {
 				// TODO 自动生成的方法存根
 				contentPane.removeAll();
 				contentPane.add(user);
-
+				contentPane.add(time);
 				contentPane.add(freight);
 
 				buttonPanel.removeAll();
@@ -188,7 +200,7 @@ public class ManagerUI_main extends JFrame {
 				contentPane.add(user);
 				contentPane.add(form);
 				contentPane.add(buttonPanel);
-
+				contentPane.add(time);
 				validate();
 				repaint();
 				// form.setVisible(true);
@@ -210,7 +222,7 @@ public class ManagerUI_main extends JFrame {
 
 				contentPane.removeAll();
 				contentPane.add(user);
-				// contentPane.add(form);
+				 contentPane.add(audit);
 				contentPane.add(buttonPanel);
 
 				validate();
@@ -235,6 +247,7 @@ public class ManagerUI_main extends JFrame {
 				contentPane.add(user);
 				// contentPane.add(form);
 				contentPane.add(buttonPanel);
+				contentPane.add(time);
 
 				validate();
 				repaint();

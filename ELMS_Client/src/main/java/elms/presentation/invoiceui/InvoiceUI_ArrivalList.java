@@ -32,9 +32,10 @@ public class InvoiceUI_ArrivalList extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	
-//	public static void main(String args[]){
-//		  new InvoiceUI_ArrivalList();
-//	  }
+	public static void main(String args[]){
+		UserVO vo=new UserVO();
+		  new InvoiceUI_ArrivalList(vo);
+	  }
 	  
 	public InvoiceUI_ArrivalList(final UserVO vo){
 		setLayout(null);
@@ -151,8 +152,9 @@ public class InvoiceUI_ArrivalList extends JFrame{
 					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tnf.getText().length()!=21||jcb.getSelectedItem()==null)				
 						JOptionPane.showMessageDialog(null, "营业厅到达单格式错误");				
 					else{				
-						ArrivalListVO vo=new ArrivalListVO(inf.getText(),tnf.getText(),datef.getText(),jcb.getSelectedItem().toString(),
-								dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
+
+						ArrivalListVO vo=new ArrivalListVO(inf.getText(),tnf.getText(),datef.getText(),jcb.getSelectedItem().toString(),dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
+
 						JOptionPane.showMessageDialog(newin, "保存至营业厅到达单");
 						arrivallistdata.record(vo);
 						InvoiceUI_ArrivalList.this.dispose();

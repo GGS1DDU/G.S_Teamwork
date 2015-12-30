@@ -172,16 +172,18 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 						new InvoiceUI_ArrivalListEdit(voall,false);
 					}else{
 						try{
-							if(df.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s")||tnf.getText().length()!=6){
+							if(!df.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tnf.getText().length()!=21){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
-							}else{
-							InvoiceUI_ArrivalListEdit.this.dispose();
-							arrivallistdata.delete(getVO());
-							arrivallistdata.record(newvo);
-							newvo=new ArrivalListVO(idf.getText(),tnf.getText(),df.getText(),jcb.getSelectedItem().toString(),
-									dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
-							new InvoiceUI_ArrivalListEdit(newvo,false);
+
 							}
+							else{
+
+							InvoiceUI_ArrivalListEdit.this.dispose();
+							arrivallistdata.delete(voall);
+							newvo=new ArrivalListVO(idf.getText(),tnf.getText(),df.getText(),jcb.getSelectedItem().toString(),dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
+							arrivallistdata.record(newvo);
+							new InvoiceUI_ArrivalListEdit(newvo,false);}
+
 						}catch(HeadlessException e2){
 							e2.printStackTrace();
 						}

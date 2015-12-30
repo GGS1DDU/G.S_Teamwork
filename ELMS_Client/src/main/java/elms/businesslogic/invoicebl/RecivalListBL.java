@@ -5,7 +5,6 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import elms.businesslogic.dealbl.DealBL;
 import elms.businesslogic_service.invoiceblservice.RecivalListBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
@@ -20,7 +19,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
+
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -75,8 +74,10 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	public RecivalListVO inquiry(String id) throws IOException {
 		RecivalListPO po=recivallistdata.find(id);
 		if(po!=null){
-			RecivalListVO vo=new RecivalListVO(po.getID(),po.getdealOrderID(),po.getTime(),po.getCenterID(),po.getOrderID(),po.getFrom(),po.getState(),
-					po.getPlace(),po.getMaker(),po.getAuditState());			
+			RecivalListVO vo=new RecivalListVO(po.getID(),po.getTime(),po.getCenterID(),po.getOrderID(),po.getFrom(),po.getState(),
+					po.getPlace(),po.getMaker(),po.getAuditState());
+			
+//			System.out.println(po.getID()+"  "+po.getTime()+"  "+po.getCenterID()+"  "+po.getOrderID()+"  "+po.getFrom()+"   "+po.getState());
 			return vo;
 		}else
 		return null;
@@ -84,11 +85,9 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	}
 
 	public RecivalListVO record(RecivalListVO vo) throws IOException {
-//		DealBL dealdata=new DealBL();
-		RecivalListPO po=new RecivalListPO(vo.getID(),vo.getdealOrderID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),vo.getState(),
+		RecivalListPO po=new RecivalListPO(vo.getID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),vo.getState(),
 				vo.getPlace(),vo.getMaker(),vo.getAuditState());
 		recivallistdata.insert(po);
-//		dealdata.updataTrack(po.getdealOrderID(), "到达"+vo.getPlace()+"中转中心");
 		return vo;
 	}
 
@@ -123,7 +122,7 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 		ArrayList<RecivalListVO> no_audit=new ArrayList<RecivalListVO>(); 
 		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){
-			RecivalListVO vo=new RecivalListVO(all.get(i).getID(),all.get(i).getdealOrderID(),all.get(i).getTime(),all.get(i).getCenterID(),
+			RecivalListVO vo=new RecivalListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getCenterID(),
 					all.get(i).getOrderID(),all.get(i).getFrom(),all.get(i).getState(),all.get(i).getPlace(),
 					all.get(i).getMaker(),all.get(i).getAuditState());
 			no_audit.add(vo);		
@@ -131,14 +130,29 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 		}				
 		return no_audit;
 	}
-			
+	public ArrayList<RecivalListVO> findByMaker(String maker) throws IOException{
+		ArrayList<RecivalListPO> all=recivallistdata.findall();
+		ArrayList<RecivalListVO> result=new ArrayList<RecivalListVO>(); 
+		for(int i=0;i<all.size();i++){
+			if(all.get(i).getMaker().equals(maker)){
+				RecivalListVO vo=new RecivalListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getCenterID(),
+						all.get(i).getOrderID(),all.get(i).getFrom(),all.get(i).getState(),all.get(i).getPlace(),
+						all.get(i).getMaker(),all.get(i).getAuditState());
+				result.add(vo);				
+			}
+					
+		}
+				
+		return result;
+	}	
+	
 	//返回这个maker的所有处在"草稿"状态的单据,测试可用。
 	public ArrayList<RecivalListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<RecivalListPO> all=recivallistdata.findall();
 		ArrayList<RecivalListVO> result=new ArrayList<RecivalListVO>(); 
 		for(int i=0;i<all.size();i++){
 			if(all.get(i).getMaker().equals(maker)&&all.get(i).getAuditState().equals("草稿")){
-				RecivalListVO vo=new RecivalListVO(all.get(i).getID(),all.get(i).getdealOrderID(),all.get(i).getTime(),all.get(i).getCenterID(),
+				RecivalListVO vo=new RecivalListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getCenterID(),
 						all.get(i).getOrderID(),all.get(i).getFrom(),all.get(i).getState(),all.get(i).getPlace(),
 						all.get(i).getMaker(),all.get(i).getAuditState());
 				result.add(vo);				
@@ -153,14 +167,14 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 	private void update(String id,String auditState) throws IOException{
 		if(auditState.equals("提交")){
 			RecivalListVO vo=inquiry(id);
-			RecivalListPO po=new RecivalListPO(vo.getID(),vo.getdealOrderID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),
+			RecivalListPO po=new RecivalListPO(vo.getID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),
 					vo.getState(),vo.getPlace(),vo.getMaker(),"提交");
 			recivallistdata.update(po);
 		}
 				
 		else if(auditState.equals("草稿")){
 			RecivalListVO vo=inquiry(id);
-			RecivalListPO po=new RecivalListPO(vo.getID(),vo.getdealOrderID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),
+			RecivalListPO po=new RecivalListPO(vo.getID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),
 					vo.getState(),vo.getPlace(),vo.getMaker(),"草稿");
 			recivallistdata.update(po);
 		}
@@ -168,7 +182,7 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 		//审批后状态
 		else{
 			RecivalListVO vo=inquiry(id);
-			RecivalListPO po=new RecivalListPO(vo.getID(),vo.getdealOrderID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),
+			RecivalListPO po=new RecivalListPO(vo.getID(),vo.getTime(),vo.getCenterID(),vo.getOrderID(),vo.getFrom(),
 					vo.getState(),vo.getPlace(),vo.getMaker(),"审批后");
 			recivallistdata.update(po);
 		}
@@ -211,16 +225,13 @@ public class RecivalListBL implements RecivalListBLService,DataFactory{
 		poarr=recivallistdata.findall();
 		if(poarr.size()>0){
 		for(RecivalListPO po:poarr){
-			RecivalListVO vo=new RecivalListVO(po.getID(),po.getdealOrderID(),po.getTime(),po.getCenterID(),po.getOrderID(),po.getFrom(),
+			RecivalListVO vo=new RecivalListVO(po.getID(),po.getTime(),po.getCenterID(),po.getOrderID(),po.getFrom(),
 					po.getState(),po.getPlace(),po.getMaker(),po.getAuditState());
 			voarr.add(vo);
 		}}
 		return voarr;
 	}
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;

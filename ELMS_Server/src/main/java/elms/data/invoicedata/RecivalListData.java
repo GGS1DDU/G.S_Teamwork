@@ -23,7 +23,10 @@ public class RecivalListData extends UnicastRemoteObject implements RecivalListD
 	public RecivalListData() throws RemoteException{
 		super();
 	}
-
+    public static void main(String args[]) throws IOException{
+    	RecivalListData ii=new RecivalListData();
+    	ii.init();
+    }
 	//recivalList接收单的id定义为rl开头+五位数字，一个七位id
 	public RecivalListPO find(String id) throws RemoteException, IOException {
 		fis=new FileInputStream(file);
@@ -117,7 +120,7 @@ public class RecivalListData extends UnicastRemoteObject implements RecivalListD
 					
 			try{
 				RecivalListPO po=(RecivalListPO)ois.readObject();
-				arr.add(po);
+		//		arr.add(po);
 				while(fis.available()>0){
 					byte[] buf=new byte[4];
 					fis.read(buf);

@@ -39,6 +39,7 @@ import elms.presentation.invoiceui.InvoiceUI_SendingListEdit;
 import elms.presentation.invoiceui.InvoiceUI_TransferListEdit;
 import elms.presentation.storageui.TableModel;
 import elms.vo.InvoiceVO;
+import elms.vo.UserVO;
 
 
 public class Invoice_unaduit extends JPanel{
@@ -63,26 +64,33 @@ public class Invoice_unaduit extends JPanel{
 //			e.printStackTrace();
 //		}
 //	}
-	public Invoice_unaduit(final String maker) throws IOException{
+	public Invoice_unaduit(final UserVO vo) throws IOException{
 		
 		setVisible(true);
 		setOpaque(false);
 		setLayout(null);
-
-	String[] title_name = { "ID", "单据类型","制表人"};
+	JLabel jl=new JLabel(" 当前用户：  "+vo.getName()+"  身份：  "+vo.getJob()+"  编号   "+vo.getId());
+	add(jl);jl.setBounds(200, 0, screenWidth-400, 25);
+		
+	final JLabel time=new JLabel();
+    time.setFont(new Font("Serif",Font.BOLD,15));	    
+    add(time);	    
+	time.setBounds(screenWidth*2/3/3,screenHeight*3/4-60,200,40);
+    String[] title_name = { "ID", "单据类型","制表人"};
 	model = new TableModel(title_name);
 	table = new JTable(model);
 	table.setBackground(Color.white);	
 	
+
 	JScrollPane scrollpane=new JScrollPane(table);
 	this.add(scrollpane);
-	scrollpane.setBounds(0,40,screenWidth*2/3-200,screenHeight*3/8);
+	scrollpane.setBounds(-1,40,screenWidth*2/3-198,screenHeight*3/8);
 	scrollpane.setOpaque(false);
 	scrollpane.getViewport().setOpaque(false); 
+
 	
-	final JLabel time=new JLabel();
-	add(time); time.setBounds((screenWidth*2/3-200)/3,screenHeight*3/4-50,200, 25);
-	time.setFont(new Font("Serif",Font.BOLD,15));
+	
+
 	
     table.addMouseListener(new MouseAdapter(){
 		public void mouseClicked(MouseEvent e) {
@@ -177,14 +185,14 @@ public class Invoice_unaduit extends JPanel{
     final SendingListBL sl=new SendingListBL();
     final TransferListBL tl=new TransferListBL();
    
-	arr.addAll(al.findByMakerAndNoaudit(maker));
-	arr.addAll(il.findByMakerAndNoaudit(maker));
-	arr.addAll(ll.findByMakerAndNoaudit(maker));
-	arr.addAll(zc.findByMakerAndNoaudit(maker));
-	arr.addAll(rl.findByMakerAndNoaudit(maker));
-	arr.addAll(sl.findByMakerAndNoaudit(maker));
-	arr.addAll(tl.findByMakerAndNoaudit(maker));
-	for(InvoiceVO vo:arr)			model.addRow(model.changeRow_Inv(vo));	
+	arr.addAll(al.findByMakerAndNoaudit(vo.getId()));
+	arr.addAll(il.findByMakerAndNoaudit(vo.getId()));
+	arr.addAll(ll.findByMakerAndNoaudit(vo.getId()));
+	arr.addAll(zc.findByMakerAndNoaudit(vo.getId()));
+	arr.addAll(rl.findByMakerAndNoaudit(vo.getId()));
+	arr.addAll(sl.findByMakerAndNoaudit(vo.getId()));
+	arr.addAll(tl.findByMakerAndNoaudit(vo.getId()));
+	for(InvoiceVO vos:arr)			model.addRow(model.changeRow_Inv(vos));	
 	
 	JButton refresh=new JButton("刷新(R)");
 	add(refresh);
@@ -194,13 +202,13 @@ public class Invoice_unaduit extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			arr.clear();
 			try {
-				arr.addAll(al.findByMakerAndNoaudit(maker));
-				arr.addAll(il.findByMakerAndNoaudit(maker));
-			arr.addAll(ll.findByMakerAndNoaudit(maker));
-			arr.addAll(zc.findByMakerAndNoaudit(maker));
-			arr.addAll(rl.findByMakerAndNoaudit(maker));
-			arr.addAll(sl.findByMakerAndNoaudit(maker));
-			arr.addAll(tl.findByMakerAndNoaudit(maker));
+				arr.addAll(al.findByMakerAndNoaudit(vo.getId()));
+				arr.addAll(il.findByMakerAndNoaudit(vo.getId()));
+			arr.addAll(ll.findByMakerAndNoaudit(vo.getId()));
+			arr.addAll(zc.findByMakerAndNoaudit(vo.getId()));
+			arr.addAll(rl.findByMakerAndNoaudit(vo.getId()));
+			arr.addAll(sl.findByMakerAndNoaudit(vo.getId()));
+			arr.addAll(tl.findByMakerAndNoaudit(vo.getId()));
 			model.removeAllRows(model.getRowCount());
 			for(InvoiceVO svo:arr){
 				model.addRow(model.changeRow_Inv(svo));

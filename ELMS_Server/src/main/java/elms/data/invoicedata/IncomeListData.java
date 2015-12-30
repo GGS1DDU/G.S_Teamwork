@@ -25,7 +25,10 @@ public class IncomeListData extends UnicastRemoteObject implements IncomeListDat
 		super();
 		// TODO 自动生成的构造函数存根
 	}
-    
+    public static void main(String args[]) throws IOException{
+    	IncomeListData ii=new IncomeListData();
+    	ii.init();
+    }
 	//incomeList收款单的id定义为il开头+五位数字，一个七位id
 	public IncomeListPO find(String id) throws RemoteException, IOException {
 		fis=new FileInputStream(file);
@@ -120,7 +123,6 @@ public class IncomeListData extends UnicastRemoteObject implements IncomeListDat
 					
 		try{
 			IncomeListPO po=(IncomeListPO)ois.readObject();
-			arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);

@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import elms.businesslogic.managerbl.FreightStrategyManager;
+import elms.presentation.TimeLabel;
 import elms.presentation.managerui.ManagerUI_main;
 import elms.presentation.managerui.freight.freighthelper.FreightList;
 import elms.presentation.uihelper.ScreenSize;
@@ -20,8 +22,6 @@ import elms.vo.UserVO;
 
 public class FreightUI_main extends JPanel {
 
-	private int screenWidth = ScreenSize.screenWidth;
-	private int screenHeight = ScreenSize.screenHeight;
 	private Dimension listD;
 
 
@@ -31,13 +31,11 @@ public class FreightUI_main extends JPanel {
 
 	private JPanel bp;
 	private JButton edit;
-//	private JButton find;
 	private JButton back;
 	public static ArrayList<FreightStrategyVO> arr = new ArrayList<FreightStrategyVO>();
 	
 	private FreightStrategyManager fsm = new FreightStrategyManager();
-
-
+	
 	public FreightUI_main(Dimension d,UserVO u_vo) {
 		arr = fsm.findAll();
 		setOpaque(false);
@@ -45,9 +43,9 @@ public class FreightUI_main extends JPanel {
 		
 		setLayout(null);
 		setSize(d.width,d.height);
-
+		
+	
 		listD = new Dimension(this.getWidth() - 50, this.getHeight() * 2 / 3);
-
 		freightList = new FreightList(listD,u_vo);
 		freightList.setLocation(25,10);
 		add(freightList);
@@ -58,10 +56,15 @@ public class FreightUI_main extends JPanel {
 
 	}
 	
+		
+		
+	
 	private void addButtons(){
 		bp = new JPanel();
 		bp.setLayout(null);
-		bp.setBounds(0,this.getHeight()/2+100,this.getWidth()-30,90);
+//		bp.setBounds(0,this.getHeight()/2+100,this.getWidth()-30,90);
+//		bp.setBackground(Color.black);
+		bp.setBounds(0, freightList.getY()+freightList.getHeight(), this.getWidth()-30, 90);
 		add(bp);
 		bp.setOpaque(false);
 		

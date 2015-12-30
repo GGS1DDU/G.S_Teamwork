@@ -44,7 +44,7 @@ public class InvoiceUI_LoadingListZZEdit extends JFrame{
 	public InvoiceUI_LoadingListZZEdit(LoadingListZZVO vo,boolean edit){
 		voall=vo;
 		setLayout(null);
-		setTitle("装车单  No："+vo.getID());
+
 		setResizable(false);
 		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,11*screenHeight/16+40);
 		setVisible(true);

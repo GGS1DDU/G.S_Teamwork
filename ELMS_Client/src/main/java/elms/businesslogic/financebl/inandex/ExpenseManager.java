@@ -21,7 +21,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
+
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -282,10 +282,7 @@ public class ExpenseManager implements ExpenseBlService,DataFactory{
 
 
 
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+
 
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根

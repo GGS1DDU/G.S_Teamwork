@@ -8,8 +8,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -29,7 +27,6 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -251,10 +248,6 @@ try {
 		return null;
 	}
 
-	public LogDataService getLogData() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public IncomeDataService getIncomeData() throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;

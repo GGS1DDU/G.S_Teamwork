@@ -19,40 +19,62 @@ public class MyButton extends JButton{
 	public MyButton(){
 		
 		this(15);
-		UIManager.put("Button.background", false);
-//		UIManager
+	
 	}
 	
 	public MyButton(int fontSize){
 		super();
-		setFont(new Font("宋体",1,fontSize));
-		setBackground(new Color(255,231,186));
+		setFont(new Font("微软雅黑",1,fontSize));
+		setBackground(new Color(245,245,245));
 		setContentAreaFilled(false);
 		setBorderPainted(false);
 		
-	//	UIManager.put("Button.background", Color.BLACK);
-//		setBackground(Color.white);
-//		setIcon(file);
+		UIManager.put("Button.background", Color.BLACK);
 	}
 	
 	public MyButton(String s,int fontSize){
 		this(s);
-		setFont(new Font("宋体",1,fontSize));
+		setFont(new Font("微软雅黑",1,fontSize));
+		setBackground(new Color(245,245,245));
+//		addMouseListener();
 		
-		
-//		UIManager.put("Button.background", false);
 	}
 	
 	public MyButton(String s){
 		super(s);
-		setFont(new Font("宋体",1,10));
-//		setBackground(new Color(224,241,244)); //淡蓝色
+		setFont(new Font("微软雅黑",1,10));
+		setBackground(new Color(245,245,245));
 		setContentAreaFilled(false);
 		setBorderPainted(false);
-//		setBackground(new Color(247,247,198));
-//		setForeground(Color.white);
-//		this.setForeground(Color.white);
-//		setBackground(Color.WHITE);
+//		addMouseListener();
+	}
+	
+	public void addMouseListener(){
+		this.addMouseListener(new MouseAdapter(){
+
+			
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO 自动生成的方法存根
+//				MyButton.this.setBackground(new Color(72, 61, 139));
+				MyButton.this.setForeground(new Color(72,61,139));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO 自动生成的方法存根
+//				MyButton.this.setBackground(new Color(245,245,245));
+				
+				MyButton.this.setForeground(Color.BLACK);
+			}
+
+
+//			public void mouseReleased(MouseEvent arg0){
+//				MyButton.this.setForeground(Color.GRAY);
+//			}
+			
+		});
 	}
 	
 	

@@ -26,9 +26,15 @@ public class LoadingListZZData extends UnicastRemoteObject implements LoadingLis
 	ObjectInputStream ois;
 	ObjectOutputStream oos;
 	
+	
 	public LoadingListZZData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
+	}
+	public static void main(String args[]) throws RemoteException{
+		LoadingListZZData  zz=new LoadingListZZData();
+		zz.init();
+		System.out.println(1);
 	}
 
 	public LoadingListZZPO find(String id) throws RemoteException, IOException {
@@ -120,7 +126,6 @@ public class LoadingListZZData extends UnicastRemoteObject implements LoadingLis
 					
 		try{
 			LoadingListZZPO po=(LoadingListZZPO)ois.readObject();
-			arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);

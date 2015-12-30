@@ -11,9 +11,9 @@ import elms.dataservice.DataFactory;
 
 public class RMIHelper {
 
-	
+//	
 	private static boolean inited = false;
-	
+//	
 //	public synchronized static void init() throws ServerInitException {
 //        if (inited) {
 //            return;

@@ -19,7 +19,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
+
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -143,7 +143,23 @@ public class TransferListBL implements TransferListBLService,DataFactory{
 		}				
 		return no_audit;
 	}
-			
+	public ArrayList<TransferListVO> findByMaker(String maker) throws IOException{
+		ArrayList<TransferListPO> all=transferlistdata.findall();
+		ArrayList<TransferListVO> result=new ArrayList<TransferListVO>(); 
+		for(int i=0;i<all.size();i++){
+			if(all.get(i).getMaker().equals(maker)){
+				TransferListVO vo=new TransferListVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getTransferID(),
+				all.get(i).getTransportNum(),all.get(i).getDeparture(),all.get(i).getArrival(),all.get(i).getSeatNumber(),
+				all.get(i).getSurpervior(),all.get(i).getOrderID(),all.get(i).getCost(),all.get(i).getPlace(),
+				all.get(i).getMaker(),all.get(i).getAuditState());
+				result.add(vo);				
+			}
+					
+		}
+				
+		return result;
+	}
+	
 	//返回这个maker的所有处在"草稿"状态的单据,测试可用。
 	public ArrayList<TransferListVO> findByMakerAndNoaudit(String maker) throws IOException{
 		ArrayList<TransferListPO> all=transferlistdata.findall();
@@ -228,10 +244,7 @@ public class TransferListBL implements TransferListBLService,DataFactory{
  		return voarr;
 	}
 
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+
 
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根

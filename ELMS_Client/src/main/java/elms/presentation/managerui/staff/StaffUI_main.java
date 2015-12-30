@@ -121,6 +121,8 @@ public class StaffUI_main extends JPanel {
 		});
 
 		addButton();
+		// addInitListener();
+		// addActionListener();
 	}
 
 	public JButton getInitButton(final Dimension bd, final int changedHeight) {
@@ -144,6 +146,10 @@ public class StaffUI_main extends JPanel {
 					sm.initAll();
 					staffList.removeAllData();
 					JOptionPane.showMessageDialog(null, "开始初始化！");
+					bp.add(finishInit);
+					
+					validate();
+					repaint();
 
 				} else
 					JOptionPane.showMessageDialog(null, "验证码错误！", null, 0);
@@ -271,10 +277,15 @@ public class StaffUI_main extends JPanel {
 				if (obj.equals(s)) {
 					
 					InitAll ia=new InitAll();
-					ia.setInitState(1);
-					sm.initAll();
-					staffList.removeAllData();
-					JOptionPane.showMessageDialog(null, "初始化结束！");
+					try {
+						ia.setInitState(1);
+						JOptionPane.showMessageDialog(null, "初始化结束！");
+						bp.remove(finishInit);
+					} catch (RemoteException e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}
+					
 
 				} else {
 					JOptionPane.showMessageDialog(null, "验证码错误！", null, 0);
@@ -306,11 +317,11 @@ public class StaffUI_main extends JPanel {
 					if (i.getInitState(1)) {
 						needInit = true;
 						time.setText("需要初始化！");
-						bp.add(finishInit);
+					
 						
 					} else {
 						time.setText(sdf.format(new Date()));
-						bp.remove(finishInit);
+//						bp.remove(finishInit);
 					}
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block

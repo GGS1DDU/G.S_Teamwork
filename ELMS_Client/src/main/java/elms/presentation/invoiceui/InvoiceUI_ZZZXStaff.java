@@ -171,7 +171,7 @@ Invoice_unaduit  un;
 //					aduit_main sd=new aduit_main();
 //					contentPane.add(sd);
 //					sd.setBounds(200, 0, screenWidth-200,screenHeight);	
-				un=new Invoice_unaduit(vo.getId());					
+				un=new Invoice_unaduit(vo);					
 					contentPane.add(un);
 					un.setBounds(200, 0, screenWidth-200,screenHeight);	
 				} catch (IOException e) {
@@ -312,7 +312,7 @@ Invoice_unaduit  un;
 				 try {
 						if(of.getText().length()!=10)  JOptionPane.showMessageDialog(contentPane,"订单编号格式错误" );
 					else	if(storage.orderhasIN(of.getText()))  JOptionPane.showMessageDialog(contentPane,"该订单已存在" );
-					else	{ Storage_main.ins.add(of.getText());JOptionPane.showMessageDialog(contentPane,"已告知仓库管理员" );of.setText("");}
+					else	{storage.setIn(of.getText()); JOptionPane.showMessageDialog(contentPane,"已告知仓库管理员" );of.setText("");}
 				} catch (HeadlessException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -328,7 +328,7 @@ Invoice_unaduit  un;
 				 try {
 						if(tf.getText().length()!=10)  JOptionPane.showMessageDialog(contentPane,"订单编号格式错误" );
 					else	if(!storage.orderhasIN(tf.getText()))  JOptionPane.showMessageDialog(contentPane,"该订单不存在" );
-					else	 { Storage_main.outs.add(tf.getText());JOptionPane.showMessageDialog(contentPane,"已告知仓库管理员" );tf.setText("");}
+					else	 { storage.setOut(tf.getText());JOptionPane.showMessageDialog(contentPane,"已告知仓库管理员" );tf.setText("");}
 				} catch (HeadlessException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

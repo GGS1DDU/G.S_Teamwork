@@ -13,6 +13,7 @@ public void copy() throws RemoteException, FileNotFoundException, ClassNotFoundE
 public void recovery()throws RemoteException, FileNotFoundException, ClassNotFoundException, IOException;
 public boolean getInitState(int a) throws RemoteException;
 public void setInitState();
+public void setInitState(int a) throws RemoteException ;
 public  void  addAccount(AccountVO vo);
 public ArrayList<AccountVO> getAccount() throws ClassNotFoundException, IOException;
 }

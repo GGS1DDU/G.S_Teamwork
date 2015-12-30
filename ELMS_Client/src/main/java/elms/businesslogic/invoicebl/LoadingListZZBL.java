@@ -19,7 +19,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
+
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -89,6 +89,7 @@ public class LoadingListZZBL implements LoadingListZZBLService,DataFactory{
 
 	public LoadingListZZVO inquiry(String id) throws IOException {
 		LoadingListZZPO po=loadinglistzzdata.find(id);
+		System.out.println(po.getID());
 		if(po!=null){
 			LoadingListZZVO vo=new LoadingListZZVO(po.getID(),po.getTime(),po.getTransportNumber(),po.getArrival(),po.getCarNumber(),
 					po.getSurpervior(),po.getSupercargo(),po.getOrderNumber(),po.getCost(),po.getPlace(),po.getMaker(),po.getAuditState());
@@ -128,7 +129,22 @@ public class LoadingListZZBL implements LoadingListZZBLService,DataFactory{
 		update(id,"审批后");
 	}
 
-
+	public ArrayList<LoadingListZZVO> findByMaker(String maker) throws IOException{
+		ArrayList<LoadingListZZPO> all=loadinglistzzdata.findall();
+		ArrayList<LoadingListZZVO> result=new ArrayList<LoadingListZZVO>(); 
+		for(int i=0;i<all.size();i++){
+			if(all.get(i).getMaker().equals(maker)){
+				LoadingListZZVO vo=new LoadingListZZVO(all.get(i).getID(),all.get(i).getTime(),all.get(i).getTransportNumber(),
+						all.get(i).getArrival(),all.get(i).getCarNumber(),all.get(i).getSurpervior(),all.get(i).getSupercargo(),
+						all.get(i).getOrderNumber(),all.get(i).getCost(),all.get(i).getPlace(),all.get(i).getMaker(),
+						all.get(i).getAuditState());
+				result.add(vo);				
+			}
+					
+		}
+				
+		return result;
+	}
 	//返回所有审核状态为“提交”状态的单据。给总经理那边用的。测试可用。
 	public ArrayList<LoadingListZZVO> findNoaudit() throws IOException{
 		ArrayList<LoadingListZZPO> all=loadinglistzzdata.findall();
@@ -227,10 +243,6 @@ public class LoadingListZZBL implements LoadingListZZBLService,DataFactory{
 		return voarr;
 	}
 
-	public LogDataService getLogData() throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
 
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根

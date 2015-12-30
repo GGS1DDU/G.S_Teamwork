@@ -25,7 +25,10 @@ public class TransferListData extends UnicastRemoteObject implements TransferLis
 	public TransferListData() throws RemoteException{
 		super();
 	}
-    
+    public static void main(String args[]) throws IOException{
+    	TransferListData ii=new TransferListData();
+    	ii.init();
+    }
 	//transferList中转单的id定义为tl开头+五位数字，一个七位id
 	public TransferListPO find(String id) throws RemoteException, IOException {
 		fis=new FileInputStream(file);
@@ -118,7 +121,7 @@ public class TransferListData extends UnicastRemoteObject implements TransferLis
 					
 		try{
 			TransferListPO po=(TransferListPO)ois.readObject();
-			arr.add(po);
+			//arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);

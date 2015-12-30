@@ -27,7 +27,10 @@ public class LoadingListData extends UnicastRemoteObject implements LoadingListD
 		super();
 		// TODO 自动生成的构造函数存根
 	}
-
+    public static void main(String args[]) throws IOException{
+    	LoadingListData ii=new LoadingListData();
+    	ii.init();
+    }
 	//loadingList营业厅装车单的id定义为ll开头+五位数字，一个七位id
 	public LoadingListPO find(String id) throws RemoteException, IOException {
 		fis=new FileInputStream(file);
@@ -118,7 +121,6 @@ public class LoadingListData extends UnicastRemoteObject implements LoadingListD
 					
 		try{
 			LoadingListPO po=(LoadingListPO)ois.readObject();
-			arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);

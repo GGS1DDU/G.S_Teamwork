@@ -174,7 +174,7 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 //						new InvoiceUI_IncomeListEdit(voall,false);
 //					}else{
 						try{
-							if(df.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s")){
+							if(!df.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
 							}else{
 							InvoiceUI_IncomeListEdit.this.dispose();

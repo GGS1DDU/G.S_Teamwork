@@ -20,6 +20,7 @@ import elms.businesslogic.financebl.InitAll;
 import elms.presentation.MyButton;
 import elms.presentation.MyLabel;
 import elms.presentation.MyPanel;
+import elms.presentation.TimeLabel;
 import elms.presentation.financeui.Init.InitAllButtons;
 import elms.presentation.financeui.Init.browser;
 import elms.presentation.financeui.bankaccount.BankAccount_main;
@@ -54,13 +55,15 @@ public class FinanceUI_main extends JFrame {
 	private browser initBrowser; // 期初建账历史纪录面板
 	private JPanel initButtons;// 期初建账按钮面板
 	private BankAccount_main bankAccount;// 银行账户面板
+	
+	private JPanel time;
+	
 	private Dimension d;
 
 	public static void main(String[] args) {
 		UserVO vo = new UserVO("00000001", "123", "张文玘", "快递员");
 
-		UIManager.put("swing.boldMetal", Boolean.FALSE);
-		UIManager.put("Button.background", Color.WHITE);
+		
 		// UIManager
 		JFrame fm = new FinanceUI_main(vo);
 		fm.setVisible(true);
@@ -73,6 +76,9 @@ public class FinanceUI_main extends JFrame {
 
 		setSize(screenWidth * 2 / 3, screenHeight * 3 / 4 + 25);
 		setLocation(screenWidth / 4, screenHeight / 8);
+		
+		UIManager.put("swing.boldMetal", Boolean.FALSE);
+		UIManager.put("Button.background", Color.WHITE);
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -86,12 +92,17 @@ public class FinanceUI_main extends JFrame {
 		contentPane.setBounds(0, 0, this.getWidth(), this.getHeight());
 		add(contentPane);
 		contentPane.setLayout(null);
+		
+		time = new TimeLabel(this.getWidth()-buttonWidth,30);
 
-		d = new Dimension(this.getWidth() - buttonWidth, this.getHeight());
+		d = new Dimension(this.getWidth() - buttonWidth, this.getHeight()-time.getHeight());
 		inAndEx = new InAndEx_main(d, vo);
 		inAndEx.setLocation(buttonWidth, 0);
 		inAndEx.setOpaque(false);
 		contentPane.add(inAndEx);
+		
+		time.setLocation(buttonWidth, this.getHeight()-60);
+		contentPane.add(time);
 
 		buttonPanel = new JPanel();
 		buttonPanel.setBorder(new TitledBorder(new EtchedBorder()));
@@ -115,16 +126,13 @@ public class FinanceUI_main extends JFrame {
 				// TODO 自动生成的方法存根
 				contentPane.removeAll();
 				contentPane.add(inAndEx);
-				
+				contentPane.add(time);
 				
 				
 				buttonPanel.removeAll();
 				setDefaultBSize();
 				inAndEx_b.setSize(buttonWidth, bButtonH);
 				inAndEx_b.setForeground(Color.gray);
-//				inAndEx_b.setContentAreaFilled(true);
-//				init_b.setLocation(0, bank_b.getY() + bank_b.getHeight());
-//				exit_b.setLocation(0, init_b.getY() + init_b.getHeight());
 				
 				setDefaultBLocation();
 				
@@ -142,7 +150,7 @@ public class FinanceUI_main extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				bankAccount = new BankAccount_main(d, vo);
+				bankAccount = new BankAccount_main(new Dimension(d.width,d.height+time.getHeight()), vo);
 				bankAccount.setLocation(buttonWidth, 0);
 				contentPane.removeAll();
 				contentPane.add(bankAccount);
@@ -185,6 +193,7 @@ public class FinanceUI_main extends JFrame {
 				contentPane.removeAll();
 				initBrowser.setLocation(buttonWidth, 0);
 				contentPane.add(initBrowser);
+				contentPane.add(time);
 
 				buttonPanel.removeAll();
 				setDefaultBSize();
@@ -237,12 +246,6 @@ public class FinanceUI_main extends JFrame {
 		bank_b.setForeground(Color.BLACK);
 		init_b.setForeground(Color.BLACK);
 		exit_b.setForeground(Color.BLACK);
-		
-//		inAndEx_b.setContentAreaFilled(false);
-//		bank_b.setContentAreaFilled(false);
-//		init_b.setContentAreaFilled(false);
-//		exit_b.setContentAreaFilled(false);
-		
 	}
 	
 	private void setDefaultBLocation(){

@@ -20,7 +20,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
+
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -151,12 +151,6 @@ public class DealBL implements DealBlService ,DataFactory{
 	}
 	
 	public UserDataService getUserData() {
-		return null;
-	}
-
-
-	public LogDataService getLogData() throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

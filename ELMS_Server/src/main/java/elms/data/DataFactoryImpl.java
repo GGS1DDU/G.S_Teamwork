@@ -15,7 +15,7 @@ import elms.data.invoicedata.LoadingListZZData;
 import elms.data.invoicedata.RecivalListData;
 import elms.data.invoicedata.SendingListData;
 import elms.data.invoicedata.TransferListData;
-import elms.data.logdata.LogData;
+
 import elms.data.managerdata.FreightStrategyData;
 import elms.data.managerdata.StaffData;
 import elms.data.memberdata.CarData;
@@ -35,7 +35,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-import elms.dataservice.logdataservice.LogDataService;
+
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -72,16 +72,7 @@ public class DataFactoryImpl extends UnicastRemoteObject implements DataFactory 
 		
 	}
 
-	public LogDataService getLogData() throws RemoteException {
-		LogDataService logdata=null;
-		try {
-			logdata = new LogData();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		
-		return logdata;
-	}
+
 
 	public StorageDataService getStorageData() throws RemoteException {
 		StorageDataService storagedata=null;

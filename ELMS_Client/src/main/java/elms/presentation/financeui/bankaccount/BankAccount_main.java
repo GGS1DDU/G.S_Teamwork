@@ -1,41 +1,23 @@
 package elms.presentation.financeui.bankaccount;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.Timer;
-import javax.swing.UIManager;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import javax.swing.JButton;
 
 import elms.businesslogic.ResultMessage;
 import elms.businesslogic.financebl.BankAccountManager;
 import elms.businesslogic.financebl.InitAll;
-import elms.businesslogic.storagebl.Storage;
-import elms.po.BankAccountPO;
 import elms.presentation.JTabbedPanel;
 import elms.presentation.MyButton;
-import elms.presentation.financeui.FinanceUI_main;
-import elms.presentation.storageui.Storage_init;
-import elms.presentation.storageui.Storage_main;
 import elms.presentation.uihelper.TagPanel;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.BankAccountVO;
@@ -43,8 +25,6 @@ import elms.vo.UserVO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
@@ -283,7 +263,6 @@ public class BankAccount_main extends JPanel {
 		// 各种按钮的监听
 		add.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame addAccount = new BankAccount_add(accountList);
@@ -341,23 +320,25 @@ public class BankAccount_main extends JPanel {
 				String s = a + "";
 
 				String obj = JOptionPane.showInputDialog("请输入 验证码  " + a
-						+ " 确认完成人员初始化");
+						+ " 确认完成银行账户初始化");
 				if (obj.equals(s)) {
 
 					InitAll ia = new InitAll();
-					 ia.setInitState(4);
-					try {
-						bam.init();
-					} catch (RemoteException e1) {
+					 try {
+						ia.setInitState(4);
+						System.out.println("____________________"+ia.getInitState(4));
+//						bam.init();
+//						accountList.removeAllData();
+						JOptionPane.showMessageDialog(null, "初始化结束！");
+					} catch (RemoteException e2) {
 						// TODO 自动生成的 catch 块
-						e1.printStackTrace();
+						e2.printStackTrace();
+						System.out.println("failed!!!!!!!!!!!!");
 					} catch (IOException e1) {
 						// TODO 自动生成的 catch 块
 						e1.printStackTrace();
 					}
-					accountList.removeAllData();
-					JOptionPane.showMessageDialog(null, "初始化结束！");
-
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "验证码错误！", null, 0);
 				}
