@@ -138,7 +138,7 @@ public InitAll(){
 	public InitAllDataService getInitData() throws RemoteException {
 		DataFactory df;
 		try{
-			df=(DataFactory)Naming.lookup("rmi://192.168.191.1:1099/df");
+			df=(DataFactory)Naming.lookup("rmi://localhost:1099/df");
 			return df.getInitData();
 		}catch(Exception e){
 			e.printStackTrace();

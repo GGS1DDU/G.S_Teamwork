@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.Border;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import elms.businesslogic.ResultMessage;
@@ -67,22 +68,11 @@ public class IncomeList extends JPanel {
 		setLayout(null);
 		setVisible(true);
 
-		Border l2 = BorderFactory.createLoweredBevelBorder();
-		JLabel incomeList = new JLabel("收入清单");
-
-		JPanel info = new JPanel();
-		info.setOpaque(false);
-		info.setLayout(new java.awt.BorderLayout());
-		info.add(incomeList);
-		info.setBounds(0, 23, 70, 25);
-		info.setBorder(l2);
-		info.setBackground(Color.white);
 
 		String[] title_name = { "选择", "ID", "建立时间", "收入金额", "收入营业厅", "收入记录人员",
 				"入账账户" };
 		model = new TableModel(title_name);
 		table = new JTable(model);
-//		table.setBackground(Color.black);
 
 		TableColumnModel tcm = table.getColumnModel();
 		tcm.getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
@@ -95,13 +85,11 @@ public class IncomeList extends JPanel {
 		tcm.getColumn(0).setPreferredWidth(50);
 
 		JScrollPane scroll = new JScrollPane(table);
-//		scroll.setOpaque(false);
-		scroll.setBounds(0, 50, d.width - 25, d.height - 100);
-		scroll.setBackground(Color.black);
+		scroll.setOpaque(false);
+		scroll.getViewport().setOpaque(false);
+		scroll.setBounds(0, 50, d.width-10, d.height - 100);
 	
 		add(scroll);
-
-		add(info);
 
 		for (int i = 0; i < arr.size(); i++) {
 			addData(arr.get(i));

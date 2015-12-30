@@ -23,6 +23,7 @@ import elms.presentation.financeui.inAndEx.expense.Expense_main;
 import elms.presentation.financeui.inAndEx.income.IncomeList;
 import elms.presentation.managerui.staff.StaffUI_main;
 import elms.presentation.uihelper.TableModel;
+import elms.presentation.uihelper.TagPanel;
 import elms.vo.FExpenseVO;
 import elms.vo.StaffVO;
 import elms.vo.UserVO;
@@ -59,20 +60,14 @@ public class StaffList extends JPanel{
 		this.vo = vo;
 		arr = sm.findByJob("全部");
 
+		setOpaque(false);
 		setSize(d.width, d.height - 25);
 		// setBackground(Color.WHITE);
 		setLayout(null);
 		setVisible(true);
 
-		Border l2 = BorderFactory.createLoweredBevelBorder();
-		JLabel incomeList = new JLabel("支出清单");
-
-		JPanel info = new JPanel();
-		info.setLayout(new java.awt.BorderLayout());
-		info.add(incomeList);
+		JPanel info = new TagPanel("员工清单");
 		info.setBounds(0, 23, 70, 25);
-		info.setBorder(l2);
-		info.setBackground(Color.white);
 
 		String[] title_name = { "选择", "ID", "姓名", "性别", "联系方式 ", "身份",
 				"基本工资" ,"薪水计算方式"};
@@ -93,7 +88,9 @@ public class StaffList extends JPanel{
 
 		JScrollPane scroll = new JScrollPane(table);
 		scroll.setBounds(0, 50, d.width - 25, d.height - 100);
-		scroll.setBackground(Color.WHITE);
+		scroll.setOpaque(false);
+		scroll.getViewport().setOpaque(false);
+//		scroll.setBackground(Color.WHITE);
 		add(scroll);
 
 		add(info);

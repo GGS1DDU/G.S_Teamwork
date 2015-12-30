@@ -42,23 +42,10 @@ public class FreightList extends JPanel {
 	private FIncomeVO test = new FIncomeVO("zwq141250192", "in00000001",
 			"2015-11-30", 200, "南京市鼓楼营业厅", "张文�?");
 
-	public static void main(String args[]) {
-		JFrame jf = new JFrame();
-		jf.setBounds(10, 10, 500, 300);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		Dimension d = new Dimension(jf.getWidth(), jf.getHeight() - 200);
-		UserVO vo = new UserVO();
-		IncomeList im = new IncomeList(d, vo);
-		jf.add(im);
-		jf.setVisible(true);
-
-		// im.removeData();
-
-	}
 
 	public FreightList(Dimension d, final UserVO vo) {
 		this.uservo = vo;
+		setOpaque(false);
 //		arr = fm.findAll();
 
 		setSize(d.width, d.height - 25);
@@ -96,6 +83,8 @@ public class FreightList extends JPanel {
 		scroll.setBounds(0, 50, d.width - 25, d.height - 100);
 		scroll.setBackground(Color.WHITE);
 		add(scroll);
+		scroll.setOpaque(false);
+		scroll.getViewport().setOpaque(false);
 
 		add(info);
 //

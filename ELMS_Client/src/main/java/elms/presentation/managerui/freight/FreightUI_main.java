@@ -18,7 +18,7 @@ import elms.presentation.uihelper.ScreenSize;
 import elms.vo.FreightStrategyVO;
 import elms.vo.UserVO;
 
-public class FreightUI_main extends JFrame {
+public class FreightUI_main extends JPanel {
 
 	private int screenWidth = ScreenSize.screenWidth;
 	private int screenHeight = ScreenSize.screenHeight;
@@ -37,39 +37,23 @@ public class FreightUI_main extends JFrame {
 	
 	private FreightStrategyManager fsm = new FreightStrategyManager();
 
-	public static void main(String[] args) {
-		UserVO vo = new UserVO("00000001","123123","张文玘","快递员");
-		JFrame jf = new FreightUI_main(vo);
-		jf.setVisible(true);
-	}
 
-	public FreightUI_main(UserVO u_vo) {
+	public FreightUI_main(Dimension d,UserVO u_vo) {
 		arr = fsm.findAll();
+		setOpaque(false);
 		this.uservo = u_vo;
 		
 		setLayout(null);
-		setTitle("运费策略");
-		setResizable(false);
-		setSize(screenWidth / 2, screenHeight / 2 + 100);
-		setLocation(screenWidth / 4, screenHeight / 8);
-		listD = new Dimension(this.getWidth() - 50, this.getHeight() * 2 / 3);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(d.width,d.height);
 
-//		FreightListPanel fListPanel = new FreightListPanel(listD);
-//		fListPanel.setLocation(25, 0);
-//		add(fListPanel);
+		listD = new Dimension(this.getWidth() - 50, this.getHeight() * 2 / 3);
+
 		freightList = new FreightList(listD,u_vo);
-		freightList.setLocation(25,0);
+		freightList.setLocation(25,10);
 		add(freightList);
 		
-//		ArrayList<FreightStrategyVO> list = fsm.findAll();
-//		if(list!=null)
 		freightList.addAllData(arr);
 
-//		buttonD = new Dimension(this.getWidth(), this.getHeight() / 3);
-//		JPanel buttonPanel = new FreightButton(buttonD);
-//		buttonPanel.setLocation(0, this.getHeight() * 2 / 3);
-//		add(buttonPanel);
 		addButtons();
 
 	}
@@ -79,6 +63,7 @@ public class FreightUI_main extends JFrame {
 		bp.setLayout(null);
 		bp.setBounds(0,this.getHeight()/2+100,this.getWidth()-30,90);
 		add(bp);
+		bp.setOpaque(false);
 		
 		
 		
@@ -88,14 +73,9 @@ public class FreightUI_main extends JFrame {
 //		find = new JButton("查询");   
 		back = new JButton("返回");      back.setForeground(Color.red);
 		
-//		add.setBounds(50, 30, 102, 30);
-//		delete.setBounds(200, 30, 104, 30);  
 		edit.setBounds(bp.getWidth()/5, 30, 102, 30);
-//		find.setBounds(bp.getWidth()*2/5,30,100,30);  
 		back.setBounds(bp.getWidth()*3/5,30,100,30);
 		
-//		bp.add(add);
-//		bp.add(delete);
 		bp.add(edit);
 //		bp.add(find);
 		bp.add(back);
@@ -164,7 +144,7 @@ public class FreightUI_main extends JFrame {
 				// TODO 自动生成的方法存根
 				JFrame jf = new ManagerUI_main(uservo);
 				jf.setVisible(true);
-				FreightUI_main.this.dispose();
+				
 			}
 			
 		});

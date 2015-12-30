@@ -108,10 +108,10 @@ public class InAndEx_findTime extends JFrame {
 						if (date1.after(date2)) {
 							JOptionPane.showMessageDialog(null, "查询时间顺序错误");
 						} else {
-							JFrame form = new InAndEx_form(startTime.getText(),
-									endTime.getText(),uservo);
-							form.setVisible(true);
-							InAndEx_findTime.this.dispose();
+//							JFrame form = new InAndEx_form(startTime.getText(),
+//									endTime.getText(),uservo);
+//							form.setVisible(true);
+//							InAndEx_findTime.this.dispose();
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

@@ -23,6 +23,7 @@ import elms.businesslogic.financebl.inandex.IncomeManager;
 import elms.presentation.financeui.inAndEx.income.IncomeList;
 import elms.presentation.financeui.inAndEx.income.Income_main;
 import elms.presentation.uihelper.TableModel;
+import elms.presentation.uihelper.TagPanel;
 import elms.vo.BankAccountVO;
 import elms.vo.FIncomeVO;
 import elms.vo.UserVO;
@@ -64,16 +65,7 @@ public class BankAccountList extends JPanel{
 		// setBackground(Color.WHITE);
 		setLayout(null);
 		setVisible(true);
-
-		Border l2 = BorderFactory.createLoweredBevelBorder();
-		JLabel incomeList = new JLabel("收入清单");
-
-		JPanel info = new JPanel();
-		info.setLayout(new java.awt.BorderLayout());
-		info.add(incomeList);
-		info.setBounds(0, 23, 70, 25);
-		info.setBorder(l2);
-		info.setBackground(Color.white);
+		setOpaque(false);
 
 		String[] title_name = { "选择", "ID", "账户名称", "余额", "所属银行" };
 		model = new TableModel(title_name);
@@ -93,8 +85,9 @@ public class BankAccountList extends JPanel{
 		scroll.setBackground(Color.WHITE);
 		add(scroll);
 
-		add(info);
-
+		scroll.setOpaque(false);
+		scroll.getViewport().setOpaque(false);
+		
 		for (int i = 0; i < arr.size(); i++) {
 			addData(arr.get(i));
 		}

@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 
 
 
+
 import elms.businesslogic.financebl.inandex.StatisticManager;
 import elms.presentation.financeui.inAndEx.expense.ExpenseList;
 import elms.presentation.financeui.inAndEx.income.IncomeList;
@@ -52,7 +54,7 @@ import elms.vo.FIncomeVO;
 import elms.vo.UserVO;
 
 
-public class InAndEx_form extends JFrame {
+public class InAndEx_form extends JPanel {
 
 
 	private int screenWidth = ScreenSize.screenWidth;
@@ -84,31 +86,16 @@ public class InAndEx_form extends JFrame {
 	private CheckFormat check = new CheckFormat();
 
 	private StatisticManager sm = new StatisticManager();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-//					InAndEx_form frame = new InAndEx_form("123","123");
-//					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public InAndEx_form(String time1,String time2,UserVO u_vo) {
+	public InAndEx_form(Dimension d,String time1,String time2,UserVO u_vo) {
 		
-		setTitle("统计报表");
 		setLayout(null);
-		setBounds(screenWidth/4, 1,screenWidth/2,screenHeight);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setSize(d.width,d.height);
+		setOpaque(false);
 		
 		start = new JTextField(time1);
 		end = new JTextField(time2);
@@ -127,8 +114,13 @@ public class InAndEx_form extends JFrame {
 				}
 				getShowList(start.getText(),end.getText());
 				showList();
-				totalIn.setText(""+sm.getTotalIn(incomeList));
-				totalEx.setText(""+sm.getTotalEx(expenseList));
+				
+				double inAmount = sm.getTotalIn(incomeList);
+				double exAmount = sm.getTotalEx(expenseList);
+				
+				totalIn.setText(""+inAmount);
+				totalEx.setText(""+exAmount);
+				profit.setText(""+(inAmount-exAmount));
 				
 			}
 
@@ -144,8 +136,12 @@ public class InAndEx_form extends JFrame {
 				}
 				getShowList(start.getText(),end.getText());
 				showList();
-				totalIn.setText(""+sm.getTotalIn(incomeList));
-				totalEx.setText(""+sm.getTotalEx(expenseList));
+				double inAmount = sm.getTotalIn(incomeList);
+				double exAmount = sm.getTotalEx(expenseList);
+				
+				totalIn.setText(""+inAmount);
+				totalEx.setText(""+exAmount);
+				profit.setText(""+(inAmount-exAmount));
 			}
 
 			@Override
@@ -163,8 +159,12 @@ public class InAndEx_form extends JFrame {
 				// TODO 自动生成的方法存根
 				getShowList(start.getText(),end.getText());
 				showList();
-				totalIn.setText(""+sm.getTotalIn(incomeList));
-				totalEx.setText(""+sm.getTotalEx(expenseList));
+				double inAmount = sm.getTotalIn(incomeList);
+				double exAmount = sm.getTotalEx(expenseList);
+				
+				totalIn.setText(""+inAmount);
+				totalEx.setText(""+exAmount);
+				profit.setText(""+(inAmount-exAmount));
 			}
 
 			@Override
@@ -172,8 +172,12 @@ public class InAndEx_form extends JFrame {
 				// TODO 自动生成的方法存根
 				getShowList(start.getText(),end.getText());
 				showList();
-				totalIn.setText(""+sm.getTotalIn(incomeList));
-				totalEx.setText(""+sm.getTotalEx(expenseList));
+				double inAmount = sm.getTotalIn(incomeList);
+				double exAmount = sm.getTotalEx(expenseList);
+				
+				totalIn.setText(""+inAmount);
+				totalEx.setText(""+exAmount);
+				profit.setText(""+(inAmount-exAmount));
 			}
 
 			@Override
@@ -194,8 +198,8 @@ public class InAndEx_form extends JFrame {
 //		test.setBounds(0,0,130,30);
 //		add(test);
 		
-		Dimension d = new Dimension(this.getWidth(),this.getHeight()/3);
-		inPanel = new IncomeList(d,uservo);
+		Dimension ind = new Dimension(this.getWidth(),this.getHeight()/3);
+		inPanel = new IncomeList(ind,uservo);
 		
 		inPanel.setLocation(0,30);
 		add(inPanel);
@@ -206,18 +210,19 @@ public class InAndEx_form extends JFrame {
 		jl3 = new JLabel("总利润");
 		
 		
-		jl1.setBounds(this.getWidth()*3/4-50,30+(int)d.getHeight(),50,30);
-		jl2.setBounds(this.getWidth()*3/4-50,jl1.getHeight()+(int)d.getHeight()*2+35,50,30);
+		jl1.setBounds(this.getWidth()*3/4-50,(int)ind.getHeight(),50,30);
+		jl2.setBounds(this.getWidth()*3/4-50,(int)ind.getHeight()*2,50,30);
 		jl3.setBounds(this.getWidth()*3/4-50,this.getHeight()-140,50,30);
 		add(jl1);
 		add(jl2);
 		add(jl3);
 		
 		
-		exPanel = new ExpenseList(d,uservo);
-		exPanel.setLocation(0,310);
+		exPanel = new ExpenseList(ind,uservo);
+		exPanel.setLocation(0,this.getHeight()/2-100);
 		add(exPanel);
 		
+		System.out.println(time2);
 		incomeList = sm.getIncome(time1, time2);
 		expenseList = sm.getExpense(time1, time2);
 		
@@ -227,6 +232,8 @@ public class InAndEx_form extends JFrame {
 		if(incomeList!=null){
 			inPanel.removeAllData();
 			inPanel.addAllData(incomeList);
+		}else{
+			inPanel.removeAllData();
 		}
 		if(expenseList!=null){
 			exPanel.removeAllData();
@@ -259,15 +266,15 @@ public class InAndEx_form extends JFrame {
 		back.setBounds(250, derive.getY(), 140, 30);
 		add(back);
 		
-		back.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO 自动生成的方法存根
-				InAndEx_form.this.dispose();
-			}
-			
-		});
+//		back.addActionListener(new ActionListener(){
+//
+//			@Override
+//			public void actionPerformed(ActionEvent arg0) {
+//				// TODO 自动生成的方法存根
+//				InAndEx_form.this.dispose();
+//			}
+//			
+//		});
 	}
 	
 	//根据时间获取收入项信息

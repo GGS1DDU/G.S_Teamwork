@@ -12,18 +12,18 @@ import javax.swing.JPanel;
 
 public class MyPanel extends JPanel{
 
-	Toolkit tk = Toolkit.getDefaultToolkit();
-	private String iconName;
 	private ImageIcon imgicon;
 	private Image img;
 	private float alpha = 1.0f;
 	
+	public MyPanel(){
+//		UIManager.put
+	}
+	
 	public MyPanel(String icon){
 		
-//		super();
 		setLayout(null);
 		setBackground(Color.white);
-//		this.iconName = icon;
 		imgicon = new ImageIcon(icon);
 		img = imgicon.getImage();
 	}

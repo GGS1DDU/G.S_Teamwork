@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.MenuEvent;
@@ -26,8 +28,11 @@ import javax.swing.JButton;
 
 import elms.businesslogic.ResultMessage;
 import elms.businesslogic.financebl.BankAccountManager;
+import elms.businesslogic.financebl.InitAll;
 import elms.businesslogic.storagebl.Storage;
 import elms.po.BankAccountPO;
+import elms.presentation.JTabbedPanel;
+import elms.presentation.MyButton;
 import elms.presentation.financeui.FinanceUI_main;
 import elms.presentation.storageui.Storage_init;
 import elms.presentation.storageui.Storage_main;
@@ -38,9 +43,13 @@ import elms.vo.UserVO;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * 银行账户管理主界面，点进来之后直接显示现有的所有银行账户清单，可以在下面选择所属银行
@@ -48,7 +57,7 @@ import java.util.ArrayList;
  * 左下角是buttonpanel区，包含新建，删除/修改，转账三个按钮，
  * 最下方一栏可显示当前时间 格式为yyyy-mm-dd hh:mm:ss  需要修改对应数据区中比较时间的方法
  */
-public class BankAccount_main extends JFrame {
+public class BankAccount_main extends JPanel {
 
 	Toolkit kit = Toolkit.getDefaultToolkit();
 	Dimension screenSize = kit.getScreenSize();
@@ -57,127 +66,68 @@ public class BankAccount_main extends JFrame {
 	// JTextArea text=new JTextArea(10,10);
 	String bank = null;
 	private JComboBox<String> bank_c;
+	private JTabbedPanel tabbedPane;
+	private JPanel content;
 	private JPanel userInfo;
 	private JPanel tag;
+	private JPanel buttonPanel;
+
+	private JLabel time;// 时间显示
+
 	private BankAccountList accountList;// 放在panel中的table
 	private UserVO uservo;
+
+	private JButton init;
+	private JButton finishInit;
 
 	static ArrayList<BankAccountVO> arr;// 全部的账户vo
 	BankAccountManager bam;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserVO vo = new UserVO("00000001","123123","张文玘","快递员");
-					BankAccount_main frame = new BankAccount_main(vo);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public BankAccount_main(final UserVO vo) {
+	public BankAccount_main(final Dimension d, final UserVO vo) {
 		this.uservo = vo;
 		setLayout(null);
-		setTitle("银行账户管理");
-		setResizable(false);
-		setSize(screenWidth / 2, 3 * screenHeight / 4);
-		setLocation(screenWidth / 4, screenHeight / 8);
+		setSize(d.width, d.height-10);
 
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setOpaque(false);
 
 		userInfo = new UserInfo(vo);
 
 		add(userInfo);
 		userInfo.setBounds(0, 0, this.getWidth(), 25);
+		
+		addTimer();
 
 		// 账户管理和初始化的表头（选择）
-		JMenuBar bar = new JMenuBar();
-		JMenu manage_m = new JMenu("银行账户管理");
-		manage_m.setSelected(true);
-		manage_m.setEnabled(false);
-		final JMenu init_m = new JMenu("账户初始化");
-		bar.add(manage_m);
-		bar.add(init_m);
-		setJMenuBar(bar);
-		// 初始化
-		init_m.addMenuListener(new MenuListener() {
+		tabbedPane = new JTabbedPanel();
+		tabbedPane.setBounds(0, 30, d.width, this.getHeight()
+				- userInfo.getHeight()-time.getHeight()-time.getHeight());
+		add(tabbedPane);
 
-			@Override
-			public void menuCanceled(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
+		content = new JPanel();
+		content.setOpaque(false);
+		content.setBounds(0, 0, tabbedPane.getWidth(), tabbedPane.getHeight());
+		content.setLayout(null);
 
-			}
-
-			@Override
-			public void menuDeselected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-
-			}
-
-			@Override
-			public void menuSelected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				int a = (int) (Math.random() * 1000);
-				String s = a + "";
-
-				String obj = JOptionPane.showInputDialog("请输入 验证码  " + a
-						+ " 确认初始化库存");
-				if (obj.equals(s)) {
-//					BankAccount_main.this.dispose();
-					JFrame initframe = new BankAccount_init(vo);
-					BankAccountManager bankaccount = new BankAccountManager();
-					try {
-						ResultMessage rm = bankaccount.init();
-						if (rm == ResultMessage.changeFailed) {
-							int opt = JOptionPane.showConfirmDialog(null,
-									"仍有账户余额不为0，确认继续？");
-							if (opt == 0) {
-								bankaccount.initIgnoreAmount();
-								JOptionPane.showMessageDialog(null, "初始化成功!");
-								arr = null;
-							} else
-								JOptionPane.showMessageDialog(null, "停止初始化!");
-								initframe.setVisible(false);
-						} else {
-							bankaccount.initIgnoreAmount();
-						}
-
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				} else
-					JOptionPane.showMessageDialog(null, "验证码错误！", null, 0);
-
-			}
-
-		});
+		tabbedPane.addTab("银行账户管理", content);
+		
+		
 
 		// 在账户管理界面上显示的各种清单列表
-		
+
 		tag = new TagPanel("账户清单");
 		tag.setBounds(0, 23, 70, 25);
-		add(tag);
+		tag.setOpaque(true);
+		content.add(tag);
 
 		// 表头和内容
 
-
-		Dimension d = new Dimension(this.getWidth() - 25,
+		Dimension listd = new Dimension(this.getWidth() - 25,
 				this.getHeight() / 2);
-		accountList = new BankAccountList(d, vo);
-		add(accountList);
-
+		accountList = new BankAccountList(listd, vo);
+		content.add(accountList);
 
 		// 选择银行类别的combobox
 		bank_c = new JComboBox<String>();
@@ -188,7 +138,7 @@ public class BankAccount_main extends JFrame {
 		bank_c.addItem("中国邮政银行");
 		bank_c.setBackground(Color.white);
 		bank_c.setFont(new Font("楷体", Font.CENTER_BASELINE, 15));
-		add(bank_c);
+		content.add(bank_c);
 		bank_c.setBounds(3 * this.getWidth() / 4, this.getHeight() / 2 + 30,
 				135, 25);
 		bam = new BankAccountManager();
@@ -200,7 +150,7 @@ public class BankAccount_main extends JFrame {
 		}
 
 		// 开始时显示总的列表
-//		accountList.addAllData(arr);
+		// accountList.addAllData(arr);
 
 		bank_c.addActionListener(new ActionListener() {
 
@@ -215,52 +165,120 @@ public class BankAccount_main extends JFrame {
 					// TODO 自动生成的 catch 块
 					System.out.println("there is no account in the file!");
 					e.printStackTrace();
-				}
-				System.out.println(arr == null);
-				switch (bank) {
-				case "全部":
-					arr = bam.getAllAccount();
-					accountList.removeAllData();
-					accountList.addAllData(arr);
-					break;
-				default: {
-					arr = bam.inquiryAccountByBank(bank);
-					accountList.removeAllData();
-					accountList.addAllData(arr);
-				}
+					System.out.println(arr == null);
+					switch (bank) {
+					case "全部":
+						arr = bam.getAllAccount();
+						accountList.removeAllData();
+						accountList.addAllData(arr);
+						break;
+					default: {
+						arr = bam.inquiryAccountByBank(bank);
+						accountList.removeAllData();
+						accountList.addAllData(arr);
+					}
+					}
 				}
 			}
 
 		});
 
 		addButtons();
-		
+
 	}
+
+	public JButton addInitButton(final Dimension d, final int height) {
+		init = new MyButton("初始化");
+		init.setSize(d);
+		init.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				init.setForeground(Color.gray);
+				init.setSize(d.width, height);
+				int a = (int) (Math.random() * 1000);
+				
+				
+				String s = a + "";
+
+				String obj = JOptionPane.showInputDialog("请输入 验证码  " + a
+						+ " 确认初始化库存");
+				if (obj.equals(s)) {
+					// BankAccount_main.this.dispose();
+
+					BankAccountManager bankaccount = new BankAccountManager();
+					try {
+						ResultMessage rm = bankaccount.init();
+						if (rm == ResultMessage.changeFailed) {
+							int opt = JOptionPane.showConfirmDialog(null,
+									"仍有账户余额不为0，确认继续？");
+							if (opt == 0) {
+								bankaccount.initIgnoreAmount();
+								
+								buttonPanel.add(finishInit);
+								buttonPanel.validate();
+								buttonPanel.repaint();
+								
+								JOptionPane.showMessageDialog(null, "开始初始化!");
+								accountList.removeAllData();
+								arr = null;
+							} else
+								JOptionPane.showMessageDialog(null, "停止初始化!");
+
+						} else {
+							bankaccount.initIgnoreAmount();
+							
+							buttonPanel.add(finishInit);
+							buttonPanel.validate();
+							buttonPanel.repaint();
+							
+							JOptionPane.showMessageDialog(null, "开始初始化!");
+							accountList.removeAllData();
+							arr = null;
+						}
+
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "验证码错误！", null, 0);
+
+			}
+
+		});
+		return init;
+	}
+
 	// buttonpanel 用来放各种按钮
-	private void addButtons(){
-		JPanel buttonPanel = new JPanel();
+	private void addButtons() {
+		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
+		buttonPanel.setOpaque(false);
 		JButton add = new JButton("新建");
 		JButton delete = new JButton("删除");
 		JButton trans = new JButton("转账");
 		JButton find = new JButton("查询");
-		JButton back = new JButton("返回");
-		back.setForeground(Color.red);
-		buttonPanel.setBounds(0, this.getHeight() / 2 + 100,
-				this.getWidth() - 30, 90);
+		
+		addFinishInit();  //结束初始化  按钮的声明及监听
 
-		add.setBounds(50, 30, 102, 30);
-		delete.setBounds(200, 30, 104, 30);
-		trans.setBounds(350, 30, 102, 30);
-		find.setBounds(560, 15, 80, 30);
-		back.setBounds(560, 55, 80, 30);
+		// init.setForeground(Color.red);
+		buttonPanel.setBounds(0, tabbedPane.getHeight()-150,
+				this.getWidth() - 30, 120);
+
+		add.setBounds(50, 60, 102, 30);
+		delete.setBounds(200, 60, 104, 30);
+		trans.setBounds(350, 60, 102, 30);
+		find.setBounds(560, 60, 80, 30);
+		// init.setBounds(560, 55, 80, 30);
 		buttonPanel.add(add);
 		buttonPanel.add(delete);
 		buttonPanel.add(trans);
 		buttonPanel.add(find);
-		buttonPanel.add(back);
+		// buttonPanel.add(init);
 
-		add(buttonPanel);
+		content.add(buttonPanel);
 
 		// 各种按钮的监听
 		add.addActionListener(new ActionListener() {
@@ -280,7 +298,7 @@ public class BankAccount_main extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				accountList.removeData();//与数据层的交互委托给bankaccountlist去干
+				accountList.removeData();// 与数据层的交互委托给bankaccountlist去干
 			}
 
 		});
@@ -290,7 +308,7 @@ public class BankAccount_main extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				JFrame transfer = new BankAccount_transfer(accountList,uservo);
+				JFrame transfer = new BankAccount_transfer(accountList, uservo);
 				transfer.setVisible(true);
 			}
 
@@ -301,25 +319,88 @@ public class BankAccount_main extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				JFrame find = new BankAccount_find(accountList,uservo);
+				JFrame find = new BankAccount_find(accountList, uservo);
 				find.setVisible(true);
-			}
-
-		});
-
-		back.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				JFrame jf = new FinanceUI_main(uservo);
-				jf.setVisible(true);
-				BankAccount_main.this.dispose();
 			}
 
 		});
 
 	}
 
+	private void addFinishInit() {
+		finishInit = new JButton("完成初始化");
+		finishInit.setBounds(300, 0, 100, 30);
+		// bp.add(finishInit);
+
+		finishInit.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+
+				int a = (int) (Math.random() * 1000);
+				String s = a + "";
+
+				String obj = JOptionPane.showInputDialog("请输入 验证码  " + a
+						+ " 确认完成人员初始化");
+				if (obj.equals(s)) {
+
+					InitAll ia = new InitAll();
+					 ia.setInitState(4);
+					try {
+						bam.init();
+					} catch (RemoteException e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}
+					accountList.removeAllData();
+					JOptionPane.showMessageDialog(null, "初始化结束！");
+
+				} else {
+					JOptionPane.showMessageDialog(null, "验证码错误！", null, 0);
+				}
+
+			}
+		});
+	}
+
+	
+	private void addTimer() {
+		time = new JLabel("1", JLabel.CENTER);
+		time.setText("1231231231");
+		time.setFont(new Font("微软雅黑", Font.BOLD, 15));
+		
+		time.setBounds(0, this.getHeight()-50, this.getWidth(), 30);
+//		time.setBounds(0, this.getHeight() - 30, this.getWidth(), 30);
+		add(time);
+		Timer timer = new Timer(100, new ActionListener() {
+			InitAll i = new InitAll();
+
+			public void actionPerformed(ActionEvent arg0) {
+				SimpleDateFormat sdf = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm:ss");
+				try {
+					if (i.getInitState(4)) {
+//						needInit = true;
+						time.setText("需要初始化！");
+						
+
+					} else {
+						time.setText(sdf.format(new Date()));
+						buttonPanel.remove(finishInit);
+					}
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		});
+
+		timer.start();
+	}
 
 }

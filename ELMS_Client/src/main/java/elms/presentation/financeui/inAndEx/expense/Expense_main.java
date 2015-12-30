@@ -104,7 +104,7 @@ public class Expense_main extends JPanel{
 		bp.setLayout(null);
 		bp.setBounds(0,this.getHeight()/2+100,this.getWidth()-30,90);
 		add(bp);
-		
+		bp.setOpaque(false);
 		
 		
 		add = new JButton("新建");
@@ -227,6 +227,7 @@ public class Expense_main extends JPanel{
 		findInfo.setBounds(0, d.height-275, d.width, 30);
 		findInfo.setLayout(null);
 		add(findInfo);
+		findInfo.setOpaque(false);
 		
 		j1.setBounds(findInfo.getWidth()/6,0,80,30);
 		findInfo.add(j1);

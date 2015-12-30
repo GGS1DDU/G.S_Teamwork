@@ -1,19 +1,25 @@
 package elms.presentation.financeui.inAndEx;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
+import elms.presentation.JTabbedPanel;
 import elms.presentation.MyPanel;
 import elms.presentation.financeui.FinanceUI_main;
 import elms.presentation.financeui.inAndEx.expense.Expense_main;
@@ -24,7 +30,7 @@ import elms.presentation.uihelper.ScreenSize;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.UserVO;
 
-public class InAndEx_main extends JFrame{
+public class InAndEx_main extends JPanel{
 
 	int screenWidth = ScreenSize.screenWidth;
 	int screenHeight = ScreenSize.screenHeight;
@@ -37,60 +43,69 @@ public class InAndEx_main extends JFrame{
 //	JPanel contentPane;
 //	JPanel contentPane;
 	
+	private JTabbedPanel tabbedPane;
+	private JPanel content;
 	
-	JMenu income_m;
-	JMenu expense_m;
-	JMenu static_m;
+//	JMenu income_m;
+//	JMenu expense_m;
+//	JMenu static_m;
 	UserVO uservo;
 	
-	JMenuBar bar;
-	
-	public static void main(String[] args){
-		UserVO vo = new UserVO("00000001","123123","张文玘","快递员");
-		JFrame im = new InAndEx_main(vo);
-	}
-	
-	public InAndEx_main(final UserVO vo){
+	public InAndEx_main(Dimension d,final UserVO vo){
 
-//		setLayout(null);
+		setLayout(null);
 		uservo = vo;
-		setTitle("收支管理");
-		setResizable(false);
-		setSize(screenWidth/2,3*screenHeight/4);
-		setLocation(screenWidth/4, screenHeight/8);
-		d = new Dimension(this.getWidth(),this.getHeight());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(d.width,d.height);
+//		setLocation(screenWidth/4, screenHeight/8);
+//		d = new Dimension(this.getWidth(),this.getHeight());
 		
 		
 		JPanel user = new UserInfo(vo);
 		user.setBounds(0, 0, this.getWidth(), 25);
+		user.setOpaque(false);
 		add(user);
 		
-		//账户管理和初始化的表头（选择）
-		bar = new JMenuBar();
-		income_m = new JMenu("收入管理");
-		income_m.setSelected(true);
-		income_m.setEnabled(false);
-		expense_m = new JMenu("支出管理");
-		static_m = new JMenu("统计数据");
+		content = new JPanel();
+		content.setBounds(0, user.getHeight(), this.getWidth(), this.getHeight()-user.getHeight());
+		content.setLayout(new BorderLayout());
+		content.setOpaque(false);
 		
-		bar.add(income_m);
-		bar.add(expense_m);
-		bar.add(static_m);
-		setJMenuBar(bar);
+//		content.setBackground(Color.black);
+		add(content);
+		//账户管理和初始化的表头（选择）
+		
+	
+		
+//		tabbedPane = new JTabbedPanel("star.jpg");
+		tabbedPane = new JTabbedPanel();
+		
+		tabbedPane.setOpaque(false);
+		tabbedPane.setSize(content.getWidth(),content.getHeight());
+		
+		content.add(tabbedPane,BorderLayout.CENTER);
 		
 		income_p = new Income_main(d,vo);
 		
-		income_p.setLocation(0,25);
 		income_p.setVisible(true);
 		income_p.setOpaque(false);
+	
 		JButton in_back = income_p.getBackButton();
 		addBackListener(in_back);
-		add(income_p);
+		tabbedPane.addTab("收入管理", income_p);
 		
 		expense_p = new Expense_main(d,vo);
 		expense_p.setLocation(0,25);
 		expense_p.setVisible(true);
+		expense_p.setOpaque(false);
+		tabbedPane.addTab("支出管理", expense_p);
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat(
+				"yyyy-MM-dd hh:mm:ss");
+		String endTime = sdf.format(new Date());
+		static_p = new InAndEx_form(d,"2015-12-12 00:00:00",endTime,vo);
+		static_p.setBounds(0, 25, d.width,d.height);
+		tabbedPane.addTab("数据统计", static_p);
 		
 		JButton ex_back = expense_p.getBackButton();
 		addBackListener(ex_back);
@@ -98,88 +113,6 @@ public class InAndEx_main extends JFrame{
 		validate();
 		repaint();
 		
-		income_m.addMenuListener(new MenuListener(){
-
-			public void menuCanceled(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-
-			public void menuDeselected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-
-			public void menuSelected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				income_m.setSelected(true);
-				income_m.setEnabled(false);
-				remove(expense_p);
-				expense_m.setEnabled(true);
-				add(income_p);
-				
-				revalidate();
-				repaint();
-			}
-			
-		});
-		
-		expense_m.addMenuListener(new MenuListener(){
-
-			public void menuCanceled(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-
-			@Override
-			public void menuDeselected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-
-			@Override
-			public void menuSelected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				income_m.setSelected(false);
-				expense_m.setSelected(true);
-				income_m.setEnabled(true);
-				expense_m.setEnabled(false);
-				
-				
-				remove(income_p);
-				add(expense_p);
-
-				revalidate();
-				repaint();
-				
-				
-			}
-			
-		});
-		
-		static_m.addMenuListener(new MenuListener(){
-
-			@Override
-			public void menuCanceled(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-
-			@Override
-			public void menuDeselected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				
-			}
-
-			@Override
-			public void menuSelected(MenuEvent arg0) {
-				// TODO 自动生成的方法存根
-				JFrame time = new InAndEx_findTime(vo);
-				time.setVisible(true);
-				//为什么输入时建的窗口刚刚建出来的时候总是在这个窗口的下面？
-			}
-			
-		});
 		setVisible(true);
 		
 //		JButton back = income_p.getBackButton();
@@ -195,7 +128,7 @@ public class InAndEx_main extends JFrame{
 				JFrame jf = new FinanceUI_main(uservo);
 				jf.setVisible(true);
 				
-				InAndEx_main.this.dispose();
+//				InAndEx_main.this.dispose();
 			}
 			
 		});

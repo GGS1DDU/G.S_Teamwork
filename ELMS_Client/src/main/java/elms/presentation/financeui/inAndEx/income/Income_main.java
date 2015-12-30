@@ -22,9 +22,13 @@ import javax.swing.event.DocumentListener;
 
 
 
+
+
 import elms.businesslogic.HallInfo;
 import elms.businesslogic.financebl.inandex.IncomeManager;
 import elms.presentation.GetHall;
+import elms.presentation.MyComboBox;
+import elms.presentation.MyPanel;
 import elms.presentation.financeui.FinanceUI_main;
 import elms.presentation.uihelper.CheckFormat;
 import elms.presentation.uihelper.TagPanel;
@@ -64,7 +68,7 @@ public class Income_main extends JPanel {
 //	public Income_main(String icon){
 //		super(icon);
 //	}
-//	
+	
 	public Income_main(Dimension d, final UserVO vo) {
 //		this(icon);
 		this.uservo = vo;
@@ -93,6 +97,7 @@ public class Income_main extends JPanel {
 
 		String[] hallList = { "全部", "南京市鼓楼营业厅", "南京市仙林营业厅" };
 		hall = new JComboBox<String>(hallList);
+//		hall.setOpaque(false);
 		hall.setBounds(480, 50, 140, 30);
 
 		findInfo.add(jl3);

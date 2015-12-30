@@ -47,34 +47,66 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 /*
  * 需要补全
  */
-		Path p1=Paths.get(time,time+" Storage.ser");
-		Path p2=Paths.get("Storage.ser");
-		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
-		Path p3=Paths.get(time,time+" Car.ser");
-		Path p4=Paths.get("Car.ser");
-		Files.copy(p4,p3,StandardCopyOption.REPLACE_EXISTING);		
+//		Path p1=Paths.get(time,time+" Storage.ser");
+//		Path p2=Paths.get("Storage.ser");
+//		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
+		initCopy(time,"Storage.ser");
+		initCopy(time,"Car.ser");
+		initCopy(time,"BankAccount.ser");
+		initCopy(time,"Staff.ser");
+		
+//		Path p3=Paths.get(time,time+" Car.ser");
+//		Path p4=Paths.get("Car.ser");
+//		Files.copy(p4,p3,StandardCopyOption.REPLACE_EXISTING);		
 		setInitState();
 		   //    在告知初始化前  现将现有的数据情况储存起来  然后设置初始化状态  告知初始化
 	}
+	
+	private void initCopy(String time,String fileName) throws IOException{
+		Path p1=Paths.get(time,time+" "+fileName);
+		Path p2=Paths.get(fileName);
+		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
+	}
 
 	public void copy(String time)  throws IOException, ClassNotFoundException{
-		Path p1=Paths.get(time,"copy Storage.ser");
-		Path p2=Paths.get("Storage.ser");
+		copyCopy(time,"Storage.ser");
+		copyCopy(time,"Car.ser");
+		copyCopy(time,"BankAccount.ser");
+		copyCopy(time,"Staff.ser");
+//		Path p1=Paths.get(time,"copy Storage.ser");
+//		Path p2=Paths.get("Storage.ser");
+//		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
+//		Path p3=Paths.get(time,"copy Car.ser");
+//		Path p4=Paths.get("Car.ser");
+//		Files.copy(p4,p3,StandardCopyOption.REPLACE_EXISTING);	
+	}
+	
+	private void copyCopy(String time,String fileName) throws IOException{
+		Path p1=Paths.get(time,"copy "+fileName);
+		Path p2=Paths.get(fileName);
 		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
-		Path p3=Paths.get(time,"copy Car.ser");
-		Path p4=Paths.get("Car.ser");
-		Files.copy(p4,p3,StandardCopyOption.REPLACE_EXISTING);	
 	}
 
 
 	public void recovery(String time) throws IOException, ClassNotFoundException {
-		Path p1=Paths.get(time,"copy Storage.ser");
-		Path p2=Paths.get("Storage.ser");
+		recoveryCopy(time,"Storage.ser");
+		recoveryCopy(time,"Car.ser");
+		recoveryCopy(time,"BankAccount.ser");
+		recoveryCopy(time,"Staff.ser");
+//		Path p1=Paths.get(time,"copy Storage.ser");
+//		Path p2=Paths.get("Storage.ser");
+//		Files.copy(p1,p2,StandardCopyOption.REPLACE_EXISTING);
+//		
+//		Path p3=Paths.get(time,"copy Car.ser");
+//		Path p4=Paths.get("Car.ser");
+//		Files.copy(p3,p4,StandardCopyOption.REPLACE_EXISTING);	
+	}
+	
+	private void recoveryCopy(String time,String fileName) throws IOException{
+		Path p1=Paths.get(time,"copy "+fileName);
+		Path p2=Paths.get(fileName);
 		Files.copy(p1,p2,StandardCopyOption.REPLACE_EXISTING);
 		
-		Path p3=Paths.get(time,"copy Car.ser");
-		Path p4=Paths.get("Car.ser");
-		Files.copy(p3,p4,StandardCopyOption.REPLACE_EXISTING);	
 	}
 
 
@@ -137,6 +169,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 			accountpo=(AccountPO)ois.readObject();
 			arr.add(accountpo);
 		}   
+	    ois.close();
 	    return arr;
 	}
 }
