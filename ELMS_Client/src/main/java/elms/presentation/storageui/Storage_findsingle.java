@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import elms.businesslogic.storagebl.Storage;
+import elms.presentation.MyPanel;
 import elms.vo.StorageVO;
 
 public class Storage_findsingle extends JFrame{
@@ -30,17 +31,18 @@ public Storage_findsingle(){
 	setBounds(screenWidth/4,screenHeight/4,screenWidth/4, screenHeight/4);
 	setVisible(true);
 
-	
+	MyPanel p=new MyPanel("bg3.png");
+	add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
 	final JTextField idf=new JTextField();
 	JLabel ID=new JLabel("Order-ID");
-	add(ID);
+	p.add(ID);
 	ID.setBounds(60, 40, 100, 30);
-	add(idf);
+	p.add(idf);
 	idf.setBounds(this.getWidth()/2-14,40,150,28);
 	JButton ok=new JButton("查询");
 	JButton cancle=new JButton("取消");
-	add(ok);ok.setBounds(this.getWidth()/2-120,3*this.getHeight()/5+10,70,25);
-	add(cancle);cancle.setBounds(this.getWidth()/2+40,3*this.getHeight()/5+10,70,25);
+	p.add(ok);ok.setBounds(this.getWidth()/2-120,3*this.getHeight()/5+10,70,25);
+	p.add(cancle);cancle.setBounds(this.getWidth()/2+40,3*this.getHeight()/5+10,70,25);
     
 	ok.addActionListener(new ActionListener(){
          Storage storage=new Storage();

@@ -14,8 +14,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import elms.businesslogic.storagebl.Storage;
+import elms.presentation.MyPanel;
 import elms.vo.StorageVO;
 
 
@@ -31,15 +34,18 @@ public class Storage_findcenter extends JFrame {
 		setResizable(false);
 		setBounds(screenWidth/3,screenHeight/4,screenWidth/4, screenHeight/4);
 		setVisible(true);
+
+		MyPanel p=new MyPanel("bg3.png");
+		add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
 		
 		final JComboBox<String> jcb=new JComboBox<String>();
 		jcb.addItem("北京");jcb.addItem("南京");jcb.addItem("上海");jcb.addItem("广州");
-		jcb.setBackground(Color.white);jcb.setFont(new Font("楷体",Font.CENTER_BASELINE,12));
-		add(jcb);jcb.setBounds(this.getWidth()/5, this.getHeight()/4+10,80, 25);
+		jcb.setBackground(Color.white);jcb.setFont(new Font("楷体",Font.CENTER_BASELINE,12));jcb.setOpaque(false);
+		p.add(jcb);jcb.setBounds(this.getWidth()/5, this.getHeight()/4+10,80, 25);
 		
 		JButton ok=new JButton("确定");
 		
-		add(ok);ok.setBounds(this.getWidth()/2+30, this.getHeight()/4+10, 60, 25);
+		p.add(ok);ok.setBounds(this.getWidth()/2+30, this.getHeight()/4+10, 60, 25);
 		ok.addActionListener(new ActionListener(){
 			 Storage storage=new Storage();
 			public void actionPerformed(ActionEvent arg0) {

@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
 
 import elms.businesslogic.storagebl.Storage;
 import elms.businesslogic.storagebl.StorageCapacity;
+import elms.presentation.MyPanel;
 import elms.vo.StorageVO;
 /*
  * 对具体库存信息的处理与修改界面    
@@ -76,11 +77,12 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	if(t3==1)  Edit=false; 
 	
 	
-	
+	MyPanel p=new MyPanel("bg3.png");
+	add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
 	
 	final JPanel newin=new JPanel();
-	newin.setLayout(null);
-	add(newin);newin.setBounds(0,0,this.getWidth(),3*this.getHeight()/5);
+	newin.setLayout(null);newin.setOpaque(false);
+	p.add(newin);newin.setBounds(0,0,this.getWidth(),3*this.getHeight()/5);
 	newin.setBorder(BorderFactory.createTitledBorder(""));
 	
 	JLabel id=new JLabel("ID");
@@ -172,10 +174,10 @@ public Storage_editStorage(StorageVO vo,boolean edit){
 	
 	}
 	
-	JPanel buttonpanel=new JPanel();buttonpanel.setLayout(null);
+	JPanel buttonpanel=new JPanel();buttonpanel.setLayout(null);buttonpanel.setOpaque(false);
 JButton cancel=new JButton("编辑(E)");
 	buttonpanel.add(cancel);cancel.setBounds(this.getWidth()/2+90, 25, 100, 30);
-	add(buttonpanel);buttonpanel.setBounds(0,3*this.getHeight()/5,this.getWidth(),70);
+	p.add(buttonpanel);buttonpanel.setBounds(0,3*this.getHeight()/5,this.getWidth(),70);
 	
 	cancel.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {

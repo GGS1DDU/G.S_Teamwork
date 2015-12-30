@@ -17,4 +17,10 @@ public interface StorageDataService extends Remote{
 	public void update(StoragePO po) throws RemoteException,IOException;
 	public void init() throws RemoteException,IOException;
 	public void finish() throws RemoteException,IOException;
+	public void setIn(String s)throws RemoteException,IOException ;
+	public void setOut(String s)throws RemoteException,IOException ;
+	public void getIn(int s)throws RemoteException,IOException ;
+	public void getOut(int s)throws RemoteException,IOException ;
+	public ArrayList<String> getallin() throws RemoteException,IOException;
+	public ArrayList<String> getallout() throws RemoteException,IOException;
 }

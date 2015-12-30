@@ -67,6 +67,10 @@ public InitAll(){
 			e.printStackTrace();
 		}
 		
+	}	
+	public void setInitState(int a) throws RemoteException {
+		initall.setInitState(a);
+		
 	}
 
 	public void addAccount(AccountVO vo) {
@@ -196,6 +200,8 @@ public InitAll(){
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+
 
 
 	

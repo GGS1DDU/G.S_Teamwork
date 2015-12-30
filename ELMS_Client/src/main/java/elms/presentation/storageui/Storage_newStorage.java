@@ -44,7 +44,7 @@ public Storage_newStorage(){
 	setBounds(screenWidth/4,screenHeight/4, screenWidth/3, 3*screenHeight/8);
 	setVisible(true); 
 
-	MyPanel p=new MyPanel("background2.jpg");
+	MyPanel p=new MyPanel("bg3.png");
 	add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
 	
 	final JPanel newin=new JPanel();

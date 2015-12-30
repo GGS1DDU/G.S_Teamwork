@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import elms.businesslogic.storagebl.Storage;
+import elms.presentation.MyPanel;
 import elms.vo.StorageVO;
 
 public class Storage_findtime extends JFrame{
@@ -36,13 +37,14 @@ public Storage_findtime(){
 	setResizable(false);
 	setBounds(screenWidth/4,screenHeight/4,screenWidth/4, screenHeight/3);
 	setVisible(true);
-	
+	MyPanel p=new MyPanel("bg3.png");
+	add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
 	JLabel start=new JLabel("起始时间");  final JTextField js=new JTextField();
-	add(start);start.setBounds(this.getWidth()/5, this.getHeight()/6, this.getWidth()/5, 25);
-	add(js);js.setBounds(this.getWidth()/2, this.getHeight()/6, this.getWidth()/3+10,25);
+	p.add(start);start.setBounds(this.getWidth()/5, this.getHeight()/6, this.getWidth()/5, 25);
+	p.add(js);js.setBounds(this.getWidth()/2, this.getHeight()/6, this.getWidth()/3+10,25);
 	JLabel end =new JLabel("终止时间");final JTextField je=new JTextField();
-	add(end);end.setBounds(this.getWidth()/5, this.getHeight()/2, this.getWidth()/5, 25);
-	add(je);je.setBounds(this.getWidth()/2, this.getHeight()/2,this.getWidth()/3+10, 25);
+	p.add(end);end.setBounds(this.getWidth()/5, this.getHeight()/2, this.getWidth()/5, 25);
+	p.add(je);je.setBounds(this.getWidth()/2, this.getHeight()/2,this.getWidth()/3+10, 25);
 	je.addMouseListener(new MouseAdapter(){
 
 		public void mouseClicked(MouseEvent e) {
@@ -55,14 +57,14 @@ public Storage_findtime(){
 	});
 	
 	final JComboBox<String> jcb=new JComboBox<String>();
-	jcb.addItem("北京");jcb.addItem("南京");jcb.addItem("上海");jcb.addItem("广州");
+	jcb.addItem("北京");jcb.addItem("南京");jcb.addItem("上海");jcb.addItem("广州");jcb.setOpaque(false);
 	jcb.setBackground(Color.white);jcb.setFont(new Font("楷体",Font.CENTER_BASELINE,12));
-	add(jcb);jcb.setBounds(0, 0, 80, 24);
+	p.add(jcb);jcb.setBounds(0, 0, 80, 24);
 	
 	JButton ok=new JButton("查询");
 	JButton back=new JButton("取消");
-	add(ok);ok.setBounds(this.getWidth()/4, 3*this.getHeight()/4, this.getWidth()/5, 30);
-	add(back);back.setBounds(this.getWidth()/2+20, 3*this.getHeight()/4, this.getWidth()/5, 30);
+	p.add(ok);ok.setBounds(this.getWidth()/4, 3*this.getHeight()/4, this.getWidth()/5, 30);
+	p.add(back);back.setBounds(this.getWidth()/2+20, 3*this.getHeight()/4, this.getWidth()/5, 30);
 	
 	ok.addActionListener(new ActionListener(){
 		Storage storage=new Storage();

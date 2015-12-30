@@ -64,4 +64,11 @@ public interface StorageBlService {
 	 * 结束对库存的操作
 	 */
 	public void endStoreOpt();
+	
+	public void setIn(String s)throws RemoteException,IOException ;
+	public void setOut(String s)throws RemoteException,IOException ;
+	public void getIn(int s)throws RemoteException,IOException ;
+	public void getOut(int s)throws RemoteException,IOException ;
+	public ArrayList<String> getallin() throws RemoteException,IOException;
+	public ArrayList<String> getallout() throws RemoteException,IOException;
 }

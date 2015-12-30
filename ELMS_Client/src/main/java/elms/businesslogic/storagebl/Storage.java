@@ -52,8 +52,12 @@ public class Storage implements StorageBlService,DataFactory {
   public static void main(String args[]) throws IOException{
 	  
 	Storage s=new Storage();
-	s.setIn("1201");s.setIn("1254");
-System.out.print(14);
+	s.setIn("0001");
+	s.setIn("0002");
+	s.setIn("0003");
+	s.getIn(1);
+	for(String o:s.getallin())
+	System.out.println(o);
 //    	ArrayList<StorageVO> arr=new ArrayList<StorageVO>();
 //    	StorageVO vo=new StorageVO("000125",  "航运区","R2D3L5", "0000000001", "2015-02-14 14:32:10", "null","IN", "南京");
 //    	StorageVO vo1=new StorageVO("000126","航运区",  "R2D3L4", "0000000002", "2015-02-12 14:32:10", "2015-02-16 14:32:10","OUT", "南京");
@@ -78,7 +82,12 @@ System.out.print(14);
 //    	s.storage_out("000125", "南京");
 //    	s.inquiry("000125");
   }
-    
+	public ArrayList<String> getallin() throws RemoteException,IOException {
+		return storage.getallin();
+	}
+	public ArrayList<String> getallout() throws RemoteException,IOException {
+		return storage.getallout();
+	}
 	public void setIn(String s)throws RemoteException ,IOException {
 		storage.setIn(s);
 	}

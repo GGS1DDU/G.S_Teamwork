@@ -1,11 +1,6 @@
 package elms.data.storagedata;
 
 import java.io.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.text.ParseException;
@@ -21,26 +16,51 @@ public class StorageData extends UnicastRemoteObject implements StorageDataServi
 	FileInputStream fis;
 	ObjectInputStream ois;
 	ObjectOutputStream oos;
-
-	public StorageData() throws IOException {
+ static ArrayList<String>  ins=new ArrayList<String>();
+ static ArrayList<String>  outs=new ArrayList<String>();
+public StorageData() throws IOException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-//	public static void main(String args[]) throws IOException, ClassNotFoundException, ParseException{
-////		File f=new File("Version-2015");
-////		f.mkdirs();
-////	 file=new File("Storage.ser");
-//	StorageData data=new StorageData();ArrayList<StoragePO> aer=new ArrayList<StoragePO>();
-////		data.init();
-////		data.insert(new StoragePO("0000000001", "R2D3L5", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
-////		data.insert(new StoragePO("0000000002", "R2D3L4", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "南京"));
-////		data.insert(new StoragePO("0000000003", "R2D3L7", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "北京"));
-////		data.insert(new StoragePO("0000000004", "R2D3L1", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
-////		data.insert(new StoragePO("0000000005", "R2D3L2", "航运区", "000125", "2015-02-14 14:32:10", null,"BROKEN", "南京"));
-//		aer=data.findbytime("2015-01-01 11:10:02", "2015-01-01 11:10:02", "南京");
-//		for(int i=0;i<aer.size();i++) System.out.println(aer.get(i).getId());
+//public static void main(String args[]) throws IOException, ClassNotFoundException, ParseException{
+//	StorageData s=new StorageData();
+//	s.setIn("14225");
+//	s.setIn("12451");
+//	s.getIn(0);
+//	
+//////		File f=new File("Version-2015");
+//////		f.mkdirs();
+//////	 file=new File("Storage.ser");
+////	StorageData data=new StorageData();ArrayList<StoragePO> aer=new ArrayList<StoragePO>();
+//////		data.init();
+//////		data.insert(new StoragePO("0000000001", "R2D3L5", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
+//////		data.insert(new StoragePO("0000000002", "R2D3L4", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "南京"));
+//////		data.insert(new StoragePO("0000000003", "R2D3L7", "航运区", "000127", "2015-02-14 14:32:10", "2015-02-16 14:32:10","OUT", "北京"));
+//////		data.insert(new StoragePO("0000000004", "R2D3L1", "航运区", "000125", "2015-02-14 14:32:10", null,"IN", "南京"));
+//////		data.insert(new StoragePO("0000000005", "R2D3L2", "航运区", "000125", "2015-02-14 14:32:10", null,"BROKEN", "南京"));
+////		aer=data.findbytime("2015-01-01 11:10:02", "2015-01-01 11:10:02", "南京");
+////		for(int i=0;i<aer.size();i++) System.out.println(aer.get(i).getId());
 //	}
-	  
+		public ArrayList<String> getallin() throws RemoteException,IOException{
+			return ins;
+		}
+		public ArrayList<String> getallout() throws RemoteException,IOException{
+			return outs;
+		}
+	  public void setIn(String s) throws RemoteException,IOException  {
+		ins.add(s);
+	}
+
+	public void setOut(String s) throws RemoteException ,IOException {
+		outs.add(s);
+	}
+	  public void getIn(int s) throws RemoteException,IOException  {
+		ins.remove(s);
+	}
+
+	public void getOut(int s) throws RemoteException ,IOException {
+		outs.remove(s);
+	}
 	public StoragePO find(String id) throws IOException,RemoteException {
 		fis=new FileInputStream(file);
 		ois=new ObjectInputStream(fis);
@@ -197,4 +217,6 @@ public class StorageData extends UnicastRemoteObject implements StorageDataServi
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

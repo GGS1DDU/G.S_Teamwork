@@ -56,8 +56,7 @@ int button=40;
 public static TableModel model;
 public static JTable table;
 final JComboBox<String> jcb;
-public static ArrayList<String>  ins=new ArrayList<String>();
-public static ArrayList<String>  outs=new ArrayList<String>();
+static JPanel user;
 String center=null;
 
 public static ArrayList<StorageVO>  arr=new ArrayList<StorageVO>();
@@ -189,7 +188,7 @@ public Storage_main(final UserVO vo){
 	});
 
 	JLabel jl=new JLabel(" 当前用户：  "+vo.getName()+"  身份：  "+vo.getJob()+"  编号   "+vo.getId());
-	JPanel user=new JPanel(); user.setLayout(null);
+	user=new JPanel(); user.setLayout(null);
 	user.add(jl);jl.setBounds(200, 0, this.getWidth(), 25);
 	user.setBounds(200, 0, this.getWidth()-200,this.getHeight());	
 	contentPane.add(user);
@@ -344,15 +343,44 @@ public Storage_main(final UserVO vo){
     final JLabel time=new JLabel();
     final JLabel in=new JLabel();
     final JLabel out=new JLabel();
+    in.addMouseListener(new MouseAdapter(){
+    	public void mouseClicked(MouseEvent e) {
+    		if(e.getClickCount()==2) {
+    			user.setBounds(-screenWidth, 0, user.getWidth(), user.getHeight());
+    			Storage_in sin=new Storage_in(vo);
+    			contentPane.add(sin);
+    			sin.setBounds(200,0,screenWidth*2/3,screenHeight*3/4);
+    			
+    		}
+    	}
+    });
+    out.addMouseListener(new MouseAdapter(){
+    	public void mouseClicked(MouseEvent e) {
+    		if(e.getClickCount()==2) {
+    			user.setBounds(-screenWidth, 0, user.getWidth(), user.getHeight());
+    			Storage_out sout=new Storage_out(vo);
+    			contentPane.add(sout);
+    			sout.setBounds(200,0,screenWidth*2/3,screenHeight*3/4);
+    			
+    		}
+    	}
+    });
+    
     time.setFont(new Font("Serif",Font.BOLD,15));
     user.add(in);in.setBounds(25, 3*this.getHeight()/4, 120, 25);
     user.add(time); time.setBounds(5*user.getWidth()/12, user.getHeight()-50, user.getWidth()/3, 25);
     user.add(out);out.setBounds(25, 3*this.getHeight()/4+50, 120, 25);
     Timer timer = new Timer(100,new ActionListener(){
        InitAll i=new InitAll();
+       Storage storage=new Storage();
 		public void actionPerformed(ActionEvent arg0) {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			in.setText("入库待处理项： "+ins.size());
+			try {
+				in.setText("入库待处理项： "+storage.getallin().size());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			try {
 				if(i.getInitState(3))
 				time.setText("需要初始化！");
@@ -363,7 +391,12 @@ public Storage_main(final UserVO vo){
 				e.printStackTrace();
 			}
 			
-			out.setText("出库待处理项： "+outs.size());
+			try {
+				out.setText("出库待处理项： "+storage.getallout().size());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
     	
