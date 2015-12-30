@@ -25,6 +25,7 @@ import java.rmi.RemoteException;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
 /**
  * 
  * @author ZWH
@@ -46,6 +47,7 @@ public class UserUI_addUser extends JFrame {
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		setBounds((width-1000)/2, (height-650)/2, 403, 442);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -87,6 +89,8 @@ public class UserUI_addUser extends JFrame {
 		contentPane.add(job);
 		
 		JButton ensureAddUser = new JButton("确定");
+		ensureAddUser.setBackground(Color.WHITE);
+		ensureAddUser.setForeground(Color.BLACK);
 		ensureAddUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -112,6 +116,8 @@ public class UserUI_addUser extends JFrame {
 		contentPane.add(ensureAddUser);
 		
 		JButton btnNewButton = new JButton("取消");
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

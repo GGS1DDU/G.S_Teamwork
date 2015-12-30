@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
+import java.awt.Color;
 /**
  * 
  * @author ZWH
@@ -35,6 +36,7 @@ public class DealUI_trackMessage extends JFrame {
 		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		setBounds(100, 100, 849, 594);
 		JPanel contentPane = new JPanel();
+		contentPane.setBackground(new Color(240, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

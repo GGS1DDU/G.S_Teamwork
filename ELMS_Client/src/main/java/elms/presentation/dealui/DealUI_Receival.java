@@ -1,41 +1,25 @@
 package elms.presentation.dealui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.SystemColor;
-import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 import elms.businesslogic.dealbl.CheckOrder;
 import elms.businesslogic.dealbl.DealBL;
 import elms.vo.DealVO;
 import elms.vo.UserVO;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-/**
- * 
- * @author ZWH
- *
- */
-public class DealUI_receive extends JFrame {
+import java.awt.Color;
 
-	private JPanel contentPane;
+public class DealUI_Receival extends JPanel {
+
+	
 	private JTextField orderID;
 	private JLabel label;
 	private JTextField acturalReceiver;
@@ -48,45 +32,32 @@ public class DealUI_receive extends JFrame {
 	private JLabel aaa;
 	private JTextField dd;
 
-
-/**
- * 
- * @param vo
- */
-	public DealUI_receive(UserVO vo) {
-		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int)screensize.getWidth();
-		int height = (int)screensize.getHeight();
-		
-		setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
-		setBounds((width-896)/2, (height-100)/2, 896, 494);
-		contentPane = new JPanel();
-		contentPane.setForeground(SystemColor.inactiveCaption);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	public DealUI_Receival(UserVO vo) {
+		setBackground(new Color(240, 248, 255));
+		setSize(1050,1100);
+		this.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("订单号");
 		lblNewLabel.setBounds(97, 107, 81, 21);
-		contentPane.add(lblNewLabel);
+		this.add(lblNewLabel);
 		
 		orderID = new JTextField();
 		orderID.setBounds(285, 104, 220, 27);
-		contentPane.add(orderID);
+		this.add(orderID);
 		orderID.setColumns(10);
 		
 		label = new JLabel("实际收件人");
 		label.setBounds(97, 188, 109, 21);
-		contentPane.add(label);
+		this.add(label);
 		
 		acturalReceiver = new JTextField();
 		acturalReceiver.setBounds(287, 185, 126, 27);
-		contentPane.add(acturalReceiver);
+		this.add(acturalReceiver);
 		acturalReceiver.setColumns(10);
 		
 		lblNewLabel_1 = new JLabel("收件时间");
 		lblNewLabel_1.setBounds(97, 262, 98, 21);
-		contentPane.add(lblNewLabel_1);
+		this.add(lblNewLabel_1);
 		
 		
 		
@@ -101,13 +72,12 @@ public class DealUI_receive extends JFrame {
 		
 		lblNewLabel_2 = new JLabel("请输入形如xxxx-xx-xx形式的日期");
 		lblNewLabel_2.setForeground(SystemColor.controlShadow);
-		lblNewLabel_2.setFont(new Font("宋体", Font.ITALIC, 18));
 		lblNewLabel_2.setBounds(532, 262, 287, 21);
-		contentPane.add(lblNewLabel_2);
+		this.add(lblNewLabel_2);
 		
 		JButton button = new JButton("确认收件");
+		button.setBackground(Color.WHITE);
 		button.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
 				String ID=orderID.getText();
 				CheckOrder co=new CheckOrder();
@@ -210,39 +180,41 @@ public class DealUI_receive extends JFrame {
 			}
 		});
 		button.setBounds(654, 330, 123, 29);
-		contentPane.add(button);
+		this.add(button);
 		
-		JButton button_1 = new JButton("取消");
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				DealUI_receive.this.dispose();
-			}
-		});
-		button_1.setBounds(654, 395, 123, 29);
-		contentPane.add(button_1);
+
 		
 		yyyy = new JTextField(Today[0]);
 		yyyy.setBounds(285, 260, 54, 24);
-		contentPane.add(yyyy);
+		this.add(yyyy);
 		yyyy.setColumns(10);
 		
 		lblNewLabel_3 = new JLabel("-");
 		lblNewLabel_3.setBounds(344, 262, 24, 21);
-		contentPane.add(lblNewLabel_3);
+		this.add(lblNewLabel_3);
 		
 		mm = new JTextField(Today[1]);
 		mm.setBounds(364, 260, 32, 24);
-		contentPane.add(mm);
+		this.add(mm);
 		mm.setColumns(10);
 		
 		aaa = new JLabel("-");
 		aaa.setBounds(406, 262, 24, 21);
-		contentPane.add(aaa);
+		this.add(aaa);
 		
 		dd = new JTextField(Today[2]);
 		dd.setColumns(10);
 		dd.setBounds(416, 260, 32, 24);
-		contentPane.add(dd);
+		this.add(dd);
+
+	}
+
+	
+	public void paintComponent(Graphics g){
+	int x=0;int y=0;
+	ImageIcon icon = new ImageIcon("inbg.jpg");
+	g.drawImage(icon.getImage(), x, y, getSize().width,
+		     getSize().height, this);
+	
 	}
 }

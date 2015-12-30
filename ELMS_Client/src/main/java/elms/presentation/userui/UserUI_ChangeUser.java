@@ -19,6 +19,7 @@ import elms.vo.UserVO;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
+import java.awt.Color;
 /**
  * 
  * @author ZWH
@@ -57,6 +58,7 @@ public class UserUI_ChangeUser extends JFrame {
 		textField.setColumns(10);
 		
 		ensureChange = new JButton("确定");
+		ensureChange.setBackground(Color.WHITE);
 		ensureChange.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -86,6 +88,7 @@ public class UserUI_ChangeUser extends JFrame {
 		contentPane.add(ensureChange);
 		
 		cancelChange = new JButton("取消");
+		cancelChange.setBackground(Color.WHITE);
 		cancelChange.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

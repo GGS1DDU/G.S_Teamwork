@@ -23,13 +23,12 @@ import elms.presentation.MyButton;
 import elms.presentation.MyFrame;
 import elms.presentation.MyPanel;
 import elms.presentation.MyTextField;
-import elms.presentation.dealui.DealUI_main;
-import elms.presentation.dealui.DealUI_Search;
+import elms.presentation.dealui.DealUI_Main;
 import elms.presentation.dealui.DealUI_trackMessage;
 import elms.presentation.financeui.FinanceUI_main;
 import elms.presentation.managerui.ManagerUI_main;
 import elms.presentation.storageui.Storage_main;
-import elms.presentation.userui.UserUI_main;
+import elms.presentation.userui.UserUI_AllUser;
 import elms.vo.DealVO;
 import elms.vo.UserVO;
 
@@ -135,6 +134,10 @@ public class LoginUI extends MyFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				if(n==999){
+					JOptionPane.showMessageDialog(null, "服务器连接异常,请检查网络设置！", "失败!", JOptionPane.ERROR_MESSAGE);
+				}
 
 				if (n == -1) {
 					JOptionPane.showMessageDialog(null, "您输入的密码错误，请重新输入",
@@ -149,12 +152,12 @@ public class LoginUI extends MyFrame {
 
 				}
 				if (n == 1) {// 系统管理员 进入UserUI_main
-					JFrame jframe = new UserUI_main();
+					JFrame jframe = new UserUI_AllUser();
 					jframe.setVisible(true);
 					LoginUI.this.dispose();
 				}
 				if (n == 2) {
-					JFrame dm = new DealUI_main(vo);
+					JFrame dm = new DealUI_Main(vo);
 					dm.setVisible(true);
 					LoginUI.this.dispose();
 					// 快递员，进入DealUI_main界面

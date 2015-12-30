@@ -76,6 +76,7 @@ public class UserUI_ChangeUser_message extends JFrame {
 		UserMessage.add(job);
 		
 		JButton change = new JButton("修改信息");
+		change.setBackground(Color.WHITE);
 		change.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -118,6 +119,7 @@ public class UserUI_ChangeUser_message extends JFrame {
 		UserMessage.add(deleteUser);
 		
 		JButton btnNewButton_1 = new JButton("确定");
+		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

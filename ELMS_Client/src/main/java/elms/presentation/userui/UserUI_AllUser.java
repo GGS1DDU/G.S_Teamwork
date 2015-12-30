@@ -29,12 +29,21 @@ public class UserUI_AllUser extends JFrame implements ActionListener{
 	public UserUI_AllUser(){
 		this.setLocationRelativeTo(null);
 		jp1=new JPanel();
+		jp1.setBackground(Color.WHITE);
+		jp1.setBounds(0, 0, 778, 71);
 		jtf=new JTextField(10);
+		jtf.setBounds(227, 31, 96, 27);
 		jb1=new JButton("查询");
+		jb1.setBackground(Color.WHITE);
+		jb1.setBounds(348, 31, 69, 29);
 		jb1.addActionListener(this);
 		jb4=new JButton("显示全部用户");
+		jb4.setBackground(Color.WHITE);
+		jb4.setBounds(453, 31, 141, 29);
 		jb4.addActionListener(this);
+		jp1.setLayout(null);
 		jl1=new JLabel("请输入名字");
+		jl1.setBounds(122, 35, 90, 21);
 		
 		jp1.add(jl1);
 		jp1.add(jtf);
@@ -42,29 +51,37 @@ public class UserUI_AllUser extends JFrame implements ActionListener{
 		jp1.add(jb4);
 		
 		jp2=new JPanel();
-		
-		jb2=new JButton("添加");
-		jb2.addActionListener(this);
-		jb3=new JButton("更改");
-		jb3.addActionListener(this);
-		
-		
-		jp2.add(jb2);
-		jp2.add(jb3);
+		jp2.setBackground(Color.WHITE);
+		jp2.setBounds(0, 841, 778, 104);
+		jp2.setLayout(null);
 		
 		
 		
 		
 		
 		UserModel um=new UserModel();
+		getContentPane().setLayout(null);
 		
 		jt=new JTable(um);
 		
 		jsp=new JScrollPane(jt);
+		jsp.setBackground(new Color(240, 248, 255));
+		jsp.setBounds(0, 70, 778, 769);
 		
-		this.add(jsp);
-		this.add(jp1,"North");
-		this.add(jp2,"South");
+		getContentPane().add(jsp);
+		getContentPane().add(jp1);
+		getContentPane().add(jp2);
+		
+		jb2=new JButton("添加");
+		jb2.setBackground(Color.WHITE);
+		jb2.setBounds(168, 25, 119, 42);
+		jp2.add(jb2);
+		jb3=new JButton("更改");
+		jb3.setBackground(Color.WHITE);
+		jb3.setBounds(418, 25, 126, 42);
+		jp2.add(jb3);
+		jb3.addActionListener(this);
+		jb2.addActionListener(this);
 		this.setVisible(true);
 		this.setSize(800, 1000);
 		this.setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);

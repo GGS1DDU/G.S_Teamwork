@@ -3,100 +3,260 @@ package elms.presentation.dealui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.HeadlessException;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-
-
-
-
+import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import elms.vo.UserVO;
 
-import java.awt.event.ActionListener;
+import java.awt.Rectangle;
+import java.awt.Font;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
-import javax.swing.JLabel;
-/**
- * 
- * @author ZWH
- *
- */
-public class DealUI_main extends JFrame {
+public class DealUI_Main extends JFrame implements ActionListener {
+	
+	
+	
 
-	private JPanel contentPane;
+
 	UserVO vo;
+	
+	int width;
+	int height;
+	
+	private JPanel jp1;
+	private JButton xjdd;
+	private JButton srsjxx;
+	private JButton cxdd;
+	
+	
+	
+	private JPanel jp2;
+	private JLabel dqyh;
+	private JLabel dqyh2;
+	private JLabel sf;
+	private JLabel sf2;
+	private JLabel bh;
+	private JLabel bh2;
+		
+	private JPanel jp3;
+	private JSeparator separator;
+	private JSeparator separator_1;
+	private JButton button;
 
-	/**
-	 * 
-	 * @param vo
-	 */
-	public DealUI_main(final UserVO vo) {
+
+	public DealUI_Main(UserVO vo) {
+		getContentPane().setBackground(Color.WHITE);
 		this.vo=vo;
-		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int)screensize.getWidth();
-		int height = (int)screensize.getHeight();
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds((width-753)/2, (height-516)/2, 753, 516);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JButton buildorder = new JButton("新建订单");
-		buildorder.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//转至DealUI_BuildOrder界面
-				DealUI_BuildOrder DBO=new DealUI_BuildOrder(vo);
-				DBO.setVisible(true);
-				
-			}
-		});	
-		buildorder.setBounds(101, 135, 194, 57);
-		contentPane.add(buildorder);
+		Dimension   screensize   =   Toolkit.getDefaultToolkit().getScreenSize();
+		width = (int)screensize.getWidth();
+		height = (int)screensize.getHeight();
 		
-		JButton srsjxx = new JButton("输入收件信息");
-		srsjxx.addMouseListener(new MouseAdapter() {
-			@Override
+		setBounds(width/6, height/8, width*2/3, height*3/4);
+		getContentPane().setLayout(null);
+		
+		jp1=new JPanel();
+		jp1.setBackground(new Color(240, 248, 255));
+		jp1.setLayout(null);
+		getContentPane().add(jp1);
+		jp1.setBounds(0, 0, 200, height*3/4);
+		
+		
+		
+		xjdd=new JButton("新建订单");
+		xjdd.setBackground(Color.WHITE);
+		xjdd.setForeground(Color.BLACK);
+		xjdd.setFont(new Font("宋体", Font.PLAIN, 22));
+		xjdd.setBounds(0, 0, 200, 40);
+		xjdd.addActionListener(this);
+		jp1.add(xjdd);
+			
+		
+		srsjxx=new JButton("输入收件信息");
+		srsjxx.setBackground(Color.WHITE);
+		srsjxx.setForeground(Color.BLACK);
+		srsjxx.setFont(new Font("宋体", Font.PLAIN, 22));
+		srsjxx.setBounds(0, 40, 200, 40);
+		srsjxx.addActionListener(this);
+		jp1.add(srsjxx);
+		
+		
+		
+		cxdd=new JButton("查询订单");
+		cxdd.setBackground(Color.WHITE);
+		cxdd.setForeground(Color.BLACK);
+		cxdd.setFont(new Font("宋体", Font.PLAIN, 22));
+		cxdd.setBounds(0, 80, 200, 40);
+		cxdd.addActionListener(this);
+		jp1.add(cxdd);
+		
+		
+		separator = new JSeparator();
+		separator.setForeground(Color.GRAY);
+		separator.setBounds(215, 34, -7, 1160);
+		jp1.add(separator);
+		jp1.setBorder(new TitledBorder(new EtchedBorder()));
+		
+		button = new JButton("退出系统");
+		button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				DealUI_receive dr=new DealUI_receive(vo);
-				dr.setVisible(true);
+				DealUI_Main.this.dispose();
 			}
 		});
-		srsjxx.setBounds(398, 135, 194, 57);
-		contentPane.add(srsjxx);
+		button.setBackground(Color.WHITE);
+		button.setBounds(0, height*3/4-100, 200, 40);
+
+		button.setFont(new Font("宋体", Font.PLAIN, 22));
+		jp1.add(button);
 		
-		JButton inquiryorder = new JButton("查询订单");
-		inquiryorder.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				DealUI_Search ds=new DealUI_Search(vo);
-				ds.setVisible(true);
-			}
-		});
-		inquiryorder.setBounds(101, 274, 194, 57);
-		contentPane.add(inquiryorder);
 		
-		JButton cancel = new JButton("退出系统");
-		cancel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				DealUI_main.this.dispose();
-			}
-		});
-		cancel.setBounds(398, 274, 194, 57);
-		contentPane.add(cancel);
+		jp2=new JPanel();
+		jp2.setBackground(new Color(240, 248, 255));
+		jp2.setLayout(null);
+		getContentPane().add(jp2);
+		jp2.setBounds(198, 0, width*2/3-200, 36);
+		jp2.setBorder(new TitledBorder(new EtchedBorder()));
 		
-		JLabel LoginMessage = new JLabel("您好,"+vo.getName()+"  身份:"+vo.getJob());
-		LoginMessage.setBounds(50, 27, 303, 21);
-		contentPane.add(LoginMessage);
+		
+		dqyh=new JLabel("当前用户:");
+		dqyh.setBackground(SystemColor.controlDkShadow);
+		dqyh.setForeground(Color.DARK_GRAY);
+		dqyh.setFont(new Font("微软雅黑", Font.PLAIN, 21));
+		dqyh.setBounds(70,0,99,33);
+		jp2.add(dqyh);
+		
+		dqyh2=new JLabel(vo.getName());
+		dqyh2.setBackground(SystemColor.controlDkShadow);
+		dqyh2.setForeground(Color.DARK_GRAY);
+		dqyh2.setFont(new Font("微软雅黑", Font.PLAIN, 21));
+		dqyh2.setBounds(186, 0, 122, 33);
+		jp2.add(dqyh2);
+		
+		sf=new JLabel("身份:");
+		sf.setBackground(SystemColor.controlDkShadow);
+		sf.setForeground(Color.DARK_GRAY);
+		sf.setFont(new Font("微软雅黑", Font.PLAIN, 21));
+		sf.setBounds(348,0,65,33);
+		jp2.add(sf);
+		
+		sf2=new JLabel(vo.getJob());
+		sf2.setBackground(SystemColor.controlDkShadow);
+		sf2.setForeground(Color.DARK_GRAY);
+		sf2.setFont(new Font("微软雅黑", Font.PLAIN, 21));
+		sf2.setBounds(416, 0, 141, 33);
+		jp2.add(sf2);
+		
+		
+		bh=new JLabel("编号:");
+		bh.setBackground(SystemColor.controlDkShadow);
+		bh.setForeground(Color.DARK_GRAY);
+		bh.setFont(new Font("微软雅黑", Font.PLAIN, 21));
+		bh.setBounds(603, 0, 65, 33);
+		jp2.add(bh);
+		
+		bh2=new JLabel(vo.getId());
+		bh2.setBackground(SystemColor.controlDkShadow);
+		bh2.setFont(new Font("微软雅黑", Font.PLAIN, 21));
+		bh2.setForeground(Color.DARK_GRAY);
+		bh2.setBounds(658, 0, 192, 33);
+		jp2.add(bh2);
+		
+		separator_1 = new JSeparator();
+		separator_1.setBackground(UIManager.getColor("InternalFrame.borderDarkShadow"));
+		separator_1.setBounds(0, 210, 1002, 2);
+		jp2.add(separator_1);
+		
+		
+		jp3=new DealUI_BuildAnOrder(vo);
+		jp3.setLayout(null);
+		getContentPane().add(jp3);
+		jp3.setBounds(198, 37,  width*2/3-200,height*3/4-36);
+		
+		
+
 	}
+	
+	public void actionPerformed(ActionEvent e){
+		if(e.getSource()==xjdd){
+			getContentPane().remove(jp3);
+			jp3=new DealUI_BuildAnOrder(vo);
+			jp3.setBounds(198, 37,  width*2/3-200,height*3/4-36);
+			getContentPane().add(jp3);
+			getContentPane().revalidate();
+			getContentPane().repaint();
+			xjdd.setBounds(0, 0, 200, 60);
+			srsjxx.setBounds(0, 60, 200, 40);
+			cxdd.setBounds(0,100 , 200, 40);
+			
+			
+		}
+		
+		
+		
+		if(e.getSource()==srsjxx){
+			getContentPane().remove(jp3);
+			jp3=new DealUI_Receival(vo);
+			jp3.setBounds(198, 37,  width*2/3-200,height*3/4-36);
+			getContentPane().add(jp3);		
+			getContentPane().revalidate();
+			getContentPane().repaint();
+			
+			xjdd.setBounds(0, 0, 200, 40);
+			srsjxx.setBounds(0, 40, 200, 60);
+			cxdd.setBounds(0,100 , 200, 40);
+		}
+		
+		
+		if(e.getSource()==cxdd){
+			
+			getContentPane().remove(jp3);
+			jp3=new DealUI_CheckAnOrder(vo);
+			jp3.setBounds(198, 37,  width*2/3-200,height*3/4-36);
+			getContentPane().add(jp3);		
+			getContentPane().revalidate();
+			getContentPane().repaint();
+			
+			xjdd.setBounds(0, 0, 200, 40);
+			srsjxx.setBounds(0, 40, 200, 40);
+			cxdd.setBounds(0,80, 200, 60);
+					
+		}
+		
+		
+		
+	}
+	
+	
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
