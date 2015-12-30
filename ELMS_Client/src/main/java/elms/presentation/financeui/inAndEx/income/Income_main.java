@@ -24,13 +24,14 @@ import javax.swing.event.DocumentListener;
 
 
 
+
 import elms.businesslogic.HallInfo;
 import elms.businesslogic.financebl.inandex.IncomeManager;
-import elms.presentation.GetHall;
-import elms.presentation.MyComboBox;
-import elms.presentation.MyPanel;
 import elms.presentation.financeui.FinanceUI_main;
 import elms.presentation.uihelper.CheckFormat;
+import elms.presentation.uihelper.GetHall;
+import elms.presentation.uihelper.MyComboBox;
+import elms.presentation.uihelper.MyPanel;
 import elms.presentation.uihelper.TagPanel;
 import elms.vo.FIncomeVO;
 import elms.vo.UserVO;

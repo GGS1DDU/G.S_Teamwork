@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,11 +15,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import elms.businesslogic.dealbl.DealBL;
-import elms.presentation.MyButton;
-import elms.presentation.MyFrame;
-import elms.presentation.MyLabel;
-import elms.presentation.MyPanel;
 import elms.presentation.dealui.DealUI_trackMessage;
+import elms.presentation.uihelper.MyButton;
+import elms.presentation.uihelper.MyFrame;
+import elms.presentation.uihelper.MyLabel;
+import elms.presentation.uihelper.MyPanel;
 import elms.presentation.uihelper.ScreenSize;
 import elms.vo.DealVO;
 
@@ -33,12 +32,12 @@ public class FindOrder extends JFrame {
 	private JLabel label;
 	private JLabel tips;
 	private JTextField orderID;
-	private JButton inquiry;
-	private MyButton close;
-	private MyButton mini;
+	private MyButton inquiry;
+	private MyButton out;
 //	static Rectangle r  = new Rectangle(screenWidth / 3, screenHeight / 3-50, screenWidth / 3,
 //			screenHeight / 3+100);
 	
+
 	private Font f = new Font("微软雅黑",1,15);
 	
 	public static void main(String[] args){
@@ -53,7 +52,7 @@ public class FindOrder extends JFrame {
 		setBounds(screenWidth / 3, screenHeight / 3-50, screenWidth / 3,
 				screenHeight / 3+100);
 		setLayout(null);
-		
+
 		setUndecorated(true);
 
 		contentPane = new MyPanel("star.jpg");
@@ -93,10 +92,20 @@ public class FindOrder extends JFrame {
 		tips.setFont(f);
 		tips.setForeground(Color.WHITE);
 		
-		inquiry = new MyButton("查询",15);
-		inquiry.setBounds(this.getWidth()/3+30,tips.getY()+tips.getHeight()+10,80,30);
+
+		inquiry = new MyButton();inquiry.setBounds(this.getWidth()/3-30,tips.getY()+tips.getHeight()+40,50,50);
+//		inquiry.setFont(f);
+		inquiry.setIcon("inquiry1.png");
+		inquiry.setRolloverIcon("inquiry.png");
 		contentPane.add(inquiry);
+
 		
+		out=new MyButton();out.setBounds(2*this.getWidth()/3-30,tips.getY()+tips.getHeight()+40,45,45);
+		out.setIcon("out.png");
+		out.setRolloverIcon("out1.png");
+		
+		contentPane.add(inquiry);
+		contentPane.add(out);
 		
 		inquiry.addActionListener(new ActionListener(){
 
@@ -137,37 +146,16 @@ public class FindOrder extends JFrame {
 			
 
 		});
-		
-		close = new MyButton();
-		close.setBounds(this.getWidth()-20,10,15,15);
-		close.setIcon("close_1.png");
-		close.setRolloverIcon("close_2.png");
-	
-		contentPane.add(close);
-		
-		close.addActionListener(new ActionListener(){
+
+		out.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO 自动生成的方法存根
 				FindOrder.this.dispose();
 			}
 			
 		});
 		
-		mini = new MyButton();
-		mini.setBounds(close.getX()-30,10,15,15);
-		mini.setIcon("mini_1.png");
-		mini.setRolloverIcon("mini_2.png");
 		
-		contentPane.add(mini);
-		
-		mini.addActionListener(new ActionListener(){
 
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				FindOrder.this.setExtendedState(JFrame.ICONIFIED);
-			}
-			
-		});
 	}
 }

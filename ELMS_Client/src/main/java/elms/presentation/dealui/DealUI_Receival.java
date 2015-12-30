@@ -1,7 +1,9 @@
 package elms.presentation.dealui;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -19,7 +21,10 @@ import java.awt.Color;
 
 public class DealUI_Receival extends JPanel {
 
-	
+	static Toolkit kit=Toolkit.getDefaultToolkit();
+	static Dimension screenSize=kit.getScreenSize();
+	static int screenWidth=(int) screenSize.getWidth();
+	static int screenHeight=(int)screenSize.getHeight();
 	private JTextField orderID;
 	private JLabel label;
 	private JTextField acturalReceiver;
@@ -31,11 +36,27 @@ public class DealUI_Receival extends JPanel {
 	private JTextField mm;
 	private JLabel aaa;
 	private JTextField dd;
+	public static void main(String args[]){
+		JFrame f=new JFrame();
+		f.setLayout(null);
+		f.setResizable(false);
+		f.setVisible(true);
+		f.setDefaultCloseOperation(3);
+		f.setBounds(screenWidth/6,screenHeight/8,screenWidth*2/3,screenHeight*3/4);
+		UserVO vo=new UserVO();
+		DealUI_Receival s=new DealUI_Receival(vo);
 
+	JScrollPane js=new JScrollPane(s);
+		f.add(js);js.setBounds(200, 40,screenWidth*2/3 -200, screenHeight*3/4-80);
+	s.setPreferredSize(new Dimension(2000,1120));
+	 js.setOpaque(false);js.getViewport().setOpaque(false);
+	js.getVerticalScrollBar().setUnitIncrement(20);
+	
+	}
 	public DealUI_Receival(UserVO vo) {
-		setBackground(new Color(240, 248, 255));
-		setSize(1050,1100);
-		this.setLayout(null);
+		this.setOpaque(false);
+		setVisible(true);
+		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("订单号");
 		lblNewLabel.setBounds(97, 107, 81, 21);
@@ -72,7 +93,7 @@ public class DealUI_Receival extends JPanel {
 		
 		lblNewLabel_2 = new JLabel("请输入形如xxxx-xx-xx形式的日期");
 		lblNewLabel_2.setForeground(SystemColor.controlShadow);
-		lblNewLabel_2.setBounds(532, 262, 287, 21);
+		lblNewLabel_2.setBounds(480, 262, 287, 25);
 		this.add(lblNewLabel_2);
 		
 		JButton button = new JButton("确认收件");
@@ -179,7 +200,7 @@ public class DealUI_Receival extends JPanel {
 				
 			}
 		});
-		button.setBounds(654, 330, 123, 29);
+		button.setBounds(287, 350, 123, 29);
 		this.add(button);
 		
 

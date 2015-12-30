@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import elms.businesslogic.storagebl.Storage;
-import elms.presentation.MyPanel;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.StorageVO;
 
 public class Storage_findtime extends JFrame{

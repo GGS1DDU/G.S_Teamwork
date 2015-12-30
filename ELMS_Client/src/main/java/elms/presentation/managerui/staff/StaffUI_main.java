@@ -30,10 +30,10 @@ import javax.swing.event.MenuListener;
 
 import elms.businesslogic.financebl.InitAll;
 import elms.businesslogic.managerbl.StaffManager;
-import elms.presentation.JTabbedPanel;
-import elms.presentation.MyButton;
 import elms.presentation.managerui.ManagerUI_main;
 import elms.presentation.managerui.staff.staffhelper.StaffList;
+import elms.presentation.uihelper.JTabbedPanel;
+import elms.presentation.uihelper.MyButton;
 import elms.presentation.uihelper.ScreenSize;
 import elms.presentation.uihelper.TagPanel;
 import elms.presentation.uihelper.UserInfo;

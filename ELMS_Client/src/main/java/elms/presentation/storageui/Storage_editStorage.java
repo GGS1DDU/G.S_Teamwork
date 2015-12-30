@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
 
 import elms.businesslogic.storagebl.Storage;
 import elms.businesslogic.storagebl.StorageCapacity;
-import elms.presentation.MyPanel;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.StorageVO;
 /*
  * 对具体库存信息的处理与修改界面    

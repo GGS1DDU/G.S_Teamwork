@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import elms.businesslogic.managerbl.FreightStrategyManager;
-import elms.presentation.TimeLabel;
 import elms.presentation.managerui.ManagerUI_main;
 import elms.presentation.managerui.freight.freighthelper.FreightList;
 import elms.presentation.uihelper.ScreenSize;
+import elms.presentation.uihelper.TimeLabel;
 import elms.vo.FreightStrategyVO;
 import elms.vo.UserVO;
 

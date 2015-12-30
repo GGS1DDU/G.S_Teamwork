@@ -47,12 +47,12 @@ import elms.businesslogic.invoicebl.SendingListBL;
 import elms.businesslogic.invoicebl.TransferListBL;
 import elms.businesslogic.managerbl.Audit;
 import elms.businesslogic.storagebl.Storage;
-import elms.presentation.MyButton;
-import elms.presentation.MyPanel;
 import elms.presentation.managerui.aduit.aduit_main;
 import elms.presentation.storageui.Storage_editStorage;
 import elms.presentation.storageui.Storage_main;
 import elms.presentation.storageui.TableModel;
+import elms.presentation.uihelper.MyButton;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.ArrivalListVO;
 import elms.vo.IncomeListVO;
 import elms.vo.InvoiceVO;
@@ -116,7 +116,7 @@ Invoice_unaduit  un;
 		
 		//setUndecorated(true);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
 		final MyPanel contentPane = new MyPanel("inbg.jpg");

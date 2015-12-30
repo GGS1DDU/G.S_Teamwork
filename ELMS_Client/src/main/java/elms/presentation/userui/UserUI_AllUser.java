@@ -2,6 +2,7 @@ package elms.presentation.userui;
 import javax.swing.*;
 
 import elms.businesslogic.userbl.UserManage;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.UserVO;
 
 import java.util.*;
@@ -24,13 +25,24 @@ public class UserUI_AllUser extends JFrame implements ActionListener{
 	JLabel jl1;
 	JButton jb1,jb2,jb3,jb4;
 	JTextField jtf;
-	
-	
+	Toolkit kit = Toolkit.getDefaultToolkit();
+	Dimension screenSize = kit.getScreenSize();
+	int screenWidth = (int) screenSize.getWidth();
+	int screenHeight = (int) screenSize.getHeight();
+	public static void main(String args[]){
+		new UserUI_AllUser();
+	}
 	public UserUI_AllUser(){
-		this.setLocationRelativeTo(null);
+		
+		//this.setLocationRelativeTo(null);
+
+		final MyPanel contentPane = new MyPanel("inbg.jpg");
+		contentPane.setBounds(0, 0, screenWidth*2/3, screenHeight*3/4);
+		add(contentPane);
+		contentPane.setLayout(null);
 		jp1=new JPanel();
 		jp1.setBackground(Color.WHITE);
-		jp1.setBounds(0, 0, 778, 71);
+		jp1.setBounds(0, 0, screenWidth*2/3, 70);
 		jtf=new JTextField(10);
 		jtf.setBounds(227, 31, 96, 27);
 		jb1=new JButton("查询");
@@ -52,7 +64,7 @@ public class UserUI_AllUser extends JFrame implements ActionListener{
 		
 		jp2=new JPanel();
 		jp2.setBackground(Color.WHITE);
-		jp2.setBounds(0, 841, 778, 104);
+		jp2.setBounds(0, 70+screenHeight*3/8, screenWidth*2/3,screenHeight*3/8-70);
 		jp2.setLayout(null);
 		
 		
@@ -64,13 +76,13 @@ public class UserUI_AllUser extends JFrame implements ActionListener{
 		
 		jt=new JTable(um);
 		
-		jsp=new JScrollPane(jt);
-		jsp.setBackground(new Color(240, 248, 255));
-		jsp.setBounds(0, 70, 778, 769);
-		
-		getContentPane().add(jsp);
-		getContentPane().add(jp1);
-		getContentPane().add(jp2);
+		jsp=new JScrollPane(jt);jsp.setOpaque(false);jsp.getViewport().setOpaque(false);
+		//jsp.setBackground(new Color(240, 248, 255));
+		jsp.setBounds(0, 70,screenWidth*2/3, screenHeight*3/8);
+		jp1.setOpaque(false);  jp2.setOpaque(false);
+		contentPane.add(jsp);
+		contentPane.add(jp1);
+		contentPane.add(jp2);
 		
 		jb2=new JButton("添加");
 		jb2.setBackground(Color.WHITE);
@@ -83,8 +95,8 @@ public class UserUI_AllUser extends JFrame implements ActionListener{
 		jb3.addActionListener(this);
 		jb2.addActionListener(this);
 		this.setVisible(true);
-		this.setSize(800, 1000);
-		this.setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
+		setBounds(screenWidth/6,screenHeight/8,screenWidth*2/3,screenHeight*3/4);
+		//this.setDefaultCloseOperation(JFrame. HIDE_ON_CLOSE);
 		
 		jt.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){

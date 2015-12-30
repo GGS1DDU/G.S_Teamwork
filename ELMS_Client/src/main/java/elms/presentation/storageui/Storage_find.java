@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import elms.presentation.MyPanel;
+import elms.presentation.uihelper.MyPanel;
 
 public class Storage_find extends JFrame {
 	Toolkit kit=Toolkit.getDefaultToolkit();

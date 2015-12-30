@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 
 import elms.businesslogic.storagebl.Storage;
 import elms.businesslogic.storagebl.StorageCapacity;
-import elms.presentation.MyPanel;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.StorageVO;
 
 public class Storage_newStorage extends JFrame{

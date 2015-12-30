@@ -41,8 +41,8 @@ import javax.swing.table.TableColumnModel;
 
 import elms.businesslogic.financebl.InitAll;
 import elms.businesslogic.storagebl.Storage;
-import elms.presentation.MyButton;
-import elms.presentation.MyPanel;
+import elms.presentation.uihelper.MyButton;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.StorageVO;
 import elms.vo.UserVO;
 
@@ -109,10 +109,7 @@ public Storage_main(final UserVO vo){
 			// TODO 自动生成的 catch 块
 			e2.printStackTrace();
 		}
- 
-	//setUndecorated(true);
 	setVisible(true);
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	
 	final MyPanel contentPane = new MyPanel("inbg.jpg");
@@ -128,7 +125,6 @@ public Storage_main(final UserVO vo){
 	contentPane.add(buttonPanel);
 	
 	final JButton gl = new MyButton("库存管理",20);
-	//UIManager.put("Button.background", false);
 	gl.setEnabled(false);
 	gl.setForeground(Color.gray);
 	gl.setBounds(0,0,200,(int) (1.5*button));
@@ -136,7 +132,6 @@ public Storage_main(final UserVO vo){
 	
 	final JButton ini = new MyButton("库存初始化",15);
 	ini.setBounds(0,(int) (1.5*button),200,button);
-	ini.setBackground(Color.black);
 	buttonPanel.add(ini);
 	
 	gl.addActionListener(new ActionListener(){

@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.ArrivalListBL;
 import elms.businesslogic.invoicebl.RecivalListBL;
-import elms.presentation.MyPanel;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.ArrivalListVO;
 import elms.vo.RecivalListVO;
 import elms.vo.UserVO;

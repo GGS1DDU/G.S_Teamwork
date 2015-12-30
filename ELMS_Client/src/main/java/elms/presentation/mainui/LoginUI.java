@@ -19,16 +19,22 @@ import javax.swing.JTextField;
 
 import elms.businesslogic.dealbl.DealBL;
 import elms.businesslogic.userbl.UserManage;
-import elms.presentation.MyButton;
-import elms.presentation.MyFrame;
-import elms.presentation.MyPanel;
-import elms.presentation.MyTextField;
+
 import elms.presentation.dealui.DealUI_Main;
+
 import elms.presentation.dealui.DealUI_trackMessage;
 import elms.presentation.financeui.FinanceUI_main;
+import elms.presentation.invoiceui.InvoiceUI_ZZZXStaff;
 import elms.presentation.managerui.ManagerUI_main;
 import elms.presentation.storageui.Storage_main;
+
+import elms.presentation.uihelper.MyButton;
+import elms.presentation.uihelper.MyFrame;
+import elms.presentation.uihelper.MyPanel;
+import elms.presentation.uihelper.MyTextField;
+
 import elms.presentation.userui.UserUI_AllUser;
+
 import elms.vo.DealVO;
 import elms.vo.UserVO;
 
@@ -45,7 +51,7 @@ public class LoginUI extends MyFrame {
 	private JTextField IDtext;
 	private JPasswordField pwtext;
 	UserVO vo;
-	private JButton login;
+	private MyButton login;
 
 	/**
 	 * Launch the application.
@@ -69,46 +75,50 @@ public class LoginUI extends MyFrame {
 	public LoginUI() {
 		super("star.jpg");
 		Login();
+		setDefaultCloseOperation(3);
+		MyButton logout = new MyButton();
 		
-		JButton logout = new MyButton("退出",15);
 		logout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				LoginUI.this.dispose();
 			}
 		});
-		logout.setBounds(549, 439, 135, 47);
+		logout.setBounds(600, 439, 100, 100);
+		logout.setIcon("out.png");
+		logout.setRolloverIcon("out1.png");
+		
 		contentPane.add(logout);
 
-		JLabel welcome = new JLabel("欢迎使用快递物流管理系统");
-		welcome.setFont(new Font("微软雅黑", Font.PLAIN, 48));
+		JLabel welcome = new JLabel("Express Logistics Management System");
+		welcome.setFont(new Font("Vladimir Script", Font.BOLD, 48));
 		welcome.setForeground(Color.white);
-		welcome.setBounds(163, 51, 600, 126);
+		welcome.setBounds(120, 51, 800, 140);
 		contentPane.add(welcome);
 
 		JLabel ID = new JLabel("账户");
 		ID.setForeground(Color.WHITE);
 		ID.setFont(new Font("宋体", Font.PLAIN, 20));
-		ID.setBounds(211, 224, 40, 30);
+		ID.setBounds(240, 224, 40, 30);
 		contentPane.add(ID);
 
 		JLabel pw = new JLabel("密码");
 		pw.setForeground(Color.white);
 		pw.setFont(new Font("宋体", Font.PLAIN, 20));
-		pw.setBounds(211, 315, 40, 21);
+		pw.setBounds(240, 315, 40, 21);
 		contentPane.add(pw);
 
 		IDtext = new MyTextField();
 
 //		IDtext.setForeground(Color.WHITE);
 
-		IDtext.setBounds(330, 224, 239, 30);
+		IDtext.setBounds(360, 224, 239, 30);
 		contentPane.add(IDtext);
 		IDtext.setColumns(10);
 
 		pwtext = new JPasswordField();
 		pwtext.setFont(new Font("宋体", Font.PLAIN, 20));
-		pwtext.setBounds(330, 310, 239, 30);
+		pwtext.setBounds(360, 310, 239, 30);
 		contentPane.add(pwtext);
 		pwtext.setColumns(10);
 
@@ -116,13 +126,15 @@ public class LoginUI extends MyFrame {
 
 	private void Login() {
 
-		login = new MyButton("登录",15);
+		login = new MyButton();
 
-		login.setBounds(196, 439, 135, 47);
+		login.setBounds(200, 439, 110,110);
+		login.setIcon("01.png");
+		login.setRolloverIcon("02.png");
+		
 		contentPane.add(login);
 		login.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
-			@Override
+	
 			public void mouseClicked(MouseEvent arg0) {
 				UserManage user = new UserManage();
 				int n = 0;
@@ -164,6 +176,11 @@ public class LoginUI extends MyFrame {
 				}
 				if (n == 3) {
 
+				}
+				if(n==4){
+					JFrame iz=new InvoiceUI_ZZZXStaff(vo);
+					iz.setVisible(true);
+					LoginUI.this.dispose();
 				}
 				if (n == 5) {
 					JFrame Storage_main = new Storage_main(vo);

@@ -16,14 +16,14 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 
 import elms.businesslogic.financebl.InitAll;
-import elms.presentation.MyButton;
-import elms.presentation.MyPanel;
-import elms.presentation.TimeLabel;
 import elms.presentation.financeui.inAndEx.InAndEx_form;
 import elms.presentation.managerui.aduit.aduit_main;
 import elms.presentation.managerui.freight.FreightUI_main;
 import elms.presentation.managerui.staff.StaffUI_main;
+import elms.presentation.uihelper.MyButton;
+import elms.presentation.uihelper.MyPanel;
 import elms.presentation.uihelper.ScreenSize;
+import elms.presentation.uihelper.TimeLabel;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.UserVO;
 
@@ -66,8 +66,7 @@ public class ManagerUI_main extends JFrame {
 		setLayout(null);
 		setTitle("总经理");
 		setResizable(false);
-		setSize(screenWidth * 2 / 3, screenHeight * 3 / 4 + 25);
-		setLocation(screenWidth / 4, screenHeight / 8);
+		setBounds(screenWidth/6,screenHeight/8,screenWidth*2/3,screenHeight*3/4);
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -250,7 +249,7 @@ public class ManagerUI_main extends JFrame {
 
 		});
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	private void setDefaultBSize() {

@@ -18,7 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import elms.businesslogic.storagebl.Storage;
-import elms.presentation.MyPanel;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.StorageVO;
 
 

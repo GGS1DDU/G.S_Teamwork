@@ -19,12 +19,12 @@ import javax.swing.UIManager;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-import elms.presentation.JTabbedPanel;
-import elms.presentation.MyPanel;
 import elms.presentation.financeui.FinanceUI_main;
 import elms.presentation.financeui.inAndEx.expense.Expense_main;
 import elms.presentation.financeui.inAndEx.income.IncomeList;
 import elms.presentation.financeui.inAndEx.income.Income_main;
+import elms.presentation.uihelper.JTabbedPanel;
+import elms.presentation.uihelper.MyPanel;
 //import elms.presentation.financeui.inAndEx.income.Income_main;
 import elms.presentation.uihelper.ScreenSize;
 import elms.presentation.uihelper.UserInfo;

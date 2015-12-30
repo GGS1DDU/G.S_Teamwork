@@ -17,15 +17,15 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import elms.businesslogic.financebl.InitAll;
-import elms.presentation.MyButton;
-import elms.presentation.MyLabel;
-import elms.presentation.MyPanel;
-import elms.presentation.TimeLabel;
 import elms.presentation.financeui.Init.InitAllButtons;
 import elms.presentation.financeui.Init.browser;
 import elms.presentation.financeui.bankaccount.BankAccount_main;
 import elms.presentation.financeui.inAndEx.InAndEx_main;
 import elms.presentation.mainui.LoginUI;
+import elms.presentation.uihelper.MyButton;
+import elms.presentation.uihelper.MyLabel;
+import elms.presentation.uihelper.MyPanel;
+import elms.presentation.uihelper.TimeLabel;
 import elms.presentation.uihelper.UserInfo;
 import elms.vo.AccountVO;
 import elms.vo.UserVO;
@@ -74,8 +74,7 @@ public class FinanceUI_main extends JFrame {
 		setTitle("财务人员");
 		setResizable(false);
 
-		setSize(screenWidth * 2 / 3, screenHeight * 3 / 4 + 25);
-		setLocation(screenWidth / 4, screenHeight / 8);
+		setBounds(screenWidth/6,screenHeight/8,screenWidth*2/3,screenHeight*3/4);
 		
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		UIManager.put("Button.background", Color.WHITE);
@@ -86,7 +85,7 @@ public class FinanceUI_main extends JFrame {
 
 		}
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		contentPane = new MyPanel("inbg.jpg");
 		contentPane.setBounds(0, 0, this.getWidth(), this.getHeight());
