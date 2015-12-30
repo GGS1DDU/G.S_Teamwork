@@ -93,13 +93,23 @@ public Storage_main(final UserVO vo){
 	setTitle("库存管理");
 	setResizable(false);
 	setBounds(screenWidth/6,screenHeight/8,screenWidth*2/3,screenHeight*3/4);
-	try {
-		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-	} catch (ClassNotFoundException | InstantiationException
-			| IllegalAccessException | UnsupportedLookAndFeelException e2) {
-		// TODO Auto-generated catch block
-		e2.printStackTrace();
-	}
+	
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e2) {
+			// TODO 自动生成的 catch 块
+			e2.printStackTrace();
+		} catch (InstantiationException e2) {
+			// TODO 自动生成的 catch 块
+			e2.printStackTrace();
+		} catch (IllegalAccessException e2) {
+			// TODO 自动生成的 catch 块
+			e2.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e2) {
+			// TODO 自动生成的 catch 块
+			e2.printStackTrace();
+		}
+ 
 	//setUndecorated(true);
 	setVisible(true);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

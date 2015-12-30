@@ -122,7 +122,6 @@ public class InAndEx_main extends JPanel{
 	public void addBackListener(JButton back){
 		back.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame jf = new FinanceUI_main(uservo);

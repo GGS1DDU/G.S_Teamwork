@@ -69,7 +69,6 @@ public class StaffUI_find extends JFrame{
 		
 		ensure.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				

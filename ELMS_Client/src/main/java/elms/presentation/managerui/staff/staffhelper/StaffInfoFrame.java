@@ -152,7 +152,6 @@ public class StaffInfoFrame extends JFrame {
 
 		idCard.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (check.checkNum(idCard.getText(), 18)) {
@@ -172,7 +171,6 @@ public class StaffInfoFrame extends JFrame {
 				}
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (check.checkNum(idCard.getText(), 18)) {
@@ -190,7 +188,6 @@ public class StaffInfoFrame extends JFrame {
 				}
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				birthday.setText("");
@@ -242,7 +239,6 @@ public class StaffInfoFrame extends JFrame {
 		
 		salaryStrategy.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String type = salaryStrategy.getSelectedItem().toString();

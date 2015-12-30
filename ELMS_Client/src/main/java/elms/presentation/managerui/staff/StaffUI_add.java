@@ -173,7 +173,6 @@ public class StaffUI_add extends JFrame {
 		
 		salaryStrategy.addActionListener(new ActionListener(){
 			
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String type = salaryStrategy.getSelectedItem().toString();
@@ -249,7 +248,6 @@ public class StaffUI_add extends JFrame {
 		
 		idCard.getDocument().addDocumentListener(new DocumentListener(){
 
-			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(check.checkNum(idCard.getText(), 18)){
@@ -268,7 +266,6 @@ public class StaffUI_add extends JFrame {
 				}
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(check.checkNum(idCard.getText(), 18)){
@@ -285,7 +282,6 @@ public class StaffUI_add extends JFrame {
 				}
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				birthday.setText("");
@@ -337,7 +333,6 @@ public class StaffUI_add extends JFrame {
 
 		add.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String identify = gi.getIdentifier(job.getSelectedItem().toString());
@@ -395,7 +390,6 @@ public class StaffUI_add extends JFrame {
 		
 		back.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				StaffUI_add.this.dispose();

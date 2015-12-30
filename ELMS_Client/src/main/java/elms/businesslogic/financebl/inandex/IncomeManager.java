@@ -346,55 +346,46 @@ public class IncomeManager implements IncomeBlService,DataFactory{
 		return null;
 	}
 
-	@Override
 	public ArrivalListDataService getArrivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public SendingListDataService getSendingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public IncomeListDataService getIncomeListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public RecivalListDataService getRecivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public LoadingListDataService getLoadingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public TransferListDataService getTransferListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public DriverDataService getDriverData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public CarDataService getCarData() {
 		// TODO 自动生成的方法存根
 		return null;

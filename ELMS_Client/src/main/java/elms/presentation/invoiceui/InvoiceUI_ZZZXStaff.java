@@ -97,13 +97,23 @@ Invoice_unaduit  un;
 		setTitle("中转中心管理");
 		setResizable(false);
 		setBounds(screenWidth/6,screenHeight/8,screenWidth*2/3,screenHeight*3/4);
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException
-				| IllegalAccessException | UnsupportedLookAndFeelException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (ClassNotFoundException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			} catch (InstantiationException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			} catch (IllegalAccessException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			} catch (UnsupportedLookAndFeelException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			}
+		
 		//setUndecorated(true);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -313,8 +323,10 @@ Invoice_unaduit  un;
 						if(of.getText().length()!=10)  JOptionPane.showMessageDialog(contentPane,"订单编号格式错误" );
 					else	if(storage.orderhasIN(of.getText()))  JOptionPane.showMessageDialog(contentPane,"该订单已存在" );
 					else	{storage.setIn(of.getText()); JOptionPane.showMessageDialog(contentPane,"已告知仓库管理员" );of.setText("");}
-				} catch (HeadlessException | IOException e1) {
+				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}catch( IOException e1){
 					e1.printStackTrace();
 				}
 				}
@@ -329,8 +341,10 @@ Invoice_unaduit  un;
 						if(tf.getText().length()!=10)  JOptionPane.showMessageDialog(contentPane,"订单编号格式错误" );
 					else	if(!storage.orderhasIN(tf.getText()))  JOptionPane.showMessageDialog(contentPane,"该订单不存在" );
 					else	 { storage.setOut(tf.getText());JOptionPane.showMessageDialog(contentPane,"已告知仓库管理员" );tf.setText("");}
-				} catch (HeadlessException | IOException e1) {
+				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}catch(  IOException e1){
 					e1.printStackTrace();
 				}
 				}

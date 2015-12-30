@@ -108,7 +108,6 @@ public class FreightUI_main extends JPanel {
 		
 		edit.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				String id = freightList.getSelectedID();
@@ -142,7 +141,6 @@ public class FreightUI_main extends JPanel {
 		
 		back.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame jf = new ManagerUI_main(uservo);

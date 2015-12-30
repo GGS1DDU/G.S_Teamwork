@@ -87,7 +87,6 @@ public class StaffManager implements StaffBlService, DataFactory {
 		}
 	}
 
-	@Override
 	public ResultMessage deleteStaff(StaffVO vo) {
 		// TODO 自动生成的方法存根
 		StaffPO po = getPO(vo);
@@ -106,7 +105,6 @@ public class StaffManager implements StaffBlService, DataFactory {
 
 	}
 
-	@Override
 	public StaffVO findStaff(String id) {
 		// TODO 自动生成的方法存根
 		StaffPO po = null;
@@ -126,7 +124,6 @@ public class StaffManager implements StaffBlService, DataFactory {
 		}
 	}
 
-	@Override
 	public ResultMessage updateStaff(StaffVO vo) {
 		// TODO 自动生成的方法存根
 		StaffPO po = getPO(vo);
@@ -165,7 +162,6 @@ public class StaffManager implements StaffBlService, DataFactory {
 	}
 	
 
-	@Override
 	public ArrayList<StaffVO> findByJob(String job) {
 		// TODO 自动生成的方法存根
 		ArrayList<StaffPO> all = new ArrayList<StaffPO>();
@@ -217,44 +213,37 @@ public class StaffManager implements StaffBlService, DataFactory {
 		return vo;
 	}
 
-	@Override
 	public UserDataService getUserData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public DealDataService getDealData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public IncomeDataService getIncomeData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public ExpenseDataService getExpenseData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public BankAccountDataService getBankAccountData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public FreightStrategyDataService getFreightStrategyData()
 			throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public InitAllDataService getInitData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
@@ -266,7 +255,6 @@ public class StaffManager implements StaffBlService, DataFactory {
 //		return null;
 //	}
 
-	@Override
 	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		DataFactory df;
@@ -279,62 +267,52 @@ public class StaffManager implements StaffBlService, DataFactory {
 		}
 	}
 
-	@Override
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
 
-	@Override
 	public ArrivalListDataService getArrivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public SendingListDataService getSendingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public IncomeListDataService getIncomeListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public RecivalListDataService getRecivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public LoadingListDataService getLoadingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public TransferListDataService getTransferListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public DriverDataService getDriverData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public CarDataService getCarData() {
 		// TODO 自动生成的方法存根
 		return null;

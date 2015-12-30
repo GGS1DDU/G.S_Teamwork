@@ -121,7 +121,6 @@ public class ManagerUI_main extends JFrame {
 
 		freight_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				contentPane.removeAll();
@@ -146,7 +145,6 @@ public class ManagerUI_main extends JFrame {
 
 		member_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				contentPane.removeAll();
@@ -178,7 +176,6 @@ public class ManagerUI_main extends JFrame {
 
 		form_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 
@@ -210,7 +207,6 @@ public class ManagerUI_main extends JFrame {
 
 		approval_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				setDefaultBSize();
@@ -233,7 +229,6 @@ public class ManagerUI_main extends JFrame {
 
 		log_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				setDefaultBSize();

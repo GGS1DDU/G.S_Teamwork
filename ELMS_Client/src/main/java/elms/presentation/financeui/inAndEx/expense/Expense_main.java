@@ -127,7 +127,6 @@ public class Expense_main extends JPanel{
 		
 		add.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame addEx = new Expense_add(exList,u_vo);
@@ -138,7 +137,6 @@ public class Expense_main extends JPanel{
 		
 		delete.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 //				JFrame findEx = new Expense_find(u_vo);
@@ -150,7 +148,6 @@ public class Expense_main extends JPanel{
 		
 		edit.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				String id = exList.getSelectedID();
@@ -173,7 +170,6 @@ public class Expense_main extends JPanel{
 		
 		find.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame findframe = new Expense_find(exList,u_vo);
@@ -254,7 +250,6 @@ public class Expense_main extends JPanel{
 		
 		//开始和结束时间的输入框中加监听，自动显示规定时间内的支出项
 		start.getDocument().addDocumentListener(new DocumentListener() {
-			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (start.getText().length() < 10) {
@@ -282,7 +277,6 @@ public class Expense_main extends JPanel{
 				}
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (start.getText().length() < 10) {
@@ -304,7 +298,6 @@ public class Expense_main extends JPanel{
 				}
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				arr = em.inquiryAll();
@@ -314,7 +307,6 @@ public class Expense_main extends JPanel{
 
 		end.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (end.getText().length() != 10)
@@ -341,7 +333,6 @@ public class Expense_main extends JPanel{
 				}
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (end.getText().length() != 10)
@@ -367,7 +358,6 @@ public class Expense_main extends JPanel{
 				}
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				arr = em.inquiryAll();

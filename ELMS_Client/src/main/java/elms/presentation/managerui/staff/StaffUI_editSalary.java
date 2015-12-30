@@ -72,7 +72,6 @@ public class StaffUI_editSalary extends JFrame {
 
 		save.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (!cf.checkDouble(job.getESalary())) {
@@ -102,7 +101,6 @@ public class StaffUI_editSalary extends JFrame {
 		
 		back.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				StaffUI_editSalary.this.dispose();
@@ -114,23 +112,23 @@ public class StaffUI_editSalary extends JFrame {
 	private boolean rightFormat() {
 		boolean right = false;
 		double rate = Double.parseDouble(job.getRate());
-		switch (job.getSalaryStrategy()) {
-		case "提成":
+		String s = job.getSalaryStrategy();
+		if(s.equals("提成")){
 			if (rate < 0 || rate > 1) {
 				JOptionPane.showMessageDialog(null, "请输入0-1范围内的提成比例！");
 			}else{
 				right = true;
 			}
-			break;
-		case "计次":
+		}else if(s.equals("计次")){
 			if (rate < 0 || rate > 600) {
 				JOptionPane.showMessageDialog(null, "请输入0-600范围内的每次单价!");
 			}else{
 				right = true;
 			}
-			break;
-		default: right = true;
+		}else{
+			right = true;
 		}
+		
 		return right;
 	}
 	

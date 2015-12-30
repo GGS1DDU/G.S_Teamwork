@@ -103,7 +103,6 @@ public class InAndEx_form extends JPanel {
 		dateFormat = "yyyy-MM-dd hh:mm:ss";
 		start.getDocument().addDocumentListener(new DocumentListener(){
 
-			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(!(check.checkData(dateFormat, start.getText())||check.checkData(dateFormat, end.getText()))){
@@ -124,7 +123,6 @@ public class InAndEx_form extends JPanel {
 				
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 		
@@ -144,7 +142,6 @@ public class InAndEx_form extends JPanel {
 				profit.setText(""+(inAmount-exAmount));
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				
@@ -154,7 +151,6 @@ public class InAndEx_form extends JPanel {
 		
 		end.getDocument().addDocumentListener(new DocumentListener(){
 
-			@Override
 			public void changedUpdate(DocumentEvent e) {
 				// TODO 自动生成的方法存根
 				getShowList(start.getText(),end.getText());
@@ -167,7 +163,6 @@ public class InAndEx_form extends JPanel {
 				profit.setText(""+(inAmount-exAmount));
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO 自动生成的方法存根
 				getShowList(start.getText(),end.getText());
@@ -180,7 +175,6 @@ public class InAndEx_form extends JPanel {
 				profit.setText(""+(inAmount-exAmount));
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent e) {
 				// TODO 自动生成的方法存根
 				

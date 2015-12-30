@@ -2,6 +2,7 @@ package elms.presentation.mainui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -33,6 +34,10 @@ public class FindOrder extends JFrame {
 	private JLabel tips;
 	private JTextField orderID;
 	private JButton inquiry;
+	private MyButton close;
+	private MyButton mini;
+//	static Rectangle r  = new Rectangle(screenWidth / 3, screenHeight / 3-50, screenWidth / 3,
+//			screenHeight / 3+100);
 	
 	private Font f = new Font("微软雅黑",1,15);
 	
@@ -42,11 +47,14 @@ public class FindOrder extends JFrame {
 	}
 
 	public FindOrder() {
+	
 //		super("star.jpg");
 		setTitle("查询物流信息");
 		setBounds(screenWidth / 3, screenHeight / 3-50, screenWidth / 3,
 				screenHeight / 3+100);
 		setLayout(null);
+		
+		setUndecorated(true);
 
 		contentPane = new MyPanel("star.jpg");
 		add(contentPane);
@@ -83,18 +91,15 @@ public class FindOrder extends JFrame {
 		
 		tips.setText("注意：快递单号为十位数字");
 		tips.setFont(f);
-//		tips.setOpaque(true);
 		tips.setForeground(Color.WHITE);
 		
 		inquiry = new MyButton("查询",15);
-//		inquiry.setFont(f);
 		inquiry.setBounds(this.getWidth()/3+30,tips.getY()+tips.getHeight()+10,80,30);
 		contentPane.add(inquiry);
 		
 		
 		inquiry.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				String ID=orderID.getText();
@@ -131,6 +136,38 @@ public class FindOrder extends JFrame {
 			}
 			
 
+		});
+		
+		close = new MyButton();
+		close.setBounds(this.getWidth()-20,10,15,15);
+		close.setIcon("close_1.png");
+		close.setRolloverIcon("close_2.png");
+	
+		contentPane.add(close);
+		
+		close.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				FindOrder.this.dispose();
+			}
+			
+		});
+		
+		mini = new MyButton();
+		mini.setBounds(close.getX()-30,10,15,15);
+		mini.setIcon("mini_1.png");
+		mini.setRolloverIcon("mini_2.png");
+		
+		contentPane.add(mini);
+		
+		mini.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				FindOrder.this.setExtendedState(JFrame.ICONIFIED);
+			}
+			
 		});
 	}
 }

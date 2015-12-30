@@ -61,7 +61,6 @@ public class BankAccount_find extends JFrame{
 		
 			ensure.addActionListener(new ActionListener(){
 				
-				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					String id = id_f.getText();
 					BankAccountVO b_vo = null;
@@ -94,7 +93,6 @@ public class BankAccount_find extends JFrame{
 		back.setBounds(this.getWidth()*3/5+50,3*this.getHeight()/5,70,20);
 		back.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				BankAccount_find.this.dispose();

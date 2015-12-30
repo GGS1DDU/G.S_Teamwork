@@ -143,21 +143,20 @@ public class BankAccount_main extends JPanel {
 					arr = bam.getAllAccount();
 				} catch (Exception e) {
 					// TODO 自动生成的 catch 块
-					System.out.println("there is no account in the file!");
+					
 					e.printStackTrace();
-					System.out.println(arr == null);
-					switch (bank) {
-					case "全部":
+				
+					
+					if(bank.equals("全部")){
 						arr = bam.getAllAccount();
 						accountList.removeAllData();
 						accountList.addAllData(arr);
-						break;
-					default: {
+					}else {
 						arr = bam.inquiryAccountByBank(bank);
 						accountList.removeAllData();
 						accountList.addAllData(arr);
 					}
-					}
+					
 				}
 			}
 
@@ -172,7 +171,6 @@ public class BankAccount_main extends JPanel {
 		init.setSize(d);
 		init.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				init.setForeground(Color.gray);
@@ -274,7 +272,6 @@ public class BankAccount_main extends JPanel {
 
 		delete.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				accountList.removeData();// 与数据层的交互委托给bankaccountlist去干
@@ -284,7 +281,6 @@ public class BankAccount_main extends JPanel {
 
 		trans.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame transfer = new BankAccount_transfer(accountList, uservo);
@@ -295,7 +291,6 @@ public class BankAccount_main extends JPanel {
 
 		find.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame find = new BankAccount_find(accountList, uservo);

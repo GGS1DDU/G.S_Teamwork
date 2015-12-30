@@ -103,7 +103,6 @@ public class BankAccount_edit extends JFrame{
 		save_b.setBounds(buttonPanel.getWidth()/7,buttonPanel.getHeight()/3,buttonPanel.getWidth()/7,buttonPanel.getHeight()/6);
 		save_b.addActionListener(new ActionListener(){
 			
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				try {
@@ -137,7 +136,6 @@ public class BankAccount_edit extends JFrame{
 		delete_b.setBounds(3*buttonPanel.getWidth()/7,buttonPanel.getHeight()/3,buttonPanel.getWidth()/7,buttonPanel.getHeight()/6);
 		delete_b.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				try {
@@ -160,7 +158,6 @@ public class BankAccount_edit extends JFrame{
 		back_b.setBounds(5*buttonPanel.getWidth()/7,buttonPanel.getHeight()/3,buttonPanel.getWidth()/7,buttonPanel.getHeight()/6);
 		back_b.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				BankAccount_edit.this.dispose();

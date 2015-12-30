@@ -121,7 +121,6 @@ public class FinanceUI_main extends JFrame {
 
 		inAndEx_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				contentPane.removeAll();
@@ -147,7 +146,6 @@ public class FinanceUI_main extends JFrame {
 
 		bank_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				bankAccount = new BankAccount_main(new Dimension(d.width,d.height+time.getHeight()), vo);
@@ -184,7 +182,6 @@ public class FinanceUI_main extends JFrame {
 
 		init_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				ArrayList<AccountVO> test = new ArrayList<AccountVO>();
@@ -221,7 +218,6 @@ public class FinanceUI_main extends JFrame {
 
 		exit_b.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame jf = new LoginUI();

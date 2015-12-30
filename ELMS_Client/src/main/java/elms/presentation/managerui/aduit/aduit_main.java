@@ -91,13 +91,23 @@ public class aduit_main extends JPanel {
 		setOpaque(false);
 		setVisible(true);
 		setSize(d.width,d.height);
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException | InstantiationException
-				| IllegalAccessException | UnsupportedLookAndFeelException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (ClassNotFoundException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			} catch (InstantiationException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			} catch (IllegalAccessException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			} catch (UnsupportedLookAndFeelException e2) {
+				// TODO 自动生成的 catch 块
+				e2.printStackTrace();
+			}
+		
 
 		String[] title_name = { "ID", "单据类型", "制表人" };
 		model = new TableModel(title_name);

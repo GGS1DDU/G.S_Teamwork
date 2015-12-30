@@ -29,6 +29,11 @@ public class MyFrame extends JFrame{
 		contentPane.setBounds(0, 0, this.getWidth(), this.getHeight());
 		addCloseOperation();
 	}
+	
+	public MyFrame(String background,Rectangle rec){
+		this(background);
+		r = rec;
+	}
 	private void addCloseOperation(){
 		close = new MyButton();
 		close.setBounds(this.getWidth()-30, 10, 20,20);
@@ -44,7 +49,6 @@ public class MyFrame extends JFrame{
 		
 		close.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				System.exit(0);
@@ -54,7 +58,6 @@ public class MyFrame extends JFrame{
 		
 		mini.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				MyFrame.this.setExtendedState(JFrame.ICONIFIED);

@@ -108,7 +108,6 @@ public class StaffUI_edit extends StaffInfoFrame {
 
 		save.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (StaffUI_edit.this.checkInput()) {
@@ -142,7 +141,6 @@ public class StaffUI_edit extends StaffInfoFrame {
 		
 		delete.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				ResultMessage rm = sm.deleteStaff(getVO());
@@ -158,7 +156,6 @@ public class StaffUI_edit extends StaffInfoFrame {
 		
 		back.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				StaffUI_edit.this.dispose();

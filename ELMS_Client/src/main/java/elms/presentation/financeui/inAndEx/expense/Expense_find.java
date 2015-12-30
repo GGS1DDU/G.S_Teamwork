@@ -52,7 +52,6 @@ public class Expense_find extends JFrame {
 
 		ensure.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String id = id_f.getText();
 				FExpenseVO e_vo = null;
@@ -85,7 +84,6 @@ public class Expense_find extends JFrame {
 				70, 20);
 		back.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				Expense_find.this.dispose();

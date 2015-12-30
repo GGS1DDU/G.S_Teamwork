@@ -47,7 +47,6 @@ public class MainUI extends MyFrame{
 		
 		sign.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame login = new LoginUI();
@@ -59,7 +58,6 @@ public class MainUI extends MyFrame{
 		
 		inquiry.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame find = new FindOrder();

@@ -77,7 +77,6 @@ public class StaffJobPanel extends JPanel{
 		
 		salaryStrategy.addActionListener(new ActionListener(){
 			
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String type = salaryStrategy.getSelectedItem().toString();

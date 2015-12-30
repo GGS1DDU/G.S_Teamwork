@@ -94,20 +94,17 @@ public class TableModel extends AbstractTableModel {
 		return title_name[col];
 	}
 
-	@Override
 	public int getColumnCount() {
 		// TODO 自动生成的方法存�?
 		return title_name.length;
 
 	}
 
-	@Override
 	public int getRowCount() {
 		// TODO 自动生成的方法存�?
 		return content.size();
 	}
 
-	@Override
 	public Object getValueAt(int row, int col) {
 		// TODO 自动生成的方法存�?
 		return ((Vector) content.get(row)).get(col);

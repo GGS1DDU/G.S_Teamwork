@@ -92,7 +92,6 @@ public class InAndEx_findTime extends JFrame {
 
 		ok.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 
@@ -123,7 +122,6 @@ public class InAndEx_findTime extends JFrame {
 
 		cancel.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				InAndEx_findTime.this.dispose();

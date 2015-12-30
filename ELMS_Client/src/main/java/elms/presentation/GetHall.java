@@ -4,10 +4,12 @@ public class GetHall {
 
 	public String getHallId(String hall){
 		String result = null;
-		switch(hall){
-		case "南京市仙林营业厅":result = "01";break;
-		case "南京市鼓楼营业厅": result = "02";break;
+		if(hall.equals("南京市仙林营业厅")){
+			result = "01";
+		}else if(hall.equals("南京市鼓楼营业厅")){
+			result = "02";
 		}
+		
 		return result;
 	}
 }

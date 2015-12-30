@@ -108,7 +108,6 @@ public class Income_main extends JPanel {
 
 		hall.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String sHall = hall.getSelectedItem().toString();
@@ -152,7 +151,6 @@ public class Income_main extends JPanel {
 	private void addActionListener() {
 		add.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 
@@ -205,7 +203,6 @@ public class Income_main extends JPanel {
 		// 删除的和数据层的交互在tablemodel里
 		delete.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				inList.removeData();
@@ -214,7 +211,6 @@ public class Income_main extends JPanel {
 		});
 		edit.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				// JFrame find_time = new
@@ -248,7 +244,6 @@ public class Income_main extends JPanel {
 		});
 		find.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 
@@ -343,7 +338,6 @@ public class Income_main extends JPanel {
 
 		// 开始和结束时间的输入框中加监听，自动显示规定时间内的支出项
 		start.getDocument().addDocumentListener(new DocumentListener() {
-			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (start.getText().length() < 10) {
@@ -371,7 +365,6 @@ public class Income_main extends JPanel {
 				}
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (start.getText().length() < 10) {
@@ -393,7 +386,6 @@ public class Income_main extends JPanel {
 				}
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				arr = im.inquiryAll();
@@ -403,7 +395,6 @@ public class Income_main extends JPanel {
 
 		end.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
 			public void changedUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (end.getText().length() != 10)
@@ -430,7 +421,6 @@ public class Income_main extends JPanel {
 				}
 			}
 
-			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				if (end.getText().length() != 10)
@@ -456,7 +446,6 @@ public class Income_main extends JPanel {
 				}
 			}
 
-			@Override
 			public void removeUpdate(DocumentEvent arg0) {
 				// TODO 自动生成的方法存根
 				arr = im.inquiryAll();

@@ -4,31 +4,25 @@ public class GetIdentifier {
 
 	public String getIdentifier(String job){
 		String identify = null;
-		switch (job) {
-		case "全部":
-			break;
-		case "快递员":
+		
+		if(job.equals("全部")){
+			
+		}else if(job.equals("快递员")){
 			identify = "kd";
-			break;
-		case "中转中心仓库管理员":
+		}else if(job.equals("中转中心仓库管理员")){
 			identify = "zc";
-			break;
-		case "中转中心业务员":
+		}else if(job.equals("中转中心业务员")){
 			identify = "zy";
-			break;
-		case "营业厅业务员":
+		}else if(job.equals("营业厅业务员")){
 			identify = "yy";
-			break;
-		case "财务人员":
+		}else if(job.equals("财务人员")){
 			identify = "cw";
-			break;
-		case "总经理":
+		}else if(job.equals("总经理")){
 			identify = "zj";
-			break;
-		case "系统管理员":
+		}else if(job.equals("系统管理员")){
 			identify = "xt";
-			break;
 		}
+		
 		return identify;
 	}
 }

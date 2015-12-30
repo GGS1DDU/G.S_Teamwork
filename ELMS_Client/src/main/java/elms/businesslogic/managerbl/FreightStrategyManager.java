@@ -128,12 +128,16 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 	
 	public int getSpecialNum(String city){
 		int num;
-		switch(city){
-		case "南京": num = 1;break;
-		case "上海": num = 2; break;
-		case "广州": num = 3; break;
-		case "北京": num = 4; break;
-		default: num = -1;
+		if(city.equals("南京")){
+			num = 1;
+		}else if(city.equals("上海")){
+			num = 2;
+		}else if(city.equals("广州")){
+			num = 3;
+		}else if(city.equals("北京")){
+			num = 4;
+		}else{
+			num = -1;
 		}
 		return num;
 	}
@@ -289,68 +293,57 @@ public class FreightStrategyManager implements FreightStrategyBlService,DataFact
 //		return null;
 //	}
 
-	@Override
 	public StaffDataService getStaffData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
 
-	@Override
 	public ArrivalListDataService getArrivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public SendingListDataService getSendingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public IncomeListDataService getIncomeListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public RecivalListDataService getRecivalListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public LoadingListDataService getLoadingListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public TransferListDataService getTransferListData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public LoadingListZZDataService getLoadingListZZData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public DriverDataService getDriverData() {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
 	public CarDataService getCarData() {
 		// TODO 自动生成的方法存根
 		return null;

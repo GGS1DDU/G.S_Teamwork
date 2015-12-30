@@ -96,7 +96,6 @@ public class BankAccount_transfer extends JFrame {
 
 		back.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				BankAccount_transfer.this.dispose();
@@ -105,7 +104,6 @@ public class BankAccount_transfer extends JFrame {
 		});
 		ok.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 

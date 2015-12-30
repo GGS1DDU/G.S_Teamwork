@@ -111,7 +111,6 @@ public class StaffUI_main extends JPanel {
 
 		job.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				staffList.removeAllData();
@@ -131,7 +130,6 @@ public class StaffUI_main extends JPanel {
 		init.setForeground(Color.BLACK);
 		init.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				init.setSize(bd.width, changedHeight);
@@ -192,7 +190,6 @@ public class StaffUI_main extends JPanel {
 
 		editSalary.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame editS = new StaffUI_editSalary(staffList);
@@ -203,7 +200,6 @@ public class StaffUI_main extends JPanel {
 
 		add.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				JFrame add = new StaffUI_add(staffList);
@@ -214,7 +210,6 @@ public class StaffUI_main extends JPanel {
 
 		delete.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				staffList.removeData();
@@ -224,7 +219,6 @@ public class StaffUI_main extends JPanel {
 
 		edit.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				String id = staffList.getSelectedID();
@@ -247,7 +241,6 @@ public class StaffUI_main extends JPanel {
 
 		find.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				JFrame findframe = new StaffUI_find(staffList);
@@ -265,7 +258,6 @@ public class StaffUI_main extends JPanel {
 
 		finishInit.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 
