@@ -82,7 +82,7 @@ public class InitAllButtons extends JPanel {
 					
 					if (!initall.getInitState(1) && !initall.getInitState(2)
 							&& !initall.getInitState(3)
-							&& !initall.getInitState(4)) {
+							&& !initall.getInitState(4)&&!initall.getInitState(5)) {
 						int a = (int) (Math.random() * 1000);
 						String s = a + "";
 						String obj = JOptionPane.showInputDialog("请输入 验证码  "
@@ -90,7 +90,7 @@ public class InitAllButtons extends JPanel {
 						if (obj.equals(s)) {
 							try {
 								String time = "" + new Date().toLocaleString();
-								time = time.substring(0, 4);
+								time = time.substring(0, 7);
 								time = "Version-" + time;
 								initall.init(time);
 								AccountVO vo1 = new AccountVO(time, vo

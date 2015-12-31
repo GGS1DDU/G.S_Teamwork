@@ -21,6 +21,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
    static	boolean initStorage;
    static	boolean initAccount;
    static	boolean initCar;
+   static  boolean initDriver;
     public InitAllData() throws RemoteException {
 		super();
 		// TODO 自动生成的构造函数存根
@@ -54,7 +55,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		initCopy(time,"Car.ser");
 		initCopy(time,"BankAccount.ser");
 		initCopy(time,"Staff.ser");
-		
+		initCopy(time,"Driver.ser");
 //		Path p3=Paths.get(time,time+" Car.ser");
 //		Path p4=Paths.get("Car.ser");
 //		Files.copy(p4,p3,StandardCopyOption.REPLACE_EXISTING);		
@@ -63,7 +64,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 	}
 	
 	private void initCopy(String time,String fileName) throws IOException{
-		Path p1=Paths.get(time,time+" "+fileName);
+		Path p1=Paths.get("Historical accounts",time+" "+fileName);
 		Path p2=Paths.get(fileName);
 		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
 	}
@@ -73,6 +74,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		copyCopy(time,"Car.ser");
 		copyCopy(time,"BankAccount.ser");
 		copyCopy(time,"Staff.ser");
+		copyCopy(time,"Driver.ser");
 //		Path p1=Paths.get(time,"copy Storage.ser");
 //		Path p2=Paths.get("Storage.ser");
 //		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
@@ -82,7 +84,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 	}
 	
 	private void copyCopy(String time,String fileName) throws IOException{
-		Path p1=Paths.get(time,"copy "+fileName);
+		Path p1=Paths.get("Historical accounts","copy "+fileName);
 		Path p2=Paths.get(fileName);
 		Files.copy(p2,p1,StandardCopyOption.REPLACE_EXISTING);
 	}
@@ -93,6 +95,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		recoveryCopy(time,"Car.ser");
 		recoveryCopy(time,"BankAccount.ser");
 		recoveryCopy(time,"Staff.ser");
+		recoveryCopy(time,"Driver.ser");
 //		Path p1=Paths.get(time,"copy Storage.ser");
 //		Path p2=Paths.get("Storage.ser");
 //		Files.copy(p1,p2,StandardCopyOption.REPLACE_EXISTING);
@@ -103,7 +106,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 	}
 	
 	private void recoveryCopy(String time,String fileName) throws IOException{
-		Path p1=Paths.get(time,"copy "+fileName);
+		Path p1=Paths.get("Historical accounts","copy "+fileName);
 		Path p2=Paths.get(fileName);
 		Files.copy(p1,p2,StandardCopyOption.REPLACE_EXISTING);
 		
@@ -116,6 +119,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		case 2: return initCar;
 		case 3: return initStorage;
 		case 4: return initAccount;
+		case 5: return initDriver;
 		default : return false;
 		}//  按照不同界面上返回的数值类型  来确定需要的值   然后确定是否进行初始化
 	}
@@ -137,6 +141,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		initMember=true;
 		initStorage=true;
 		initAccount=true;	
+		initDriver=true;
 	}
 	public void setInitState(int a) throws RemoteException {
 		switch(a){
@@ -144,6 +149,7 @@ public class InitAllData extends UnicastRemoteObject implements InitAllDataServi
 		case 2:{initCar=false;break;}
 		case 3:{initStorage=false;break;}
 		case 4:{initAccount=false;break;}
+		case 5:{initDriver=false;break;}
 		default :{}
 		}
 	}
