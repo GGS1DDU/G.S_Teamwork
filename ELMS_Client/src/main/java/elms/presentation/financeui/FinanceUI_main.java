@@ -45,10 +45,10 @@ public class FinanceUI_main extends JFrame {
 	int sButtonSelectedH = 30;
 	int bButtonH = 60;
 
-	private JButton bank_b;
-	private JButton inAndEx_b;
-	private JButton init_b;
-	private JButton exit_b; // 注销登陆
+	private MyButton bank_b;
+	private MyButton inAndEx_b;
+	private MyButton init_b;
+	private MyButton exit_b; // 注销登陆
 	private JPanel buttonPanel;// 按钮panel
 	private JPanel contentPane;// 图片
 	private JPanel inAndEx;// 收入支出面板
@@ -131,6 +131,7 @@ public class FinanceUI_main extends JFrame {
 				setDefaultBSize();
 				inAndEx_b.setSize(buttonWidth, bButtonH);
 				inAndEx_b.setForeground(Color.gray);
+				inAndEx_b.setFont(20);
 				
 				setDefaultBLocation();
 				
@@ -156,6 +157,7 @@ public class FinanceUI_main extends JFrame {
 				buttonPanel.removeAll();
 				setDefaultBSize();
 				bank_b.setSize(buttonWidth,bButtonH);
+				bank_b.setFont(20);
 			
 				setDefaultBLocation();
 				
@@ -194,6 +196,7 @@ public class FinanceUI_main extends JFrame {
 				buttonPanel.removeAll();
 				setDefaultBSize();
 				init_b.setSize(buttonWidth, bButtonH);
+				init_b.setFont(20);
 				setDefaultBLocation();
 				
 //				init_b.setContentAreaFilled(true);
@@ -236,6 +239,11 @@ public class FinanceUI_main extends JFrame {
 		bank_b.setSize(buttonSize);
 		init_b.setSize(buttonSize);
 		exit_b.setSize(buttonSize);
+		
+		inAndEx_b.setFont(15);
+		bank_b.setFont(15);
+		init_b.setFont(15);
+		exit_b.setFont(15);
 		
 		inAndEx_b.setForeground(Color.black);
 		bank_b.setForeground(Color.BLACK);

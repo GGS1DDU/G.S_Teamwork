@@ -1,0 +1,34 @@
+package elms.presentation.mainui;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import elms.presentation.uihelper.MyButton;
+import elms.presentation.uihelper.MyFrame;
+import elms.presentation.uihelper.MyPanel;
+
+public class AboutUs extends MyFrame{
+	
+	private JButton back;
+	private MyButton set;
+	
+	public static void main(String[] args){
+		MyFrame jf = new AboutUs();
+		jf.setVisible(true);
+	}
+
+	public AboutUs(){
+		
+		super("star.jpg");
+		
+		contentPane.remove(close);
+		contentPane.remove(mini);
+		
+		set = new MyButton("设置服务器地址",15);
+		set.setBounds(this.getWidth()/4,this.getHeight()-100, 80, 30);
+		contentPane.add(set);
+		
+	}
+	
+}

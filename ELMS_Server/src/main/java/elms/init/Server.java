@@ -7,7 +7,7 @@ public class Server {
 	public static void main(String[] args) {
 		
 		
-		RMI_ip.setIP();
+//		RMI_ip.setIP();
 		
         try {
            Logger.info("Try start server...");

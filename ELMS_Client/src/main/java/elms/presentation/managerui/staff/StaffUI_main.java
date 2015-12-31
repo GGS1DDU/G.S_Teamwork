@@ -56,7 +56,7 @@ public class StaffUI_main extends JPanel {
 	private JButton delete;
 	private JButton edit;
 	private JButton find;
-	private JButton init;
+	private MyButton init;
 	private JButton editSalary;
 	private JButton finishInit;
 
@@ -124,16 +124,18 @@ public class StaffUI_main extends JPanel {
 		// addActionListener();
 	}
 
-	public JButton getInitButton(final Dimension bd, final int changedHeight) {
+	public MyButton getInitButton(final Dimension bd, final int changedHeight) {
 		init = new MyButton("初始化");
 		init.setSize(bd);
 		init.setForeground(Color.BLACK);
+		init.setFont(12);
 		init.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				init.setSize(bd.width, changedHeight);
 				init.setForeground(Color.gray);
+				init.setFont(14);
 
 				int a = (int) (Math.random() * 1000);
 				String s = a + "";

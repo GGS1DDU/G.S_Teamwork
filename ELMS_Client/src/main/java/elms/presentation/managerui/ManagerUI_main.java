@@ -46,12 +46,12 @@ public class ManagerUI_main extends JFrame {
 	private JPanel form;
 	private JPanel audit;
 
-	private JButton freight_b;
-	private JButton member_b;
-	private JButton log_b;
-	private JButton approval_b;
-	private JButton form_b;
-	private JButton staffInit;
+	private MyButton freight_b;
+	private MyButton member_b;
+	private MyButton log_b;
+	private MyButton approval_b;
+	private MyButton form_b;
+	private MyButton staffInit;
 
 	private JPanel time;
 
@@ -132,6 +132,7 @@ public class ManagerUI_main extends JFrame {
 
 				freight_b.setSize(buttonWidth, bButtonH);
 				freight_b.setForeground(Color.gray);
+				freight_b.setFont(20);
 				setDefaultBLocation();
 
 				contentPane.add(buttonPanel);
@@ -153,6 +154,7 @@ public class ManagerUI_main extends JFrame {
 
 				member_b.setSize(buttonWidth, bButtonH);
 				member_b.setForeground(Color.gray);
+				member_b.setFont(20);
 
 				Dimension bd = new Dimension(buttonWidth, sButtonH);
 				staffInit = staff.getInitButton(bd, sButtonSelectedH);
@@ -188,7 +190,8 @@ public class ManagerUI_main extends JFrame {
 				setDefaultBSize();
 				form_b.setSize(buttonWidth, bButtonH);
 				form_b.setForeground(Color.gray);
-
+				form_b.setFont(20);
+				
 				buttonPanel.removeAll();
 				setDefaultBLocation();
 
@@ -211,7 +214,8 @@ public class ManagerUI_main extends JFrame {
 				setDefaultBSize();
 				approval_b.setSize(buttonWidth, bButtonH);
 				approval_b.setForeground(Color.gray);
-
+				approval_b.setFont(20);
+				
 				buttonPanel.removeAll();
 				setDefaultBLocation();
 
@@ -233,6 +237,7 @@ public class ManagerUI_main extends JFrame {
 				setDefaultBSize();
 				log_b.setSize(buttonWidth, bButtonH);
 				log_b.setForeground(Color.gray);
+				log_b.setFont(20);
 
 				buttonPanel.removeAll();
 				setDefaultBLocation();
@@ -259,6 +264,12 @@ public class ManagerUI_main extends JFrame {
 		approval_b.setSize(bd);
 		form_b.setSize(bd);
 		log_b.setSize(bd);
+		
+		member_b.setFont(15);
+		freight_b.setFont(15);
+		approval_b.setFont(15);
+		form_b.setFont(15);
+		log_b.setFont(15);
 
 		member_b.setForeground(Color.black);
 		freight_b.setForeground(Color.black);

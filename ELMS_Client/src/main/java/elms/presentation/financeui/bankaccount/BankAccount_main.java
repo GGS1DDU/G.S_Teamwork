@@ -57,7 +57,7 @@ public class BankAccount_main extends JPanel {
 	private BankAccountList accountList;// 放在panel中的table
 	private UserVO uservo;
 
-	private JButton init;
+	private MyButton init;
 	private JButton finishInit;
 
 	static ArrayList<BankAccountVO> arr;// 全部的账户vo
@@ -169,6 +169,7 @@ public class BankAccount_main extends JPanel {
 	public JButton addInitButton(final Dimension d, final int height) {
 		init = new MyButton("初始化");
 		init.setSize(d);
+		init.setFont(12);
 		init.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -176,6 +177,7 @@ public class BankAccount_main extends JPanel {
 				init.setForeground(Color.gray);
 				init.setSize(d.width, height);
 				int a = (int) (Math.random() * 1000);
+				init.setFont(14);
 				
 				
 				String s = a + "";

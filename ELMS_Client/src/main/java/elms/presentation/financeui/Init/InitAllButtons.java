@@ -23,10 +23,10 @@ import elms.vo.AccountVO;
 import elms.vo.UserVO;
 
 public class InitAllButtons extends JPanel {
-	private JButton init;
-	private JButton copy;
+	private MyButton init;
+	private MyButton copy;
 //	private JButton browser;
-	private JButton recovery;
+	private MyButton recovery;
 
 	private int buttonWidth;
 	private int buttonHeight;
@@ -54,15 +54,6 @@ public class InitAllButtons extends JPanel {
 		add(copy);
 //		add(browser);
 		add(recovery);
-		// init.setBounds(this.getWidth() / 2 - 150, 35, 100, 30);
-		// copy.setBounds(this.getWidth() / 2 - 150, 105, 100, 30);
-		// browser.setBounds(this.getWidth() / 2 + 50, 35, 100, 30);
-		// recovery.setBounds(this.getWidth() / 2 + 50, 105, 100, 30);
-
-//		browser.setBounds(0, 0, d.width, buttonHeight);
-//		init.setBounds(0, buttonHeight, d.width, buttonHeight);
-//		copy.setBounds(0, buttonHeight * 2, d.width, buttonHeight);
-//		recovery.setBounds(0, buttonHeight * 3, d.width, buttonHeight);
 		
 		setDefaultBSize();
 		setDefaultBLocation();
@@ -76,6 +67,7 @@ public class InitAllButtons extends JPanel {
 					
 					init.setSize(d.width, changedHeight);
 					init.setForeground(Color.GRAY);
+					init.setFont(14);
 					
 					setDefaultBLocation();
 					setPanelSize();
@@ -139,6 +131,7 @@ public class InitAllButtons extends JPanel {
 				
 				copy.setSize(d.width, changedHeight);
 				copy.setForeground(Color.GRAY);
+				copy.setFont(14);
 				
 				setDefaultBLocation();
 				setPanelSize();
@@ -189,6 +182,7 @@ public class InitAllButtons extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				setDefaultBSize();
+				recovery.setFont(14);
 				
 				recovery.setSize(d.width, changedHeight);
 				recovery.setForeground(Color.GRAY);
@@ -226,6 +220,10 @@ public class InitAllButtons extends JPanel {
 		init.setForeground(Color.black);
 		copy.setForeground(Color.BLACK);
 		recovery.setForeground(Color.BLACK);
+		
+		init.setFont(12);
+		copy.setFont(12);
+		recovery.setFont(12);
 //		exit_b.setForeground(Color.BLACK);
 		
 //		inAndEx_b.setContentAreaFilled(false);

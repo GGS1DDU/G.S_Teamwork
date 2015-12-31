@@ -1,18 +1,25 @@
 package elms.presentation.mainui;
 
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
+
+
 import javax.swing.JFrame;
 
+
+import javax.swing.JPanel;
 
 import elms.presentation.uihelper.MyButton;
 import elms.presentation.uihelper.MyFrame;
 
 
 public class MainUI extends MyFrame{
+	
+	private JPanel aboutUs;
 	
 	public static void main(String[] args){
 		MyFrame jf = new MainUI();
@@ -59,6 +66,15 @@ public class MainUI extends MyFrame{
 				// TODO 自动生成的方法存根
 				JFrame find = new FindOrder();
 				find.setVisible(true);
+			}
+			
+		});
+		
+		about.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				
 			}
 			
 		});

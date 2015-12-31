@@ -31,10 +31,7 @@
 <fullyQualifiedTypeName name="elms.dataservice.financedataservice.InitAllDataService"/>
 <fullyQualifiedTypeName name="elms.data.financedata.InitAllData"/>
 <fullyQualifiedTypeName name="elms.presentation.financeui.Init.Init"/>
-<fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JMenu"/>
-<fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="elms.dataservice.DataFactory"/>
 <fullyQualifiedTypeName name="elms.businesslogic_service.financeblservice.InitAllBlService"/>
@@ -49,4 +46,13 @@
 <fullyQualifiedTypeName name="java.nio.file.StandardCopyOption"/>
 <fullyQualifiedTypeName name="elms.businesslogic.financebl.InitAll"/>
 <fullyQualifiedTypeName name="elms.presentation.storageui.Storage_main"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="elms.presentation.uihelper.MyPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="elms.presentation.uihelper.MyFrame"/>
+<fullyQualifiedTypeName name="elms.presentation.uihelper.MyButton"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="elms.presentation.uihelper.MyLabel"/>
 </qualifiedTypeNameHistroy>

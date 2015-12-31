@@ -1,0 +1,24 @@
+package elms.presentation.mainui;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import elms.presentation.uihelper.MyPanel;
+
+public class AboutUs extends JFrame{
+	
+	private JPanel contentPane;
+	private JButton back;
+	private JButton set;
+
+	public AboutUs(){
+		
+		contentPane = new MyPanel("star.jpg");
+		contentPane.setLayout(null);
+		add(contentPane);
+		
+		
+	}
+	
+}
