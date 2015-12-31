@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.ArrivalListBL;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.ArrivalListVO;
 import elms.vo.UserVO;
 
@@ -32,10 +33,10 @@ public class InvoiceUI_ArrivalList extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	
-	public static void main(String args[]){
-		UserVO vo=new UserVO();
-		  new InvoiceUI_ArrivalList(vo);
-	  }
+//	public static void main(String args[]){
+//		UserVO vo=new UserVO("","","","");  
+//		new InvoiceUI_ArrivalList(vo);
+//	  }
 	  
 	public InvoiceUI_ArrivalList(final UserVO vo){
 		setLayout(null);
@@ -44,9 +45,12 @@ public class InvoiceUI_ArrivalList extends JFrame{
 		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,3*screenHeight/8+40);
 		setVisible(true);
 		
-		final JPanel newin=new JPanel();
+		MyPanel p=new MyPanel("bg3.png");
+		add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
+			
+		final JPanel newin=new JPanel();newin.setOpaque(false);
 		newin.setLayout(null);
-		add(newin);
+		p.add(newin);
 		newin.setBounds(0, 0, this.getWidth(), 7*this.getHeight()/10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
@@ -141,7 +145,7 @@ public class InvoiceUI_ArrivalList extends JFrame{
 		buttonpanel.add(cancel);
 		save.setBounds(this.getWidth()/2-140,20,100,30);
 		cancel.setBounds(this.getWidth()/2+30, 20, 100, 30);
-		add(buttonpanel);
+		p.add(buttonpanel);
 		buttonpanel.setBounds(0, 7*this.getHeight()/10,this.getWidth(),70);
 		
 		save.addActionListener(new ActionListener(){
@@ -152,9 +156,8 @@ public class InvoiceUI_ArrivalList extends JFrame{
 					if(!datef.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tnf.getText().length()!=21||jcb.getSelectedItem()==null)				
 						JOptionPane.showMessageDialog(null, "营业厅到达单格式错误");				
 					else{				
-
-						ArrivalListVO vo=new ArrivalListVO(inf.getText(),tnf.getText(),datef.getText(),jcb.getSelectedItem().toString(),dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
-
+						ArrivalListVO vo=new ArrivalListVO(inf.getText(),tnf.getText(),datef.getText(),jcb.getSelectedItem().toString(),
+								dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");		
 						JOptionPane.showMessageDialog(newin, "保存至营业厅到达单");
 						arrivallistdata.record(vo);
 						InvoiceUI_ArrivalList.this.dispose();

@@ -24,6 +24,9 @@ public interface IncomeListDataService extends Remote{
 	public ArrayList<IncomeListPO> findall() throws RemoteException,IOException;
 	
 	
+	public ArrayList<IncomeListPO> findbymaker(String maker) throws RemoteException, IOException;
+	
+	
 	public void init() throws RemoteException;
 	
 	

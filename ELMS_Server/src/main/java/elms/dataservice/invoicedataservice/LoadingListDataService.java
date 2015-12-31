@@ -24,6 +24,9 @@ public interface LoadingListDataService extends Remote{
 	public ArrayList<LoadingListPO> findall() throws RemoteException,IOException;
 	
 	
+	public ArrayList<LoadingListPO> findbymaker(String maker) throws RemoteException, IOException;
+	
+	
 	public void init() throws RemoteException;
 	
 	

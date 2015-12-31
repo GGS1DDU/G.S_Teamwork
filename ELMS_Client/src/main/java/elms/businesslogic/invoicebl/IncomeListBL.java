@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import elms.businesslogic.HallInfo;
+import elms.businesslogic.financebl.inandex.IncomeManager;
 import elms.businesslogic_service.invoiceblservice.IncomeListBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
@@ -20,6 +21,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
+//import elms.dataservice.logdataservice.LogDataService;
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -66,27 +68,28 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 	}
 	
 	//计算每天各个营业厅的收入总额,调用finance的收入项中的addHallInfo
-    public void addByCenter(IncomeListVO vo,String date) throws IOException{
+	//因为一个单据生成者只会提交本营业厅的，所以实际是按照生成者去find
+    public ArrayList<String> addByCenter(IncomeListVO vo,String date,String id) throws IOException{
+    	ArrayList<String> res=new ArrayList<String>();
     	ArrayList<IncomeListPO> all=incomelistdata.findall();
-    	ArrayList<HallInfo> hallinfo=new ArrayList<HallInfo>();
-    	double xlincome=0.0;
-    	double glincome=0.0;
+
+    	double income=0.0;
+    	String hall="";
     	for(int i=1;i<all.size();i++){
     		if(all.get(i).getTime().equals(date)){
-    			if(all.get(i).getPlace()=="南京仙林"){
-    				xlincome+=all.get(i).getPostage();
-    			}else if(all.get(i).getPlace()=="南京鼓楼"){
-    				glincome+=all.get(i).getPostage();
+    			if(all.get(i).getMaker()==id){
+    				income+=all.get(i).getPostage();
+    				hall=all.get(i).getPlace();
     			}
     		}
     	}
-    	HallInfo xlhi=new HallInfo(date,xlincome,"南京仙林营业厅");
-    	hallinfo.add(xlhi);
-    	HallInfo glhi=new HallInfo(date,glincome,"南京鼓楼营业厅");
-    	hallinfo.add(glhi);
+    	HallInfo hallinfo=new HallInfo(date,income,hall+"营业厅");
+    	   	
+    	IncomeManager incomemanagerdate=new IncomeManager();
+    	incomemanagerdate.addHallInfo(hallinfo);
     	
-//    	IncomeManager incomemanagerdate=new IncomeManager();
-//    	incomemanagerdata.addHallInfo(hallinfo);
+    	res.add(date);res.add(String.valueOf(income));res.add(hall); 	
+    	return res;
     }
 	
 	
@@ -246,8 +249,23 @@ public class IncomeListBL implements IncomeListBLService,DataFactory{
 		}}
 		return voarr;
 	}
-
-
+	
+	public ArrayList<IncomeListVO> inquiryByMaker(String Maker) throws IOException{
+		ArrayList<IncomeListVO> voarr=new ArrayList<IncomeListVO>();
+		ArrayList<IncomeListPO> poarr=new ArrayList<IncomeListPO>();
+	    poarr=incomelistdata.findbymaker(Maker);
+	    if(poarr.size()>0){
+			for(IncomeListPO po:poarr){
+				IncomeListVO vo=new IncomeListVO(po.getID(),po.getPostage(),po.getCourier(),po.getTime(),po.getOrderID(),po.getPlace(),po.getMaker(),po.getAuditState());
+				voarr.add(vo);
+			}}
+			return voarr;
+	}
+//
+//	public LogDataService getLogData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根

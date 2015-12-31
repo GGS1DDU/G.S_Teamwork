@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.ArrivalListBL;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.ArrivalListVO;
 
 public class InvoiceUI_ArrivalListEdit extends JFrame{
@@ -33,6 +34,12 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	boolean Edit;
+	
+//	public static void main(String[] args){
+//		ArrivalListVO vo=new ArrivalListVO("","","","","","","","");
+//		boolean edit=false;
+//		new InvoiceUI_ArrivalListEdit(vo,edit);
+//	}
 	
 	public ArrivalListVO getVO(){
 		return voall;
@@ -48,9 +55,12 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 		
 		Edit=edit;
 		
-		final JPanel newin=new JPanel();
+		MyPanel p=new MyPanel("bg3.png");
+		add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
+		
+		final JPanel newin=new JPanel();newin.setOpaque(false);
 		newin.setLayout(null);
-		add(newin);newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10);
+		p.add(newin);newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel id=new JLabel("单据ID");
@@ -139,22 +149,25 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 		newin.add(mf);mf.setBounds(220, 190, 100, 24);mf.setEditable(Edit);
 		mf.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel buttonpanel=new JPanel();
-		buttonpanel.setLayout(null);
-		JButton cancle=new JButton("编辑(E)");
-		buttonpanel.add(cancle);
-		cancle.setBounds(this.getWidth()/2+90,20,100,30);
-		add(buttonpanel);
-		buttonpanel.setBounds(0,7*this.getHeight()/10,this.getWidth(),70);
 		
-		cancle.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				InvoiceUI_ArrivalListEdit.this.dispose();
-				new InvoiceUI_ArrivalListEdit(getVO(),true);
-			}
-		});
 		
 		if(Edit){
+			
+			JPanel buttonpanel=new JPanel();
+			buttonpanel.setLayout(null);
+			JButton cancle=new JButton("编辑(E)");
+			buttonpanel.add(cancle);
+			cancle.setBounds(this.getWidth()/2+90,20,100,30);
+			p.add(buttonpanel);
+			buttonpanel.setBounds(0,7*this.getHeight()/10,this.getWidth(),70);
+			
+			cancle.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					InvoiceUI_ArrivalListEdit.this.dispose();
+					new InvoiceUI_ArrivalListEdit(getVO(),true);
+				}
+			});
+			
 			JButton save=new JButton("保存(S)");
 			buttonpanel.add(save);
 			save.setBounds(this.getWidth()/3-120,20,100,30);
@@ -172,18 +185,16 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 						new InvoiceUI_ArrivalListEdit(voall,false);
 					}else{
 						try{
-							if(!df.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")||tnf.getText().length()!=21){
+							if(df.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s")||tnf.getText().length()!=6){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
-
-							}
-							else{
-
+							}else{
 							InvoiceUI_ArrivalListEdit.this.dispose();
-							arrivallistdata.delete(voall);
-							newvo=new ArrivalListVO(idf.getText(),tnf.getText(),df.getText(),jcb.getSelectedItem().toString(),dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
+							arrivallistdata.delete(getVO());
 							arrivallistdata.record(newvo);
-							new InvoiceUI_ArrivalListEdit(newvo,false);}
-
+							newvo=new ArrivalListVO(idf.getText(),tnf.getText(),df.getText(),jcb.getSelectedItem().toString(),
+									dpf.getText(),jcb2.getSelectedItem().toString(),mf.getText(),"提交");
+							new InvoiceUI_ArrivalListEdit(newvo,false);
+							}
 						}catch(HeadlessException e2){
 							e2.printStackTrace();
 						}
@@ -195,9 +206,7 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 				}
 				
 			});
-		}
-		
-		if(Edit){
+			
 			JButton back=new JButton("取消(C)");
 			buttonpanel.add(back);
 			back.setBounds(this.getWidth()/2-50,20,100,30);
@@ -207,12 +216,27 @@ public class InvoiceUI_ArrivalListEdit extends JFrame{
 					new InvoiceUI_ArrivalListEdit(getVO(),false);
 				}
 			});
-			
 		}
 		else{
+			
+			JPanel buttonpanel=new JPanel();
+			buttonpanel.setLayout(null);
+			JButton cancle=new JButton("编辑(E)");
+			buttonpanel.add(cancle);
+			cancle.setBounds(this.getWidth()/2+30, 20, 100, 30);
+			p.add(buttonpanel);
+			buttonpanel.setBounds(0,7*this.getHeight()/10,this.getWidth(),70);
+			
+			cancle.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					InvoiceUI_ArrivalListEdit.this.dispose();
+					new InvoiceUI_ArrivalListEdit(getVO(),true);
+				}
+			});
+			
 			JButton back=new JButton("删除(D)");
 			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,20,100,30);
+			back.setBounds(this.getWidth()/2-140,20,100,30);
 			back.addActionListener(new ActionListener(){
 				ArrivalListBL arrivallistdata=new ArrivalListBL();
 

@@ -10,7 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
@@ -26,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.IncomeListBL;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.IncomeListVO;
 import elms.vo.UserVO;
 
@@ -36,7 +36,9 @@ public class InvoiceUI_IncomeList extends JFrame{
 	int screenHeight=(int) screenSize.getHeight();
 	
 //	public static void main(String args[]){
-//		new InvoiceUI_IncomeList();
+//		UserVO vo=new UserVO("","","","");
+//		
+//		new InvoiceUI_IncomeList(vo);
 //	}
 	
 	public InvoiceUI_IncomeList(final UserVO vo){
@@ -46,9 +48,12 @@ public class InvoiceUI_IncomeList extends JFrame{
 		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,screenHeight/2+80);
 		setVisible(true);
 		
-		final JPanel newin=new JPanel();
+		MyPanel p=new MyPanel("bg3.png");
+		add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
+		
+		final JPanel newin=new JPanel();newin.setOpaque(false);
 		newin.setLayout(null);
-		add(newin);
+		p.add(newin);
 		newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10+10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
@@ -139,7 +144,7 @@ public class InvoiceUI_IncomeList extends JFrame{
 		buttonpanel.add(cancel);
 		save.setBounds(this.getWidth()/2-140,25,100,30);
 		cancel.setBounds(this.getWidth()/2+30, 25, 100, 30);
-		add(buttonpanel);
+		p.add(buttonpanel);
 		buttonpanel.setBounds(0, 7*this.getHeight()/10+10,this.getWidth(),70);
 		
 		save.addActionListener(new ActionListener(){

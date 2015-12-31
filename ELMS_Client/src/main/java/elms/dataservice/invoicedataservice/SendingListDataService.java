@@ -24,6 +24,9 @@ public interface SendingListDataService extends Remote{
 	public ArrayList<SendingListPO> findall() throws RemoteException,IOException;
 
 	
+	public ArrayList<SendingListPO> findbymaker(String maker) throws RemoteException, IOException;
+	
+	
 	public void init() throws RemoteException;
 	
 	

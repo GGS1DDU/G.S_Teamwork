@@ -12,6 +12,8 @@ public interface ArrivalListBLService {
 	
 	public ArrayList<ArrivalListVO> inquiryAll() throws IOException;
 	
+	public ArrayList<ArrivalListVO> inquiryByMaker(String Maker) throws IOException;
+	
 	public ArrivalListVO record(ArrivalListVO vo)throws IOException;
 //	
     public void reSubmit(String id) throws RemoteException, IOException;

@@ -12,9 +12,11 @@ public interface IncomeListBLService {
 	
 	public ArrayList<IncomeListVO> inquiryAll() throws IOException;
 	
+	public ArrayList<IncomeListVO> inquiryByMaker(String Maker) throws IOException;
+	
 	public IncomeListVO record(IncomeListVO vo)throws IOException;
 	
-	public void addByCenter(IncomeListVO vo,String date) throws IOException;
+	public ArrayList<String> addByCenter(IncomeListVO vo,String date,String id) throws IOException;
 //	
     public void reSubmit(String id) throws RemoteException, IOException;
 	

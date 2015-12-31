@@ -25,10 +25,7 @@ public class IncomeListData extends UnicastRemoteObject implements IncomeListDat
 		super();
 		// TODO 自动生成的构造函数存根
 	}
-    public static void main(String args[]) throws IOException{
-    	IncomeListData ii=new IncomeListData();
-    	ii.init();
-    }
+    
 	//incomeList收款单的id定义为il开头+五位数字，一个七位id
 	public IncomeListPO find(String id) throws RemoteException, IOException {
 		fis=new FileInputStream(file);
@@ -123,6 +120,7 @@ public class IncomeListData extends UnicastRemoteObject implements IncomeListDat
 					
 		try{
 			IncomeListPO po=(IncomeListPO)ois.readObject();
+			arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
@@ -142,6 +140,34 @@ public class IncomeListData extends UnicastRemoteObject implements IncomeListDat
 		}				
 	}
 //zwh
+	
+	public ArrayList<IncomeListPO> findbymaker(String maker) throws RemoteException, IOException{	
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis);	
+		ArrayList<IncomeListPO> arr=new ArrayList<IncomeListPO>();	
+	
+		try{		
+			IncomeListPO po=(IncomeListPO)ois.readObject();		
+			while(fis.available()>0){			
+				byte[] buf=new byte[4];			
+				fis.read(buf);			
+				po=(IncomeListPO)ois.readObject();			
+				if(po.getMaker().equals(maker)){				
+					arr.add(po);			
+				}				
+			}		
+			return arr;	
+		}catch(Exception e){		
+			return arr;
+		}
+		finally{		
+			try{		
+				ois.close();	
+			}catch(Exception e){				
+		
+			}	
+		}	
+	}
 	
 	public void init() throws RemoteException {
 		file.delete();

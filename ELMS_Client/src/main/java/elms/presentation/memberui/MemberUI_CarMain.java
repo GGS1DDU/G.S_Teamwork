@@ -2,296 +2,152 @@ package elms.presentation.memberui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTable;
 import javax.swing.Timer;
-import javax.swing.border.Border;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
-
 import elms.businesslogic.memberbl.CarBL;
-import elms.presentation.invoiceui.InvoiceUI_YYTStaff;
-import elms.presentation.invoiceui.InvoiceUI_YYTStaff_IL;
-import elms.presentation.invoiceui.InvoiceUI_YYTStaff_LL;
-import elms.presentation.invoiceui.InvoiceUI_YYTStaff_SL;
+import elms.presentation.storageui.TableModel;
 import elms.vo.CarVO;
 import elms.vo.UserVO;
 
-public class MemberUI_CarMain extends JFrame{
+public class MemberUI_CarMain extends JPanel{
 	Toolkit kit=Toolkit.getDefaultToolkit();
 	Dimension screenSize=kit.getScreenSize();
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
-	JTextArea text;
 	
 	public static ArrayList<CarVO> arr=new ArrayList<CarVO>();
 	
-	public static void main(String args[]){
-		EventQueue.invokeLater(new Runnable(){
-			public void run(){
-				UserVO vo=new UserVO();
-				JFrame Car=new MemberUI_CarMain(vo);
-			}
-		});
-	}
+//	public static void main(String args[]){
+//		EventQueue.invokeLater(new Runnable(){
+//			public void run(){
+//				UserVO vo=new UserVO();
+//				try {
+//					JPanel Car=new MemberUI_CarMain(vo);
+//				} catch (IOException e) {
+//					// TODO 自动生成的 catch 块
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 	
-	public MemberUI_CarMain(final UserVO vo){
-		setLayout(null);
-		setTitle("营业厅管理");
-		setResizable(false);
-		setSize(screenWidth/2,3*screenHeight/4);
-		setLocation(screenWidth/4,screenHeight/8);
+	public TableModel model;
+	public JTable table;
+	
+	public MemberUI_CarMain(final UserVO vo) throws IOException{
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setOpaque(false);
+		setLayout(null);
 		
-		JMenuBar bar=new JMenuBar();
-		JMenu m1=new JMenu("到达单管理");	
-		JMenu m2=new JMenu("派件单管理");
-		JMenu m3=new JMenu("装车单管理");
-		JMenu m4=new JMenu("收款单管理");
-		JMenu m5=new JMenu("车辆信息管理");
-		m5.setSelected(true);m5.setEnabled(false);
-		JMenu m6=new JMenu("司机信息管理");
-		JMenu m7=new JMenu("车辆初始化");
-		JMenu m8=new JMenu("司机初始化");
+		JLabel jl=new JLabel(" 当前用户：    "+vo.getName()+" 身份：   "+vo.getJob()+" 编号：   "+vo.getId());
+		add(jl);jl.setBounds(200, 0, screenWidth*2/3-200, 25);
 		
-		bar.add(m1);
-		bar.add(m2);
-		bar.add(m3);
-		bar.add(m4);
-		bar.add(m5);
-		bar.add(m6);
-		bar.add(m7);
-		bar.add(m8);
 		
-		setJMenuBar(bar);
-		m1.addMenuListener(new MenuListener(){
-			public void menuSelected(MenuEvent e) {
-				MemberUI_CarMain.this.dispose();
-				new InvoiceUI_YYTStaff(vo);
-			}
-			public void menuDeselected(MenuEvent e) {			
-			}
-			public void menuCanceled(MenuEvent e) {		
-			}		
-		});
+		String[] title_name = {"车辆代号","车牌号","服役时间"};
+		model = new TableModel(title_name);
+		table = new JTable(model);
+		table.setBackground(Color.white);	
 		
-		m2.addMenuListener(new MenuListener(){
-			public void menuSelected(MenuEvent e) {
-				MemberUI_CarMain.this.dispose();
-				new InvoiceUI_YYTStaff_SL(vo);
-			}
-			public void menuDeselected(MenuEvent e) {			
-			}
-			public void menuCanceled(MenuEvent e) {		
-			}		
-		});
+		JScrollPane scrollpane=new JScrollPane(table);
+		this.add(scrollpane);
+		scrollpane.setBounds(-1,70,screenWidth*2/3-200,screenHeight*3/8);
+		scrollpane.setOpaque(false);
+		scrollpane.getViewport().setOpaque(false); 
 		
-		m3.addMenuListener(new MenuListener(){
-			public void menuSelected(MenuEvent e) {
-				MemberUI_CarMain.this.dispose();
-				new InvoiceUI_YYTStaff_LL(vo);
-			}
-			public void menuDeselected(MenuEvent e) {			
-			}
-			public void menuCanceled(MenuEvent e) {		
-			}		
-		});
-		
-		m4.addMenuListener(new MenuListener(){
-			public void menuSelected(MenuEvent e) {
-				MemberUI_CarMain.this.dispose();
-				new InvoiceUI_YYTStaff_IL(vo);
-			}
-			public void menuDeselected(MenuEvent e) {			
-			}
-			public void menuCanceled(MenuEvent e) {		
-			}		
-		});
-		
-		m6.addMenuListener(new MenuListener(){
-			public void menuSelected(MenuEvent e) {
-				MemberUI_CarMain.this.dispose();
-				new MemberUI_DriverMain(vo);
-			}
-			public void menuDeselected(MenuEvent e) {			
-			}
-			public void menuCanceled(MenuEvent e) {		
-			}		
-		});
-		
-		m7.addMenuListener(new MenuListener(){
-			public void menuSelected(MenuEvent e) {
-				int a=(int)(Math.random()*1000);
-				String s=a+"";
-				
-				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化车辆");
-				if(obj.equals(s)){
-					MemberUI_CarMain.this.dispose();
-					new MemberUI_CarInit(vo);
-					CarBL cardata=new CarBL();
-					try{
-						cardata.init();
-					}catch(IOException e1){
-						e1.printStackTrace();
+		table.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				if(e.getClickCount()==2){
+					if(table.getSelectedColumn()!=-1){
+						
+						String	s=(String) model.getValueAt(table.getSelectedRow(), 0);
+						CarBL ca=new CarBL();
+						try{
+							new MemberUI_CarEdit(ca.inquiry(s),false);
+						}catch(IOException e1){
+							e1.printStackTrace();
+						}
 					}
-				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
-				
-			}
-			public void menuDeselected(MenuEvent e) {			
-			}
-			public void menuCanceled(MenuEvent e) {		
-			}		
-		});
-		
-		m8.addMenuListener(new MenuListener(){
-			public void menuSelected(MenuEvent e) {
-				int a=(int)(Math.random()*1000);
-				String s=a+"";
-				
-				String obj=JOptionPane.showInputDialog("请输入 验证码  "+a+" 确认初始化司机");
-				if(obj.equals(s)){
-					MemberUI_CarMain.this.dispose();
-					new MemberUI_DriverInit(vo);
-					CarBL cardata=new CarBL();
-					try{
-						cardata.init();
-					}catch(IOException e1){
-						e1.printStackTrace();
-					}
-				}else JOptionPane.showMessageDialog(null, "验证码错误",null,0);
-				
-			}
-			public void menuDeselected(MenuEvent e) {			
-			}
-			public void menuCanceled(MenuEvent e) {		
-			}		
-		});
-		
-		JLabel jl=new JLabel("   当前用户： "+vo.getName()+"   身份： "+vo.getJob()+"   编号： "+vo.getId());
-		jl.setForeground(Color.lightGray);
-		JPanel user=new JPanel();
-		user.add(jl);
-		user.setBounds(0,0,this.getWidth(),25);
-		
-		Border li=BorderFactory.createEtchedBorder();
-		Border t=BorderFactory.createTitledBorder(li);
-		Border l2=BorderFactory.createLoweredBevelBorder();
-		user.setBorder(t);
-		add(user);
-		
-		JLabel jsd=new JLabel("    车辆信息管理");
-		JPanel info=new JPanel();
-		info.setLayout(new java.awt.BorderLayout());
-		info.add(jsd);
-		info.setBounds(0, 23, 100, 25);
-		info.setBorder(l2);
-		add(info);
-		
-		JPanel info2=new JPanel();
-		info2.setLayout(null);
-		text=new JTextArea(10,10);
-		text.setEditable(false);
-		text.setFont(new Font("Serif",Font.PLAIN,14));
-		
-		JScrollPane scrollpane=new JScrollPane(text);
-		info2.add(scrollpane);
-		scrollpane.setBounds(5,70,this.getWidth()-40,this.getHeight()/2-70);
-		
-		JMenuBar jbar=new JMenuBar();
-		class Menu extends JMenu{
-			public Menu(String s){
-				super(s);
-				this.setFont(new Font("楷体",Font.CENTER_BASELINE,12));
-			}
-		}
-		
-		JMenu j1=new Menu("         车辆代号              ");JMenu j2=new Menu("           车牌号             ");JMenu j3=new Menu("         服役时间           ");
-		jbar.add(j1);jbar.add(j2);jbar.add(j3);
-		add(jbar);
-		jbar.setBounds(5,48,this.getWidth(),20);
-		add(info2);
-		info2.setBounds(0,0,this.getWidth(),this.getHeight()/2);
-		
-		
-		JButton xzcl=new JButton("新增车辆信息");
-		JButton find=new JButton("查询");
-		JButton refresh=new JButton("刷新(R)");refresh.setForeground(Color.GREEN);
-		JButton back=new JButton("返回(B)");back.setForeground(Color.RED);
-		JPanel buttonPal=new JPanel();
-		buttonPal.setLayout(null);
-		buttonPal.add(xzcl);buttonPal.add(find);buttonPal.add(refresh);buttonPal.add(back);
-		xzcl.setBounds(100,30,120,30);find.setBounds(320,30,102,30);
-		refresh.setBounds(550,15,80,30);
-		back.setBounds(550,55,80,30);
-		add(buttonPal);
-		buttonPal.setBounds(0,this.getHeight()/2+100,this.getWidth()-30,90);
-		buttonPal.setBorder(BorderFactory.createTitledBorder("车辆信息管理"));
-		
-		xzcl.addActionListener(new ActionListener(){
-
-			public void actionPerformed(ActionEvent e) {
-				new MemberUI_CarNew();
-			}	
-		});
-		find.addActionListener(new ActionListener(){
-
-			public void actionPerformed(ActionEvent e) {
-				new MemberUI_CarFind();			
-			}		
-		});
-		
-		refresh.addActionListener(new ActionListener(){
-            CarBL cardata=new CarBL();
-            
-			public void actionPerformed(ActionEvent e) {
-				
-				text.setText("");
-				try{
-					arr=cardata.inquiryAll();
-				}catch(IOException e1){
-					e1.printStackTrace();
 				}
-				for(CarVO alvo:arr)
-					text.append("               "+alvo.getID()+
-							    "                                             "+alvo.getPlateNumber()+
-							    "                                          "+alvo.getUsingTime()+"\r\n");
 			}
-			
+		});
+		
+		final ArrayList<CarVO> arr=new ArrayList<CarVO>();
+		final CarBL ca=new CarBL();
+		
+//		arr.addAll(ca.inquiryAll());
+//		for(CarVO vo1:arr){
+//			model.addRow(model.newchangeRow_Car(vo1));
+//		}
+		
+		JButton xjca=new JButton("新建车辆信息");
+		JButton find=new JButton("查询");
+		JButton back=new JButton("返回");back.setForeground(Color.RED);
+		JButton refresh=new JButton("刷新(R)");
+		add(xjca);add(find);add(back);add(refresh);
+		xjca.setBounds((screenWidth*2/3-200)/6-60, screenHeight*3/8+150, 150, 25);
+		find.setBounds((screenWidth*2/3-200)/6+140, screenHeight*3/8+150, 100, 25);
+		refresh.setBounds((screenWidth*2/3-200)/6+290, screenHeight*3/8+150, 100, 25);
+		back.setBounds((screenWidth*2/3-200)/6+440, screenHeight*3/8+150, 100,25);
+		
+		xjca.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				new MemberUI_CarNew();
+			}
+		});
+		
+		find.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				new MemberUI_CarNew();
+			}
 		});
 		
 		back.addActionListener(new ActionListener(){
-			
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
 			}
 		});
 		
-		JPanel tp=new JPanel();
-		final JLabel time=new JLabel();
-	    time.setFont(new Font("Serif",Font.BOLD,15));	    
-	    tp.add(time);	    
-	    add(tp);
-	    tp.setBounds(0,this.getHeight()-80,this.getWidth(),40);
 		
+		refresh.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e) {
+				setrows();
+//				arr.clear();
+//				try {
+//					arr.addAll(ca.inquiryAll());
+//				
+//				model.removeAllRows(model.getRowCount());
+//				for(CarVO svo:arr){
+//					model.addRow(model.newchangeRow_Car(svo));
+//				}
+//				table.updateUI();
+//				} catch (IOException e1) {
+//					// TODO 自动生成的 catch 块
+//					e1.printStackTrace();
+//				}
+			}
+			
+		});
+		
+		final JLabel time=new JLabel();
+		add(time); time.setBounds((screenWidth*2/3-200)/3,screenHeight*3/4-50,200, 25);
+		time.setFont(new Font("Serif",Font.BOLD,15));
+				
 	    Timer timer = new Timer(100,new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -305,4 +161,25 @@ public class MemberUI_CarMain extends JFrame{
 		
 	}
 
+	protected void setrows(){
+		model.removeAllRows(model.getRowCount());
+		
+		CarBL carbl=new CarBL();
+		
+		String[] title_name={"车辆代号","车牌号","服役时间"};
+		model=new TableModel(title_name);
+		table.setModel(model);
+		try {
+			ArrayList<CarVO> arr0=carbl.inquiryAll();
+			for(CarVO vo:arr0){
+				model.addRow(model.newchangeRow_Car(vo));
+			}
+		} catch (IOException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		table.updateUI();
+	}
+	
 }

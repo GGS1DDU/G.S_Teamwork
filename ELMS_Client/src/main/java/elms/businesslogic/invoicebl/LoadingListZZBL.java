@@ -95,7 +95,8 @@ public class LoadingListZZBL implements LoadingListZZBLService,DataFactory{
 					po.getSurpervior(),po.getSupercargo(),po.getOrderNumber(),po.getCost(),po.getPlace(),po.getMaker(),po.getAuditState());
 			return vo;
 		}else
-		return null;	}
+		return null;	
+		}
 
 	public LoadingListZZVO record(LoadingListZZVO vo) throws IOException {
 		LoadingListZZPO po=new LoadingListZZPO(vo.getID(),vo.getTime(),vo.getTransportNumber(),vo.getArrival(),vo.getCarNumber(),

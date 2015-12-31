@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.ArrivalListBL;
 import elms.businesslogic.invoicebl.SendingListBL;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.ArrivalListVO;
 import elms.vo.SendingListVO;
 
@@ -35,6 +36,12 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	boolean Edit;
+//	
+//	public static void main(String[] args){
+//		SendingListVO vo=new SendingListVO("","","","","","","");
+//		boolean edit=false;
+//		new InvoiceUI_SendingListEdit(vo,edit);
+//	}
 	
 	public SendingListVO getVO(){
 		return voall;
@@ -50,9 +57,13 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 		
 		Edit=edit;
 		
-		final JPanel newin=new JPanel();
+		MyPanel p=new MyPanel("bg3.png");
+		add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
+		
+		
+		final JPanel newin=new JPanel();newin.setOpaque(false);
 		newin.setLayout(null);
-		add(newin);newin.setBounds(0,0,this.getWidth(),3*this.getHeight()/5);
+		p.add(newin);newin.setBounds(0,0,this.getWidth(),3*this.getHeight()/5+30);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel id=new JLabel("单据ID");
@@ -65,25 +76,25 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 		idf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel orderNum=new JLabel("托运订单条形号码");
-		newin.add(orderNum);orderNum.setBounds(100,40,120,20);
+		newin.add(orderNum);orderNum.setBounds(100,45,120,20);
 		final JTextField onf=new JTextField(vo.getOrderID());
 		onf.setFont(new Font("SansSerif",Font.CENTER_BASELINE,12));
-		newin.add(onf);onf.setBounds(220, 40, 100, 24);onf.setEditable(Edit);
+		newin.add(onf);onf.setBounds(220, 45, 100, 24);onf.setEditable(Edit);
 		onf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel courier=new JLabel("派件员");
 		newin.add(courier);
-		courier.setBounds(100, 70, 80, 20);
+		courier.setBounds(100, 80, 80, 20);
 		final JTextField cf=new JTextField(vo.getCourier());
 		cf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(cf);cf.setBounds(220, 70, 100, 24);cf.setEditable(Edit);
+		newin.add(cf);cf.setBounds(220, 80, 100, 24);cf.setEditable(Edit);
 		cf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel date=new JLabel("到达日期");
-		newin.add(date);date.setBounds(100,100,80,20);
+		newin.add(date);date.setBounds(100,115,80,20);
 		final JTextField df=new JTextField(vo.getTime());
 		df.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
-		newin.add(df);df.setBounds(220, 100, 100, 24);
+		newin.add(df);df.setBounds(220, 115, 100, 24);
 		df.setEditable(Edit);
 		df.setHorizontalAlignment(SwingConstants.CENTER);
 		if(Edit){
@@ -99,47 +110,49 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 		
 		JLabel place=new JLabel("所属营业厅");
 		newin.add(place);
-		place.setBounds(100, 130, 80, 20);
+		place.setBounds(100, 150, 80, 20);
 		final JComboBox<String> jcb2=new JComboBox<String>();
 		if(Edit){
 			jcb2.addItem("南京仙林");jcb2.addItem("南京鼓楼");
 			jcb2.setBackground(Color.WHITE);jcb2.setFont(new Font("楷体",Font.BOLD,12));
-			newin.add(jcb2);jcb2.setBounds(220, 160, 100, 24);
+			newin.add(jcb2);jcb2.setBounds(220, 150, 100, 24);
 			jcb2.setSelectedItem(vo.getPlace());
 			
 		}else{
 			JLabel pf=new JLabel(vo.getPlace());pf.setFont(new Font("楷体",Font.BOLD,12));
 			pf.setOpaque(false);
 			newin.add(pf);
-			pf.setBounds(220, 130, 100, 24);
+			pf.setBounds(220, 150, 100, 24);
 			pf.setHorizontalAlignment(SwingConstants.CENTER);
 			pf.setEnabled(false);
 		}
 			
 		JLabel maker=new JLabel("单据生成者");
 		newin.add(maker);
-		maker.setBounds(100, 160, 80, 20);
+		maker.setBounds(100, 185, 80, 20);
 		final JTextField mf=new JTextField(vo.getMaker());
 		mf.setFont(new Font("SansSerif",Font.PLAIN,12));
-		newin.add(mf);mf.setBounds(220, 160, 100, 24);mf.setEditable(Edit);
+		newin.add(mf);mf.setBounds(220, 185, 100, 24);mf.setEditable(Edit);
 		mf.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel buttonpanel=new JPanel();
-		buttonpanel.setLayout(null);
-		JButton cancle=new JButton("编辑(E)");
-		buttonpanel.add(cancle);
-		cancle.setBounds(this.getWidth()/2+90,25,100,30);
-		add(buttonpanel);
-		buttonpanel.setBounds(0,3*this.getHeight()/5,this.getWidth(),70);
 		
-		cancle.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				InvoiceUI_SendingListEdit.this.dispose();
-				new InvoiceUI_SendingListEdit(getVO(),true);
-			}
-		});
 		
 		if(Edit){
+			JPanel buttonpanel=new JPanel();
+			buttonpanel.setLayout(null);
+			JButton cancle=new JButton("编辑(E)");
+			buttonpanel.add(cancle);
+			cancle.setBounds(this.getWidth()/2+90,25,100,30);
+			p.add(buttonpanel);
+			buttonpanel.setBounds(0,3*this.getHeight()/5+30,this.getWidth(),70);
+			
+			cancle.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					InvoiceUI_SendingListEdit.this.dispose();
+					new InvoiceUI_SendingListEdit(getVO(),true);
+				}
+			});
+			
 			JButton save=new JButton("保存(S)");
 			buttonpanel.add(save);
 			save.setBounds(this.getWidth()/3-120,25,100,30);
@@ -174,9 +187,6 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 					}		
 				}				
 			});
-		}
-		
-		if(Edit){
 			JButton back=new JButton("取消(C)");
 			buttonpanel.add(back);
 			back.setBounds(this.getWidth()/2-50,25,100,30);
@@ -185,12 +195,27 @@ public class InvoiceUI_SendingListEdit extends JFrame{
 					InvoiceUI_SendingListEdit.this.dispose();
 					new InvoiceUI_SendingListEdit(getVO(),false);
 				}
-			});			
+			});	
 		}
 		else{
+			JPanel buttonpanel=new JPanel();
+			buttonpanel.setLayout(null);
+			JButton cancle=new JButton("编辑(E)");
+			buttonpanel.add(cancle);
+			cancle.setBounds(this.getWidth()/2+30, 25, 100, 30);
+			p.add(buttonpanel);
+			buttonpanel.setBounds(0,3*this.getHeight()/5+30,this.getWidth(),70);
+			
+			cancle.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					InvoiceUI_SendingListEdit.this.dispose();
+					new InvoiceUI_SendingListEdit(getVO(),true);
+				}
+			});
+			
 			JButton back=new JButton("删除(D)");
 			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,25,100,30);
+			back.setBounds(this.getWidth()/2-140,25,100,30);
 			back.addActionListener(new ActionListener(){
 				SendingListBL sendinglistdata=new SendingListBL();
 

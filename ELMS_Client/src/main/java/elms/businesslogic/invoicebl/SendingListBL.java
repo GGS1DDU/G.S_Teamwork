@@ -5,7 +5,6 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import elms.businesslogic.dealbl.DealBL;
 import elms.businesslogic_service.invoiceblservice.SendingListBLService;
 import elms.dataservice.DataFactory;
 import elms.dataservice.dealdataservice.DealDataService;
@@ -20,7 +19,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
-
+//import elms.dataservice.logdataservice.LogDataService;
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -31,22 +30,29 @@ import elms.po.SendingListPO;
 import elms.vo.SendingListVO;
 
 public class SendingListBL implements SendingListBLService,DataFactory{
-	static SendingListDataService sendinglistdata;	
+	SendingListDataService sendinglistdata;	
 //
 	public static void main(String[] args) throws IOException{
 		
 		SendingListBL sl=new SendingListBL();
 		sl.init();
-		SendingListVO vo1=new SendingListVO("sl66666","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","333","提交");
-		SendingListVO vo2=new SendingListVO("sl66667","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","333","提交");
-		SendingListVO vo3=new SendingListVO("sl66668","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","333","提交");
-		SendingListVO vo4=new SendingListVO("sl66669","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","333","提交");
+		SendingListVO vo1=new SendingListVO("6666666666","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","zwh2","提交");
+		SendingListVO vo2=new SendingListVO("6666666667","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","zwh3","提交");
+		SendingListVO vo3=new SendingListVO("6666666668","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","zwh4","提交");
+		SendingListVO vo4=new SendingListVO("6666666669","0000000001","zwh","2015-12-18","南京市鼓楼营业厅","zwh4","提交");
 		
 		sl.record(vo1);sl.record(vo2);sl.record(vo3);sl.record(vo4);
-		ArrayList<SendingListVO>as=sl.findNoaudit();
+		
 
-		sendinglistdata.findall();
-		for(SendingListVO vo:as) System.out.println(vo.getID());
+		sl.RefuseAudit("6666666669");
+		sl.RefuseAudit("6666666666");
+		
+		ArrayList<SendingListVO> arr=sl.findByMakerAndNoaudit("zwh2");
+		
+		for(int i=0;i<arr.size();i++){
+			System.out.println(arr.get(i).getID());
+		}
+		
 	}
 //
 	
@@ -65,7 +71,8 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 	}
 
 	public void init() throws IOException {
-		sendinglistdata.init();			
+		sendinglistdata.init();	
+		
 	}
 
 	public SendingListVO record(SendingListVO vo) throws IOException{
@@ -112,7 +119,6 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 	//返回所有审核状态为“提交”状态的单据。给总经理那边用的。测试可用。
 	public ArrayList<SendingListVO> findNoaudit() throws IOException{
 		ArrayList<SendingListPO> all=sendinglistdata.findall();
-		System.out.println(all.size());
 		ArrayList<SendingListVO> no_audit=new ArrayList<SendingListVO>(); 
 		for(int i=0;i<all.size();i++){		
 			if(all.get(i).getAuditState().equals("提交")){
@@ -242,8 +248,23 @@ public class SendingListBL implements SendingListBLService,DataFactory{
 		}}
 		return voarr;
 	}
+	
+	public ArrayList<SendingListVO> inquiryByMaker(String Maker) throws IOException{
+		ArrayList<SendingListVO> voarr=new ArrayList<SendingListVO>();
+		ArrayList<SendingListPO> poarr=new ArrayList<SendingListPO>();
+	    poarr=sendinglistdata.findbymaker(Maker);
+	    if(poarr.size()>0){
+			for(SendingListPO po:poarr){
+				SendingListVO vo=new SendingListVO(po.getID(),po.getOrderID(),po.getCourier(),po.getTime(),po.getPlace(),po.getMaker(),po.getAuditState());
+				voarr.add(vo);
+			}}
+			return voarr;
+	}
 
-
+//	public LogDataService getLogData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根

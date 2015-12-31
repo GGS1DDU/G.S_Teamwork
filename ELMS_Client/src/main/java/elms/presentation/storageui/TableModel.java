@@ -4,6 +4,8 @@ import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 
 import elms.vo.ArrivalListVO;
+import elms.vo.CarVO;
+import elms.vo.DriverVO;
 import elms.vo.IncomeListVO;
 import elms.vo.InvoiceVO;
 import elms.vo.LoadingListVO;
@@ -67,13 +69,25 @@ public class TableModel extends AbstractTableModel {
     	Object[] ob={vo.getID(),"到达单",vo.getMaker(),vo.getOrder(),vo.getTime(),vo.getPlace(),vo.getFrom(),vo.getState()};
         return ob;   
     }
+    public Object[] newchangeRow_Arl(ArrivalListVO vo){
+    	Object[] ob={vo.getID(),vo.getAuditState(),vo.getMaker(),vo.getOrder(),vo.getTime(),vo.getState(),vo.getFrom(),vo.getPlace()};
+    	return ob;
+    }
     public Object[] changeRow_Icl(IncomeListVO vo){
     	Object[] ob={vo.getID(),"营业厅收入单",vo.getMaker(),vo.getOrderID(),vo.getTime(),vo.getPlace(),vo.getCourier(),vo.getPostage()};
         return ob;   
     }
+    public Object[] newchangeRow_Icl(IncomeListVO vo){
+    	Object[] ob={vo.getID(),vo.getAuditState(),vo.getMaker(),vo.getPostage(),vo.getCourier(),vo.getTime(),vo.getPlace()};
+    	return ob;
+    }
     public Object[] changeRow_Lol(LoadingListVO vo){
     	Object[] ob={vo.getID(),"营业厅装车单",vo.getMaker(),vo.getOrderNumber(),vo.getTime(),vo.getPlace(),vo.getTransportNumber(),vo.getSupercargo(),vo.getSurpervior(),vo.getShopNumber(),vo.getCarNumber(),vo.getCost()};
         return ob;   
+    }
+    public Object[] newchangeRow_Lol(LoadingListVO vo){
+    	Object[] ob={vo.getID(),vo.getAuditState(),vo.getMaker(),vo.getTime(),vo.getShopNumber(),vo.getTransportNumber(),vo.getArrival(),vo.getCarNumber(),vo.getSurpervior(),vo.getSupercargo(),vo.getCost(),vo.getPlace()};
+    	return ob;
     }
     public Object[] changeRow_Lolzz(LoadingListZZVO vo){
     	Object[] ob={vo.getID(),"中转中心装车单",vo.getMaker(),vo.getOrderNumber(),vo.getTime(),vo.getPlace(),vo.getTransportNumber(),vo.getSupercargo(),vo.getSurpervior(),vo.getArrival(),vo.getCarNumber(),vo.getCost()};
@@ -95,6 +109,10 @@ public class TableModel extends AbstractTableModel {
     	Object[] ob={vo.getID(),"快递员派件单",vo.getMaker(),vo.getOrderID(),vo.getTime(),vo.getPlace(),vo.getCourier()};
         return ob;   
     }
+    public Object[] newchangeRow_Sdl(SendingListVO vo){
+    	Object[] ob={vo.getID(),vo.getAuditState(),vo.getMaker(),vo.getOrderID(),vo.getCourier(),vo.getTime()};
+    	return ob;
+    }
     public Object[] changeRow_Trl(TransferListVO vo){
     	Object[] ob={vo.getID(),"中转中心中转单",vo.getMaker(),vo.getOrderID(),vo.getTime(),vo.getPlace(),vo.getTransportNum(),vo.getSurpervior(),vo.getDeparture(),vo.getSeatNumber(),vo.getArrival(),vo.getCost()};
         return ob;   
@@ -102,6 +120,14 @@ public class TableModel extends AbstractTableModel {
     public Object[] newchangeRow_Trl(TransferListVO vo){
     	Object[] ob={vo.getID(),vo.getAuditState(),vo.getMaker(),vo.getTime(),vo.getPlace(),vo.getDeparture(),vo.getArrival(),vo.getCost()};
         return ob;   
+    }
+    public Object[] newchangeRow_Dri(DriverVO vo){
+    	Object[] ob={vo.getID(),vo.getName(),vo.getBirthday(),vo.getIDcard(),vo.getCallNumber(),vo.getGender(),vo.getLicenseDate()};
+    	return ob;
+    }
+    public Object[] newchangeRow_Car(CarVO vo){
+    	Object[] ob={vo.getID(),vo.getPlateNumber(),vo.getUsingTime()};
+    	return ob;
     }
 	// ???使修改的内容生效
 	public void setValueAt(Object value, int row, int col) {

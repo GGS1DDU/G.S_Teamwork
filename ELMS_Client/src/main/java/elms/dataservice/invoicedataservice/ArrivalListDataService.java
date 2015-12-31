@@ -24,6 +24,9 @@ public interface ArrivalListDataService extends Remote{
 	public ArrayList<ArrivalListPO> findall() throws RemoteException,IOException;
 
 	
+	public ArrayList<ArrivalListPO> findbymaker(String maker) throws RemoteException, IOException;
+	
+	
 	public void init() throws RemoteException;
 	
 	

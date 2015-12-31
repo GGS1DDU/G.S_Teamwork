@@ -11,6 +11,8 @@ public interface LoadingListBLService {
     
     public ArrayList<LoadingListVO> inquiryAll() throws IOException;
 	
+    public ArrayList<LoadingListVO> inquiryByMaker(String Maker) throws IOException;
+    
 	public LoadingListVO record(LoadingListVO vo)throws IOException;
 //	
     public void reSubmit(String id) throws RemoteException, IOException;

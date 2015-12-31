@@ -27,10 +27,7 @@ public class LoadingListData extends UnicastRemoteObject implements LoadingListD
 		super();
 		// TODO 自动生成的构造函数存根
 	}
-    public static void main(String args[]) throws IOException{
-    	LoadingListData ii=new LoadingListData();
-    	ii.init();
-    }
+
 	//loadingList营业厅装车单的id定义为ll开头+五位数字，一个七位id
 	public LoadingListPO find(String id) throws RemoteException, IOException {
 		fis=new FileInputStream(file);
@@ -121,6 +118,7 @@ public class LoadingListData extends UnicastRemoteObject implements LoadingListD
 					
 		try{
 			LoadingListPO po=(LoadingListPO)ois.readObject();
+			arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
@@ -140,6 +138,34 @@ public class LoadingListData extends UnicastRemoteObject implements LoadingListD
 		}				
 	}
 		//zwh
+	
+	public ArrayList<LoadingListPO> findbymaker(String maker) throws RemoteException, IOException{	
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis);	
+		ArrayList<LoadingListPO> arr=new ArrayList<LoadingListPO>();	
+	
+		try{		
+			LoadingListPO po=(LoadingListPO)ois.readObject();		
+			while(fis.available()>0){			
+				byte[] buf=new byte[4];			
+				fis.read(buf);			
+				po=(LoadingListPO)ois.readObject();			
+				if(po.getMaker().equals(maker)){				
+					arr.add(po);			
+				}				
+			}		
+			return arr;	
+		}catch(Exception e){		
+			return arr;
+		}
+		finally{		
+			try{		
+				ois.close();	
+			}catch(Exception e){				
+		
+			}	
+		}	
+	}
 	
 	public void init() throws RemoteException {
 		file.delete();

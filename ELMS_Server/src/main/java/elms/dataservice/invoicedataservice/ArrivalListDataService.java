@@ -19,7 +19,12 @@ public interface ArrivalListDataService extends Remote{
 	
 	public void update(ArrivalListPO po) throws RemoteException, IOException;
 	
+	
 	public ArrayList<ArrivalListPO> findall() throws RemoteException,IOException; 
+	
+	
+	public ArrayList<ArrivalListPO> findbymaker(String maker) throws RemoteException, IOException;
+	
 	
 	public void init() throws RemoteException;
 	

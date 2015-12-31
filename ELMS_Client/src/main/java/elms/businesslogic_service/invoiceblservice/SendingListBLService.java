@@ -12,6 +12,8 @@ public interface SendingListBLService {
 	
 	public ArrayList<SendingListVO> inquiryAll() throws IOException;
 	
+	public ArrayList<SendingListVO> inquiryByMaker(String Maker) throws IOException;
+	
 	public SendingListVO record(SendingListVO vo)throws IOException;
 	
 //	

@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.LoadingListBL;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.LoadingListVO;
 import elms.vo.UserVO;
 
@@ -37,39 +38,44 @@ public class InvoiceUI_LoadingList extends JFrame{
 	int screenHeight=(int) screenSize.getHeight();
 	
 //	public static void main(String args[]){
-//		new InvoiceUI_LoadingList();
+//		UserVO vo=new UserVO("","","","");
+//		new InvoiceUI_LoadingList(vo);
 //	}
 	
 	public InvoiceUI_LoadingList(final UserVO vo){
 		setLayout(null);
 		setResizable(false);
 		setTitle("新建营业厅装车单   ");
-		setBounds(screenWidth/4,screenHeight/4,screenWidth/3,6*screenHeight/8+40);
+		setBounds(screenWidth/4,screenHeight/4,4*screenWidth/9,5*screenHeight/8-50);
 		setVisible(true);
 		
-		final JPanel newin=new JPanel();
+		MyPanel p=new MyPanel("bg3.png");
+		add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
+		
+		final JPanel newin=new JPanel();newin.setOpaque(false);
 		newin.setLayout(null);
-		add(newin);
-		newin.setBounds(0, 0, this.getWidth(), 4*this.getHeight()/5);
+		p.add(newin);
+		newin.setBounds(0, 0, this.getWidth(), 3*this.getHeight()/5+55);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
+		
 		
 		JLabel invoiceNum=new JLabel("单据ID");
 		//前两位ll 后面五位数字
 		newin.add(invoiceNum);
-		invoiceNum.setBounds(120,20,80,20);
+		invoiceNum.setBounds(60,20,80,20);
 		final JTextField inf=new JTextField();
 		inf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(inf);
-		inf.setBounds(220, 20, 100, 24);
+		inf.setBounds(160, 20, 100, 24);
 		inf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel date=new JLabel("装车日期");
 		newin.add(date);
-		date.setBounds(120,55,80,20);
+		date.setBounds(310,20,80,20);
 		final JTextField datef=new JTextField();
 		datef.setFont(new Font("Dialog",Font.CENTER_BASELINE,12));
 		newin.add(datef);
-		datef.setBounds(220,55,100,24);
+		datef.setBounds(410,20,100,24);
 		datef.setHorizontalAlignment(SwingConstants.CENTER);
 		datef.addMouseListener(new MouseAdapter(){
 			
@@ -84,102 +90,103 @@ public class InvoiceUI_LoadingList extends JFrame{
 		JLabel shopNum=new JLabel("营业厅编号");
 		//7位
 		newin.add(shopNum);
-		shopNum.setBounds(120,90,80,20);
+		shopNum.setBounds(60,60,80,20);
 		final JTextField snf=new JTextField();
 		snf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(snf);
-		snf.setBounds(220, 90, 100, 24);
+		snf.setBounds(160,60,100,24);
 		snf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel transNum=new JLabel("汽运编号");
 		//20位
 		newin.add(transNum);
-		transNum.setBounds(120,125,80,20);
+		transNum.setBounds(310,60,80,20);
 		final JTextField tnf=new JTextField();
 		tnf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(tnf);
-		tnf.setBounds(220, 125, 100, 24);
+		tnf.setBounds(410,60,100,24);
 		tnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel arrivalPlace=new JLabel("到达地");
 		//本地中转中心或其他营业厅
 		newin.add(arrivalPlace);
-		arrivalPlace.setBounds(120,160,80,20);
+		arrivalPlace.setBounds(60,100,80,20);
 		final JTextField apf=new JTextField();
 		apf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(apf);
-		apf.setBounds(220, 160, 100, 24);
+		apf.setBounds(160,100,100,24);
 		apf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel carNum=new JLabel("车辆代号");
 		//9位
 		newin.add(carNum);
-		carNum.setBounds(120,195,80,20);
+		carNum.setBounds(310,100,80,20);
 		final JTextField cnf=new JTextField();
 		cnf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(cnf);
-		cnf.setBounds(220, 195, 100, 24);
+		cnf.setBounds(410,100,100,24);
 		cnf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel surpervisor=new JLabel("监装员");
 		newin.add(surpervisor);
-		surpervisor.setBounds(120,230,80,20);
+		surpervisor.setBounds(60,140,80,20);
 		final JTextField s1f=new JTextField();
 		s1f.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(s1f);
-		s1f.setBounds(220, 230, 100, 24);
+		s1f.setBounds(160,140,100,24);
 		s1f.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel supercargo=new JLabel("押运员");
 		newin.add(supercargo);
-		supercargo.setBounds(120,265,80,20);
+		supercargo.setBounds(310,140,80,20);
 		final JTextField s2f=new JTextField();
 		s2f.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(s2f);
-		s2f.setBounds(220, 265, 100, 24);
+		s2f.setBounds(410,140,100,24);
 		s2f.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel orderNum=new JLabel("订单条形号码");
 		//10位 多文本域
 		newin.add(orderNum);
-		orderNum.setBounds(120,300,80,20);
+		orderNum.setBounds(60,180,80,20);
 		final JTextArea area=new JTextArea();
 		area.setLineWrap(true);
 		area.setFont(new Font("SanSerif",Font.PLAIN,12));
 		JScrollPane pane=new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		newin.add(pane);
 		pane.setViewportView(area);
-		pane.setBounds(220,300,100,64);
+		pane.setBounds(160,180,100,64);
 
 		
 		//应该是自动生成的，这边暂时先写输入的
 		JLabel cost=new JLabel("运费");
 		newin.add(cost);
-		cost.setBounds(120,380,80,20);
+		cost.setBounds(310,180,80,20);
 		final JTextField cf=new JTextField();
 		cf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(cf);
-		cf.setBounds(220, 380, 100, 24);
+		cf.setBounds(410,180,100,24);
 		cf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel place=new JLabel("所属营业厅");
 		newin.add(place);
-		place.setBounds(120, 415, 80, 20);
+		place.setBounds(60,260,80,20);
 		final JComboBox<String> jcb2=new JComboBox<String>();
 		jcb2.addItem("南京仙林");
 		jcb2.addItem("南京鼓楼");
 		jcb2.setBackground(Color.WHITE);
 		jcb2.setFont(new Font("SanSerif",Font.CENTER_BASELINE,12));
 		newin.add(jcb2);
-		jcb2.setBounds(220, 415, 100, 24);
+		jcb2.setBounds(160,260,100,24);
 		
 		JLabel maker=new JLabel("单据生成者");
 		newin.add(maker);
-		maker.setBounds(120,450,80,20);
+		maker.setBounds(310,260,80,20);
 		final JTextField mf=new JTextField(vo.getId());
 		mf.setFont(new Font("SanSerif",Font.PLAIN,12));
 		newin.add(mf);
-		mf.setBounds(220, 450, 100, 24);mf.setEditable(true);
+		mf.setBounds(410,260,100,24);
+		mf.setEditable(true);
 		mf.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel buttonpanel=new JPanel();
@@ -188,10 +195,10 @@ public class InvoiceUI_LoadingList extends JFrame{
 		JButton cancel=new JButton("取消(C)");
 		buttonpanel.add(save);
 		buttonpanel.add(cancel);
-		save.setBounds(this.getWidth()/2-140, 25,100,30);
-		cancel.setBounds(this.getWidth()/2+30, 25, 100, 30);
-		add(buttonpanel);
-		buttonpanel.setBounds(0,4*this.getHeight()/5,this.getWidth(),70);
+		save.setBounds(this.getWidth()/2-180, 25,100,30);
+		cancel.setBounds(this.getWidth()/2+70, 25, 100, 30);
+		p.add(buttonpanel);
+		buttonpanel.setBounds(0,3*this.getHeight()/5+55,this.getWidth(),70);
 		// 
 		save.addActionListener(new ActionListener(){
 			LoadingListBL loadinglistdata=new LoadingListBL();

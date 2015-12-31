@@ -18,10 +18,7 @@ public class SendingListData extends UnicastRemoteObject implements SendingListD
 	FileInputStream fis;
 	ObjectInputStream ois;
 	ObjectOutputStream oos;
-    public static void main(String args[]) throws IOException{
-    	SendingListData ii=new SendingListData();
-    	ii.init();
-    }
+	
 	public SendingListData() throws RemoteException {
 		super();
 	}
@@ -117,22 +114,22 @@ public class SendingListData extends UnicastRemoteObject implements SendingListD
 		fis=new FileInputStream(file);
 		ois=new ObjectInputStream(fis); 
 		ArrayList<SendingListPO> arr=new ArrayList<SendingListPO>();
-			System.out.println("findall");	
+				
 		try{
 			SendingListPO po=(SendingListPO)ois.readObject();
+			arr.add(po);
 			while(fis.available()>0){
 				byte[] buf=new byte[4];
 				fis.read(buf);
 				SendingListPO sendinglistpo=(SendingListPO)ois.readObject();
 				arr.add(sendinglistpo);
 			}
-		
 			return arr;
 		}catch(Exception e){
 			return arr;
 		}
 		finally{
-			try{	System.out.println(arr.size());
+			try{
 				ois.close();
 			}catch(Exception e){
 					
@@ -140,6 +137,35 @@ public class SendingListData extends UnicastRemoteObject implements SendingListD
 		}				
 	}
 	//zwh
+	
+	
+	public ArrayList<SendingListPO> findbymaker(String maker) throws RemoteException, IOException{	
+		fis=new FileInputStream(file);
+		ois=new ObjectInputStream(fis);	
+		ArrayList<SendingListPO> arr=new ArrayList<SendingListPO>();	
+	
+		try{		
+			SendingListPO po=(SendingListPO)ois.readObject();		
+			while(fis.available()>0){			
+				byte[] buf=new byte[4];			
+				fis.read(buf);			
+				po=(SendingListPO)ois.readObject();			
+				if(po.getMaker().equals(maker)){				
+					arr.add(po);			
+				}				
+			}		
+			return arr;	
+		}catch(Exception e){		
+			return arr;
+		}
+		finally{		
+			try{		
+				ois.close();	
+			}catch(Exception e){				
+		
+			}	
+		}	
+	}
 	
 	public void init() throws RemoteException {
 		file.delete();

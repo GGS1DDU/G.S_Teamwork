@@ -11,7 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
@@ -27,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import elms.businesslogic.invoicebl.IncomeListBL;
+import elms.presentation.uihelper.MyPanel;
 import elms.vo.IncomeListVO;
 
 public class InvoiceUI_IncomeListEdit extends JFrame{
@@ -36,6 +36,12 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 	int screenWidth=(int) screenSize.getWidth();
 	int screenHeight=(int) screenSize.getHeight();
 	boolean Edit;
+	
+//	public static void main(String[] args){
+//		IncomeListVO vo=new IncomeListVO("",1.2,"","","","","","");
+//		boolean edit=false;
+//		new InvoiceUI_IncomeListEdit(vo,edit);
+//	}
 	
 	public IncomeListVO getVO(){
 		return voall;
@@ -51,9 +57,12 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 		
 		Edit=edit;
 		
-		final JPanel newin=new JPanel();
+		MyPanel p=new MyPanel("bg3.png");
+		add(p);p.setBounds(0, 0, this.getWidth(), this.getHeight());
+		
+		final JPanel newin=new JPanel();newin.setOpaque(false);
 		newin.setLayout(null);
-		add(newin);newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10+10);
+		p.add(newin);newin.setBounds(0,0,this.getWidth(),7*this.getHeight()/10+10);
 		newin.setBorder(BorderFactory.createTitledBorder(""));
 		
 		JLabel id=new JLabel("单据ID");
@@ -142,22 +151,24 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 		newin.add(mf);mf.setBounds(220, 300, 100, 24);mf.setEditable(Edit);
 		mf.setHorizontalAlignment(SwingConstants.CENTER);
 			
-		JPanel buttonpanel=new JPanel();
-		buttonpanel.setLayout(null);
-		JButton cancle=new JButton("编辑(E)");
-		buttonpanel.add(cancle);
-		cancle.setBounds(this.getWidth()/2+90,25,100,30);
-		add(buttonpanel);
-		buttonpanel.setBounds(0,7*this.getHeight()/10+10,this.getWidth(),70);
 		
-		cancle.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				InvoiceUI_IncomeListEdit.this.dispose();
-				new InvoiceUI_IncomeListEdit(getVO(),true);
-			}
-		});
 		
 		if(Edit){
+			JPanel buttonpanel=new JPanel();
+			buttonpanel.setLayout(null);
+			JButton cancle=new JButton("编辑(E)");
+			buttonpanel.add(cancle);
+			cancle.setBounds(this.getWidth()/2+90,25,100,30);
+			p.add(buttonpanel);
+			buttonpanel.setBounds(0,7*this.getHeight()/10+10,this.getWidth(),70);
+			
+			cancle.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					InvoiceUI_IncomeListEdit.this.dispose();
+					new InvoiceUI_IncomeListEdit(getVO(),true);
+				}
+			});
+			
 			JButton save=new JButton("保存(S)");
 			buttonpanel.add(save);
 			save.setBounds(this.getWidth()/3-120,25,100,30);
@@ -174,7 +185,7 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 //						new InvoiceUI_IncomeListEdit(voall,false);
 //					}else{
 						try{
-							if(!df.getText().matches("\\d{4}-\\d{1,2}-\\d{1,2}")){
+							if(df.getText().matches("\\d{4}-\\d{2}-\\d{2}\\s")){
 								JOptionPane.showMessageDialog(newin,"修改信息格式错误");
 							}else{
 							InvoiceUI_IncomeListEdit.this.dispose();
@@ -193,23 +204,38 @@ public class InvoiceUI_IncomeListEdit extends JFrame{
 //					}					
 				}				
 			});
+			
+				JButton back=new JButton("取消(C)");
+				buttonpanel.add(back);
+				back.setBounds(this.getWidth()/2-50,25,100,30);
+				back.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						InvoiceUI_IncomeListEdit.this.dispose();
+						new InvoiceUI_IncomeListEdit(getVO(),false);
+					}
+				});	
 		}
 		
-		if(Edit){
-			JButton back=new JButton("取消(C)");
-			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,25,100,30);
-			back.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					InvoiceUI_IncomeListEdit.this.dispose();
-					new InvoiceUI_IncomeListEdit(getVO(),false);
-				}
-			});			
-		}
+		
 		else{
+			JPanel buttonpanel=new JPanel();
+			buttonpanel.setLayout(null);
+			JButton cancle=new JButton("编辑(E)");
+			buttonpanel.add(cancle);
+			cancle.setBounds(this.getWidth()/2+30, 25, 100, 30);
+			p.add(buttonpanel);
+			buttonpanel.setBounds(0,7*this.getHeight()/10+10,this.getWidth(),70);
+			
+			cancle.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					InvoiceUI_IncomeListEdit.this.dispose();
+					new InvoiceUI_IncomeListEdit(getVO(),true);
+				}
+			});
+			
 			JButton back=new JButton("删除(D)");
 			buttonpanel.add(back);
-			back.setBounds(this.getWidth()/2-50,25,100,30);
+			back.setBounds(this.getWidth()/2-140,25,100,30);
 			back.addActionListener(new ActionListener(){
 				IncomeListBL incomelistdata=new IncomeListBL();
 

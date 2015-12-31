@@ -22,6 +22,7 @@ import elms.dataservice.invoicedataservice.LoadingListZZDataService;
 import elms.dataservice.invoicedataservice.RecivalListDataService;
 import elms.dataservice.invoicedataservice.SendingListDataService;
 import elms.dataservice.invoicedataservice.TransferListDataService;
+//import elms.dataservice.logdataservice.LogDataService;
 import elms.dataservice.managerdataservice.FreightStrategyDataService;
 import elms.dataservice.managerdataservice.StaffDataService;
 import elms.dataservice.memberdataservice.CarDataService;
@@ -37,6 +38,19 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 	public ArrivalListBL(){
 		arrivallistdata=getArrivalListData();
 	}
+
+//	public static void main(String args[]) throws IOException{
+//		ArrivalListBL a=new ArrivalListBL();
+//		ArrayList<ArrivalListVO> arr=new ArrayList<ArrivalListVO>();
+//		ArrivalListVO vo=new ArrivalListVO("al00001","025000201511190000001","2015-11-19","完整","北京");
+//		ArrivalListVO vo1=new ArrivalListVO("al00002","025000201511200000002","2015-11-20","损坏","上海");
+//        ArrivalListVO vo2=new ArrivalListVO("al00003","025000201511210000003","2015-11-21","丢失","广州");
+//        arr.add(vo);
+//        arr.add(vo1);
+//        arr.add(vo2);
+//        
+//        a.inquiry("al00001");
+//	} 
 	
 	public UserDataService getUserData() {
 		// TODO 自动生成的方法存根
@@ -104,20 +118,6 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 			}							
 		}				
 		return no_audit;
-	}
-	
-	public ArrayList<ArrivalListVO> findByMaker(String maker) throws IOException{
-		ArrayList<ArrivalListPO> all=arrivallistdata.findall();
-		ArrayList<ArrivalListVO> result=new ArrayList<ArrivalListVO>(); 
-		for(int i=0;i<all.size();i++){
-			if(all.get(i).getMaker().equals(maker)){
-				ArrivalListVO vo=new ArrivalListVO(all.get(i).getID(),all.get(i).getOrder(),all.get(i).getTime(),all.get(i).getState(),all.get(i).getFrom(),all.get(i).getPlace(),all.get(i).getMaker(),all.get(i).getAuditState());
-				result.add(vo);				
-			}
-					
-		}
-				
-		return result;
 	}
 			
 	//返回这个maker的所有处在"草稿"状态的单据,测试可用。
@@ -236,6 +236,23 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 		}}
 		return voarr;
 	}
+	
+	public ArrayList<ArrivalListVO> inquiryByMaker(String Maker) throws IOException{
+		ArrayList<ArrivalListVO> voarr=new ArrayList<ArrivalListVO>();
+		ArrayList<ArrivalListPO> poarr=new ArrayList<ArrivalListPO>();
+	    poarr=arrivallistdata.findbymaker(Maker);
+	    if(poarr.size()>0){
+			for(ArrivalListPO po:poarr){
+				ArrivalListVO vo=new ArrivalListVO(po.getID(),po.getOrder(),po.getTime(),po.getState(),po.getFrom(),po.getPlace(),po.getMaker(),po.getAuditState());
+				voarr.add(vo);
+			}}
+			return voarr;
+	}
+
+//	public LogDataService getLogData() throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 	public StorageDataService getStorageData() throws RemoteException {
 		// TODO 自动生成的方法存根
@@ -273,19 +290,5 @@ public class ArrivalListBL implements ArrivalListBLService,DataFactory{
 		return null;
 	}
 
-	/*public ArrayList<StorageVO> inquiryAll(String center) throws IOException {
-		ArrayList<StorageVO> voarr=new ArrayList<StorageVO>();
-		ArrayList<StoragePO> poarr=new ArrayList<StoragePO>();
-		poarr=storage.findall(center);
-		for(StoragePO po:poarr) {
-			StorageVO vo=new StorageVO(po.getId(),po.getArea(),po.getSeat(),po.getOrder(),po.getTimeIn(),po.getTimeOut(),po.getState(),po.getName());
-			voarr.add(vo);
-		}	
-	//	for(StorageVO po:voarr) 		System.out.println(po.getId()+"  "+po.getArea()+"  "+po.getSeat()+"  "+po.getOrder()+"  "+po.getTimeIn()+"  "+po.getTimeOut()+"  "+po.getState()+"  "+po.getName());
-	return voarr;
-	}*/
-
-
-	
 
 }
